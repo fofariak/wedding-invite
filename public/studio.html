@@ -122,27 +122,26 @@ function placeholder(i){
 function defaults(){
   var caps=['By the sea','Racing up together','Reaching for you','Almost touching','Our quiet corner','Two rings, one promise'];
   return {theme:'wine',tradition:'hindu',reveal:'pull',tz:'+05:30',
-    name1:'Aarav',name2:'Ananya',rel1:'Son of',parents1:'Mr. Rajesh Sharma & Mrs. Sunita Sharma',rel2:'Daughter of',parents2:'Mr. Vikram Mehta & Mrs. Kavita Mehta',
+    name1:'Aastha',name2:'Aakash',rel1:'Daughter of',parents1:'Mr. Vikram Mehta & Mrs. Kavita Mehta',rel2:'Son of',parents2:'Mr. Rajesh Sharma & Mrs. Sunita Sharma',
     frontLabel:'Together with their families',inviteLine:'request the pleasure of your company at their wedding',
     coverTitle:'SHUBH VIVAAH',coverSub:'A wedding invitation',
-    date:'2027-02-12',time:'22:30',bannerLine:'',
+    date:'2026-12-31',time:'19:00',bannerLine:'',
     events:[
-      {name:'Mata Pujan',date:'2027-02-10',time:'10:00',place:'Sharma Residence, Malviya Nagar',dress:'Traditional wear',c1:'#e9d7ad',c2:'',style:'pujan'},
-      {name:'Haldi',date:'2027-02-10',time:'15:00',place:'Garden Lawns, Raj Vilas Palace',dress:'Wear yellow',c1:'#f2c230',c2:'',style:'haldi'},
-      {name:'Mehendi',date:'2027-02-11',time:'12:00',place:'The Courtyard, Raj Vilas Palace',dress:'Wear green',c1:'#7f9a62',c2:'',style:'mehendi'},
-      {name:'Sangeet',date:'2027-02-11',time:'19:30',place:'Darbar Hall, Raj Vilas Palace',dress:'Indo-western, purple & pink',c1:'#b48ad0',c2:'#e84393',style:'sangeet'},
-      {name:'Ghat Sthapana',date:'2027-02-12',time:'09:00',place:'Mandir Courtyard, Raj Vilas Palace',dress:'Orange & saffron',c1:'#e07b39',c2:'',style:'ghat'},
-      {name:'Baraat & Pheras',date:'2027-02-12',time:'19:00',place:'The Mandap, Raj Vilas Palace',dress:'Festive red & gold',c1:'#a3192f',c2:'#d4a84b',style:'pheras'}],
+      {name:'Mandap Muhurat',date:'2026-12-29',time:'10:00',place:'Mehta Residence, Malabar Hill',dress:'Traditional wear',c1:'#e9d7ad',c2:'',style:'pujan'},
+      {name:'Haldi',date:'2026-12-29',time:'15:00',place:'Poolside, The Oberoi',dress:'Wear yellow',c1:'#f2c230',c2:'',style:'haldi'},
+      {name:'Mehndi',date:'2026-12-30',time:'12:00',place:'The Garden Lawn, The Oberoi',dress:'Wear green',c1:'#7f9a62',c2:'',style:'mehendi'},
+      {name:'Sangeet',date:'2026-12-30',time:'19:30',place:'The Ballroom, The Oberoi',dress:'Indo-western, purple & pink',c1:'#b48ad0',c2:'#e84393',style:'sangeet'},
+      {name:'Wedding & Pheras',date:'2026-12-31',time:'19:00',place:'The Mandap, The Oberoi',dress:'Festive red & gold',c1:'#a3192f',c2:'#d4a84b',style:'pheras'}],
     photos:caps.map(function(c,i){return {src:placeholder(i),caption:c,pos:'50%'};}),cover:2,
-    recOn:true,recLabel:'You are invited to the',recTitle:'Grand Reception',recDate:'2027-02-13',recLine:'8:00 pm onwards · Dinner & dance',recVenue:'Sheesh Mahal, Raj Vilas Palace',recChip:'Dress code: black tie & sarees',
-    venue:'Raj Vilas Palace',address:'Amer Road, near Jal Mahal, Jaipur 302002',city:'Jaipur',mapArea:'AMER HILLS',mapLandmark:'JAL MAHAL',mapRoad:'AMER ROAD',
-    closing:'With love, the Sharma & Mehta families',kids:'“Please come to my bhaiya’s wedding!” Chhotu, Pinky & Golu',
+    recOn:true,recLabel:'You are invited to the',recTitle:'Grand Reception',recDate:'2026-12-31',recLine:'10:00 pm onwards · Dinner, dance & the New Year countdown',recVenue:'The Terrace, The Oberoi',recChip:'Dress code: black tie & sarees',
+    venue:'The Oberoi',address:'Nariman Point, Mumbai 400021',city:'Mumbai',mapArea:'NARIMAN POINT',mapLandmark:'MARINE DRIVE',mapRoad:'NETAJI SUBHASH ROAD',
+    closing:'With love, the Mehta & Sharma families',kids:'“Please come to my bhaiya’s wedding!” Chhotu, Pinky & Golu',
     song:'',songName:''};
 }
 function sample(k){
   var d=defaults();if(k==='hindu')return d;
   function ev(n,dt,tm,pl,dr,c1,st,sw){return {name:n,date:dt,time:tm,place:pl,dress:dr,c1:c1,c2:'',style:st,swatch:sw!==false};}
-  if(k==='muslim')return Object.assign(d,{name1:'Zayan',name2:'Aleena',parents1:'Mr. Imran Qureshi & Mrs. Sana Qureshi',parents2:'Mr. Faisal Siddiqui & Mrs. Hina Siddiqui',
+  if(k==='muslim')return Object.assign(d,{name1:'Zayan',name2:'Aleena',rel1:'Son of',rel2:'Daughter of',parents1:'Mr. Imran Qureshi & Mrs. Sana Qureshi',parents2:'Mr. Faisal Siddiqui & Mrs. Hina Siddiqui',
     frontLabel:'In the name of Allah, the Most Merciful',inviteLine:'request the honour of your presence at their Nikah',coverTitle:'NIKAH',coverSub:'A wedding invitation',
     date:'2027-03-19',time:'17:00',tz:'+04:00',
     events:[ev('Dholki Night','2027-03-16','19:30','Qureshi Residence, Jumeirah','Festive colours','#b48ad0','sangeet'),ev('Mehndi','2027-03-18','18:00','The Courtyard, Al Noor Gardens','Greens & yellows','#7f9a62','mehendi'),ev('Nikah','2027-03-19','17:00','The Pavilion, Al Noor Gardens','Formal, modest attire','#f3ebe0','nikah')],
