@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Create your invitation · Mandap &amp; Co.</title>
+<!-- Created using Anthropic Claude. Keep this note on internal versions until a person has reviewed the site. -->
+<style>
+:root{--bg:#f3efe8;--panel:#fffdf9;--ink:#27211e;--muted:#6f645c;--line:#ddd3c6;--accent:#6e1f2f;--accent-ink:#fff;--field:#fff;--ok:#2f6b4f;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--sans:"Avenir Next","Segoe UI",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#1b1715;--panel:#25201d;--ink:#f1e9df;--muted:#a89c91;--line:#40372f;--accent:#d9a3ad;--accent-ink:#2a1016;--field:#1b1715;--ok:#8fd0b0}}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans)}
+.app{display:grid;grid-template-columns:minmax(360px,460px) 1fr;height:100vh}
+.side{display:flex;flex-direction:column;border-right:1px solid var(--line);background:var(--panel);min-height:0}
+.top{padding:18px 20px 14px;border-bottom:1px solid var(--line)}
+.top h1{margin:0;font:500 24px/1.15 var(--serif);letter-spacing:-.01em}
+.top p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.home{font:500 15px var(--serif);color:var(--accent);text-decoration:none}
+.paynote{font-size:12.5px;color:var(--muted);margin:0}
+.form{overflow:auto;flex:1;padding:6px 20px 24px;min-height:0}
+details{border-bottom:1px solid var(--line);padding:2px 0}
+summary{cursor:pointer;padding:12px 0;font:500 17px var(--serif);list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--muted);font:400 18px var(--sans)}
+details[open]>summary::after{content:"\2212"}
+.body{padding:0 0 16px;display:grid;gap:10px}
+label{display:grid;gap:4px;font-size:12.5px;color:var(--muted)}
+input[type=text],input[type=date],input[type=time],select,textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--field);color:var(--ink);font:14px var(--sans)}
+input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.three{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px}
+.hint{font-size:12px;color:var(--muted);margin:0}
+.themes{display:grid;gap:8px}
+.theme{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink);font-size:14px}
+.theme:has(input:checked){border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.theme input{accent-color:var(--accent);margin:0}
+.sw{display:flex;margin-left:auto}
+.sw i{width:22px;height:22px;border-radius:50%;border:2px solid var(--panel);margin-left:-7px}
+.card{border:1px solid var(--line);border-radius:8px;padding:10px;display:grid;gap:8px;background:var(--bg)}
+.cardhead{display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px}
+.cardhead span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mini{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:5px;padding:3px 8px;font:13px var(--sans);cursor:pointer}
+.mini:disabled{opacity:.35;cursor:default}
+.btn{border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:7px;padding:10px 14px;font:600 13.5px var(--sans);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn.add{justify-self:start;padding:7px 12px}
+.photo{display:grid;grid-template-columns:64px 1fr;gap:10px;align-items:start}
+.photo img{width:64px;height:84px;object-fit:cover;border-radius:5px;border:1px solid var(--line);background:#ddd}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.check{display:flex;gap:8px;align-items:center;color:var(--ink);font-size:13.5px}
+.check input{accent-color:var(--accent)}
+input[type=color]{width:40px;height:34px;padding:2px;border:1px solid var(--line);border-radius:6px;background:var(--field)}
+.foot{border-top:1px solid var(--line);padding:12px 20px;display:grid;gap:8px}
+.foot .row{flex-wrap:nowrap}.foot .btn{flex:1}
+#status{font-size:12.5px;color:var(--muted);min-height:18px}
+.stage{display:grid;grid-template-rows:auto 1fr;min-height:0;min-width:0}
+.stagebar{display:flex;gap:16px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.stagebar b{font:500 17px var(--serif);margin-right:auto}
+.phonewrap{display:grid;place-items:center;padding:20px;min-height:0;overflow:auto}
+.phone{width:min(400px,100%);height:min(820px,calc(100vh - 110px));border-radius:34px;border:10px solid #1d1a18;background:#000;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.25)}
+.phone iframe{width:100%;height:100%;border:0;display:block;background:#fff}
+@media (max-width:860px){.app{grid-template-columns:1fr;height:auto}.side{border-right:0}.form{overflow:visible}.phone{height:760px}.stage{border-top:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="side">
+    <div class="top">
+      <a class="home" href="index.html">Mandap &amp; Co.</a>
+      <h1>Create your invitation</h1>
+      <p>Editing and previewing are free. Pay once per wedding to remove the preview mark and download. <button class="mini" id="fresh" type="button">Start a new invite</button></p>
+    </div>
+    <div class="form" id="form"></div>
+    <div class="foot">
+      <div class="row">
+        <button class="btn" id="export">Download invite</button>
+        <button class="btn ghost" id="save">Save project</button>
+        <button class="btn ghost" id="load">Open project</button>
+      </div>
+      <div id="status" role="status"></div>
+      <p class="paynote" id="paynote"></p>
+      <input type="file" id="loadfile" accept=".json,application/json" hidden>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="stagebar">
+      <b>Phone preview</b>
+      <label class="check"><input type="checkbox" id="skip" checked> Skip the opening book</label>
+      <label class="check"><input type="checkbox" id="pmusic"> Play song in preview</label>
+      <button class="mini" id="replay">Replay from start</button>
+    </div>
+    <div class="phonewrap"><div class="phone"><iframe id="pv" title="Invite preview"></iframe></div></div>
+  </div>
+</div>
+
+<script id="tpl" type="application/json">__TEMPLATE__</script>
+<script id="themes" type="application/json">__THEMES__</script>
+<script id="emblems" type="application/json">__EMBLEMS__</script>
+<script>
+(function(){
+'use strict';
+var TEMPLATE=JSON.parse(document.getElementById('tpl').textContent);
+var THEMES=JSON.parse(document.getElementById('themes').textContent);
+var EMBLEMS=JSON.parse(document.getElementById('emblems').textContent);
+var STYLES={ceremony:['Ceremony arch','i-arch','arch'],rings:['Vows / rings','i-rings','arch'],dinner:['Dinner / toast','i-cheers','lights'],feast:['Feast / walima','i-feast','lights'],nikah:['Nikah / lanterns','i-lantern','moon'],
+  mehendi:['Mehendi / henna','i-mehendi','mehendi'],sangeet:['Sangeet / party / dance','i-sangeet','sangeet'],haldi:['Haldi','i-haldi','haldi'],pujan:['Puja / kalash','i-pujan','pujan'],ghat:['Ghat sthapana / ritual','i-ghat','ghat'],pheras:['Mandap / pheras','i-mandap','pheras']};
+var TRAD={hindu:{label:'Hindu',note:'Ganesha emblem, "Weds" in the title',emblem:'ganesha',join:' Weds ',rite:'Pheras',recIcon:'i-cheers'},
+  muslim:{label:'Muslim / Nikah',note:'Star and crescent emblem, no alcohol artwork',emblem:'star',join:' & ',rite:'Nikah',recIcon:'i-feast'},
+  western:{label:'Western (European / American)',note:'Monogram of the couple\'s initials',emblem:'monogram',join:' & ',rite:'Ceremony',recIcon:'i-cheers'}};
+var ZONES=[['-08:00','Los Angeles (UTC-8)'],['-07:00','Los Angeles summer / Denver (UTC-7)'],['-06:00','Chicago (UTC-6)'],['-05:00','New York (UTC-5)'],['-04:00','New York summer (UTC-4)'],['+00:00','London (UTC)'],['+01:00','London summer / Paris, Rome (UTC+1)'],['+02:00','Paris, Rome summer / Cairo (UTC+2)'],['+03:00','Riyadh, Doha, Istanbul (UTC+3)'],['+04:00','Dubai, Abu Dhabi (UTC+4)'],['+05:00','Karachi (UTC+5)'],['+05:30','India (UTC+5:30)'],['+06:00','Dhaka (UTC+6)'],['+08:00','Singapore (UTC+8)']];
+var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+var DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var SILENT='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+
+function placeholder(i){
+  var tones=[['#e9ddd0','#cdbba8'],['#dfe3da','#b9c2b0'],['#ead9d3','#cfb1a8'],['#e6e0ef','#bdb3cf'],['#efe6cf','#d3c39a'],['#d9e3e6','#aebfc4']][i%6];
+  var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 960"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+tones[0]+'"/><stop offset="1" stop-color="'+tones[1]+'"/></linearGradient></defs><rect width="640" height="960" fill="url(#g)"/><g fill="none" stroke="#fff" stroke-width="10" opacity=".7"><rect x="230" y="400" width="180" height="140" rx="16"/><circle cx="320" cy="470" r="38"/></g><text x="320" y="610" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="#fff" opacity=".85">Photo '+(i+1)+'</text></svg>';
+  return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+}
+function defaults(){
+  var caps=['By the sea','Racing up together','Reaching for you','Almost touching','Our quiet corner','Two rings, one promise'];
+  return {theme:'wine',tradition:'hindu',reveal:'pull',tz:'+05:30',
+    name1:'Aarav',name2:'Ananya',rel1:'Son of',parents1:'Mr. Rajesh Sharma & Mrs. Sunita Sharma',rel2:'Daughter of',parents2:'Mr. Vikram Mehta & Mrs. Kavita Mehta',
+    frontLabel:'Together with their families',inviteLine:'request the pleasure of your company at their wedding',
+    coverTitle:'SHUBH VIVAAH',coverSub:'A wedding invitation',
+    date:'2027-02-12',time:'22:30',bannerLine:'',
+    events:[
+      {name:'Mata Pujan',date:'2027-02-10',time:'10:00',place:'Sharma Residence, Malviya Nagar',dress:'Traditional wear',c1:'#e9d7ad',c2:'',style:'pujan'},
+      {name:'Haldi',date:'2027-02-10',time:'15:00',place:'Garden Lawns, Raj Vilas Palace',dress:'Wear yellow',c1:'#f2c230',c2:'',style:'haldi'},
+      {name:'Mehendi',date:'2027-02-11',time:'12:00',place:'The Courtyard, Raj Vilas Palace',dress:'Wear green',c1:'#7f9a62',c2:'',style:'mehendi'},
+      {name:'Sangeet',date:'2027-02-11',time:'19:30',place:'Darbar Hall, Raj Vilas Palace',dress:'Indo-western, purple & pink',c1:'#b48ad0',c2:'#e84393',style:'sangeet'},
+      {name:'Ghat Sthapana',date:'2027-02-12',time:'09:00',place:'Mandir Courtyard, Raj Vilas Palace',dress:'Orange & saffron',c1:'#e07b39',c2:'',style:'ghat'},
+      {name:'Baraat & Pheras',date:'2027-02-12',time:'19:00',place:'The Mandap, Raj Vilas Palace',dress:'Festive red & gold',c1:'#a3192f',c2:'#d4a84b',style:'pheras'}],
+    photos:caps.map(function(c,i){return {src:placeholder(i),caption:c,pos:'50%'};}),cover:2,
+    recOn:true,recLabel:'You are invited to the',recTitle:'Grand Reception',recDate:'2027-02-13',recLine:'8:00 pm onwards · Dinner & dance',recVenue:'Sheesh Mahal, Raj Vilas Palace',recChip:'Dress code: black tie & sarees',
+    venue:'Raj Vilas Palace',address:'Amer Road, near Jal Mahal, Jaipur 302002',city:'Jaipur',mapArea:'AMER HILLS',mapLandmark:'JAL MAHAL',mapRoad:'AMER ROAD',
+    closing:'With love, the Sharma & Mehta families',kids:'“Please come to my bhaiya’s wedding!” Chhotu, Pinky & Golu',
+    song:'',songName:''};
+}
+function sample(k){
+  var d=defaults();if(k==='hindu')return d;
+  function ev(n,dt,tm,pl,dr,c1,st,sw){return {name:n,date:dt,time:tm,place:pl,dress:dr,c1:c1,c2:'',style:st,swatch:sw!==false};}
+  if(k==='muslim')return Object.assign(d,{name1:'Zayan',name2:'Aleena',parents1:'Mr. Imran Qureshi & Mrs. Sana Qureshi',parents2:'Mr. Faisal Siddiqui & Mrs. Hina Siddiqui',
+    frontLabel:'In the name of Allah, the Most Merciful',inviteLine:'request the honour of your presence at their Nikah',coverTitle:'NIKAH',coverSub:'A wedding invitation',
+    date:'2027-03-19',time:'17:00',tz:'+04:00',
+    events:[ev('Dholki Night','2027-03-16','19:30','Qureshi Residence, Jumeirah','Festive colours','#b48ad0','sangeet'),ev('Mehndi','2027-03-18','18:00','The Courtyard, Al Noor Gardens','Greens & yellows','#7f9a62','mehendi'),ev('Nikah','2027-03-19','17:00','The Pavilion, Al Noor Gardens','Formal, modest attire','#f3ebe0','nikah')],
+    recLabel:'You are invited to the',recTitle:'Walima',recDate:'2027-03-20',recLine:'8:00 pm onwards · Dinner',recVenue:'The Grand Hall, Al Noor Gardens',recChip:'',
+    venue:'Al Noor Gardens',address:'Beach Road, Jumeirah, Dubai',city:'Dubai',mapArea:'JUMEIRAH',mapLandmark:'THE LAGOON',mapRoad:'BEACH ROAD',
+    closing:'With love and duas, the Qureshi & Siddiqui families',kids:''});
+  return Object.assign(d,{name1:'James',name2:'Charlotte',rel1:'',rel2:'',parents1:'',parents2:'',
+    frontLabel:'Together with their families',inviteLine:'invite you to celebrate their wedding',coverTitle:'THE WEDDING',coverSub:'An invitation',
+    date:'2027-06-19',time:'16:00',tz:'+02:00',
+    events:[ev('Welcome Dinner','2027-06-18','19:30','The Terrace, Villa Montalba','Smart casual','#d9bd85','dinner',false),ev('The Ceremony','2027-06-19','16:00','The Olive Garden, Villa Montalba','Black tie optional','#2d2422','ceremony',false),ev('Farewell Brunch','2027-06-20','11:00','The Loggia, Villa Montalba','','#f6d2c8','rings',false)],
+    recLabel:'Followed by',recTitle:'Dinner & Dancing',recDate:'2027-06-19',recLine:'6:30 pm onwards · Dinner, toasts & dancing',recVenue:'The Ballroom, Villa Montalba',recChip:'',
+    venue:'Villa Montalba',address:'Via dei Cipressi 8, Tuscany, Italy',city:'Tuscany',mapArea:'CHIANTI HILLS',mapLandmark:'OLIVE GROVE',mapRoad:'VIA DEI CIPRESSI',
+    closing:'With love, James & Charlotte',kids:''});
+}
+var S=defaults();
+
+/* ---------- helpers ---------- */
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function js(s){return JSON.stringify(String(s)).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');}
+function parts(d){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(d||'');if(!m)return null;var y=+m[1],mo=+m[2]-1,da=+m[3];return {y:y,mo:mo,d:da,wd:new Date(Date.UTC(y,mo,da)).getUTCDay()};}
+function time12(t){var m=/^(\d{2}):(\d{2})$/.exec(t||'');if(!m)return '';var h=+m[1],ap=h<12?'am':'pm';h=h%12||12;return h+':'+m[2]+' '+ap;}
+function longDate(d){var p=parts(d);return p?DAYS[p.wd]+', '+p.d+' '+MONTHS[p.mo]+' '+p.y:'';}
+function shortWhen(d,t){var p=parts(d),a=[];if(p){a.push(DAYS[p.wd].slice(0,3));a.push(p.d+' '+MONTHS[p.mo].slice(0,3));}if(time12(t))a.push(time12(t));return a.join(' · ');}
+function pad(n){return (n<10?'0':'')+n;}
+function calStamp(ms){var d=new Date(ms);return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+'00Z';}
+
+/* ---------- build the invite ---------- */
+var themed={};
+function themedTemplate(k){
+  if(themed[k])return themed[k];
+  var t=TEMPLATE,map=(THEMES[k]||THEMES.wine).map||{};
+  var keys=Object.keys(map);
+  if(keys.length){
+    var re=new RegExp(keys.map(function(x){return x.replace(/[()]/g,'\\$&')+(x.charAt(0)==='#'?'\\b':'');}).join('|'),'gi');
+    t=t.replace(re,function(m){return map[m.toLowerCase()]||m;});
+  }
+  return themed[k]=t;
+}
+function build(opts){
+  opts=opts||{};
+  var th=THEMES[S.theme]||THEMES.wine,p=parts(S.date)||parts('2027-01-01'),tm=/^\d{2}:\d{2}$/.test(S.time)?S.time:'19:00';
+  var TR=TRAD[S.tradition]||TRAD.hindu,tz=/^[+-]\d{2}:\d{2}$/.test(S.tz)?S.tz:'+05:30';
+  var iso=S.date+'T'+tm+':00'+tz,start=new Date(iso).getTime();
+  if(isNaN(start))start=Date.now();
+  var title=S.name1+TR.join+S.name2;
+  var banner=S.bannerLine||(TR.rite+' at '+time12(tm)+' · '+S.venue);
+  var emblem=EMBLEMS[TR.emblem].replace('%%INIT1%%',esc((S.name1||'').trim().charAt(0).toUpperCase())).replace('%%INIT2%%',esc((S.name2||'').trim().charAt(0).toUpperCase()));
+  var auto=S.reveal==='auto';
+  var place=[S.venue,S.address].filter(Boolean).join(', ');
+  var q=encodeURIComponent(place);
+  var events=S.events.map(function(e){
+    var st=STYLES[e.style]?e.style:'ceremony',bg=e.c2?'linear-gradient(135deg,'+e.c1+','+e.c2+')':e.c1;
+    return '      <article class="ev-card"><img class="scene" data-scene="'+STYLES[st][2]+'" alt=""><div class="shade"></div>\n        <div class="ec"><div class="ill"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#'+STYLES[st][1]+'"/></svg></div><div class="ewhen">'+esc(shortWhen(e.date,e.time))+'</div><h3>'+esc(e.name)+'</h3><div class="place">'+esc(e.place)+'</div>'
+      +(e.dress&&e.dressOn!==false?'\n          <div class="dressrow">'+(e.swatch!==false?'<span class="swatch" style="background:'+esc(bg)+'"></span>':'')+'<span><small>Dress code</small><b>'+esc(e.dress)+'</b></span></div>':'')+'</div></article>';
+  }).join('\n');
+  var photos=S.photos.map(function(ph){
+    return '        <figure class="sp-item"><div class="sp-in"><img src="'+esc(ph.src)+'" alt="'+esc(ph.caption)+'" style="object-position:50% '+esc(ph.pos||'50%')+'" decoding="async"></div>'+(ph.caption?'<figcaption class="cap">'+esc(ph.caption)+'</figcaption>':'')+'</figure>';
+  }).join('\n');
+  var cov=S.photos[S.cover]||S.photos[0];
+  var V={TITLE:esc(title),SONG:esc(opts.silent||!S.song?SILENT:S.song),
+    COVER_TITLE:esc(S.coverTitle),COVER_SUB:esc(S.coverSub),COVER_PHOTO:esc(cov.src),COVER_POS:'50% '+esc(cov.pos||'50%'),
+    FRONT_LABEL:esc(S.frontLabel),NAME1:esc(S.name1),NAME2:esc(S.name2),REL1:esc(S.parents1?S.rel1:''),REL2:esc(S.parents2?S.rel2:''),EMBLEM:emblem,DATE_HEAD:auto?'The Wedding Day':'Pull to Reveal',DATE_TIP:auto?'':'Drag the tassel down',REC_ICON:TR.recIcon,PARENTS1:esc(S.parents1),PARENTS2:esc(S.parents2),INVITE_LINE:esc(S.inviteLine),
+    W_WEEKDAY:DAYS[p.wd],W_DAY:String(p.d),W_MONTH:MONTHS[p.mo],W_YEAR:String(p.y),BANNER_LINE:esc(banner),
+    CAL_HREF:esc('https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(S.name1+' & '+S.name2+' Wedding')+'&dates='+calStamp(start)+'/'+calStamp(start+4*3600e3)+'&location='+q),
+    EVENTS:events,PHOTOS:photos,
+    REC_HIDDEN:S.recOn?'':' hidden',REC_LABEL:esc(S.recLabel),REC_TITLE:esc(S.recTitle),REC_DATE:esc(longDate(S.recDate)),REC_LINE:esc(S.recLine),REC_VENUE:esc(S.recVenue),REC_CHIP:S.recChip?'<span class="chip">'+esc(S.recChip)+'</span>':'',
+    CITY:esc(S.city),MAP_HREF:esc('https://www.google.com/maps/search/?api=1&query='+q),DIR_HREF:esc('https://www.google.com/maps/dir/?api=1&destination='+q),
+    MAP_AREA:esc(S.mapArea),MAP_LANDMARK:esc(S.mapLandmark),MAP_ROAD:esc(S.mapRoad),VENUE:esc(S.venue),ADDRESS:esc(S.address),
+    CLOSING:esc(S.closing),KIDS:S.kids?'<div class="kids">'+esc(S.kids)+'</div>':'',
+    J_TIP:js('See you on '+longDate(S.date)),J_TARGET:js(iso),J_ADDR:js(place),
+    F_BLUSH:JSON.stringify(th.F_BLUSH),F_IVORY:JSON.stringify(th.F_IVORY),F_PEACH:JSON.stringify(th.F_PEACH),F_WINE:JSON.stringify(th.F_WINE),F_PETALS:JSON.stringify(th.F_PETALS),BUD0:th.BUD[0],BUD1:th.BUD[1]};
+  var html=themedTemplate(S.theme).replace(/%%([A-Z0-9_]+)%%/g,function(m,k){return V.hasOwnProperty(k)?V[k]:m;});
+  if(auto){
+    var au='<script>(function(){var t=document.getElementById("tassel"),tip=document.getElementById("pulltip"),done=false;document.getElementById("hand").style.display="none";tip.style.visibility="hidden";'
+      +'function go(){if(done)return;if(!document.documentElement.classList.contains("opened")){setTimeout(go,300);return;}done=true;setTimeout(function(){tip.style.visibility="";t.dispatchEvent(new KeyboardEvent("keydown",{key:"Enter"}));},500);}'
+      +'if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();go();}},{threshold:.5});io.observe(document.getElementById("pullbox"));}else go();})();<\/script>';
+    html=html.replace(/<\/body>|$/,function(m){return au+m;});
+  }
+  if(opts.mark){
+    var tile='<svg xmlns="http://www.w3.org/2000/svg" width="230" height="170"><text x="115" y="95" text-anchor="middle" transform="rotate(-28 115 85)" font-family="Georgia,serif" font-size="26" letter-spacing="4" fill="#2d2422" fill-opacity=".2" stroke="#fff" stroke-opacity=".35" stroke-width=".6">PREVIEW</text></svg>';
+    var wm='<div aria-hidden="true" style="position:fixed;inset:0;z-index:2147483000;pointer-events:none;background:url(&quot;data:image/svg+xml;charset=utf-8,'+encodeURIComponent(tile)+'&quot;)"></div>';
+    html=html.replace(/<\/body>|$/,function(m){return wm+m;});
+  }
+  if(opts.preview){
+    var extra='<script>(function(){var skip='+(opts.skip?'true':'false')+',y='+(opts.scroll||0)+';'
+      +'addEventListener("scroll",function(){try{parent.postMessage({inviteScroll:scrollY},"*");}catch(e){}},{passive:true});'
+      +'if(!skip)return;var sc=document.getElementById("scene"),n=0;var t=setInterval(function(){n++;if(sc.classList.contains("ready")){clearInterval(t);sc.style.display="none";document.getElementById("book").click();'
+      +'setTimeout(function(){document.body.classList.remove("locked");scrollTo(0,y);},60);}else if(n>120)clearInterval(t);},50);})();<\/script>';
+    html=html.replace(/<\/body>|$/,function(m){return extra+m;});
+  }
+  return html;
+}
+
+/* ---------- form ---------- */
+var form=document.getElementById('form');
+function h(tag,attrs,kids){var e=document.createElement(tag);for(var k in attrs||{}){if(k==='text')e.textContent=attrs[k];else if(k.slice(0,2)==='on')e.addEventListener(k.slice(2),attrs[k]);else if(attrs[k]!==false&&attrs[k]!=null)e.setAttribute(k,attrs[k]===true?'':attrs[k]);}(kids||[]).forEach(function(c){if(c)e.appendChild(typeof c==='string'?document.createTextNode(c):c);});return e;}
+function field(label,obj,key,type,extra){
+  var inp=h('input',Object.assign({type:type||'text',value:obj[key]==null?'':obj[key]},extra||{}));
+  inp.addEventListener('input',function(){obj[key]=inp.value;changed();});
+  return h('label',{},[label,inp]);
+}
+function section(title,open,kids){return h('details',{open:!!open},[h('summary',{text:title}),h('div',{class:'body'},kids)]);}
+function render(){
+  var keep={};[].forEach.call(form.children,function(d,i){keep[i]=d.open;});
+  var sc=form.scrollTop;form.textContent='';
+  var secs=[];
+  secs.push(section('Design',true,[h('div',{class:'themes',role:'radiogroup','aria-label':'Design'},Object.keys(THEMES).map(function(k){
+    var r=h('input',{type:'radio',name:'theme',value:k,checked:S.theme===k,onchange:function(){S.theme=k;changed();}});
+    return h('label',{class:'theme'},[r,THEMES[k].label,h('span',{class:'sw'},THEMES[k].sw.map(function(c){return h('i',{style:'background:'+c});}))]);
+  })),h('p',{class:'hint',text:'Same animated layout in three colour stories. Event dress-code colours stay as you set them.'}),
+    h('div',{class:'themes',role:'radiogroup','aria-label':'Wedding tradition'},Object.keys(TRAD).map(function(k){
+      var r=h('input',{type:'radio',name:'trad',value:k,checked:S.tradition===k,onchange:function(){S.tradition=k;changed();render();}});
+      return h('label',{class:'theme'},[r,h('span',{},[TRAD[k].label,h('br'),h('small',{class:'hint',text:TRAD[k].note})])]);})),
+    h('button',{class:'btn ghost add',type:'button',text:'Fill in sample '+TRAD[S.tradition].label+' wording',onclick:function(){
+      if(!confirm('Replace the names, wording, functions and venue with sample '+TRAD[S.tradition].label+' content? Your photos, song and colours stay.'))return;
+      var keepK={photos:S.photos,cover:S.cover,song:S.song,songName:S.songName,theme:S.theme,reveal:S.reveal,tradition:S.tradition};S=Object.assign(sample(S.tradition),keepK);render();changed();say('Sample wording loaded. Edit anything you like.');}}),
+    h('p',{class:'hint',text:'The tradition sets the emblem and a few fixed words. The button swaps in sample wording and functions to start from.'})]));
+  secs.push(section('Couple & families',true,[
+    h('div',{class:'two'},[field('First name (shown first)',S,'name1'),field('Second name',S,'name2')]),
+    h('div',{class:'two'},[field('Relation line',S,'rel1'),field('Relation line',S,'rel2')]),
+    field('Parents of '+(S.name1||'first')+' (leave empty to hide)',S,'parents1'),field('Parents of '+(S.name2||'second')+' (leave empty to hide)',S,'parents2'),
+    field('Line above the names',S,'frontLabel'),field('Invitation line',S,'inviteLine'),
+    h('div',{class:'two'},[field('Book cover title',S,'coverTitle'),field('Book cover subtitle',S,'coverSub')])]));
+  secs.push(section('Wedding date',false,[
+    h('div',{class:'two'},[field('Date',S,'date','date'),field(TRAD[S.tradition].rite+' time',S,'time','time')]),
+    (function(){var z=h('select',{},ZONES.map(function(o){return h('option',{value:o[0],selected:S.tz===o[0],text:o[1]});}));z.addEventListener('change',function(){S.tz=z.value;changed();});return h('label',{},['Time zone of the wedding',z]);})(),
+    (function(){var z=h('select',{},[['pull','Guest pulls the tassel to unroll the date'],['auto','Date unrolls by itself when scrolled to']].map(function(o){return h('option',{value:o[0],selected:S.reveal===o[0],text:o[1]});}));z.addEventListener('change',function(){S.reveal=z.value;changed();});return h('label',{},['Date reveal',z]);})(),
+    field('Line under the date',S,'bannerLine','text',{placeholder:TRAD[S.tradition].rite+' at '+time12(S.time)+' · '+S.venue}),
+    h('p',{class:'hint',text:'The pull-down banner, countdown and calendar button all follow this date.'})]));
+  secs.push(section('Functions ('+S.events.length+')',false,S.events.map(function(e,i){
+    var sel=h('select',{},Object.keys(STYLES).map(function(k){return h('option',{value:k,selected:e.style===k,text:STYLES[k][0]});}));
+    sel.addEventListener('change',function(){e.style=sel.value;changed();});
+    var two=h('input',{type:'checkbox',checked:!!e.c2,onchange:function(){e.c2=two.checked?'#d4a84b':'';changed();render();}});
+    var c1=h('input',{type:'color',value:e.c1,'aria-label':'Dress colour',oninput:function(){e.c1=c1.value;changed();}});
+    var c2=e.c2?h('input',{type:'color',value:e.c2,'aria-label':'Second dress colour',oninput:function(){e.c2=c2.value;changed();}}):null;
+    var dOn=h('input',{type:'checkbox',checked:e.dressOn!==false,onchange:function(){e.dressOn=dOn.checked;changed();render();}});
+    var sOn=h('input',{type:'checkbox',checked:e.swatch!==false,onchange:function(){e.swatch=sOn.checked;changed();render();}});
+    return h('div',{class:'card'},[
+      h('div',{class:'cardhead'},[h('span',{text:(i+1)+'. '+(e.name||'Function')}),
+        h('button',{class:'mini',type:'button','aria-label':'Move up',disabled:i===0,text:'↑',onclick:function(){move(S.events,i,-1);}}),
+        h('button',{class:'mini',type:'button','aria-label':'Move down',disabled:i===S.events.length-1,text:'↓',onclick:function(){move(S.events,i,1);}}),
+        h('button',{class:'mini',type:'button',disabled:S.events.length<=3,text:'Remove',onclick:function(){S.events.splice(i,1);changed();render();}})]),
+      h('div',{class:'two'},[field('Name',e,'name'),h('label',{},['Artwork',sel])]),
+      h('div',{class:'two'},[field('Date',e,'date','date'),field('Time',e,'time','time')]),
+      field('Place',e,'place'),
+      h('label',{class:'check'},[dOn,'Show a dress code']),
+      e.dressOn!==false?field('Dress code',e,'dress'):null,
+      e.dressOn!==false?h('div',{class:'row'},[h('label',{class:'check'},[sOn,'Colour swatch']),e.swatch!==false?c1:null,e.swatch!==false?c2:null,e.swatch!==false?h('label',{class:'check'},[two,'Two colours']):null]):null]);
+  }).concat([h('button',{class:'btn ghost add',type:'button',text:'Add a function',onclick:function(){var l=S.events[S.events.length-1];S.events.push({name:'New function',date:l?l.date:S.date,time:'18:00',place:S.venue,dress:'',dressOn:false,c1:'#e9d7ad',c2:'',style:'ceremony'});changed();render();}}),
+    h('p',{class:'hint',text:'Keep at least three so the swipe carousel reads well.'})])));
+  var up=h('input',{type:'file',accept:'image/*',multiple:true,hidden:true});
+  up.addEventListener('change',function(){addPhotos(up.files);});
+  secs.push(section('Photos ('+S.photos.length+')',false,S.photos.map(function(ph,i){
+    var rep=h('input',{type:'file',accept:'image/*',hidden:true});
+    rep.addEventListener('change',function(){if(rep.files[0])shrink(rep.files[0]).then(function(u){ph.src=u;changed();render();},fail);});
+    var pos=h('select',{},[['20%','Show top'],['50%','Show centre'],['80%','Show bottom']].map(function(o){return h('option',{value:o[0],selected:(ph.pos||'50%')===o[0],text:o[1]});}));
+    pos.addEventListener('change',function(){ph.pos=pos.value;changed();});
+    var cov=h('input',{type:'radio',name:'cover',checked:S.cover===i,onchange:function(){S.cover=i;changed();}});
+    return h('div',{class:'card'},[h('div',{class:'photo'},[h('img',{src:ph.src,alt:''}),h('div',{style:'display:grid;gap:8px'},[
+      field('Caption',ph,'caption'),
+      h('div',{class:'row'},[h('button',{class:'mini',type:'button',text:'Replace',onclick:function(){rep.click();}}),rep,pos,
+        h('button',{class:'mini',type:'button','aria-label':'Move up',disabled:i===0,text:'↑',onclick:function(){moveP(i,-1);}}),
+        h('button',{class:'mini',type:'button','aria-label':'Move down',disabled:i===S.photos.length-1,text:'↓',onclick:function(){moveP(i,1);}}),
+        h('button',{class:'mini',type:'button',disabled:S.photos.length<=3,text:'Remove',onclick:function(){S.photos.splice(i,1);if(S.cover>=S.photos.length)S.cover=0;else if(S.cover>i)S.cover--;else if(S.cover===i)S.cover=0;changed();render();}})]),
+      h('label',{class:'check'},[cov,'Use behind the names on the first page'])])])]);
+  }).concat([h('button',{class:'btn ghost add',type:'button',text:'Add photos',onclick:function(){up.click();}}),up,
+    h('p',{class:'hint',text:'Portrait photos work best. Photos are resized and stored inside the invite file.'})])));
+  var recOn=h('input',{type:'checkbox',checked:S.recOn,onchange:function(){S.recOn=recOn.checked;changed();}});
+  secs.push(section('Reception',false,[h('label',{class:'check'},[recOn,'Show the reception card']),
+    h('div',{class:'two'},[field('Small line',S,'recLabel'),field('Heading',S,'recTitle')]),
+    field('Date',S,'recDate','date'),field('Time and details',S,'recLine'),field('Venue',S,'recVenue'),field('Dress code chip (leave empty to hide)',S,'recChip')]));
+  secs.push(section('Venue & map',false,[field('Venue name',S,'venue'),field('Address',S,'address'),field('City (large background word)',S,'city'),
+    h('div',{class:'three'},[field('Map: area label',S,'mapArea'),field('Map: landmark',S,'mapLandmark'),field('Map: road',S,'mapRoad')]),
+    h('p',{class:'hint',text:'The map is an illustration; only its three labels change. The Maps and Directions buttons search for the venue name and address.'})]));
+  var sf=h('input',{type:'file',accept:'audio/*',hidden:true});
+  sf.addEventListener('change',function(){var f=sf.files[0];if(!f)return;if(f.size>8*1024*1024){say('That song is over 8 MB. Trim it to a 30 to 60 second clip first.');return;}
+    var r=new FileReader();r.onload=function(){S.song=r.result;S.songName=f.name;changed();render();};r.onerror=fail;r.readAsDataURL(f);});
+  secs.push(section('Song',false,[h('p',{class:'hint',text:S.song?('Current song: '+(S.songName||'uploaded clip')):'No song yet. The invite plays silently until you add one.'}),
+    h('div',{class:'row'},[h('button',{class:'btn ghost add',type:'button',text:S.song?'Replace song':'Choose a song',onclick:function(){sf.click();}}),sf,
+      S.song?h('button',{class:'mini',type:'button',text:'Remove',onclick:function(){S.song='';S.songName='';changed();render();}}):null]),
+    h('p',{class:'hint',text:'A 30 to 60 second MP3 loops well. Use only music that is cleared for the show.'})]));
+  secs.push(section('Closing lines',false,[field('Sign-off',S,'closing'),field('Playful last line (leave empty to hide)',S,'kids')]));
+  secs.forEach(function(d,i){if(keep.hasOwnProperty(i))d.open=keep[i];form.appendChild(d);});
+  form.scrollTop=sc;
+}
+function move(arr,i,d){var t=arr[i];arr[i]=arr[i+d];arr[i+d]=t;changed();render();}
+function moveP(i,d){var cv=S.photos[S.cover];move(S.photos,i,d);S.cover=S.photos.indexOf(cv);render();}
+function shrink(file){return new Promise(function(res,rej){var url=URL.createObjectURL(file),im=new Image();
+  im.onload=function(){var k=Math.min(1,1400/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);
+    c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(url);res(c.toDataURL('image/jpeg',.85));};
+  im.onerror=function(){URL.revokeObjectURL(url);rej(new Error('bad image'));};im.src=url;});}
+function addPhotos(files){var list=[].slice.call(files);if(!list.length)return;
+  Promise.all(list.map(function(f){return shrink(f).then(function(u){return {src:u,caption:'',pos:'50%'};});})).then(function(n){
+    var holders=S.photos.every(function(p){return p.src.indexOf('data:image/svg')===0;});
+    if(holders&&n.length>=3){S.photos=n;S.cover=0;}else S.photos=S.photos.concat(n);
+    changed();render();say(n.length+' photo'+(n.length>1?'s':'')+' added.');},fail);}
+function fail(){say('That file could not be read. Try a JPG or PNG photo, or an MP3 song.');}
+
+/* ---------- preview ---------- */
+var pv=document.getElementById('pv'),timer=null,lastScroll=0,dirty=false,statusEl=document.getElementById('status');
+function say(t){statusEl.textContent=t;}
+addEventListener('message',function(e){if(e.source===pv.contentWindow&&e.data&&typeof e.data.inviteScroll==='number')lastScroll=e.data.inviteScroll;});
+function refresh(fromTop){var skip=document.getElementById('skip').checked;
+  if(fromTop)lastScroll=0;
+  pv.srcdoc=build({preview:true,mark:!unlocked(),skip:skip&&!fromTop,scroll:lastScroll,silent:!document.getElementById('pmusic').checked});}
+function changed(){dirty=true;clearTimeout(timer);timer=setTimeout(function(){rekey().then(function(){refresh(false);});},700);clearTimeout(saveT);saveT=setTimeout(saveDraft,1500);}
+document.getElementById('skip').addEventListener('change',function(){refresh(false);});
+document.getElementById('pmusic').addEventListener('change',function(){refresh(false);});
+document.getElementById('replay').addEventListener('click',function(){refresh(true);});
+
+/* ---------- save / open / export ---------- */
+function slug(){return (S.name1+(S.tradition==='hindu'?'-weds-':'-and-')+S.name2).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'wedding-invite';}
+function download(name,text,type){var b=new Blob([text],{type:type}),u=URL.createObjectURL(b),a=h('a',{href:u,download:name});document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u);},2000);}
+
+/* ---------- drafts (kept in this browser so nothing is lost when paying) ---------- */
+var saveT=null;
+function idb(){return new Promise(function(res,rej){var r=indexedDB.open('inviteStudio',1);r.onupgradeneeded=function(){r.result.createObjectStore('kv');};r.onsuccess=function(){res(r.result);};r.onerror=function(){rej(r.error);};});}
+function saveDraft(){return idb().then(function(db){return new Promise(function(res,rej){var tx=db.transaction('kv','readwrite');tx.objectStore('kv').put(S,'draft');tx.oncomplete=res;tx.onerror=function(){rej(tx.error);};});}).catch(function(){});}
+function loadDraft(){return idb().then(function(db){return new Promise(function(res){var q=db.transaction('kv').objectStore('kv').get('draft');q.onsuccess=function(){res(q.result||null);};q.onerror=function(){res(null);};});}).catch(function(){return null;});}
+
+/* ---------- payment: one purchase unlocks one couple + wedding date ---------- */
+var FN='/.netlify/functions/',CFG=null,curKey='',LIC={};
+try{LIC=JSON.parse(localStorage.getItem('inviteLicences')||'{}')||{};}catch(e){LIC={};}
+function keepLic(){try{localStorage.setItem('inviteLicences',JSON.stringify(LIC));}catch(e){}}
+function norm(s){return String(s||'').toLowerCase().replace(/\s+/g,' ').trim();}
+function rekey(){var raw=norm(S.name1)+'|'+norm(S.name2)+'|'+S.date;
+  if(!(window.crypto&&crypto.subtle)){curKey='';paintPay();return Promise.resolve();}
+  return crypto.subtle.digest('SHA-256',new TextEncoder().encode(raw)).then(function(buf){curKey=[].map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2);}).join('');paintPay();},function(){curKey='';paintPay();});}
+function unlocked(){return !!(curKey&&LIC[curKey]);}
+function price(){if(!CFG)return '';try{var f=new Intl.NumberFormat(undefined,{style:'currency',currency:CFG.currency.toUpperCase()}),d=f.resolvedOptions().maximumFractionDigits;return f.format(CFG.amount/Math.pow(10,d));}catch(e){return (CFG.amount/100)+' '+CFG.currency.toUpperCase();}}
+function paintPay(){var b=document.getElementById('export'),n=document.getElementById('paynote');
+  if(unlocked()){b.textContent='Download invite';b.disabled=false;n.textContent='Paid for '+S.name1+' & '+S.name2+'. Edit photos, wording, venue and design as often as you like and download again.';}
+  else if(CFG&&CFG.ready){b.textContent='Pay '+price()+' and download';b.disabled=false;n.textContent='One payment covers one couple and wedding date.'+(CFG.testMode?' Test mode: no real money is taken.':'');}
+  else{b.textContent='Download unavailable';b.disabled=true;n.textContent=CFG?'Payments are not set up on this site yet.':'Checking the payment set-up…';}}
+function api(name,opt){return fetch(FN+name,opt).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j&&j.error||'Request failed');return j;});});}
+function doDownload(){var holders=S.photos.filter(function(p){return p.src.indexOf('data:image/svg')===0;}).length;
+  download(slug()+'.html',build({}),'text/html');
+  say('Downloaded '+slug()+'.html'+(holders?' (it still has '+holders+' placeholder photo'+(holders>1?'s':'')+')':'')+(S.song?'':' without a song')+'.');}
+document.getElementById('export').addEventListener('click',function(){var b=this;
+  rekey().then(function(){
+    if(!curKey){say('This browser cannot start a payment. Open the site over https in a current browser.');return;}
+    b.disabled=true;
+    if(unlocked()){say('Checking your purchase…');
+      return api('verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:curKey,token:LIC[curKey]})}).then(function(j){
+        if(j.ok){doDownload();}else{delete LIC[curKey];keepLic();say('That purchase could not be confirmed. Pay again or contact support.');refresh(false);}});}
+    say('Opening secure checkout…');
+    return saveDraft().then(function(){return api('create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:curKey,label:(S.name1+' & '+S.name2).slice(0,80)})});}).then(function(j){location.href=j.url;});
+  }).catch(function(e){say('Could not reach the payment service. '+(e&&e.message||'')+' Try again in a moment.');}).then(function(){paintPay();});});
+document.getElementById('fresh').addEventListener('click',function(){if(!confirm('Start a new invite? The current draft in this browser is cleared. Save the project first if you want to keep it.'))return;S=defaults();render();rekey().then(function(){refresh(true);});saveDraft();say('New invite started.');});
+document.getElementById('save').addEventListener('click',function(){download(slug()+'.invite.json',JSON.stringify({inviteStudio:1,data:S,licences:LIC}),'application/json');dirty=false;say('Project saved. Open it here later to keep editing.');});
+document.getElementById('load').addEventListener('click',function(){document.getElementById('loadfile').click();});
+document.getElementById('loadfile').addEventListener('change',function(){var f=this.files[0];this.value='';if(!f)return;var r=new FileReader();
+  r.onload=function(){try{var j=JSON.parse(r.result);if(!j||!j.inviteStudio||!j.data||!Array.isArray(j.data.photos)||!Array.isArray(j.data.events)||j.data.photos.length<1)throw 0;
+      S=Object.assign(defaults(),j.data);if(!THEMES[S.theme])S.theme='wine';if(!TRAD[S.tradition])S.tradition='hindu';if(!(S.cover>=0&&S.cover<S.photos.length))S.cover=0;if(j.licences&&typeof j.licences==='object'){Object.keys(j.licences).forEach(function(k){if(/^[0-9a-f]{64}$/.test(k)&&typeof j.licences[k]==='string')LIC[k]=j.licences[k];});keepLic();}render();rekey().then(function(){refresh(true);});saveDraft();dirty=false;say('Opened '+f.name+'.');}
+    catch(e){say('That is not an Invite Studio project file. Pick a file ending in .invite.json.');}};
+  r.readAsText(f);});
+
+
+/* ---------- start-up ---------- */
+paintPay();
+api('config').then(function(c){CFG=c;},function(){CFG={ready:false};}).then(paintPay);
+loadDraft().then(function(d){
+  if(d&&Array.isArray(d.photos)&&d.photos.length&&Array.isArray(d.events)){S=Object.assign(defaults(),d);if(!THEMES[S.theme])S.theme='wine';if(!TRAD[S.tradition])S.tradition='hindu';if(!(S.cover>=0&&S.cover<S.photos.length))S.cover=0;}
+  render();return rekey();
+}).then(function(){
+  var q=new URLSearchParams(location.search),sid=q.get('paid');
+  if(q.has('paid')||q.has('cancelled'))history.replaceState(null,'',location.pathname);
+  if(q.has('cancelled'))say('Payment cancelled. Nothing was charged and your draft is still here.');
+  if(sid&&/^cs_[A-Za-z0-9_]+$/.test(sid)){say('Confirming your payment…');
+    return api('verify?session_id='+encodeURIComponent(sid)).then(function(j){
+      if(j.ok&&j.key&&j.token){LIC[j.key]=j.token;keepLic();paintPay();say(j.key===curKey?'Payment received. Your invite is unlocked: press Download invite.':'Payment received for a different couple or date than the one on screen. Change the names and date back to download.');}
+      else say('That payment is not complete yet. If you were charged, reload this page in a minute.');
+    },function(){say('Could not confirm the payment. Reload this page to try again.');});}
+}).then(function(){refresh(false);});
+})();
+</script>
+</body>
+</html>
