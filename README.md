@@ -6,9 +6,9 @@ Created using Anthropic Claude. Keep this note on internal versions until a pers
 
 | Path | What it is |
 |---|---|
-| `public/` | The live pages: homepage, editor, and three sample invitations |
-| `src/` | The editable source of the editor and the invitation design |
-| `scripts/build.js` | Rebuilds the editor page from `src/` (Netlify runs it on every deploy) |
+| `public/` | The live site. Most pages here are generated from `src/`; fonts, icon and `page.css` live here directly |
+| `src/` | The editable source: editor, homepage and policy pages, invitation designs (`templates/`), wording per language (`i18n/`), shared invite engine (`engine/`), brand name (`site.json`) |
+| `scripts/` | `build.js` rebuilds the pages (Netlify runs it on every deploy), `make-demos.js` refreshes the homepage samples, `check.js` checks everything |
 | `netlify/functions/` | Three small server functions that talk to Stripe |
 | `netlify.toml` | Tells Netlify how to build and where the pages and functions are |
 | `CLAUDE.md` | Instructions Claude Code reads so it can change the site safely |
@@ -64,8 +64,8 @@ Replace `STRIPE_SECRET_KEY` with the live key (`sk_live_...`) and deploy again.
 
 - **Payment methods and countries** are switched on in the Stripe dashboard, not in this code.
 - **Free or discounted use for your own teams:** create promotion codes in Stripe (for example 100% off, limited to a number of uses per person). The checkout page has a box for them.
-- **Changing the name "Mandap & Co."**: search for it in `public/index.html` and `src/studio.src.html`.
-- **Changing the homepage samples:** download an invite from the editor and save it over `public/demo-hindu.html` (or the other two).
+- **Changing the name "Mandap & Co."**: change it in `src/site.json` and rebuild.
+- **Changing the homepage samples:** edit the samples in `src/engine/samples.js` and run `node scripts/make-demos.js`.
 - **Limits:** the paywall stops ordinary customers. A developer who studies the page code could get around it, because the invite is assembled in the browser.
 
 ## Making changes later with Claude Code

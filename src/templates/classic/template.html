@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="%%LANG%%" dir="%%DIR%%"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>%%TITLE%%</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="%%FONTS_HREF%%">
@@ -382,7 +382,7 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
 <audio id="bgm" src="%%SONG%%" loop preload="auto"></audio>
 
 <!-- ===== Opening: the book ===== -->
-<div id="scene" role="dialog" aria-label="Wedding invitation book">
+<div id="scene" role="dialog" aria-label="%%T_BOOK_ARIA%%">
   <div class="layer far" id="far"></div>
   <div class="bookwrap" id="bw">
     <div class="bookfloat">
@@ -398,17 +398,17 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
         </i>
         <i class="c-back"></i>
       </div>
-      <button id="book" aria-label="Open the invitation book"></button>
+      <button id="book" aria-label="%%T_OPEN_BOOK_ARIA%%"></button>
     </div>
   </div>
   <div class="layer near" id="near"></div>
-  <div class="tap"><span class="dot"></span>Tap the book to open</div>
-  <div class="loader" aria-live="polite"><i></i>Preparing your invitation</div>
+  <div class="tap"><span class="dot"></span>%%T_TAP_TO_OPEN%%</div>
+  <div class="loader" aria-live="polite"><i></i>%%T_PREPARING%%</div>
 </div>
 
 <canvas id="petals" aria-hidden="true"></canvas>
-<button id="music" aria-label="Play music" aria-pressed="false" hidden><span class="bars"><i></i><i></i><i></i></span></button>
-<div class="arrow" id="arrow" aria-hidden="true"><span>Scroll</span><i></i><i></i></div>
+<button id="music" aria-label="%%T_PLAY_MUSIC%%" aria-pressed="false" hidden><span class="bars"><i></i><i></i><i></i></span></button>
+<div class="arrow" id="arrow" aria-hidden="true"><span>%%T_SCROLL%%</span><i></i><i></i></div>
 
 <div class="ff back" id="ffBack" aria-hidden="true">
   <div class="fl tl grow" data-v="a" style="--s:230px;--o:-62px"></div>
@@ -443,8 +443,8 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
   </header>
   <!-- SAVE THE DATE -->
   <section class="blush in" id="date">
-    <div class="bgword">Save the Date</div>
-    <div class="head rv"><span class="label">Save the date</span><h2>%%DATE_HEAD%%</h2></div>
+    <div class="bgword">%%T_SAVE_THE_DATE_BG%%</div>
+    <div class="head rv"><span class="label">%%T_SAVE_THE_DATE%%</span><h2>%%DATE_HEAD%%</h2></div>
     <div class="pullbox rv" id="pullbox">
       <div class="rodtop"></div>
       <div class="banner" id="banner">
@@ -452,7 +452,7 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
         <div class="bin"><svg class="bg-g" viewBox="0 0 100 100" aria-hidden="true"><use href="#ganesha" style="--gs:#b38a4e"/></svg><span class="wd">%%W_WEEKDAY%%</span><span class="dd">%%W_DAY%%</span><span class="mo">%%W_MONTH%%</span><span class="yr">%%W_YEAR%%</span><span class="mu">%%BANNER_LINE%%</span></div>
       </div>
       <div class="roller" id="roller">
-        <button class="tassel" id="tassel" aria-label="Pull down to reveal the wedding date">
+        <button class="tassel" id="tassel" aria-label="%%T_PULL_ARIA%%">
           <svg viewBox="0 0 54 110" aria-hidden="true"><path d="M27 0v40" stroke="#b38a4e" stroke-width="2"/><circle cx="27" cy="44" r="9" fill="#6e1f2f"/><circle cx="24" cy="41" r="3" fill="#c96b74"/>
             <path d="M18 54c0-6 18-6 18 0l-2 8H20z" fill="#c9a362"/><g stroke="#6e1f2f" stroke-width="2" stroke-linecap="round"><path d="M20 62l-4 40M24 62l-2 44M27 62v46M30 62l2 44M34 62l4 40"/></g></svg>
         </button>
@@ -461,33 +461,33 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
     </div>
     <div class="pulltip" id="pulltip">%%DATE_TIP%%</div>
     <div class="after" id="after">
-      <div class="cdline" aria-label="Countdown to the wedding"><span><b id="cd-d">--</b><small>days</small></span><span class="sep">&middot;</span><span><b id="cd-h">--</b><small>hrs</small></span><span class="sep">&middot;</span><span><b id="cd-m">--</b><small>min</small></span><span class="sep">&middot;</span><span><b id="cd-s">--</b><small>sec</small></span></div>
-      <a class="btn ghost" target="_blank" rel="noopener" href="%%CAL_HREF%%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Add to calendar</a>
+      <div class="cdline" aria-label="%%T_COUNTDOWN_ARIA%%"><span><b id="cd-d">--</b><small>%%T_DAYS%%</small></span><span class="sep">&middot;</span><span><b id="cd-h">--</b><small>%%T_HRS%%</small></span><span class="sep">&middot;</span><span><b id="cd-m">--</b><small>%%T_MIN%%</small></span><span class="sep">&middot;</span><span><b id="cd-s">--</b><small>%%T_SEC%%</small></span></div>
+      <a class="btn ghost" target="_blank" rel="noopener" href="%%CAL_HREF%%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>%%T_ADD_TO_CALENDAR%%</a>
     </div>
   </section>
   <!-- FESTIVITIES STACK -->
   <section class="in">
-    <div class="bgword">Celebrate</div>
-    <div class="head rv"><span class="label">Swipe through the celebrations</span><h2>Wedding Festivities</h2></div>
-    <div class="evsphere rv" id="evsphere" aria-roledescription="carousel" aria-label="Wedding functions, swipe to browse">
+    <div class="bgword">%%T_CELEBRATE_BG%%</div>
+    <div class="head rv"><span class="label">%%T_SWIPE_CELEBRATIONS%%</span><h2>%%T_FESTIVITIES%%</h2></div>
+    <div class="evsphere rv" id="evsphere" aria-roledescription="carousel" aria-label="%%T_FUNCTIONS_ARIA%%">
 %%EVENTS%%
     </div>
     <div class="pdots" id="evdots"></div>
-    <div class="swipe-hint rv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 7l-4 5 4 5M16 7l4 5-4 5"/></svg>Swipe to see every function</div>
+    <div class="swipe-hint rv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 7l-4 5 4 5M16 7l4 5-4 5"/></svg>%%T_SWIPE_FUNCTIONS%%</div>
   </section>
   <!-- PORTRAIT -->
   <section class="blush in">
-    <div class="bgword">Memories</div>
-    <div class="head rv"><span class="label">Moments</span><h2>Our Story</h2></div>
-    <div class="sphere rv" id="sphere" aria-roledescription="carousel" aria-label="Photos, swipe to browse">
+    <div class="bgword">%%T_MEMORIES_BG%%</div>
+    <div class="head rv"><span class="label">%%T_MOMENTS%%</span><h2>%%T_OUR_STORY%%</h2></div>
+    <div class="sphere rv" id="sphere" aria-roledescription="carousel" aria-label="%%T_PHOTOS_ARIA%%">
 %%PHOTOS%%
     </div>
     <div class="pdots" id="pdots"></div>
-    <div class="swipe-hint rv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 7l-4 5 4 5M16 7l4 5-4 5"/></svg>Swipe to see more</div>
+    <div class="swipe-hint rv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 7l-4 5 4 5M16 7l4 5-4 5"/></svg>%%T_SWIPE_MORE%%</div>
   </section>
   <!-- GRAND RECEPTION -->
   <section class="reception in"%%REC_HIDDEN%%>
-    <div class="bgword">Reception</div>
+    <div class="bgword">%%T_RECEPTION_BG%%</div>
     <div class="rec-card rv"><div class="sparks" id="sparks"></div>
     <div class="head"><span class="label">%%REC_LABEL%%</span><h2>%%REC_TITLE%%</h2></div>
     <div class="rec">
@@ -501,8 +501,8 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
   <!-- LOCATION -->
   <section class="in">
     <div class="bgword">%%CITY%%</div>
-    <div class="head rv"><span class="label">Location</span><h2>How to Reach</h2></div>
-    <a class="map rv" id="map" href="%%MAP_HREF%%" target="_blank" rel="noopener" aria-label="Open the venue in Google Maps">
+    <div class="head rv"><span class="label">%%T_LOCATION%%</span><h2>%%T_HOW_TO_REACH%%</h2></div>
+    <a class="map rv" id="map" href="%%MAP_HREF%%" target="_blank" rel="noopener" aria-label="%%T_MAP_ARIA%%">
       <svg viewBox="0 0 340 210" aria-hidden="true">
         <rect width="340" height="210" fill="#f7efe6"/>
         <path d="M0 36C40 26 70 8 110 0H0z M220 0c20 18 60 26 120 22V0z" fill="#ecdcc5"/>
@@ -517,25 +517,25 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
         <circle class="ping" cx="296" cy="98" r="10" fill="#cf8d84" opacity=".5"/>
         <g class="pin"><path d="M296 98c-9-10-14-17-14-24a14 14 0 0 1 28 0c0 7-5 14-14 24z" fill="#6e1f2f"/><circle cx="296" cy="74" r="5" fill="#fff"/></g>
       </svg>
-      <div class="map-tag"><b>%%VENUE%%</b><span>Tap to open in Maps</span></div>
+      <div class="map-tag"><b>%%VENUE%%</b><span>%%T_TAP_FOR_MAPS%%</span></div>
     </a>
     <div class="vname rv">%%VENUE%%</div>
     <p class="addr rv">%%ADDRESS%%</p>
     <div class="actions rv">
-      <a class="btn" href="%%DIR_HREF%%" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l18-8-8 18-2-8z"/></svg>Get directions</a>
-      <button class="btn ghost" type="button" id="copy">Copy address</button>
+      <a class="btn" href="%%DIR_HREF%%" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l18-8-8 18-2-8z"/></svg>%%T_GET_DIRECTIONS%%</a>
+      <button class="btn ghost" type="button" id="copy">%%T_COPY_ADDRESS%%</button>
     </div>
     <div class="copied" id="copied" aria-live="polite"></div>
   </section>
   <!-- RSVP + CLOSE -->
   <section class="blush in" style="padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))">
-    <div class="bgword">Forever</div>
+    <div class="bgword">%%T_FOREVER_BG%%</div>
     <div%%RSVP_HIDDEN%%>
-    <div class="head rv"><span class="label">Kindly respond</span><h2>Will You Join Us?</h2></div>
+    <div class="head rv"><span class="label">%%T_KINDLY_RESPOND%%</span><h2>%%T_WILL_YOU_JOIN%%</h2></div>
     <form class="rsvp rv" id="rsvp">
-      <label for="r-name" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Your name</label>
-      <input type="text" id="r-name" placeholder="Your name" required>
-      <div class="two"><button class="btn" type="submit" data-a="yes">Attending</button><button class="btn ghost" type="submit" data-a="no">Can't make it</button></div>
+      <label for="r-name" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">%%T_YOUR_NAME%%</label>
+      <input type="text" id="r-name" placeholder="%%T_YOUR_NAME%%" required>
+      <div class="two"><button class="btn" type="submit" data-a="yes">%%T_ATTENDING%%</button><button class="btn ghost" type="submit" data-a="no">%%T_CANT_MAKE_IT%%</button></div>
     </form>
     <div class="thanks z" id="thanks" hidden></div>
     </div>
@@ -781,7 +781,7 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
   function fadeTo(v,ms,done){clearInterval(fadeT);var st=bgm.volume,t0=Date.now();fadeT=setInterval(function(){var k=Math.min(1,(Date.now()-t0)/ms);bgm.volume=st+(v-st)*k;if(k>=1){clearInterval(fadeT);done&&done();}},50);}
   function startMusic(){try{bgm.volume=0;var pr=bgm.play();on=true;setBtn();fadeTo(.85,2000);if(pr&&pr.catch)pr.catch(function(){on=false;setBtn();});}catch(e){}}
   function stopMusic(){on=false;setBtn();fadeTo(0,600,function(){bgm.pause();});}
-  function setBtn(){mb.classList.toggle('on',on);mb.setAttribute('aria-pressed',on);mb.setAttribute('aria-label',on?'Pause music':'Play music');}
+  function setBtn(){mb.classList.toggle('on',on);mb.setAttribute('aria-pressed',on);mb.setAttribute('aria-label',on?%%J_T_PAUSE_MUSIC%%:%%J_T_PLAY_MUSIC%%);}
   mb.addEventListener('click',function(){on?stopMusic():startMusic();});
 
   /* ---------- front page sequence ---------- */
@@ -915,17 +915,17 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
   for(var j=0;j<14;j++){var s=document.createElement('i');s.style.left=(rnd()*100)+'%';s.style.top=(rnd()*100)+'%';s.style.animationDelay=(rnd()*2.6).toFixed(2)+'s';s.style.scale=(.5+rnd()).toFixed(2);spk.appendChild(s);}
 
   document.getElementById('copy').addEventListener('click',function(){var a=%%J_ADDR%%,o=document.getElementById('copied');
-    try{navigator.clipboard.writeText(a).then(function(){o.textContent='Address copied';},function(){o.textContent=a;});}catch(e){o.textContent=a;}});
+    try{navigator.clipboard.writeText(a).then(function(){o.textContent=%%J_T_ADDRESS_COPIED%%;},function(){o.textContent=a;});}catch(e){o.textContent=a;}});
 
   var choice='yes';
   document.querySelectorAll('#rsvp button').forEach(function(b){b.addEventListener('click',function(){choice=b.dataset.a;});});
-  document.getElementById('rsvp').addEventListener('submit',function(e){e.preventDefault();var g=document.getElementById('r-name').value.trim(),n=g||'Dear guest';
+  document.getElementById('rsvp').addEventListener('submit',function(e){e.preventDefault();var g=document.getElementById('r-name').value.trim(),n=g||%%J_T_DEAR_GUEST%%;
     var wa=%%J_RSVP_PHONE%%,couple=%%J_COUPLE%%;
-    if(wa){var msg=(choice==='yes'?'Hello! '+(g?'This is '+g+'. ':'')+'Happy to confirm I will attend the wedding of '+couple+'. Looking forward to celebrating with you!'
-        :'Hello! '+(g?'This is '+g+'. ':'')+'Sadly I will not be able to attend the wedding of '+couple+'. Wishing you both a lifetime of happiness.');
+    function fill(t,o){return t.replace(/\{(\w+)\}/g,function(m,k){return o.hasOwnProperty(k)?o[k]:m;});}
+    if(wa){var msg=fill(choice==='yes'?%%J_T_REPLY_YES%%:%%J_T_REPLY_NO%%,{intro:g?fill(%%J_T_REPLY_INTRO%%,{name:g}):'',couple:couple});
       window.open('https://wa.me/'+wa+'?text='+encodeURIComponent(msg),'_blank','noopener');}
     this.hidden=true;var t=document.getElementById('thanks');t.hidden=false;
-    t.textContent=choice==='yes'?('Thank you, '+n+'! We can’t wait to see you.'):('Thank you, '+n+'. You will be missed.');if(choice==='yes')burst(18);});
+    t.textContent=fill(choice==='yes'?%%J_T_THANKS_YES%%:%%J_T_THANKS_NO%%,{name:n});if(choice==='yes')burst(18);});
 })();
 </script>
 

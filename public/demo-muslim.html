@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en" dir="ltr"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Zayan &amp; Aleena</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -794,7 +794,7 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
   function fadeTo(v,ms,done){clearInterval(fadeT);var st=bgm.volume,t0=Date.now();fadeT=setInterval(function(){var k=Math.min(1,(Date.now()-t0)/ms);bgm.volume=st+(v-st)*k;if(k>=1){clearInterval(fadeT);done&&done();}},50);}
   function startMusic(){try{bgm.volume=0;var pr=bgm.play();on=true;setBtn();fadeTo(.85,2000);if(pr&&pr.catch)pr.catch(function(){on=false;setBtn();});}catch(e){}}
   function stopMusic(){on=false;setBtn();fadeTo(0,600,function(){bgm.pause();});}
-  function setBtn(){mb.classList.toggle('on',on);mb.setAttribute('aria-pressed',on);mb.setAttribute('aria-label',on?'Pause music':'Play music');}
+  function setBtn(){mb.classList.toggle('on',on);mb.setAttribute('aria-pressed',on);mb.setAttribute('aria-label',on?"Pause music":"Play music");}
   mb.addEventListener('click',function(){on?stopMusic():startMusic();});
 
   /* ---------- front page sequence ---------- */
@@ -928,17 +928,17 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
   for(var j=0;j<14;j++){var s=document.createElement('i');s.style.left=(rnd()*100)+'%';s.style.top=(rnd()*100)+'%';s.style.animationDelay=(rnd()*2.6).toFixed(2)+'s';s.style.scale=(.5+rnd()).toFixed(2);spk.appendChild(s);}
 
   document.getElementById('copy').addEventListener('click',function(){var a="Al Noor Gardens, Beach Road, Jumeirah, Dubai",o=document.getElementById('copied');
-    try{navigator.clipboard.writeText(a).then(function(){o.textContent='Address copied';},function(){o.textContent=a;});}catch(e){o.textContent=a;}});
+    try{navigator.clipboard.writeText(a).then(function(){o.textContent="Address copied";},function(){o.textContent=a;});}catch(e){o.textContent=a;}});
 
   var choice='yes';
   document.querySelectorAll('#rsvp button').forEach(function(b){b.addEventListener('click',function(){choice=b.dataset.a;});});
-  document.getElementById('rsvp').addEventListener('submit',function(e){e.preventDefault();var g=document.getElementById('r-name').value.trim(),n=g||'Dear guest';
+  document.getElementById('rsvp').addEventListener('submit',function(e){e.preventDefault();var g=document.getElementById('r-name').value.trim(),n=g||"Dear guest";
     var wa="",couple="Zayan & Aleena";
-    if(wa){var msg=(choice==='yes'?'Hello! '+(g?'This is '+g+'. ':'')+'Happy to confirm I will attend the wedding of '+couple+'. Looking forward to celebrating with you!'
-        :'Hello! '+(g?'This is '+g+'. ':'')+'Sadly I will not be able to attend the wedding of '+couple+'. Wishing you both a lifetime of happiness.');
+    function fill(t,o){return t.replace(/\{(\w+)\}/g,function(m,k){return o.hasOwnProperty(k)?o[k]:m;});}
+    if(wa){var msg=fill(choice==='yes'?"Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you!":"Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness.",{intro:g?fill("This is {name}. ",{name:g}):'',couple:couple});
       window.open('https://wa.me/'+wa+'?text='+encodeURIComponent(msg),'_blank','noopener');}
     this.hidden=true;var t=document.getElementById('thanks');t.hidden=false;
-    t.textContent=choice==='yes'?('Thank you, '+n+'! We can’t wait to see you.'):('Thank you, '+n+'. You will be missed.');if(choice==='yes')burst(18);});
+    t.textContent=fill(choice==='yes'?"Thank you, {name}! We can’t wait to see you.":"Thank you, {name}. You will be missed.",{name:n});if(choice==='yes')burst(18);});
 })();
 </script>
 

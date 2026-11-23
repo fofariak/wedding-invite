@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{BRAND}} · Animated wedding invitations</title>
+<meta name="description" content="Design an animated wedding invitation that opens like a book. Free to design and preview, pay once to download.">
+<!-- Created using Anthropic Claude. Keep this note on internal versions until a person has reviewed the site. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{BRAND}} · Animated wedding invitations">
+<meta property="og:description" content="Design an animated wedding invitation that opens like a book. Free to design and preview, pay once to download.">
+<meta name="theme-color" content="#6e1f2f">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{color-scheme:light;--paper:#fbf7f1;--card:#fffdf9;--ink:#2d2422;--muted:#6f6058;--wine:#6e1f2f;--wine-d:#4b1120;--gold:#a67c3d;--line:#e6dacb;--blush:#f4dcd4;
+  --head:"Playfair Display",Georgia,serif;--body:"Montserrat","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--wine)}
+h1,h2,h3{font-family:var(--head);font-weight:500;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+.in{max-width:1120px;margin:0 auto;padding:0 24px}
+header{display:flex;align-items:center;justify-content:space-between;padding-top:22px;padding-bottom:22px}
+.brand{font:500 22px var(--head);color:var(--wine);text-decoration:none}
+.btn{display:inline-block;background:var(--wine);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:14px 26px;border-radius:999px;border:1.5px solid var(--wine);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.small{padding:9px 18px;font-size:14px}
+.btn.ghost{background:transparent;color:var(--wine)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding-top:28px;padding-bottom:72px}
+.hero h1{font-size:clamp(40px,5.6vw,68px);line-height:1.06;color:var(--wine-d)}
+.hero h1 em{font-style:italic}
+.lede{font-size:18px;color:var(--muted);max-width:34em;margin-top:22px}
+.cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:30px}
+.fine{font-size:14px;color:var(--muted);margin-top:14px}
+.stage{display:grid;justify-items:center;gap:18px}
+.phone{width:min(340px,86vw);aspect-ratio:9/18.5;border-radius:38px;border:10px solid #231c1a;background:#231c1a;overflow:hidden;box-shadow:0 40px 80px rgba(75,17,32,.28),0 0 0 1px rgba(0,0,0,.2)}
+.phone iframe{width:100%;height:100%;border:0;display:block;background:var(--paper)}
+.tabs{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px}
+.tabs button{border:0;background:transparent;font:500 14px var(--body);color:var(--muted);padding:8px 16px;border-radius:999px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--wine);color:#fff}
+.hint{font-size:13.5px;color:var(--muted)}
+section{padding:72px 0;border-top:1px solid var(--line)}
+section h2{line-height:1.2;font-size:clamp(30px,3.6vw,42px);color:var(--wine-d);max-width:18em}
+.steps{list-style:none;padding:0;margin:40px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.steps li{counter-increment:s;border-top:2px solid var(--wine);padding-top:18px}
+.steps li::before{content:counter(s);font:italic 500 34px var(--head);color:var(--gold);display:block;line-height:1;margin-bottom:10px}
+.steps h3{font-size:22px;margin-bottom:6px}
+.steps p{color:var(--muted);font-size:15.5px}
+.inside{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.inside ul{list-style:none;margin:0;padding:0;columns:2;column-gap:32px}
+.inside li{break-inside:avoid;padding:12px 0;border-bottom:1px solid var(--line)}
+.inside li b{display:block;font:500 19px var(--head);color:var(--wine)}
+.inside li span{font-size:14.5px;color:var(--muted)}
+.price{background:linear-gradient(140deg,#87293e,#4b1120);color:#fff;border-radius:28px;padding:48px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+.price h2{color:#f3e3c2;max-width:none}
+.price p{color:#f0dcd6;margin-top:10px;max-width:36em}
+.price .amt{font:500 clamp(44px,6vw,72px) var(--head);color:#f3e3c2;line-height:1;text-align:right}
+.price .amt small{display:block;font:500 14px var(--body);color:#f0dcd6;margin-top:8px}
+.price .btn{background:#f3e3c2;border-color:#f3e3c2;color:var(--wine-d);margin-top:22px}
+footer{padding:36px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+footer .legal{margin-top:8px}footer .legal a{color:var(--muted)}
+@media (max-width:860px){.hero{grid-template-columns:1fr;gap:40px;padding-bottom:56px}.steps{grid-template-columns:1fr}.inside{grid-template-columns:1fr;gap:28px}.inside ul{columns:1}.price{grid-template-columns:1fr;padding:32px}.price .amt{text-align:left}section{padding:56px 0}}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+<header class="in">
+  <a class="brand" href="index.html">{{BRAND}}</a>
+  <a class="btn small" href="studio.html">Create your invitation</a>
+</header>
+
+<main>
+  <div class="in hero">
+    <div>
+      <h1>An invitation your guests <em>open like a book</em></h1>
+      <p class="lede">Add your names, dates, photos and song. Your guests tap the cover, pull a tassel to unroll the date, and swipe through every celebration, right on their phones.</p>
+      <div class="cta">
+        <a class="btn" href="studio.html">Design yours free</a>
+        <a class="btn ghost" href="#inside">See what is inside</a>
+      </div>
+      <p class="fine" id="fine">Free to design and preview. Pay once when you are ready to download.</p>
+    </div>
+    <div class="stage">
+      <div class="phone"><iframe id="demo" title="Live sample invitation" src="demo-hindu.html" loading="lazy"></iframe></div>
+      <div class="tabs" role="tablist" aria-label="Sample invitation">
+        <button role="tab" aria-selected="true" data-src="demo-hindu.html">Hindu</button>
+        <button role="tab" aria-selected="false" data-src="demo-muslim.html">Nikah</button>
+        <button role="tab" aria-selected="false" data-src="demo-western.html">Western</button>
+      </div>
+      <p class="hint">This is a live sample. Tap the book to open it.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="in">
+      <h2>From blank page to shared invitation in three steps</h2>
+      <ol class="steps">
+        <li><h3>Fill in your wedding</h3><p>Names, families, date, each function with its place and dress code, your photos and a song. Pick a tradition and a colour story.</p></li>
+        <li><h3>Watch it on the phone preview</h3><p>The preview updates as you type, with your own names and photos, so you see exactly what guests will see before paying anything.</p></li>
+        <li><h3>Pay once and download</h3><p>One payment per wedding removes the preview mark. You get a single file to share, and you can keep editing and download again.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="inside">
+    <div class="in inside">
+      <div>
+        <h2>Everything a guest needs, in one scroll</h2>
+        <p class="lede">Three colour stories and three traditions share the same animated design, so each wedding can look like its own.</p>
+      </div>
+      <ul>
+        <li><b>The opening book</b><span>A velvet cover with your emblem that swings open on a tap.</span></li>
+        <li><b>The date reveal</b><span>A tassel unrolls the date with a burst of petals and a live countdown.</span></li>
+        <li><b>Every function</b><span>Swipe cards with time, place and an optional dress code.</span></li>
+        <li><b>Your story in photos</b><span>A photo carousel with your own captions.</span></li>
+        <li><b>Getting there</b><span>Venue, address, and one-tap directions.</span></li>
+        <li><b>Your song</b><span>Music fades in as the book opens.</span></li>
+        <li><b>Hindu, Nikah or Western</b><span>Emblems, wording and artwork to suit each.</span></li>
+        <li><b>Any time zone</b><span>The countdown is right wherever the wedding is.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="in">
+      <div class="price">
+        <div>
+          <h2>One price per wedding</h2>
+          <p>Design and preview as long as you like for free. Pay only when you want the finished invitation, then edit photos, wording, venue and colours as often as you need.</p>
+          <a class="btn" href="studio.html">Start designing</a>
+        </div>
+        <div class="amt" id="amt" hidden><span id="amtv"></span><small>one-time, per wedding</small></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="in">&copy; <span id="yr"></span> {{BRAND}} Payments are handled by Stripe. Card details never touch this site.
+  <nav class="legal" aria-label="Policies"><a href="contact.html">Contact</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="refunds.html">Refunds</a></nav></div></footer>
+
+<script>
+(function(){
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  var demo=document.getElementById('demo'),tabs=[].slice.call(document.querySelectorAll('.tabs button'));
+  tabs.forEach(function(b){b.addEventListener('click',function(){tabs.forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false');});demo.src=b.dataset.src;});});
+  fetch('/.netlify/functions/config').then(function(r){return r.json();}).then(function(c){
+    if(!c||!c.ready)return;var txt;
+    try{var f=new Intl.NumberFormat(undefined,{style:'currency',currency:c.currency.toUpperCase()}),d=f.resolvedOptions().maximumFractionDigits;txt=f.format(c.amount/Math.pow(10,d));}catch(e){return;}
+    document.getElementById('amtv').textContent=txt;document.getElementById('amt').hidden=false;
+    document.getElementById('fine').textContent='Free to design and preview. '+txt+' once when you are ready to download.';
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

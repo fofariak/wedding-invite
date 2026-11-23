@@ -7,23 +7,35 @@ Last updated: 23 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
 ## Done
 - **Phase 1, audit:** `PROJECT_AUDIT.md` written. Portuguese added, so the MVP now has 10 languages.
 - **Hindu sample:** now Aastha & Aakash at The Oberoi, Mumbai, with the Oberoi & Shah families. Live.
-- **Step 0, quick fixes** (on your Mac only; not committed or live yet):
+- **Step 0, quick fixes** (pushed 23 November 2026; still needs checking in a browser and on a phone):
   - The guest reply form now opens WhatsApp with a ready message to the couple's number. It's hidden if no number is given.
   - Fonts are served from our own site instead of Google, for privacy and speed.
   - Added a site icon, `robots.txt` and basic link-preview text on the homepage.
   - Added draft Contact, Privacy, Terms and Refund pages, linked from the homepage footer and the editor.
   - Added "Payments are non-refundable" next to the pay button.
+- **Step 1, foundations** (on your Mac; not committed yet). No visible change for visitors:
+  - **Shared invite engine:** `src/engine/engine.js` now builds every invitation. The editor and the sample script use it, and the server will in Step 3.
+  - **Templates as folders:** today's design is `src/templates/classic/`. A new design is a new folder.
+  - **Phrase files:** all fixed invite wording is in `src/i18n/en.json`. A new language is a new file with the same phrases. Invites now declare their language and text direction, ready for Arabic and Urdu.
+  - **Brand in one place:** `src/site.json`. The homepage and policy pages are now built from `src/pages/`.
+  - **New tools:** `node scripts/make-demos.js` regenerates the homepage samples (no more paid downloads). `node scripts/check.js` checks every combination after a change.
+  - **Verified:** output identical to before the change, apart from the deliberate language/direction tag. Tested in Chrome with no errors.
+
+## Decisions (23 November 2026)
+- **Order:** keep the original order: Step 1 foundations, then the homepage, then hosted links.
+- **Old buttons:** "Save project / Open project" stays until the hosted edit link replaces it.
+- **Payments:** hosted-link checkout is built on Razorpay (test mode first). Stripe isn't set up on the live site, which is why it shows "Download unavailable", and won't be.
+- **Editing after publishing:** everything can be changed. Invitations go offline automatically some months after the wedding (6 suggested; to confirm).
 
 ## Next
-1. You review Step 0 in a browser, then approve the commit and push.
-2. **Step 1, foundations:** split the invitation into an engine plus templates, add the phrase-file language system, and move the brand name into one settings file.
+1. You check Step 0 on the live site and on a phone (WhatsApp reply button, fonts, policy pages).
+2. Approve committing and pushing Step 1.
 3. **Step 2:** homepage and brand (Phase 2).
 
 ## Waiting on you
 - Fill in the `[bracketed]` details on the policy pages, and have them reviewed (`docs/legal-review-notes.md`).
 - A contact email.
 - Make the GitHub repository private.
-- Install Node.js (LTS, from nodejs.org).
 - Song choices from the shortlist.
 - Native-speaker review of `docs/translations-phase1-draft.md`.
 - Razorpay account and KYC (Indian business details).
@@ -34,4 +46,4 @@ Last updated: 23 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
 - Only 14 time zones are offered in the editor.
 - The homepage has no link-preview image yet. It needs the permanent web address (Phase 8).
 - The Hindu sample's wedding date (31 Dec 2026) will soon be in the past. Refresh the sample after that.
-- The policy pages contain placeholders and must not go live until they're filled in and reviewed.
+- The policy pages are live with placeholders (your choice, since the address isn't public yet). Fill them in and have them reviewed before launch or Razorpay activation.

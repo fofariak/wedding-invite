@@ -1,21 +1,26 @@
 
 ## What this is
 
-A small website that sells animated wedding invitations. Visitors design an invite for free in the editor, see a watermarked live preview, pay once through Stripe Checkout, and download the finished invite as one self-contained HTML file. Hosted on Netlify, deployed from this GitHub repository. No framework, no npm dependencies.
+A small website that sells animated wedding invitations. Visitors design an invite for free in the editor, see a watermarked live preview, pay once through Stripe Checkout, and download the finished invite as one self-contained HTML file. Hosted on Netlify, deployed from this GitHub repository. No framework, no npm dependencies. Node.js is needed locally only to run the scripts.
 
 ## Layout
 
 | Path | Role | Edit it? |
 |---|---|---|
-| `src/studio.src.html` | The editor page: form, preview, paywall, autosave. Has three slots: `__TEMPLATE__`, `__THEMES__`, `__EMBLEMS__` | Yes |
-| `src/invite-template.html` | The invitation itself, with `%%TOKEN%%` placeholders filled by `build()` in the editor | Yes |
-| `src/themes.json` | Colour themes: a colour-replacement `map` plus flower colours per theme | Yes |
-| `src/emblems.json` | SVG emblem per tradition (`ganesha`, `star`, `monogram`) | Yes |
-| `scripts/build.js` | Combines the four files above into `public/studio.html` | Rarely |
-| `public/studio.html` | Build output | Never by hand |
-| `public/index.html` | Homepage | Yes |
-| `public/demo-*.html` | Sample invites shown on the homepage. To refresh one, download an invite from the editor and save it over the file | Replace only |
-| `public/contact.html`, `privacy.html`, `terms.html`, `refunds.html` | Policy pages (drafts with `[bracketed]` placeholders; see `docs/legal-review-notes.md`). Shared look in `public/page.css` | Yes |
+| `src/studio.src.html` | The editor page: form, preview, paywall, autosave. Slots: `__RESOURCES__`, `__ENGINE__`, `__SAMPLES__`; `{{BRAND}}` for the brand | Yes |
+| `src/engine/engine.js` | **Invite engine**: `InviteEngine.build(S, opts, R)` turns invitation details into the finished HTML. Shared by the editor, `scripts/make-demos.js` and (later) server functions. Also `STYLES`, `TRAD`, `esc`, `js`, `waNumber` | Yes |
+| `src/engine/samples.js` | Starting content: `defaults()` (full shape of S, Hindu sample) and `sample(tradition)` | Yes |
+| `src/templates/<id>/` | One folder per invitation design: `template.html` (with `%%TOKEN%%` placeholders), `themes.json` (colour themes; must include `wine`), `meta.json` (name). `classic` is the default | Yes |
+| `src/i18n/<lang>.json` | Phrase file per invite language: `text` (fixed words, used as `%%T_KEY%%` / `%%J_T_KEY%%` in templates), `format` (dates, times, "Weds", rite names), `lang`, `dir` (`ltr`/`rtl`). Every file must have exactly the keys of `en.json` | Yes |
+| `src/emblems.json` | SVG emblem per tradition (`ganesha`, `star`, `monogram`), shared by all templates | Yes |
+| `src/site.json` | Brand name (`brand`), filled in wherever `{{BRAND}}` appears | Yes |
+| `src/pages/*.html` | Homepage and policy pages (Contact, Privacy, Terms, Refunds; drafts with `[bracketed]` placeholders, see `docs/legal-review-notes.md`) | Yes |
+| `scripts/build.js` | Builds `public/studio.html` and `public/<page>.html` from `src/` | Rarely |
+| `scripts/make-demos.js` | Regenerates `public/demo-*.html` from the samples | Rarely |
+| `scripts/check.js` | Self-check: builds every template × theme × tradition × language and checks the output | Rarely |
+| `public/studio.html`, `public/index.html`, `contact.html`, `privacy.html`, `terms.html`, `refunds.html` | Build output | Never by hand |
+| `public/demo-*.html` | Homepage sample invites | Never by hand; run `make-demos.js` |
+| `public/page.css` | Shared look of the policy pages | Yes |
 | `public/fonts/` | Self-hosted Playfair Display + Montserrat (Latin only) with `fonts.css` and OFL licences. Pages and invites must not load Google Fonts | Add files only |
 | `public/favicon.svg`, `public/robots.txt` | Site icon and crawler rules | Yes |
 | `netlify/functions/config.js` | Returns price, currency, and whether payments are configured | Yes |
@@ -25,11 +30,12 @@ A small website that sells animated wedding invitations. Visitors design an invi
 
 ## Working rules
 
-1. After any change in `src/`, run `node scripts/build.js` and commit the rebuilt `public/studio.html` along with the source.
+1. After any change in `src/`, run `node scripts/build.js`, `node scripts/make-demos.js` and `node scripts/check.js`, and commit the rebuilt files in `public/` along with the source.
 2. Never put a Stripe key, the licence secret, or any other credential in a file, a commit, or the chat. Secrets live only in Netlify environment variables. If the user offers a key, ask them to add it in the Netlify dashboard instead.
 3. The charged price must stay server-side (`PRICE_AMOUNT`, `PRICE_CURRENCY`). The browser only displays what `config` returns.
 4. Never change how the licence token is computed or rename `LICENSE_SECRET` without telling the user that existing purchases will stop unlocking.
-5. Everything typed by a visitor goes through `esc()` (HTML) or `js()` (inside scripts) in `build()`. Keep it that way for any new field.
+5. Everything typed by a visitor goes through `esc()` (HTML) or `js()` (inside scripts) in the engine's `build()`. Keep it that way for any new field.
+8. Fixed wording on invites lives in `src/i18n/`, never written directly into a template. Machine-drafted translations must be reviewed by a native speaker before going live.
 6. Keep the functions dependency-free (Node built-ins and `fetch` only) unless the user agrees to add a `package.json`.
 7. Deploying is `git push` to the main branch; Netlify builds and publishes on its own. Describe the change and ask before pushing.
 
@@ -56,17 +62,22 @@ Known limit: the invite is assembled in the browser, so the paywall deters ordin
 ## Common requests
 
 - **Change the price or currency:** Netlify environment variables, then redeploy. No code change.
-- **Rename the brand:** replace "Mandap & Co." in `public/index.html` and `src/studio.src.html`, rebuild.
-- **Add a form field:** add a default in `defaults()`, an input in `render()`, a token in `src/invite-template.html`, and its value in the `V` map inside `build()`.
-- **Add a colour theme:** add an entry to `src/themes.json` shaped like the existing ones.
-- **Add a tradition:** add to `TRAD` and `sample()` in `src/studio.src.html`, and an emblem in `src/emblems.json`.
-- **Guest replies:** the invite's reply section only shows when `rsvpPhone` is a valid number starting with `+` or `00` (`waNumber()` in the editor); the buttons open WhatsApp with a prepared message. Nothing is sent to our servers.
+- **Rename the brand:** change `brand` in `src/site.json`, rebuild. ("Mandap & Co." is a working name.)
+- **Add a form field:** add a default in `defaults()` (`src/engine/samples.js`), an input in `render()` (editor), a token in the template(s), and its value in the `V` map inside the engine's `build()`.
+- **Add a fixed phrase:** add the key to every `src/i18n/*.json` (English first), use `%%T_KEY%%` in HTML or `%%J_T_KEY%%` inside a template script.
+- **Add a language:** copy `src/i18n/en.json` to `<code>.json`, set `lang`, `dir`, `label`, translate the values, run `check.js`.
+- **Add a template:** create `src/templates/<id>/` with `template.html`, `themes.json`, `meta.json`; reuse the same `%%TOKENS%%`.
+- **Add a colour theme:** add an entry to the template's `themes.json` shaped like the existing ones.
+- **Add a tradition:** add to `TRAD` (engine) and `sample()` (samples.js), its `join`/`rite` words in every phrase file, and an emblem in `src/emblems.json`.
+- **Guest replies:** the invite's reply section only shows when `rsvpPhone` is a valid number starting with `+` or `00` (`waNumber()` in the engine); the buttons open WhatsApp with a prepared message. Nothing is sent to our servers.
 - **Fonts in invites:** `%%FONTS_HREF%%` becomes `<site>/fonts/fonts.css` (or a relative path for the homepage samples). `netlify.toml` allows other pages to load `/fonts/*` so downloaded invites still get the fonts.
-- **Add function artwork:** add an icon `<symbol>` and an `SC.<name>` scene in `src/invite-template.html`, then a line in `STYLES`.
+- **Add function artwork:** add an icon `<symbol>` and an `SC.<name>` scene in the template, then a line in `STYLES` (engine).
+- **Refresh the homepage samples:** edit `src/engine/samples.js`, then `node scripts/make-demos.js` (themes per sample are set in that script).
 
 ## Checking a change
 
-1. `node scripts/build.js` finishes without error.
-2. `node --check netlify/functions/*.js` passes.
-3. For payment changes, use `netlify dev` if the Netlify CLI is available, with a Stripe test key supplied by the user through their own environment, and pay with card `4242 4242 4242 4242`.
-4. In the browser: the preview shows the PREVIEW mark before paying, the button reads "Pay ... and download", and after a test payment the mark is gone and the download works.
+1. `node scripts/build.js` and `node scripts/make-demos.js` finish without error.
+2. `node scripts/check.js` prints "All good".
+3. `node --check` passes for each file in `netlify/functions/`.
+4. For payment changes, use `netlify dev` if the Netlify CLI is available, with a Stripe test key supplied by the user through their own environment, and pay with card `4242 4242 4242 4242`.
+5. In the browser: the preview shows the PREVIEW mark before paying, the button reads "Pay ... and download", and after a test payment the mark is gone and the download works.

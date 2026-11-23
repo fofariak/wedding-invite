@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Create your invitation · Mandap &amp; Co.</title>
+<title>Create your invitation · {{BRAND}}</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <!-- Created using Anthropic Claude. Keep this note on internal versions until a person has reviewed the site. -->
 <style>
@@ -70,7 +70,7 @@ input[type=color]{width:40px;height:34px;padding:2px;border:1px solid var(--line
 <div class="app">
   <div class="side">
     <div class="top">
-      <a class="home" href="index.html">Mandap &amp; Co.</a>
+      <a class="home" href="index.html">{{BRAND}}</a>
       <h1>Create your invitation</h1>
       <p>Editing and previewing are free. Pay once per wedding to remove the preview mark and download. <button class="mini" id="fresh" type="button">Start a new invite</button></p>
     </div>
@@ -98,150 +98,22 @@ input[type=color]{width:40px;height:34px;padding:2px;border:1px solid var(--line
   </div>
 </div>
 
-<script id="tpl" type="application/json">__TEMPLATE__</script>
-<script id="themes" type="application/json">__THEMES__</script>
-<script id="emblems" type="application/json">__EMBLEMS__</script>
+<script id="res" type="application/json">__RESOURCES__</script>
+<script>__ENGINE__</script>
+<script>__SAMPLES__</script>
 <script>
 (function(){
 'use strict';
-var TEMPLATE=JSON.parse(document.getElementById('tpl').textContent);
-var THEMES=JSON.parse(document.getElementById('themes').textContent);
-var EMBLEMS=JSON.parse(document.getElementById('emblems').textContent);
-var STYLES={ceremony:['Ceremony arch','i-arch','arch'],rings:['Vows / rings','i-rings','arch'],dinner:['Dinner / toast','i-cheers','lights'],feast:['Feast / walima','i-feast','lights'],nikah:['Nikah / lanterns','i-lantern','moon'],
-  mehendi:['Mehendi / henna','i-mehendi','mehendi'],sangeet:['Sangeet / party / dance','i-sangeet','sangeet'],haldi:['Haldi','i-haldi','haldi'],pujan:['Puja / kalash','i-pujan','pujan'],ghat:['Ghat sthapana / ritual','i-ghat','ghat'],pheras:['Mandap / pheras','i-mandap','pheras']};
-var TRAD={hindu:{label:'Hindu',note:'Ganesha emblem, "Weds" in the title',emblem:'ganesha',join:' Weds ',rite:'Pheras',recIcon:'i-cheers'},
-  muslim:{label:'Muslim / Nikah',note:'Star and crescent emblem, no alcohol artwork',emblem:'star',join:' & ',rite:'Nikah',recIcon:'i-feast'},
-  western:{label:'Western (European / American)',note:'Monogram of the couple\'s initials',emblem:'monogram',join:' & ',rite:'Ceremony',recIcon:'i-cheers'}};
+// Shared code: InviteEngine (src/engine/engine.js) builds invites; InviteSamples (src/engine/samples.js) holds starting content.
+var RES=JSON.parse(document.getElementById('res').textContent);
+RES.fontsBase=/^https?:$/.test(location.protocol)?location.origin+'/':'';
+var E=window.InviteEngine,STYLES=E.STYLES,TRAD=E.TRAD,waNumber=E.waNumber;
+function time12(t){return E.time12(t,RES.phrases[E.DEFAULT_LANG].format);} // editor labels are in English
+var THEMES=RES.templates[E.DEFAULT_TEMPLATE].themes;
 var ZONES=[['-08:00','Los Angeles (UTC-8)'],['-07:00','Los Angeles summer / Denver (UTC-7)'],['-06:00','Chicago (UTC-6)'],['-05:00','New York (UTC-5)'],['-04:00','New York summer (UTC-4)'],['+00:00','London (UTC)'],['+01:00','London summer / Paris, Rome (UTC+1)'],['+02:00','Paris, Rome summer / Cairo (UTC+2)'],['+03:00','Riyadh, Doha, Istanbul (UTC+3)'],['+04:00','Dubai, Abu Dhabi (UTC+4)'],['+05:00','Karachi (UTC+5)'],['+05:30','India (UTC+5:30)'],['+06:00','Dhaka (UTC+6)'],['+08:00','Singapore (UTC+8)']];
-var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
-var DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-var SILENT='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
-
-function placeholder(i){
-  var tones=[['#e9ddd0','#cdbba8'],['#dfe3da','#b9c2b0'],['#ead9d3','#cfb1a8'],['#e6e0ef','#bdb3cf'],['#efe6cf','#d3c39a'],['#d9e3e6','#aebfc4']][i%6];
-  var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 960"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+tones[0]+'"/><stop offset="1" stop-color="'+tones[1]+'"/></linearGradient></defs><rect width="640" height="960" fill="url(#g)"/><g fill="none" stroke="#fff" stroke-width="10" opacity=".7"><rect x="230" y="400" width="180" height="140" rx="16"/><circle cx="320" cy="470" r="38"/></g><text x="320" y="610" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="#fff" opacity=".85">Photo '+(i+1)+'</text></svg>';
-  return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
-}
-function defaults(){
-  var caps=['By the sea','Racing up together','Reaching for you','Almost touching','Our quiet corner','Two rings, one promise'];
-  return {theme:'wine',tradition:'hindu',reveal:'pull',tz:'+05:30',
-    name1:'Aastha',name2:'Aakash',rel1:'Daughter of',parents1:'Mr. Rahul Oberoi & Mrs. Rajvi Oberoi',rel2:'Son of',parents2:'Mr. Anil Shah & Mrs. Anjali Shah',
-    frontLabel:'Together with their families',inviteLine:'request the pleasure of your company at their wedding',
-    coverTitle:'SHUBH VIVAAH',coverSub:'A wedding invitation',
-    date:'2026-12-31',time:'19:00',bannerLine:'',
-    events:[
-      {name:'Mandap Muhurat',date:'2026-12-29',time:'10:00',place:'Oberoi Residence, Malabar Hill',dress:'Traditional wear',c1:'#e9d7ad',c2:'',style:'pujan'},
-      {name:'Haldi',date:'2026-12-29',time:'15:00',place:'Poolside, The Oberoi',dress:'Wear yellow',c1:'#f2c230',c2:'',style:'haldi'},
-      {name:'Mehndi',date:'2026-12-30',time:'12:00',place:'The Garden Lawn, The Oberoi',dress:'Wear green',c1:'#7f9a62',c2:'',style:'mehendi'},
-      {name:'Sangeet',date:'2026-12-30',time:'19:30',place:'The Ballroom, The Oberoi',dress:'Indo-western, purple & pink',c1:'#b48ad0',c2:'#e84393',style:'sangeet'},
-      {name:'Wedding & Pheras',date:'2026-12-31',time:'19:00',place:'The Mandap, The Oberoi',dress:'Festive red & gold',c1:'#a3192f',c2:'#d4a84b',style:'pheras'}],
-    photos:caps.map(function(c,i){return {src:placeholder(i),caption:c,pos:'50%'};}),cover:2,
-    recOn:true,recLabel:'You are invited to the',recTitle:'Grand Reception',recDate:'2026-12-31',recLine:'10:00 pm onwards · Dinner, dance & the New Year countdown',recVenue:'The Terrace, The Oberoi',recChip:'Dress code: black tie & sarees',
-    venue:'The Oberoi',address:'Nariman Point, Mumbai 400021',city:'Mumbai',mapArea:'NARIMAN POINT',mapLandmark:'MARINE DRIVE',mapRoad:'NETAJI SUBHASH ROAD',
-    closing:'With love from the Oberoi & Shah families',kids:'Come shower us with blessings, not gifts! Your love and presence are all we need. 💕',
-    song:'',songName:'',rsvpPhone:''};
-}
-function sample(k){
-  var d=defaults();if(k==='hindu')return d;
-  function ev(n,dt,tm,pl,dr,c1,st,sw){return {name:n,date:dt,time:tm,place:pl,dress:dr,c1:c1,c2:'',style:st,swatch:sw!==false};}
-  if(k==='muslim')return Object.assign(d,{name1:'Zayan',name2:'Aleena',rel1:'Son of',rel2:'Daughter of',parents1:'Mr. Imran Qureshi & Mrs. Sana Qureshi',parents2:'Mr. Faisal Siddiqui & Mrs. Hina Siddiqui',
-    frontLabel:'In the name of Allah, the Most Merciful',inviteLine:'request the honour of your presence at their Nikah',coverTitle:'NIKAH',coverSub:'A wedding invitation',
-    date:'2027-03-19',time:'17:00',tz:'+04:00',
-    events:[ev('Dholki Night','2027-03-16','19:30','Qureshi Residence, Jumeirah','Festive colours','#b48ad0','sangeet'),ev('Mehndi','2027-03-18','18:00','The Courtyard, Al Noor Gardens','Greens & yellows','#7f9a62','mehendi'),ev('Nikah','2027-03-19','17:00','The Pavilion, Al Noor Gardens','Formal, modest attire','#f3ebe0','nikah')],
-    recLabel:'You are invited to the',recTitle:'Walima',recDate:'2027-03-20',recLine:'8:00 pm onwards · Dinner',recVenue:'The Grand Hall, Al Noor Gardens',recChip:'',
-    venue:'Al Noor Gardens',address:'Beach Road, Jumeirah, Dubai',city:'Dubai',mapArea:'JUMEIRAH',mapLandmark:'THE LAGOON',mapRoad:'BEACH ROAD',
-    closing:'With love and duas, the Qureshi & Siddiqui families',kids:''});
-  return Object.assign(d,{name1:'James',name2:'Charlotte',rel1:'',rel2:'',parents1:'',parents2:'',
-    frontLabel:'Together with their families',inviteLine:'invite you to celebrate their wedding',coverTitle:'THE WEDDING',coverSub:'An invitation',
-    date:'2027-06-19',time:'16:00',tz:'+02:00',
-    events:[ev('Welcome Dinner','2027-06-18','19:30','The Terrace, Villa Montalba','Smart casual','#d9bd85','dinner',false),ev('The Ceremony','2027-06-19','16:00','The Olive Garden, Villa Montalba','Black tie optional','#2d2422','ceremony',false),ev('Farewell Brunch','2027-06-20','11:00','The Loggia, Villa Montalba','','#f6d2c8','rings',false)],
-    recLabel:'Followed by',recTitle:'Dinner & Dancing',recDate:'2027-06-19',recLine:'6:30 pm onwards · Dinner, toasts & dancing',recVenue:'The Ballroom, Villa Montalba',recChip:'',
-    venue:'Villa Montalba',address:'Via dei Cipressi 8, Tuscany, Italy',city:'Tuscany',mapArea:'CHIANTI HILLS',mapLandmark:'OLIVE GROVE',mapRoad:'VIA DEI CIPRESSI',
-    closing:'With love, James & Charlotte',kids:''});
-}
+var defaults=window.InviteSamples.defaults,sample=window.InviteSamples.sample;
 var S=defaults();
-
-/* ---------- helpers ---------- */
-function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function js(s){return JSON.stringify(String(s)).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');}
-function parts(d){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(d||'');if(!m)return null;var y=+m[1],mo=+m[2]-1,da=+m[3];return {y:y,mo:mo,d:da,wd:new Date(Date.UTC(y,mo,da)).getUTCDay()};}
-function time12(t){var m=/^(\d{2}):(\d{2})$/.exec(t||'');if(!m)return '';var h=+m[1],ap=h<12?'am':'pm';h=h%12||12;return h+':'+m[2]+' '+ap;}
-function longDate(d){var p=parts(d);return p?DAYS[p.wd]+', '+p.d+' '+MONTHS[p.mo]+' '+p.y:'';}
-function shortWhen(d,t){var p=parts(d),a=[];if(p){a.push(DAYS[p.wd].slice(0,3));a.push(p.d+' '+MONTHS[p.mo].slice(0,3));}if(time12(t))a.push(time12(t));return a.join(' · ');}
-// WhatsApp number for guest replies. Must start with + or 00 (country code) so it can't reach the wrong person.
-// Returns digits only (8 to 15, no leading zero), or '' if not usable.
-function waNumber(s){var t=String(s||'').trim();if(!/^(\+|00)/.test(t))return '';var d=t.replace(/\D/g,'').replace(/^00/,'');return /^[1-9]\d{7,14}$/.test(d)?d:'';}
-function pad(n){return (n<10?'0':'')+n;}
-function calStamp(ms){var d=new Date(ms);return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+'00Z';}
-
-/* ---------- build the invite ---------- */
-var themed={};
-function themedTemplate(k){
-  if(themed[k])return themed[k];
-  var t=TEMPLATE,map=(THEMES[k]||THEMES.wine).map||{};
-  var keys=Object.keys(map);
-  if(keys.length){
-    var re=new RegExp(keys.map(function(x){return x.replace(/[()]/g,'\\$&')+(x.charAt(0)==='#'?'\\b':'');}).join('|'),'gi');
-    t=t.replace(re,function(m){return map[m.toLowerCase()]||m;});
-  }
-  return themed[k]=t;
-}
-function build(opts){
-  opts=opts||{};
-  var th=THEMES[S.theme]||THEMES.wine,p=parts(S.date)||parts('2027-01-01'),tm=/^\d{2}:\d{2}$/.test(S.time)?S.time:'19:00';
-  var TR=TRAD[S.tradition]||TRAD.hindu,tz=/^[+-]\d{2}:\d{2}$/.test(S.tz)?S.tz:'+05:30';
-  var iso=S.date+'T'+tm+':00'+tz,start=new Date(iso).getTime();
-  if(isNaN(start))start=Date.now();
-  var title=S.name1+TR.join+S.name2;
-  var banner=S.bannerLine||(TR.rite+' at '+time12(tm)+' · '+S.venue);
-  var emblem=EMBLEMS[TR.emblem].replace('%%INIT1%%',esc((S.name1||'').trim().charAt(0).toUpperCase())).replace('%%INIT2%%',esc((S.name2||'').trim().charAt(0).toUpperCase()));
-  var auto=S.reveal==='auto';
-  var place=[S.venue,S.address].filter(Boolean).join(', ');
-  var q=encodeURIComponent(place);
-  var events=S.events.map(function(e){
-    var st=STYLES[e.style]?e.style:'ceremony',bg=e.c2?'linear-gradient(135deg,'+e.c1+','+e.c2+')':e.c1;
-    return '      <article class="ev-card"><img class="scene" data-scene="'+STYLES[st][2]+'" alt=""><div class="shade"></div>\n        <div class="ec"><div class="ill"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#'+STYLES[st][1]+'"/></svg></div><div class="ewhen">'+esc(shortWhen(e.date,e.time))+'</div><h3>'+esc(e.name)+'</h3><div class="place">'+esc(e.place)+'</div>'
-      +(e.dress&&e.dressOn!==false?'\n          <div class="dressrow">'+(e.swatch!==false?'<span class="swatch" style="background:'+esc(bg)+'"></span>':'')+'<span><small>Dress code</small><b>'+esc(e.dress)+'</b></span></div>':'')+'</div></article>';
-  }).join('\n');
-  var photos=S.photos.map(function(ph){
-    return '        <figure class="sp-item"><div class="sp-in"><img src="'+esc(ph.src)+'" alt="'+esc(ph.caption)+'" style="object-position:50% '+esc(ph.pos||'50%')+'" decoding="async"></div>'+(ph.caption?'<figcaption class="cap">'+esc(ph.caption)+'</figcaption>':'')+'</figure>';
-  }).join('\n');
-  var cov=S.photos[S.cover]||S.photos[0];
-  var wa=waNumber(S.rsvpPhone);
-  var fontsHref=(typeof location!=='undefined'&&/^https?:$/.test(location.protocol)?location.origin+'/':'')+'fonts/fonts.css';
-  var V={TITLE:esc(title),FONTS_HREF:esc(fontsHref),RSVP_HIDDEN:wa?'':' hidden',J_RSVP_PHONE:js(wa),J_COUPLE:js(S.name1+' & '+S.name2),SONG:esc(opts.silent||!S.song?SILENT:S.song),
-    COVER_TITLE:esc(S.coverTitle),COVER_SUB:esc(S.coverSub),COVER_PHOTO:esc(cov.src),COVER_POS:'50% '+esc(cov.pos||'50%'),
-    FRONT_LABEL:esc(S.frontLabel),NAME1:esc(S.name1),NAME2:esc(S.name2),REL1:esc(S.parents1?S.rel1:''),REL2:esc(S.parents2?S.rel2:''),EMBLEM:emblem,DATE_HEAD:auto?'The Wedding Day':'Pull to Reveal',DATE_TIP:auto?'':'Drag the tassel down',REC_ICON:TR.recIcon,PARENTS1:esc(S.parents1),PARENTS2:esc(S.parents2),INVITE_LINE:esc(S.inviteLine),
-    W_WEEKDAY:DAYS[p.wd],W_DAY:String(p.d),W_MONTH:MONTHS[p.mo],W_YEAR:String(p.y),BANNER_LINE:esc(banner),
-    CAL_HREF:esc('https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(S.name1+' & '+S.name2+' Wedding')+'&dates='+calStamp(start)+'/'+calStamp(start+4*3600e3)+'&location='+q),
-    EVENTS:events,PHOTOS:photos,
-    REC_HIDDEN:S.recOn?'':' hidden',REC_LABEL:esc(S.recLabel),REC_TITLE:esc(S.recTitle),REC_DATE:esc(longDate(S.recDate)),REC_LINE:esc(S.recLine),REC_VENUE:esc(S.recVenue),REC_CHIP:S.recChip?'<span class="chip">'+esc(S.recChip)+'</span>':'',
-    CITY:esc(S.city),MAP_HREF:esc('https://www.google.com/maps/search/?api=1&query='+q),DIR_HREF:esc('https://www.google.com/maps/dir/?api=1&destination='+q),
-    MAP_AREA:esc(S.mapArea),MAP_LANDMARK:esc(S.mapLandmark),MAP_ROAD:esc(S.mapRoad),VENUE:esc(S.venue),ADDRESS:esc(S.address),
-    CLOSING:esc(S.closing),KIDS:S.kids?'<div class="kids">'+esc(S.kids)+'</div>':'',
-    J_TIP:js('See you on '+longDate(S.date)),J_TARGET:js(iso),J_ADDR:js(place),
-    F_BLUSH:JSON.stringify(th.F_BLUSH),F_IVORY:JSON.stringify(th.F_IVORY),F_PEACH:JSON.stringify(th.F_PEACH),F_WINE:JSON.stringify(th.F_WINE),F_PETALS:JSON.stringify(th.F_PETALS),BUD0:th.BUD[0],BUD1:th.BUD[1]};
-  var html=themedTemplate(S.theme).replace(/%%([A-Z0-9_]+)%%/g,function(m,k){return V.hasOwnProperty(k)?V[k]:m;});
-  if(auto){
-    var au='<script>(function(){var t=document.getElementById("tassel"),tip=document.getElementById("pulltip"),done=false;document.getElementById("hand").style.display="none";tip.style.visibility="hidden";'
-      +'function go(){if(done)return;if(!document.documentElement.classList.contains("opened")){setTimeout(go,300);return;}done=true;setTimeout(function(){tip.style.visibility="";t.dispatchEvent(new KeyboardEvent("keydown",{key:"Enter"}));},500);}'
-      +'if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();go();}},{threshold:.5});io.observe(document.getElementById("pullbox"));}else go();})();<\/script>';
-    html=html.replace(/<\/body>|$/,function(m){return au+m;});
-  }
-  if(opts.mark){
-    var tile='<svg xmlns="http://www.w3.org/2000/svg" width="230" height="170"><text x="115" y="95" text-anchor="middle" transform="rotate(-28 115 85)" font-family="Georgia,serif" font-size="26" letter-spacing="4" fill="#2d2422" fill-opacity=".2" stroke="#fff" stroke-opacity=".35" stroke-width=".6">PREVIEW</text></svg>';
-    var wm='<div aria-hidden="true" style="position:fixed;inset:0;z-index:2147483000;pointer-events:none;background:url(&quot;data:image/svg+xml;charset=utf-8,'+encodeURIComponent(tile)+'&quot;)"></div>';
-    html=html.replace(/<\/body>|$/,function(m){return wm+m;});
-  }
-  if(opts.preview){
-    var extra='<script>(function(){var skip='+(opts.skip?'true':'false')+',y='+(opts.scroll||0)+';'
-      +'addEventListener("scroll",function(){try{parent.postMessage({inviteScroll:scrollY},"*");}catch(e){}},{passive:true});'
-      +'if(!skip)return;var sc=document.getElementById("scene"),n=0;var t=setInterval(function(){n++;if(sc.classList.contains("ready")){clearInterval(t);sc.style.display="none";document.getElementById("book").click();'
-      +'setTimeout(function(){document.body.classList.remove("locked");scrollTo(0,y);},60);}else if(n>120)clearInterval(t);},50);})();<\/script>';
-    html=html.replace(/<\/body>|$/,function(m){return extra+m;});
-  }
-  return html;
-}
+function build(opts){return E.build(S,opts,RES);}
 
 /* ---------- form ---------- */
 var form=document.getElementById('form');
