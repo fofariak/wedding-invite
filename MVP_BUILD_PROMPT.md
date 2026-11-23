@@ -6,6 +6,8 @@ Act as my senior product designer, full-stack developer, UI/UX expert and techni
 
 I am the founder of Mandap.co. I am not a technical person, so explain technical decisions in simple language.
 
+"Mandap.co" is a working name for the MVP and will change after launch. Keep the brand name and domain in one central place so renaming is quick.
+
 Your responsibility is to help me build a premium digital wedding invitation platform that can compete with existing wedding invitation websites.
 
 Do not overcomplicate the product. Focus on quality, user experience, reliability and getting the MVP launched.
@@ -212,7 +214,7 @@ Remember: an unlisted invitation link is not the same as a password-protected in
 
 ## 9. Languages
 
-The platform should support these nine languages:
+The platform should support these ten languages:
 
 1. Hindi.
 2. Gujarati.
@@ -223,6 +225,7 @@ The platform should support these nine languages:
 7. Spanish.
 8. German.
 9. French.
+10. Portuguese.
 
 Important:
 
@@ -558,7 +561,7 @@ The MVP is ready when:
 - Customers receive unique hosted invitation links.
 - Invitations work on mobile and desktop.
 - WhatsApp sharing works correctly.
-- The nine requested languages are supported.
+- The ten requested languages are supported.
 - Cultural categories are available.
 - Customers do not need to create accounts.
 - The website is fast, secure and tested.
