@@ -6,9 +6,12 @@
 <title>Mandap &amp; Co. · Animated wedding invitations</title>
 <meta name="description" content="Design an animated wedding invitation that opens like a book. Free to design and preview, pay once to download.">
 <!-- Created using Anthropic Claude. Keep this note on internal versions until a person has reviewed the site. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Montserrat:wght@400;500;600&display=swap">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mandap &amp; Co. · Animated wedding invitations">
+<meta property="og:description" content="Design an animated wedding invitation that opens like a book. Free to design and preview, pay once to download.">
+<meta name="theme-color" content="#6e1f2f">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 :root{color-scheme:light;--paper:#fbf7f1;--card:#fffdf9;--ink:#2d2422;--muted:#6f6058;--wine:#6e1f2f;--wine-d:#4b1120;--gold:#a67c3d;--line:#e6dacb;--blush:#f4dcd4;
   --head:"Playfair Display",Georgia,serif;--body:"Montserrat","Helvetica Neue",Arial,sans-serif}
@@ -57,6 +60,7 @@ section h2{line-height:1.2;font-size:clamp(30px,3.6vw,42px);color:var(--wine-d);
 .price .amt small{display:block;font:500 14px var(--body);color:#f0dcd6;margin-top:8px}
 .price .btn{background:#f3e3c2;border-color:#f3e3c2;color:var(--wine-d);margin-top:22px}
 footer{padding:36px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+footer .legal{margin-top:8px}footer .legal a{color:var(--muted)}
 @media (max-width:860px){.hero{grid-template-columns:1fr;gap:40px;padding-bottom:56px}.steps{grid-template-columns:1fr}.inside{grid-template-columns:1fr;gap:28px}.inside ul{columns:1}.price{grid-template-columns:1fr;padding:32px}.price .amt{text-align:left}section{padding:56px 0}}
 @media (prefers-reduced-motion:reduce){.btn{transition:none}}
 </style>
@@ -133,7 +137,8 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:14px;border-top:1px soli
   </section>
 </main>
 
-<footer><div class="in">&copy; <span id="yr"></span> Mandap &amp; Co. Payments are handled by Stripe. Card details never touch this site.</div></footer>
+<footer><div class="in">&copy; <span id="yr"></span> Mandap &amp; Co. Payments are handled by Stripe. Card details never touch this site.
+  <nav class="legal" aria-label="Policies"><a href="contact.html">Contact</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="refunds.html">Refunds</a></nav></div></footer>
 
 <script>
 (function(){

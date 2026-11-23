@@ -1,9 +1,7 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Aastha Weds Aakash</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 /* Layout: a wine-velvet book on a blush table. The cover swings open, the camera swooshes into the first page, and the page scrolls as a short series of panels, each with hanging flowers that bloom and swing. Committed light theme: ivory paper, wine, champagne gold, blush roses. */
 :root{
@@ -551,6 +549,7 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
   <!-- RSVP + CLOSE -->
   <section class="blush in" style="padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))">
     <div class="bgword">Forever</div>
+    <div hidden>
     <div class="head rv"><span class="label">Kindly respond</span><h2>Will You Join Us?</h2></div>
     <form class="rsvp rv" id="rsvp">
       <label for="r-name" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Your name</label>
@@ -558,6 +557,7 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
       <div class="two"><button class="btn" type="submit" data-a="yes">Attending</button><button class="btn ghost" type="submit" data-a="no">Can't make it</button></div>
     </form>
     <div class="thanks z" id="thanks" hidden></div>
+    </div>
     <div class="bye rv"><div class="fam">With love from the Oberoi &amp; Shah families</div><div class="kids">Come shower us with blessings, not gifts! Your love and presence are all we need. 💕</div></div>
   </section>
 </main>
@@ -947,7 +947,11 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
 
   var choice='yes';
   document.querySelectorAll('#rsvp button').forEach(function(b){b.addEventListener('click',function(){choice=b.dataset.a;});});
-  document.getElementById('rsvp').addEventListener('submit',function(e){e.preventDefault();var n=document.getElementById('r-name').value.trim()||'Dear guest';
+  document.getElementById('rsvp').addEventListener('submit',function(e){e.preventDefault();var g=document.getElementById('r-name').value.trim(),n=g||'Dear guest';
+    var wa="",couple="Aastha & Aakash";
+    if(wa){var msg=(choice==='yes'?'Hello! '+(g?'This is '+g+'. ':'')+'Happy to confirm I will attend the wedding of '+couple+'. Looking forward to celebrating with you!'
+        :'Hello! '+(g?'This is '+g+'. ':'')+'Sadly I will not be able to attend the wedding of '+couple+'. Wishing you both a lifetime of happiness.');
+      window.open('https://wa.me/'+wa+'?text='+encodeURIComponent(msg),'_blank','noopener');}
     this.hidden=true;var t=document.getElementById('thanks');t.hidden=false;
     t.textContent=choice==='yes'?('Thank you, '+n+'! We can’t wait to see you.'):('Thank you, '+n+'. You will be missed.');if(choice==='yes')burst(18);});
 })();

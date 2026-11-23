@@ -15,6 +15,9 @@ A small website that sells animated wedding invitations. Visitors design an invi
 | `public/studio.html` | Build output | Never by hand |
 | `public/index.html` | Homepage | Yes |
 | `public/demo-*.html` | Sample invites shown on the homepage. To refresh one, download an invite from the editor and save it over the file | Replace only |
+| `public/contact.html`, `privacy.html`, `terms.html`, `refunds.html` | Policy pages (drafts with `[bracketed]` placeholders; see `docs/legal-review-notes.md`). Shared look in `public/page.css` | Yes |
+| `public/fonts/` | Self-hosted Playfair Display + Montserrat (Latin only) with `fonts.css` and OFL licences. Pages and invites must not load Google Fonts | Add files only |
+| `public/favicon.svg`, `public/robots.txt` | Site icon and crawler rules | Yes |
 | `netlify/functions/config.js` | Returns price, currency, and whether payments are configured | Yes |
 | `netlify/functions/create-checkout.js` | Creates a Stripe Checkout Session | Yes |
 | `netlify/functions/verify.js` | Confirms a paid session and issues or checks a licence token | Yes |
@@ -57,6 +60,8 @@ Known limit: the invite is assembled in the browser, so the paywall deters ordin
 - **Add a form field:** add a default in `defaults()`, an input in `render()`, a token in `src/invite-template.html`, and its value in the `V` map inside `build()`.
 - **Add a colour theme:** add an entry to `src/themes.json` shaped like the existing ones.
 - **Add a tradition:** add to `TRAD` and `sample()` in `src/studio.src.html`, and an emblem in `src/emblems.json`.
+- **Guest replies:** the invite's reply section only shows when `rsvpPhone` is a valid number starting with `+` or `00` (`waNumber()` in the editor); the buttons open WhatsApp with a prepared message. Nothing is sent to our servers.
+- **Fonts in invites:** `%%FONTS_HREF%%` becomes `<site>/fonts/fonts.css` (or a relative path for the homepage samples). `netlify.toml` allows other pages to load `/fonts/*` so downloaded invites still get the fonts.
 - **Add function artwork:** add an icon `<symbol>` and an `SC.<name>` scene in `src/invite-template.html`, then a line in `STYLES`.
 
 ## Checking a change

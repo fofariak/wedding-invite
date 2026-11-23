@@ -8,3 +8,10 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Downloaded invites load their fonts from this site, so fonts must be usable from other pages.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=86400"
