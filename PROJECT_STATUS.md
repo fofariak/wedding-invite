@@ -31,7 +31,7 @@ Last updated: 24 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
   - New tool: `node scripts/make-previews.js` makes the card images from the samples (needs Chrome).
   - Tested in Chrome at laptop and phone sizes: no errors, no sideways scrolling, and the pop-up preview and tabs work.
 
-- **Step 3, hosted invitations with Razorpay** (on your Mac; not committed yet):
+- **Step 3, hosted invitations with Razorpay** (pushed 24 November 2026):
   - **Publishing:** customers press "Pay ₹499 and publish", pay in Razorpay's window, and get a guest link (`/i/<id>`) and a private edit link. Photos and song are uploaded after payment.
   - **Edit link:** opens the invitation on any device to change anything, unpublish, publish again or delete. This browser remembers it too.
   - **Guest pages:** built on the server with WhatsApp preview tags (names, date, venue, cover photo), not listed by search engines, and offline 12 months after the wedding.
@@ -52,7 +52,7 @@ Last updated: 24 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
 ## Next
 1. You check Step 0 on the live site and on a phone (WhatsApp reply button, fonts, policy pages).
 2. You check the new homepage on the live site, on a phone and a laptop.
-3. Approve committing and pushing Step 3.
+3. Check the Netlify deploy of Step 3 (first deploy with server storage and packages).
 4. Add the Razorpay test keys and webhook in Netlify and Razorpay (see `README.md` step 4), then do a test payment on the live site.
 5. **Step 4:** more templates.
 
