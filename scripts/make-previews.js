@@ -9,7 +9,10 @@ const { spawn } = require('child_process');
 const { root } = require('./lib/resources');
 
 const CHROME = process.env.CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const DEMOS = ['hindu', 'muslim', 'western'];
+const { loadResources } = require('./lib/resources');
+// [sample page, image] pairs: classic's three tradition samples plus each template's own sample.
+const DEMOS = ['hindu', 'muslim', 'western'].map((t) => ['demo-' + t + '.html', 'img/preview-' + t + '.webp']);
+for (const t of Object.values(loadResources().templates)) if (t.demo && t.demo.tradition) DEMOS.push([t.demo.file, t.demo.image]);
 const pub = path.join(root, 'public');
 const outDir = path.join(pub, 'img');
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -46,13 +49,13 @@ const server = http.createServer((req, res) => {
     const send = (method, params = {}) => new Promise((r) => { const i = ++id; pending[i] = r; ws.send(JSON.stringify({ id: i, method, params })); });
     await send('Page.enable');
     await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 780, deviceScaleFactor: 2, mobile: true });
-    for (const t of DEMOS) {
-      await send('Page.navigate', { url: site + '/demo-' + t + '.html' });
+    for (const [page, image] of DEMOS) {
+      await send('Page.navigate', { url: site + '/' + page });
       await sleep(3500); // let the cover, flowers and fonts settle
       const shot = await send('Page.captureScreenshot', { format: 'webp', quality: 80 });
-      const file = path.join(outDir, 'preview-' + t + '.webp');
+      const file = path.join(pub, image);
       fs.writeFileSync(file, Buffer.from(shot.result.data, 'base64'));
-      console.log('Wrote public/img/preview-' + t + '.webp (' + Math.round(fs.statSync(file).size / 1024) + ' KB)');
+      console.log('Wrote public/' + image + ' (' + Math.round(fs.statSync(file).size / 1024) + ' KB)');
     }
     ws.close();
   } finally {

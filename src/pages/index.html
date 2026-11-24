@@ -77,7 +77,7 @@ p{margin:0}
 
 /* designs */
 .designs{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.5vw,32px)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,26px)}
 .dcard{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:transform .35s,box-shadow .35s}
 .dcard:hover{transform:translateY(-4px);box-shadow:0 24px 48px -18px rgba(75,17,32,.25)}
 .dcard figure{margin:0;aspect-ratio:4/4.4;overflow:hidden;background:var(--paper-2)}
@@ -90,8 +90,8 @@ p{margin:0}
 .dots{display:flex}
 .dots i{width:16px;height:16px;border-radius:50%;border:2px solid var(--paper);margin-left:-5px}
 .dots i:first-child{margin-left:0}
-.dcard .btn{margin-top:auto;align-self:flex-start;padding:11px 20px;font-size:14px}
-.dcard .actions{margin-top:18px}
+.dcard .btn{padding:10px 16px;font-size:13.5px}
+.dcard .actions{margin-top:auto;padding-top:16px;display:flex;flex-wrap:wrap;gap:8px}
 .stories{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 28px;margin-top:clamp(36px,5vw,52px);font-size:14.5px;color:var(--ink)}
 .stories span{display:flex;align-items:center;gap:10px}
 .more{text-align:center;color:var(--muted);font-size:15px;margin-top:22px}
@@ -174,13 +174,14 @@ dialog.pop::backdrop{background:rgba(35,20,22,.62);-webkit-backdrop-filter:blur(
 @media (max-width:980px){
   .nav{display:none}
   .hero .in{grid-template-columns:1fr}
-  .cards{grid-template-columns:1fr;max-width:460px;margin:0 auto}
+  .cards{grid-template-columns:1fr 1fr;max-width:720px;margin:0 auto}
   .inside{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr}
   .privacy{grid-template-columns:1fr 1fr}
   .price{grid-template-columns:1fr}
 }
 @media (max-width:600px){
+  .cards{grid-template-columns:1fr;max-width:420px}
   .feat{grid-template-columns:1fr}
   .privacy{grid-template-columns:1fr}
   .top .btn.small{padding:9px 16px}
@@ -240,44 +241,13 @@ dialog.pop::backdrop{background:rgba(35,20,22,.62);-webkit-backdrop-filter:blur(
     <div class="in">
       <div class="sec-head center rv">
         <span class="eyebrow">The designs</span>
-        <h2>Three traditions, each in three colour stories</h2>
-        <p>Every invitation opens like a book, reveals the date with a tassel and carries guests through each function. Choose a tradition for its emblem and wording, then the colours that feel like you.</p>
+        <h2>{{DESIGN_COUNT}} designs, each in three colour stories</h2>
+        <p>Each design has its own opening moment, from a book that opens to palace doors, a blooming wreath and lantern light. Every one works for Hindu, Nikah and Western weddings, with your own opening blessing, functions and photos.</p>
       </div>
       <div class="cards">
-        <article class="dcard rv">
-          <figure><img src="img/preview-hindu.webp" width="390" height="780" loading="lazy" alt="Cover of the Hindu sample: Shubh Vivaah in rani pink with a gold Ganesha emblem"></figure>
-          <div class="body">
-            <h3>Hindu wedding</h3>
-            <p>Ganesha emblem, "Weds" in the title, and artwork for Haldi, Mehndi, Sangeet and the Pheras.</p>
-            <div class="sw"><span class="dots" aria-hidden="true"><i style="background:#8b1357"></i><i style="background:#f6ead2"></i><i style="background:#d5b87e"></i></span>Shown in Rani Pink &amp; Marigold</div>
-            <div class="actions"><button class="btn ghost" type="button" data-preview="demo-hindu.html" data-title="Hindu sample invitation">Preview live</button></div>
-          </div>
-        </article>
-        <article class="dcard rv">
-          <figure><img src="img/preview-muslim.webp" width="390" height="780" loading="lazy" alt="Cover of the Nikah sample in emerald green with a gold star and crescent"></figure>
-          <div class="body">
-            <h3>Nikah</h3>
-            <p>Star and crescent emblem, lantern artwork for the Nikah and a Walima reception card. No alcohol imagery.</p>
-            <div class="sw"><span class="dots" aria-hidden="true"><i style="background:#1f5c4a"></i><i style="background:#f3e8cf"></i><i style="background:#b38a4e"></i></span>Shown in Emerald &amp; Champagne</div>
-            <div class="actions"><button class="btn ghost" type="button" data-preview="demo-muslim.html" data-title="Nikah sample invitation">Preview live</button></div>
-          </div>
-        </article>
-        <article class="dcard rv">
-          <figure><img src="img/preview-western.webp" width="390" height="780" loading="lazy" alt="Cover of the Western sample in wine red with the couple's monogram"></figure>
-          <div class="body">
-            <h3>Western wedding</h3>
-            <p>The couple's monogram, ceremony and dinner artwork, and a classic "Together with their families" opening.</p>
-            <div class="sw"><span class="dots" aria-hidden="true"><i style="background:#6e1f2f"></i><i style="background:#f4dcd4"></i><i style="background:#b38a4e"></i></span>Shown in Wine &amp; Blush</div>
-            <div class="actions"><button class="btn ghost" type="button" data-preview="demo-western.html" data-title="Western sample invitation">Preview live</button></div>
-          </div>
-        </article>
+{{DESIGN_CARDS}}
       </div>
-      <div class="stories rv" aria-label="Colour stories, available for every tradition">
-        <span><span class="dots" aria-hidden="true"><i style="background:#6e1f2f"></i><i style="background:#f4dcd4"></i><i style="background:#b38a4e"></i></span>Wine &amp; Blush</span>
-        <span><span class="dots" aria-hidden="true"><i style="background:#1f5c4a"></i><i style="background:#f3e8cf"></i><i style="background:#b38a4e"></i></span>Emerald &amp; Champagne</span>
-        <span><span class="dots" aria-hidden="true"><i style="background:#8b1357"></i><i style="background:#f6ead2"></i><i style="background:#d5b87e"></i></span>Rani Pink &amp; Marigold</span>
-      </div>
-      <p class="more rv">Any colour story works with any tradition, and you can write your own wording in any language. More designs, traditions and languages are on the way.</p>
+      <p class="more rv">Every design works with every tradition, and you can write your own wording in any language. More designs are on the way.</p>
     </div>
   </section>
 

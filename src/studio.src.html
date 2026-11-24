@@ -530,6 +530,8 @@ loadDraft().then(function(d){
   if(d&&Array.isArray(d.photos)&&d.photos.length&&Array.isArray(d.events))S=normalise(d);
   render();
   var x=fromHash();if(x)return openSession(x.id,x.token);
+  var want=new URLSearchParams(location.search).get('template');
+  if(want&&RES.templates[want]){S.template=want;if(!themesOf()[S.theme])S.theme=firstTheme(themesOf());history.replaceState(null,'',location.pathname+location.hash);render();saveDraft();say(RES.templates[want].name+' design selected. Make it yours below.');}
   var p=stored('pendingPublish');
   if(p&&ID_RE.test(p.id)&&TOKEN_RE.test(p.token))return call('GET','/api/invites/'+p.id,undefined,p).then(function(v){if(v.paid)return finish(p);},function(e){if(e.status===404)store('pendingPublish',null);});
 }).catch(function(e){say(e&&e.message||'Something went wrong.');}).then(function(){refresh(false);paintActions();});

@@ -8,5 +8,12 @@
     "swatch": "<span class=\"sw\" style=\"background:{{BG}}\"></span>",
     "photo": "<figure class=\"ph\"><img src=\"{{SRC}}\" alt=\"{{ALT}}\" style=\"object-position:50% {{POS}}\" loading=\"lazy\" decoding=\"async\">{{CAPTION}}<svg class=\"ph-spr\" viewBox=\"0 0 120 60\" aria-hidden=\"true\"><use href=\"#sprig\"/></svg></figure>",
     "caption": "<figcaption>{{TEXT}}</figcaption>"
-  }
+  },
+  "demo": {
+    "tradition": "western",
+    "theme": "blush",
+    "file": "demo-bagh.html",
+    "image": "img/preview-bagh.webp"
+  },
+  "order": 3
 }

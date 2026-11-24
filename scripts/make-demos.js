@@ -24,3 +24,12 @@ for (const d of DEMOS) {
   fs.writeFileSync(file, engine.build(S, {}, R));
   console.log('Wrote public/demo-' + d.tradition + '.html');
 }
+
+// One homepage sample per template (as set in its meta.json "demo"). Classic uses the three samples above.
+for (const [id, t] of Object.entries(R.templates)) {
+  if (!t.demo || !t.demo.tradition) continue;
+  const S = samples.sample(t.demo.tradition);
+  Object.assign(S, { tradition: t.demo.tradition, template: id, theme: t.demo.theme });
+  fs.writeFileSync(path.join(root, 'public', t.demo.file), engine.build(S, {}, R));
+  console.log('Wrote public/' + t.demo.file);
+}

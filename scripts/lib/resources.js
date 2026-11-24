@@ -14,12 +14,15 @@ function loadResources() {
     const meta = JSON.parse(read(base + 'meta.json'));
     const themes = JSON.parse(read(base + 'themes.json'));
     if (!Object.keys(themes).length) throw new Error(base + 'themes.json needs at least one theme');
-    templates[id] = { name: meta.name, description: meta.description || '', features: meta.features || {}, partials: meta.partials || null, html: read(base + 'template.html'), themes };
+    templates[id] = { order: meta.order || 99, name: meta.name, description: meta.description || '', features: meta.features || {}, demo: meta.demo || null, partials: meta.partials || null, html: read(base + 'template.html'), themes };
   }
   if (!templates.classic) throw new Error('src/templates/classic is required (the default template)');
+  // Templates appear in the editor and on the homepage in their meta.json "order".
+  const ordered = {};
+  Object.keys(templates).sort((x, y) => templates[x].order - templates[y].order || (x < y ? -1 : 1)).forEach((k) => { ordered[k] = templates[k]; });
   const shared = { css: read('src/templates/_shared/base.css'), runtime: read('src/templates/_shared/runtime.js'), icons: read('src/templates/_shared/icons.svg') };
   if (/<\/script/i.test(shared.runtime)) throw new Error('_shared/runtime.js must not contain "</script"');
-  return { templates, shared, emblems: JSON.parse(read('src/emblems.json')), phrases: loadPhrases(), openings: loadOpenings() };
+  return { templates: ordered, shared, emblems: JSON.parse(read('src/emblems.json')), phrases: loadPhrases(), openings: loadOpenings() };
 }
 
 // Opening library: src/openings/meta.json (traditions, designs) + one file of texts per tradition.

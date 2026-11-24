@@ -78,6 +78,13 @@ for (const [trad, theme] of [['hindu', 'rani'], ['muslim', 'emerald'], ['western
   }
 }
 
+for (const [id, t] of Object.entries(R.templates)) {
+  if (!t.demo || !t.demo.tradition) continue;
+  const S = Object.assign(samples.sample(t.demo.tradition), { tradition: t.demo.tradition, template: id, theme: t.demo.theme });
+  const file = path.join(root, 'public', t.demo.file);
+  if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== engine.build(S, {}, R)) problems.push('public/' + t.demo.file + ' is out of date: run node scripts/make-demos.js');
+}
+
 // The server functions' copy of the designs and phrases must match src/.
 {
   const site = JSON.parse(fs.readFileSync(path.join(root, 'src/site.json'), 'utf8'));

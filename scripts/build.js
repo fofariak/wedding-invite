@@ -13,6 +13,31 @@ if (!site.brand) throw new Error('src/site.json needs a "brand"');
 const escHtml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const withSite = (html) => html.replace(/\{\{BRAND\}\}/g, () => escHtml(site.brand));
 
+// Homepage: one design card per template ({{DESIGN_CARDS}}) and the number of designs in words ({{DESIGN_COUNT}}).
+const WORDS = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
+function designCards() {
+  const R = loadResources();
+  const order = Object.keys(R.templates); // already in meta.json "order"
+  return order.filter((id) => R.templates[id].demo).map((id) => {
+    const t = R.templates[id], themes = Object.values(t.themes), e = escHtml;
+    const dots = themes.map((th) => '<i style="background:' + e(th.sw[0]) + '"></i>').join('');
+    return '        <article class="dcard rv">\n' +
+      '          <figure><img src="' + e(t.demo.image) + '" width="390" height="780" loading="lazy" alt="Opening screen of the ' + e(t.name) + ' design"></figure>\n' +
+      '          <div class="body">\n' +
+      '            <h3>' + e(t.name) + '</h3>\n' +
+      '            <p>' + e(t.description) + '</p>\n' +
+      '            <div class="sw"><span class="dots" aria-hidden="true">' + dots + '</span>' + themes.length + ' colour stories</div>\n' +
+      '            <div class="actions"><button class="btn ghost" type="button" data-preview="' + e(t.demo.file) + '" data-title="' + e(t.name) + ' sample invitation">Preview live</button><a class="btn" href="studio.html?template=' + encodeURIComponent(id) + '">Use this design</a></div>\n' +
+      '          </div>\n' +
+      '        </article>';
+  }).join('\n');
+}
+const withDesigns = (html) => {
+  if (!html.includes('{{DESIGN_CARDS}}')) return html;
+  const cards = designCards(), n = (cards.match(/class="dcard/g) || []).length;
+  return html.replace('{{DESIGN_CARDS}}', () => cards).replace(/\{\{DESIGN_COUNT\}\}/g, () => WORDS[n] || String(n));
+};
+
 // Safe to place inside a <script type="application/json"> block.
 const embed = (value) =>
   JSON.stringify(value).replace(/</g, '\\u003c').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
@@ -26,7 +51,7 @@ const inlineJs = (file) => {
 
 const write = (name, html) => {
   // Site placeholders only ({{BRAND}}); template snippets embedded as data use {{KEY}} on purpose.
-  const left = html.match(/\{\{BRAND\}\}/);
+  const left = html.match(/\{\{(BRAND|DESIGN_CARDS|DESIGN_COUNT)\}\}/);
   if (left) throw new Error(name + ' still contains ' + left[0]);
   fs.writeFileSync(path.join(root, 'public', name), html);
   console.log('Built public/' + name + ' (' + html.length + ' characters)');
@@ -34,7 +59,7 @@ const write = (name, html) => {
 
 // Pages
 for (const file of fs.readdirSync(path.join(root, 'src/pages')).filter((f) => f.endsWith('.html')).sort()) {
-  write(file, withSite(read('src/pages/' + file)));
+  write(file, withDesigns(withSite(read('src/pages/' + file))));
 }
 
 // Editor (the brand is filled in first, so nothing inlined afterwards is touched)

@@ -8,5 +8,12 @@
     "swatch": "<span class=\"sw\" style=\"background:{{BG}}\"></span>",
     "photo": "<figure class=\"ph\"><img src=\"{{SRC}}\" alt=\"{{ALT}}\" style=\"object-position:50% {{POS}}\" loading=\"lazy\" decoding=\"async\">{{CAPTION}}</figure>",
     "caption": "<figcaption>{{TEXT}}</figcaption>"
-  }
+  },
+  "demo": {
+    "tradition": "hindu",
+    "theme": "maroon",
+    "file": "demo-rajwada.html",
+    "image": "img/preview-rajwada.webp"
+  },
+  "order": 2
 }

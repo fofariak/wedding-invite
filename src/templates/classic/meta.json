@@ -1,7 +1,12 @@
 {
   "name": "Classic Book",
-  "description": "A book that opens to an animated, scrolling invitation with date reveal, functions carousel, photos, reception and map.",
+  "description": "A book opens onto paper flowers, with a pull-down tassel date",
   "features": {
     "tassel": true
-  }
+  },
+  "demo": {
+    "file": "demo-hindu.html",
+    "image": "img/preview-hindu.webp"
+  },
+  "order": 1
 }
