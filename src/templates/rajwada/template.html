@@ -25,8 +25,8 @@ body{background:var(--deep)}
 .cover-t small{display:block;margin-top:8px;font:500 10.5px var(--f-body);letter-spacing:.34em;text-transform:uppercase;color:var(--gold-lt);opacity:.85}
 .gate{position:relative;width:min(330px,80vw);height:max(300px,min(calc(100vh - 330px),520px));margin-bottom:calc(120px + env(safe-area-inset-bottom,0px));perspective:1400px;z-index:2}
 .gate::before{content:"";position:absolute;inset:-14px -14px 0;border:2px solid var(--gold);border-bottom:0;border-radius:50% 50% 0 0/26% 26% 0 0;box-shadow:inset 0 0 0 5px var(--deep),inset 0 0 0 6px rgba(233,201,138,.55)}
-.glow{position:absolute;inset:0;border-radius:50% 50% 0 0/26% 26% 0 0;background:radial-gradient(60% 55% at 50% 60%,#fff6dc,var(--gold-lt) 40%,rgba(184,137,58,0) 75%);opacity:.35;transition:opacity 1.8s}
-.door{position:absolute;top:0;bottom:0;width:50%;transition:transform 2s cubic-bezier(.6,.02,.25,1);transform-style:preserve-3d;
+.glow{position:absolute;inset:0;border-radius:50% 50% 0 0/26% 26% 0 0;background:radial-gradient(60% 55% at 50% 60%,#fff6dc,var(--gold-lt) 40%,rgba(184,137,58,0) 75%);opacity:.35;transition:opacity 2.4s .6s}
+.door{position:absolute;top:0;bottom:0;width:50%;transition:transform 3s cubic-bezier(.55,.05,.2,1) .55s;transform-style:preserve-3d;
   background:radial-gradient(circle,rgba(233,201,138,.55) 1.3px,transparent 1.8px) 0 0/18px 18px,linear-gradient(180deg,var(--deep-2),var(--deep));
   box-shadow:inset 0 0 0 7px var(--deep),inset 0 0 0 8px var(--gold),inset 0 0 0 18px var(--deep),inset 0 0 0 19px rgba(233,201,138,.6),0 20px 40px rgba(0,0,0,.35)}
 .door.l{left:0;transform-origin:left center;border-radius:100% 0 0 0/26% 0 0 0}
@@ -34,7 +34,12 @@ body{background:var(--deep)}
 .door::after{content:"";position:absolute;top:50%;width:10px;height:42px;margin-top:-21px;border-radius:5px;background:linear-gradient(var(--gold-lt),var(--gold));box-shadow:0 2px 6px rgba(0,0,0,.4)}
 .door.l::after{right:16px}.door.r::after{left:16px}
 .seal{position:absolute;left:50%;top:44%;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;z-index:3;display:grid;place-items:center;
-  background:radial-gradient(circle,var(--deep-2),var(--deep));border:2px solid var(--gold);box-shadow:0 0 0 6px rgba(74,10,23,.6),0 0 0 7px rgba(233,201,138,.5),0 10px 26px rgba(0,0,0,.45);transition:opacity .7s,transform .9s}
+  background:radial-gradient(circle,var(--deep-2),var(--deep));border:2px solid var(--gold);box-shadow:0 0 0 6px rgba(74,10,23,.6),0 0 0 7px rgba(233,201,138,.5),0 10px 26px rgba(0,0,0,.45);transition:opacity .6s .35s,transform .9s}
+html.opening .seal{animation:sealGlow .5s ease-out}
+@keyframes sealGlow{50%{box-shadow:0 0 0 6px rgba(74,10,23,.6),0 0 0 7px rgba(233,201,138,.9),0 0 40px 10px rgba(233,201,138,.75)}}
+.gate,.skyline,.cover-t{transition:transform 1.2s cubic-bezier(.5,0,.3,1) 2.7s,opacity 1s 2.8s}
+html.opening .gate{transform:scale(1.9) translateY(4%)}
+html.opening .skyline,html.opening .cover-t{transform:translateY(-30px);opacity:0}
 .seal svg{width:60px;height:60px}
 html.opening .door.l{transform:rotateY(-108deg)}
 html.opening .door.r{transform:rotateY(108deg)}
@@ -104,13 +109,13 @@ html.js .venue .city.rv.on{opacity:.18} /* stays a faint background word after f
 .closing .end svg{width:100%;height:auto;fill:none;stroke:currentColor;stroke-width:1.2}
 .opening-page{background:radial-gradient(110% 60% at 50% 0%,rgba(233,201,138,.25),transparent 70%),var(--paper)}
 .opening-page::before{content:"";position:absolute;inset:18px;border:1px solid var(--gold);border-radius:150px 150px 10px 10px/110px 110px 10px 10px;opacity:.6;pointer-events:none}
-@media (prefers-reduced-motion:reduce){.door,.seal,.glow{transition:none}}
+@media (prefers-reduced-motion:reduce){.door,.seal,.glow,.gate,.skyline,.cover-t{transition:none;animation:none}}
 </style>
 </head>
 <body>
 <audio id="bgm" src="%%SONG%%" loop preload="auto"></audio>
 
-<div id="scene" data-ms="2300" role="dialog" aria-label="%%T_BOOK_ARIA%%">
+<div id="scene" data-ms="3900" role="dialog" aria-label="%%T_BOOK_ARIA%%">
   <div class="skyline" aria-hidden="true"><svg viewBox="0 0 380 90"><use href="#skyline"/></svg></div>
   <div class="cover-t"><b class="gold-text">%%COVER_TITLE%%</b><small>%%COVER_SUB%%</small></div>
   <div class="gate">
