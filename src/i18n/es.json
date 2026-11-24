@@ -1,0 +1,144 @@
+{
+  "lang": "es",
+  "dir": "ltr",
+  "label": "Español",
+  "reviewed": false,
+  "text": {
+    "book_aria": "Libro de invitación de boda",
+    "open_book_aria": "Abrir el libro de invitación",
+    "tap_to_open": "Toque el libro para abrirlo",
+    "preparing": "Preparando su invitación",
+    "play_music": "Reproducir música",
+    "pause_music": "Pausar música",
+    "scroll": "Deslice",
+    "save_the_date_bg": "Reserve la fecha",
+    "save_the_date": "Reserve la fecha",
+    "pull_aria": "Tire hacia abajo para ver la fecha de la boda",
+    "countdown_aria": "Cuenta atrás para la boda",
+    "days": "días",
+    "hrs": "horas",
+    "min": "min",
+    "sec": "seg",
+    "add_to_calendar": "Añadir al calendario",
+    "celebrate_bg": "Celebración",
+    "swipe_celebrations": "Deslice para ver las celebraciones",
+    "festivities": "Celebraciones de la boda",
+    "functions_aria": "Eventos de la boda, deslice para verlos",
+    "swipe_functions": "Deslice para ver cada evento",
+    "memories_bg": "Recuerdos",
+    "moments": "Momentos",
+    "our_story": "Nuestra historia",
+    "photos_aria": "Fotos, deslice para verlas",
+    "swipe_more": "Deslice para ver más",
+    "reception_bg": "Recepción",
+    "location": "Ubicación",
+    "how_to_reach": "Cómo llegar",
+    "map_aria": "Abrir el lugar en Google Maps",
+    "tap_for_maps": "Toque para abrir el mapa",
+    "get_directions": "Indicaciones",
+    "copy_address": "Copiar dirección",
+    "address_copied": "Dirección copiada",
+    "forever_bg": "Para siempre",
+    "kindly_respond": "Por favor, confirme",
+    "will_you_join": "¿Nos acompañará?",
+    "your_name": "Su nombre",
+    "attending": "Asistiré",
+    "cant_make_it": "No podré asistir",
+    "dear_guest": "estimado invitado",
+    "thanks_yes": "¡Gracias, {name}! Le esperamos con ilusión.",
+    "thanks_no": "Gracias, {name}. Le echaremos de menos.",
+    "reply_intro": "Soy {name}. ",
+    "reply_yes": "¡Hola! {intro}Confirmo con alegría mi asistencia a la boda de {couple}. ¡Con muchas ganas de celebrarlo con ustedes!",
+    "reply_no": "¡Hola! {intro}Lamentablemente no podré asistir a la boda de {couple}. Les deseo toda la felicidad del mundo.",
+    "opening_aria": "Bendición de apertura",
+    "tap_to_open_invite": "Toque para abrir su invitación"
+  },
+  "format": {
+    "months": [
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ],
+    "months_short": [
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sept",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "days": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "days_short": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "am": "a. m.",
+    "pm": "p. m.",
+    "time": "{HH}:{mm}",
+    "date_long": "{weekday}, {day} de {month} de {year}",
+    "date_short": "{day} {month}",
+    "date_head_pull": "Tire para descubrir",
+    "date_head_auto": "El día de la boda",
+    "date_tip": "Tire de la borla hacia abajo",
+    "dress_code": "Código de vestimenta",
+    "banner_line": "{rite} a las {time} · {venue}",
+    "see_you_on": "Nos vemos el {date}",
+    "calendar_title": "Boda de {name1} y {name2}",
+    "join": {
+      "hindu": " & ",
+      "muslim": " & ",
+      "western": " & "
+    },
+    "rite": {
+      "hindu": "Pheras",
+      "muslim": "Nikah",
+      "western": "Ceremonia"
+    },
+    "dayparts": [
+      [
+        0,
+        "noche"
+      ],
+      [
+        6,
+        "mañana"
+      ],
+      [
+        12,
+        "tarde"
+      ],
+      [
+        20,
+        "noche"
+      ]
+    ]
+  }
+}

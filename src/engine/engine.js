@@ -26,7 +26,8 @@ function parts(d){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(d||'');if(!m)return nul
 // Replaces {name} placeholders in a phrase. Values are inserted once and never re-scanned.
 function fill(t,o){return String(t).replace(/\{(\w+)\}/g,function(m,k){return Object.prototype.hasOwnProperty.call(o,k)?o[k]:m;});}
 // F is the phrase file's "format" section.
-function time12(t,F){var m=/^(\d{2}):(\d{2})$/.exec(t||'');if(!m)return '';var h=+m[1];return fill(F.time,{h12:String(h%12||12),HH:m[1],mm:m[2],ampm:h<12?F.am:F.pm});}
+// F.time may use {h12} {HH} {mm} {ampm} and {daypart} (morning/evening words from F.dayparts: [[fromHour, word], ...]).
+function time12(t,F){var m=/^(\d{2}):(\d{2})$/.exec(t||'');if(!m)return '';var h=+m[1],dp='';(F.dayparts||[]).forEach(function(p){if(h>=p[0])dp=p[1];});return fill(F.time,{h12:String(h%12||12),HH:m[1],mm:m[2],ampm:h<12?F.am:F.pm,daypart:dp});}
 function longDate(d,F){var p=parts(d);return p?fill(F.date_long,{weekday:F.days[p.wd],day:String(p.d),month:F.months[p.mo],year:String(p.y)}):'';}
 function shortWhen(d,t,F){var p=parts(d),a=[];if(p){a.push(F.days_short[p.wd]);a.push(fill(F.date_short,{day:String(p.d),month:F.months_short[p.mo]}));}if(time12(t,F))a.push(time12(t,F));return a.join(' · ');}
 function phrasesFor(S,R){return R.phrases[S.lang]||R.phrases[DEFAULT_LANG];}

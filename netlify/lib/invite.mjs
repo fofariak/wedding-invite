@@ -55,7 +55,8 @@ export function validateData(raw, rec) {
   const events = Array.isArray(raw.events) ? raw.events.slice(0, LIMITS.events) : [];
   const S = {
     template,
-    lang: pick(raw.lang, Object.keys(R.phrases), engine.DEFAULT_LANG),
+    // Only languages a native speaker has reviewed ("reviewed" not false in src/i18n/<code>.json) reach customers.
+    lang: pick(raw.lang, Object.keys(R.phrases).filter((k) => R.phrases[k].reviewed !== false), engine.DEFAULT_LANG),
     theme: pick(raw.theme, themes, themes.includes('wine') ? 'wine' : themes[0]),
     tradition: pick(raw.tradition, Object.keys(engine.TRAD), 'hindu'),
     reveal: pick(raw.reveal, ['pull', 'auto'], 'pull'),

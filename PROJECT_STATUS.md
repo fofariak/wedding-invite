@@ -60,6 +60,13 @@ Last updated: 24 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
   - **Homepage:** design cards are generated automatically from the templates (picture, live preview, "Use this design"). The editor has a template choice.
   - **Tests:** `npm run check` builds 468 invitations across every template, colour story, tradition, language and opening; 14 server tests pass. Every template was checked visually on a phone screen in Chrome.
 
+- **Step 6, part 1: translations** (local checkpoint, not pushed):
+  - 10 draft languages added as phrase files, all marked not reviewed: Hindi, Gujarati, Marathi, **Punjabi**, Urdu, Arabic, Spanish, Portuguese, German, French.
+  - Natural time-of-day wording, for example शाम 7:00 बजे.
+  - The review document is generated automatically.
+  - The server accepts only reviewed languages.
+  - Still to do: the language picker, right-to-left layout for Arabic and Urdu, and homepage language chips.
+
 ## Decisions (23 to 24 November 2026)
 - **Order:** keep the original order: Step 1 foundations, then the homepage, then hosted links.
 - **Old buttons:** "Save project / Open project" was replaced by the edit link in Step 3.
@@ -83,7 +90,7 @@ Last updated: 24 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
 - A contact email.
 - Make the GitHub repository private.
 - Song choices from the shortlist.
-- Native-speaker review of `docs/translations-phase1-draft.md`.
+- Native-speaker review of each language in `docs/translations-review.md` (11 languages, Punjabi included).
 - Razorpay account and KYC (Indian business details). Then add `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET` and `RAZORPAY_WEBHOOK_SECRET` in Netlify, and create the webhook in Razorpay.
 
 ## Known issues

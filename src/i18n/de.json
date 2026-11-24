@@ -1,0 +1,148 @@
+{
+  "lang": "de",
+  "dir": "ltr",
+  "label": "Deutsch",
+  "reviewed": false,
+  "text": {
+    "book_aria": "Einladungsbuch zur Hochzeit",
+    "open_book_aria": "Einladungsbuch öffnen",
+    "tap_to_open": "Tippen Sie auf das Buch, um es zu öffnen",
+    "preparing": "Ihre Einladung wird vorbereitet",
+    "play_music": "Musik abspielen",
+    "pause_music": "Musik pausieren",
+    "scroll": "Scrollen",
+    "save_the_date_bg": "Save the Date",
+    "save_the_date": "Save the Date",
+    "pull_aria": "Nach unten ziehen, um das Hochzeitsdatum zu sehen",
+    "countdown_aria": "Countdown bis zur Hochzeit",
+    "days": "Tage",
+    "hrs": "Std.",
+    "min": "Min.",
+    "sec": "Sek.",
+    "add_to_calendar": "Zum Kalender hinzufügen",
+    "celebrate_bg": "Feiern",
+    "swipe_celebrations": "Wischen Sie durch die Feierlichkeiten",
+    "festivities": "Hochzeitsfeierlichkeiten",
+    "functions_aria": "Hochzeitstermine, zum Blättern wischen",
+    "swipe_functions": "Wischen, um alle Termine zu sehen",
+    "memories_bg": "Erinnerungen",
+    "moments": "Momente",
+    "our_story": "Unsere Geschichte",
+    "photos_aria": "Fotos, zum Blättern wischen",
+    "swipe_more": "Wischen für mehr",
+    "reception_bg": "Empfang",
+    "location": "Ort",
+    "how_to_reach": "Anfahrt",
+    "map_aria": "Veranstaltungsort in Google Maps öffnen",
+    "tap_for_maps": "Tippen, um die Karte zu öffnen",
+    "get_directions": "Route planen",
+    "copy_address": "Adresse kopieren",
+    "address_copied": "Adresse kopiert",
+    "forever_bg": "Für immer",
+    "kindly_respond": "Um Antwort wird gebeten",
+    "will_you_join": "Feiern Sie mit uns?",
+    "your_name": "Ihr Name",
+    "attending": "Gerne dabei",
+    "cant_make_it": "Leider verhindert",
+    "dear_guest": "lieber Gast",
+    "thanks_yes": "Danke, {name}! Wir freuen uns auf Sie.",
+    "thanks_no": "Danke, {name}. Sie werden uns fehlen.",
+    "reply_intro": "Hier ist {name}. ",
+    "reply_yes": "Hallo! {intro}Ich sage sehr gerne zu für die Hochzeit von {couple}. Ich freue mich darauf, mit euch zu feiern!",
+    "reply_no": "Hallo! {intro}Leider kann ich nicht zur Hochzeit von {couple} kommen. Ich wünsche euch beiden alles Glück der Welt.",
+    "opening_aria": "Segensspruch",
+    "tap_to_open_invite": "Tippen Sie, um Ihre Einladung zu öffnen"
+  },
+  "format": {
+    "months": [
+      "Januar",
+      "Februar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember"
+    ],
+    "months_short": [
+      "Jan.",
+      "Feb.",
+      "März",
+      "Apr.",
+      "Mai",
+      "Juni",
+      "Juli",
+      "Aug.",
+      "Sept.",
+      "Okt.",
+      "Nov.",
+      "Dez."
+    ],
+    "days": [
+      "Sonntag",
+      "Montag",
+      "Dienstag",
+      "Mittwoch",
+      "Donnerstag",
+      "Freitag",
+      "Samstag"
+    ],
+    "days_short": [
+      "So",
+      "Mo",
+      "Di",
+      "Mi",
+      "Do",
+      "Fr",
+      "Sa"
+    ],
+    "am": "vorm.",
+    "pm": "nachm.",
+    "time": "{HH}:{mm} Uhr",
+    "date_long": "{weekday}, {day}. {month} {year}",
+    "date_short": "{day}. {month}",
+    "date_head_pull": "Zum Enthüllen ziehen",
+    "date_head_auto": "Der Hochzeitstag",
+    "date_tip": "Ziehen Sie die Quaste nach unten",
+    "dress_code": "Dresscode",
+    "banner_line": "{rite} um {time} · {venue}",
+    "see_you_on": "Wir sehen uns am {date}",
+    "calendar_title": "Hochzeit von {name1} und {name2}",
+    "join": {
+      "hindu": " & ",
+      "muslim": " & ",
+      "western": " & "
+    },
+    "rite": {
+      "hindu": "Pheras",
+      "muslim": "Nikah",
+      "western": "Trauung"
+    },
+    "dayparts": [
+      [
+        0,
+        "nachts"
+      ],
+      [
+        5,
+        "morgens"
+      ],
+      [
+        12,
+        "nachmittags"
+      ],
+      [
+        18,
+        "abends"
+      ],
+      [
+        22,
+        "nachts"
+      ]
+    ]
+  }
+}

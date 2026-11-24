@@ -1,0 +1,144 @@
+{
+  "lang": "fr",
+  "dir": "ltr",
+  "label": "Français",
+  "reviewed": false,
+  "text": {
+    "book_aria": "Livret d'invitation de mariage",
+    "open_book_aria": "Ouvrir le livret d'invitation",
+    "tap_to_open": "Touchez le livre pour l'ouvrir",
+    "preparing": "Préparation de votre invitation",
+    "play_music": "Lancer la musique",
+    "pause_music": "Mettre la musique en pause",
+    "scroll": "Défiler",
+    "save_the_date_bg": "Réservez la date",
+    "save_the_date": "Réservez la date",
+    "pull_aria": "Tirez vers le bas pour découvrir la date du mariage",
+    "countdown_aria": "Compte à rebours jusqu'au mariage",
+    "days": "jours",
+    "hrs": "h",
+    "min": "min",
+    "sec": "s",
+    "add_to_calendar": "Ajouter au calendrier",
+    "celebrate_bg": "Célébration",
+    "swipe_celebrations": "Faites glisser pour voir les festivités",
+    "festivities": "Les festivités du mariage",
+    "functions_aria": "Événements du mariage, faites glisser pour parcourir",
+    "swipe_functions": "Faites glisser pour voir chaque événement",
+    "memories_bg": "Souvenirs",
+    "moments": "Moments",
+    "our_story": "Notre histoire",
+    "photos_aria": "Photos, faites glisser pour parcourir",
+    "swipe_more": "Faites glisser pour en voir plus",
+    "reception_bg": "Réception",
+    "location": "Lieu",
+    "how_to_reach": "Comment s'y rendre",
+    "map_aria": "Ouvrir le lieu dans Google Maps",
+    "tap_for_maps": "Touchez pour ouvrir la carte",
+    "get_directions": "Itinéraire",
+    "copy_address": "Copier l'adresse",
+    "address_copied": "Adresse copiée",
+    "forever_bg": "Pour toujours",
+    "kindly_respond": "Merci de répondre",
+    "will_you_join": "Serez-vous des nôtres ?",
+    "your_name": "Votre nom",
+    "attending": "Avec plaisir",
+    "cant_make_it": "Malheureusement non",
+    "dear_guest": "cher invité",
+    "thanks_yes": "Merci, {name} ! Nous avons hâte de vous voir.",
+    "thanks_no": "Merci, {name}. Vous nous manquerez.",
+    "reply_intro": "C'est {name}. ",
+    "reply_yes": "Bonjour ! {intro}Je confirme avec joie ma présence au mariage de {couple}. J'ai hâte de célébrer avec vous !",
+    "reply_no": "Bonjour ! {intro}Malheureusement, je ne pourrai pas assister au mariage de {couple}. Je vous souhaite tout le bonheur du monde.",
+    "opening_aria": "Bénédiction d'ouverture",
+    "tap_to_open_invite": "Touchez pour ouvrir votre invitation"
+  },
+  "format": {
+    "months": [
+      "janvier",
+      "février",
+      "mars",
+      "avril",
+      "mai",
+      "juin",
+      "juillet",
+      "août",
+      "septembre",
+      "octobre",
+      "novembre",
+      "décembre"
+    ],
+    "months_short": [
+      "janv.",
+      "févr.",
+      "mars",
+      "avr.",
+      "mai",
+      "juin",
+      "juil.",
+      "août",
+      "sept.",
+      "oct.",
+      "nov.",
+      "déc."
+    ],
+    "days": [
+      "dimanche",
+      "lundi",
+      "mardi",
+      "mercredi",
+      "jeudi",
+      "vendredi",
+      "samedi"
+    ],
+    "days_short": [
+      "dim.",
+      "lun.",
+      "mar.",
+      "mer.",
+      "jeu.",
+      "ven.",
+      "sam."
+    ],
+    "am": "matin",
+    "pm": "soir",
+    "time": "{HH}h{mm}",
+    "date_long": "{weekday} {day} {month} {year}",
+    "date_short": "{day} {month}",
+    "date_head_pull": "Tirez pour découvrir",
+    "date_head_auto": "Le jour du mariage",
+    "date_tip": "Tirez le pompon vers le bas",
+    "dress_code": "Tenue",
+    "banner_line": "{rite} à {time} · {venue}",
+    "see_you_on": "Rendez-vous le {date}",
+    "calendar_title": "Mariage de {name1} et {name2}",
+    "join": {
+      "hindu": " & ",
+      "muslim": " & ",
+      "western": " & "
+    },
+    "rite": {
+      "hindu": "Pheras",
+      "muslim": "Nikah",
+      "western": "Cérémonie"
+    },
+    "dayparts": [
+      [
+        0,
+        "nuit"
+      ],
+      [
+        6,
+        "matin"
+      ],
+      [
+        12,
+        "après-midi"
+      ],
+      [
+        18,
+        "soir"
+      ]
+    ]
+  }
+}
