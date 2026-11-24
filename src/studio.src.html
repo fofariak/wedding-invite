@@ -57,6 +57,23 @@ input[type=color]{width:40px;height:34px;padding:2px;border:1px solid var(--line
 .foot{border-top:1px solid var(--line);padding:12px 20px;display:grid;gap:8px}
 .foot .row{flex-wrap:nowrap}.foot .btn{flex:1}
 #status{font-size:12.5px;color:var(--muted);min-height:18px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.mine{margin:6px 0 0;font-size:12.5px;color:var(--muted)}
+.mine a{color:var(--accent)}
+.owner{display:grid;gap:8px;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.ownhead{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--muted)}
+.badge{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.02em}
+.badge.live{background:#e3f1e8;color:#2f6b4f}.badge.off{background:#f3e6e6;color:#8a2c2c}
+.linkrow{display:flex;gap:6px;align-items:center}
+.linkrow input{flex:1;min-width:0;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--field);color:var(--ink);font:12.5px var(--sans)}
+.mini.danger{color:#a32a2a;border-color:#d9b3b3}
+dialog.done{border:0;border-radius:16px;padding:24px;width:min(520px,92vw);background:var(--panel);color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog.done::backdrop{background:rgba(30,20,20,.55)}
+dialog.done h2{margin:0;font:500 26px var(--serif)}
+dialog.done h3{margin:18px 0 6px;font:600 13px var(--sans);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+dialog.done .row{margin-top:8px}dialog.done .row.end{justify-content:flex-end;margin-top:18px}
+dialog.done .btn{text-decoration:none;display:inline-flex;align-items:center}
+dialog.done .warn{margin:14px 0 0;font-size:12.5px;color:#8a2c2c;background:#fbefef;border-radius:8px;padding:10px 12px}
 .stage{display:grid;grid-template-rows:auto 1fr;min-height:0;min-width:0}
 .stagebar{display:flex;gap:16px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .stagebar b{font:500 17px var(--serif);margin-right:auto}
@@ -72,19 +89,22 @@ input[type=color]{width:40px;height:34px;padding:2px;border:1px solid var(--line
     <div class="top">
       <a class="home" href="index.html">{{BRAND}}</a>
       <h1>Create your invitation</h1>
-      <p>Editing and previewing are free. Pay once per wedding to remove the preview mark and download. <button class="mini" id="fresh" type="button">Start a new invite</button></p>
+      <p><span id="intro">Designing and previewing are free. Pay once to publish your invitation and get a link to share.</span> <button class="mini" id="fresh" type="button">Start a new invite</button></p>
+      <p class="mine" id="mine" hidden></p>
     </div>
     <div class="form" id="form"></div>
     <div class="foot">
+      <div class="owner" id="owner" hidden>
+        <div class="ownhead"><span class="badge" id="badge"></span><span id="ownnote"></span></div>
+        <div class="linkrow"><input type="text" id="guestUrl" readonly aria-label="Guest link"><button class="mini" type="button" id="copyGuest">Copy</button><button class="mini" type="button" id="shareGuest">WhatsApp</button></div>
+        <div class="row"><button class="mini" type="button" id="showLinks">Links &amp; edit link</button><button class="mini" type="button" id="toggleLive"></button><button class="mini danger" type="button" id="del">Delete</button></div>
+      </div>
       <div class="row">
-        <button class="btn" id="export">Download invite</button>
-        <button class="btn ghost" id="save">Save project</button>
-        <button class="btn ghost" id="load">Open project</button>
+        <button class="btn" id="publish" type="button">Checking…</button>
       </div>
       <div id="status" role="status"></div>
       <p class="paynote" id="paynote"></p>
       <p class="paynote">Payments are non-refundable. <a href="refunds.html">Refund policy</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="contact.html">Contact</a></p>
-      <input type="file" id="loadfile" accept=".json,application/json" hidden>
     </div>
   </div>
   <div class="stage">
@@ -97,6 +117,19 @@ input[type=color]{width:40px;height:34px;padding:2px;border:1px solid var(--line
     <div class="phonewrap"><div class="phone"><iframe id="pv" title="Invite preview"></iframe></div></div>
   </div>
 </div>
+
+<dialog class="done" id="done" aria-labelledby="doneTitle">
+  <h2 id="doneTitle">Your invitation is live</h2>
+  <p class="hint">Share the guest link. Keep the edit link to yourself.</p>
+  <h3>Guest link</h3>
+  <div class="linkrow"><input type="text" id="dGuest" readonly aria-label="Guest link"><button class="mini" type="button" data-copy="dGuest">Copy</button></div>
+  <div class="row"><button class="btn" type="button" id="dShare">Share on WhatsApp</button><a class="btn ghost" id="dOpen" target="_blank" rel="noopener">Open</a></div>
+  <h3>Your private edit link</h3>
+  <div class="linkrow"><input type="text" id="dEdit" readonly aria-label="Private edit link"><button class="mini" type="button" data-copy="dEdit">Copy</button></div>
+  <div class="row"><button class="btn ghost" type="button" id="dSelf">Send to myself on WhatsApp</button></div>
+  <p class="warn">Anyone with the edit link can change or delete your invitation, so keep it safe and do not share it. This browser also remembers it for you.</p>
+  <div class="row end"><button class="btn" type="button" id="dClose">Done</button></div>
+</dialog>
 
 <script id="res" type="application/json">__RESOURCES__</script>
 <script>__ENGINE__</script>
@@ -197,12 +230,12 @@ function render(){
     h('div',{class:'three'},[field('Map: area label',S,'mapArea'),field('Map: landmark',S,'mapLandmark'),field('Map: road',S,'mapRoad')]),
     h('p',{class:'hint',text:'The map is an illustration; only its three labels change. The Maps and Directions buttons search for the venue name and address.'})]));
   var sf=h('input',{type:'file',accept:'audio/*',hidden:true});
-  sf.addEventListener('change',function(){var f=sf.files[0];if(!f)return;if(f.size>8*1024*1024){say('That song is over 8 MB. Trim it to a 30 to 60 second clip first.');return;}
+  sf.addEventListener('change',function(){var f=sf.files[0];if(!f)return;if(f.size>3*1024*1024){say('That song is over 3 MB. Please use a 60 to 90 second MP3 clip.');return;}
     var r=new FileReader();r.onload=function(){S.song=r.result;S.songName=f.name;changed();render();};r.onerror=fail;r.readAsDataURL(f);});
   secs.push(section('Song',false,[h('p',{class:'hint',text:S.song?('Current song: '+(S.songName||'uploaded clip')):'No song yet. The invite plays silently until you add one.'}),
     h('div',{class:'row'},[h('button',{class:'btn ghost add',type:'button',text:S.song?'Replace song':'Choose a song',onclick:function(){sf.click();}}),sf,
       S.song?h('button',{class:'mini',type:'button',text:'Remove',onclick:function(){S.song='';S.songName='';changed();render();}}):null]),
-    h('p',{class:'hint',text:'A 30 to 60 second MP3 loops well. Use only music that is cleared for the show.'})]));
+    h('p',{class:'hint',text:'A 60 to 90 second MP3 (up to 3 MB) loops well. Use only music you have the right to use.'})]));
   var waHint=h('p',{class:'hint'});
   function paintWa(){var raw=String(S.rsvpPhone||'').trim();waHint.textContent=!raw?'Leave empty to hide the reply section.':waNumber(raw)?'Guests’ replies will open WhatsApp with a ready message to this number. Anyone who has the invite can see this number.':'Start with + and the country code, for example +91 98765 43210. Until then the reply section stays hidden.';}
   var waField=field('WhatsApp number for guest replies (optional)',S,'rsvpPhone','tel',{placeholder:'+91 98765 43210',autocomplete:'off'});
@@ -225,81 +258,173 @@ function addPhotos(files){var list=[].slice.call(files);if(!list.length)return;
 function fail(){say('That file could not be read. Try a JPG or PNG photo, or an MP3 song.');}
 
 /* ---------- preview ---------- */
-var pv=document.getElementById('pv'),timer=null,lastScroll=0,dirty=false,statusEl=document.getElementById('status');
+var pv=document.getElementById('pv'),timer=null,lastScroll=0,dirty=false,edits=0,statusEl=document.getElementById('status');
 function say(t){statusEl.textContent=t;}
 addEventListener('message',function(e){if(e.source===pv.contentWindow&&e.data&&typeof e.data.inviteScroll==='number')lastScroll=e.data.inviteScroll;});
 function refresh(fromTop){var skip=document.getElementById('skip').checked;
   if(fromTop)lastScroll=0;
-  pv.srcdoc=build({preview:true,mark:!unlocked(),skip:skip&&!fromTop,scroll:lastScroll,silent:!document.getElementById('pmusic').checked});}
-function changed(){dirty=true;clearTimeout(timer);timer=setTimeout(function(){rekey().then(function(){refresh(false);});},700);clearTimeout(saveT);saveT=setTimeout(saveDraft,1500);}
+  pv.srcdoc=build({preview:true,mark:!(SESSION&&SESSION.paid),skip:skip&&!fromTop,scroll:lastScroll,silent:!document.getElementById('pmusic').checked});}
+function changed(){dirty=true;edits++;clearTimeout(timer);timer=setTimeout(function(){refresh(false);},700);
+  if(!SESSION){clearTimeout(saveT);saveT=setTimeout(saveDraft,1500);}paintActions();}
 document.getElementById('skip').addEventListener('change',function(){refresh(false);});
 document.getElementById('pmusic').addEventListener('change',function(){refresh(false);});
 document.getElementById('replay').addEventListener('click',function(){refresh(true);});
 
-/* ---------- save / open / export ---------- */
-function slug(){return (S.name1+(S.tradition==='hindu'?'-weds-':'-and-')+S.name2).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'wedding-invite';}
-function download(name,text,type){var b=new Blob([text],{type:type}),u=URL.createObjectURL(b),a=h('a',{href:u,download:name});document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u);},2000);}
-
-/* ---------- drafts (kept in this browser so nothing is lost when paying) ---------- */
+/* ---------- drafts (kept in this browser until the invitation is published) ---------- */
 var saveT=null;
 function idb(){return new Promise(function(res,rej){var r=indexedDB.open('inviteStudio',1);r.onupgradeneeded=function(){r.result.createObjectStore('kv');};r.onsuccess=function(){res(r.result);};r.onerror=function(){rej(r.error);};});}
 function saveDraft(){return idb().then(function(db){return new Promise(function(res,rej){var tx=db.transaction('kv','readwrite');tx.objectStore('kv').put(S,'draft');tx.oncomplete=res;tx.onerror=function(){rej(tx.error);};});}).catch(function(){});}
 function loadDraft(){return idb().then(function(db){return new Promise(function(res){var q=db.transaction('kv').objectStore('kv').get('draft');q.onsuccess=function(){res(q.result||null);};q.onerror=function(){res(null);};});}).catch(function(){return null;});}
+function normalise(d){var x=Object.assign(defaults(),d);if(!THEMES[x.theme])x.theme='wine';if(!TRAD[x.tradition])x.tradition='hindu';if(!(x.cover>=0&&x.cover<x.photos.length))x.cover=0;return x;}
 
-/* ---------- payment: one purchase unlocks one couple + wedding date ---------- */
-var FN='/.netlify/functions/',CFG=null,curKey='',LIC={};
-try{LIC=JSON.parse(localStorage.getItem('inviteLicences')||'{}')||{};}catch(e){LIC={};}
-function keepLic(){try{localStorage.setItem('inviteLicences',JSON.stringify(LIC));}catch(e){}}
-function norm(s){return String(s||'').toLowerCase().replace(/\s+/g,' ').trim();}
-function rekey(){var raw=norm(S.name1)+'|'+norm(S.name2)+'|'+S.date;
-  if(!(window.crypto&&crypto.subtle)){curKey='';paintPay();return Promise.resolve();}
-  return crypto.subtle.digest('SHA-256',new TextEncoder().encode(raw)).then(function(buf){curKey=[].map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2);}).join('');paintPay();},function(){curKey='';paintPay();});}
-function unlocked(){return !!(curKey&&LIC[curKey]);}
-function price(){if(!CFG)return '';try{var f=new Intl.NumberFormat(undefined,{style:'currency',currency:CFG.currency.toUpperCase()}),d=f.resolvedOptions().maximumFractionDigits;return f.format(CFG.amount/Math.pow(10,d));}catch(e){return (CFG.amount/100)+' '+CFG.currency.toUpperCase();}}
-function paintPay(){var b=document.getElementById('export'),n=document.getElementById('paynote');
-  if(unlocked()){b.textContent='Download invite';b.disabled=false;n.textContent='Paid for '+S.name1+' & '+S.name2+'. Edit photos, wording, venue and design as often as you like and download again.';}
-  else if(CFG&&CFG.ready){b.textContent='Pay '+price()+' and download';b.disabled=false;n.textContent='One payment covers one couple and wedding date.'+(CFG.testMode?' Test mode: no real money is taken.':'');}
-  else{b.textContent='Download unavailable';b.disabled=true;n.textContent=CFG?'Payments are not set up on this site yet.':'Checking the payment set-up…';}}
-function api(name,opt){return fetch(FN+name,opt).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j&&j.error||'Request failed');return j;});});}
-function doDownload(){var holders=S.photos.filter(function(p){return p.src.indexOf('data:image/svg')===0;}).length;
-  download(slug()+'.html',build({}),'text/html');
-  say('Downloaded '+slug()+'.html'+(holders?' (it still has '+holders+' placeholder photo'+(holders>1?'s':'')+')':'')+(S.song?'':' without a song')+'.');}
-document.getElementById('export').addEventListener('click',function(){var b=this;
-  rekey().then(function(){
-    if(!curKey){say('This browser cannot start a payment. Open the site over https in a current browser.');return;}
-    b.disabled=true;
-    if(unlocked()){say('Checking your purchase…');
-      return api('verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:curKey,token:LIC[curKey]})}).then(function(j){
-        if(j.ok){doDownload();}else{delete LIC[curKey];keepLic();say('That purchase could not be confirmed. Pay again or contact support.');refresh(false);}});}
-    say('Opening secure checkout…');
-    return saveDraft().then(function(){return api('create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:curKey,label:(S.name1+' & '+S.name2).slice(0,80)})});}).then(function(j){location.href=j.url;});
-  }).catch(function(e){say('Could not reach the payment service. '+(e&&e.message||'')+' Try again in a moment.');}).then(function(){paintPay();});});
-document.getElementById('fresh').addEventListener('click',function(){if(!confirm('Start a new invite? The current draft in this browser is cleared. Save the project first if you want to keep it.'))return;S=defaults();render();rekey().then(function(){refresh(true);});saveDraft();say('New invite started.');});
-document.getElementById('save').addEventListener('click',function(){download(slug()+'.invite.json',JSON.stringify({inviteStudio:1,data:S,licences:LIC}),'application/json');dirty=false;say('Project saved. Open it here later to keep editing.');});
-document.getElementById('load').addEventListener('click',function(){document.getElementById('loadfile').click();});
-document.getElementById('loadfile').addEventListener('change',function(){var f=this.files[0];this.value='';if(!f)return;var r=new FileReader();
-  r.onload=function(){try{var j=JSON.parse(r.result);if(!j||!j.inviteStudio||!j.data||!Array.isArray(j.data.photos)||!Array.isArray(j.data.events)||j.data.photos.length<1)throw 0;
-      S=Object.assign(defaults(),j.data);if(!THEMES[S.theme])S.theme='wine';if(!TRAD[S.tradition])S.tradition='hindu';if(!(S.cover>=0&&S.cover<S.photos.length))S.cover=0;if(j.licences&&typeof j.licences==='object'){Object.keys(j.licences).forEach(function(k){if(/^[0-9a-f]{64}$/.test(k)&&typeof j.licences[k]==='string')LIC[k]=j.licences[k];});keepLic();}render();rekey().then(function(){refresh(true);});saveDraft();dirty=false;say('Opened '+f.name+'.');}
-    catch(e){say('That is not an Invite Studio project file. Pick a file ending in .invite.json.');}};
-  r.readAsText(f);});
+/* ---------- publishing: pay once, get a guest link and a private edit link ----------
+   SESSION is the invitation being edited: {id, token, paid, status, guestUrl}. Its edit link is
+   studio.html#edit=<id>.<token>; the token never goes into a guest page. */
+var CFG=null,SESSION=null,busy=false;
+var ID_RE=/^[a-z2-9]{12}$/,TOKEN_RE=/^[A-Za-z0-9_-]{20,100}$/;
+function store(k,v){try{if(v==null)localStorage.removeItem(k);else localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function stored(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch(e){return null;}}
+function myInvites(){var l=stored('myInvites');return Array.isArray(l)?l.filter(function(x){return x&&ID_RE.test(x.id)&&TOKEN_RE.test(x.token);}):[];}
+function remember(sess){var l=myInvites().filter(function(x){return x.id!==sess.id;});l.unshift({id:sess.id,token:sess.token,names:(S.name1+' & '+S.name2).slice(0,80)});store('myInvites',l.slice(0,20));}
+function forget(id){store('myInvites',myInvites().filter(function(x){return x.id!==id;}));var p=stored('pendingPublish');if(p&&p.id===id)store('pendingPublish',null);}
+function editLink(sess){return location.origin+location.pathname+'#edit='+sess.id+'.'+sess.token;}
+function call(method,path,body,sess,raw){
+  var o={method:method,headers:{}};if(sess)o.headers.Authorization='Bearer '+sess.token;
+  if(raw){o.body=raw.body;o.headers['Content-Type']=raw.type;}else if(body!==undefined){o.body=JSON.stringify(body);o.headers['Content-Type']='application/json';}
+  return fetch(path,o).then(function(r){return r.json().catch(function(){return {};}).then(function(j){
+    if(!r.ok){var e=new Error(j&&j.error||'Something went wrong ('+r.status+').');e.status=r.status;throw e;}return j;});});}
+function money(){if(!CFG)return '';try{var cur=CFG.currency.toUpperCase(),f=new Intl.NumberFormat(undefined,{style:'currency',currency:cur}),v=CFG.amount/Math.pow(10,f.resolvedOptions().maximumFractionDigits);
+  if(v===Math.round(v))f=new Intl.NumberFormat(undefined,{style:'currency',currency:cur,minimumFractionDigits:0,maximumFractionDigits:0});return f.format(v);}catch(e){return (CFG.amount/100)+' '+CFG.currency.toUpperCase();}}
 
+function paintActions(){
+  var b=document.getElementById('publish'),n=document.getElementById('paynote'),own=document.getElementById('owner'),intro=document.getElementById('intro');
+  var paid=!!(SESSION&&SESSION.paid);own.hidden=!paid;paintMine();
+  if(paid){
+    var live=SESSION.status==='live',refunded=SESSION.status==='refunded';
+    intro.textContent='You are editing your published invitation. Press Save changes and your guest link updates within a minute.';
+    b.textContent=busy?'Saving…':dirty?'Save changes':'All changes saved';b.disabled=busy||!dirty||refunded;
+    var badge=document.getElementById('badge');badge.textContent=refunded?'Refunded':live?'Live':'Not published';badge.className='badge '+(live?'live':'off');
+    document.getElementById('ownnote').textContent=refunded?'This invitation was refunded and is offline.':live?'Guests can open this link.':'Guests see "not available" until you publish.';
+    document.getElementById('guestUrl').value=SESSION.guestUrl||'';
+    var t=document.getElementById('toggleLive');t.textContent=live?'Unpublish':'Publish again';t.disabled=busy||refunded;
+    n.textContent='Changing photos, wording, functions, venue or colours is free.';
+  }else{
+    intro.textContent='Designing and previewing are free. Pay once to publish your invitation and get a link to share.';
+    if(CFG&&CFG.ready){b.textContent=busy?'Please wait…':'Pay '+money()+' and publish';b.disabled=busy;
+      n.textContent='One payment per invitation. You get a link to share with guests and a private link to edit it later.'+(CFG.testMode?' Test mode: no real money is taken.':'');}
+    else{b.textContent='Publishing unavailable';b.disabled=true;n.textContent=CFG?'Payments are not set up on this site yet.':'Checking the payment set-up…';}
+  }
+}
+function paintMine(){var m=document.getElementById('mine'),l=myInvites().filter(function(x){return !SESSION||x.id!==SESSION.id;});
+  m.textContent='';m.hidden=!l.length;if(!l.length)return;m.appendChild(document.createTextNode('Your invitations on this device: '));
+  l.slice(0,5).forEach(function(x,i){if(i)m.appendChild(document.createTextNode(' · '));m.appendChild(h('a',{href:'#edit='+x.id+'.'+x.token,text:x.names||x.id}));});}
+
+// Photos and songs that are still inside the page (data: links) are uploaded one by one, then replaced by their web address.
+function toBlob(u){var m=/^data:([^;,]+)(;base64)?,(.*)$/.exec(u);if(!m)return null;
+  var bin=m[2]?atob(m[3]):decodeURIComponent(m[3]),a=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);
+  var t=m[1].toLowerCase();t={'audio/mp3':'audio/mpeg','audio/x-m4a':'audio/mp4','audio/m4a':'audio/mp4','audio/x-aac':'audio/aac','image/jpg':'image/jpeg'}[t]||t;
+  return {blob:new Blob([a],{type:t}),type:t};}
+function uploadAll(sess){
+  var D=JSON.parse(JSON.stringify(S)),jobs=[];
+  D.photos.forEach(function(p){if(/^data:image\/(jpeg|jpg|png|webp)[;,]/.test(p.src))jobs.push(p);});
+  var hasSong=/^data:audio\//.test(D.song),total=jobs.length+(hasSong?1:0),done=0;
+  function up(src){var b=toBlob(src);if(!b)return Promise.reject(new Error('That file could not be read.'));done++;say('Uploading '+done+' of '+total+'…');
+    return call('POST','/api/invites/'+sess.id+'/assets',undefined,sess,{body:b.blob,type:b.type}).then(function(j){return j.path;});}
+  return jobs.reduce(function(pr,p){return pr.then(function(){return up(p.src).then(function(path){p.src=path;});});},Promise.resolve())
+    .then(function(){if(hasSong)return up(D.song).then(function(path){D.song=path;});}).then(function(){return D;});}
+// After saving, put the uploaded addresses into the editor without losing anything typed meanwhile.
+function applySaved(before,D,editsAtStart){
+  S.photos.forEach(function(p,i){if(before.photos[i]&&p.src===before.photos[i].src&&D.photos[i])p.src=D.photos[i].src;});
+  if(S.song===before.song)S.song=D.song;
+  dirty=edits!==editsAtStart;}
+function applyView(v){SESSION.paid=v.paid;SESSION.status=v.status;SESSION.guestUrl=v.guestUrl;}
+function saveToServer(sess){var before=JSON.parse(JSON.stringify(S)),e0=edits;
+  return uploadAll(sess).then(function(D){say('Saving…');return call('PUT','/api/invites/'+sess.id,{data:D},sess).then(function(v){applyView(v);applySaved(before,v.data,e0);return v;});});}
+
+function loadScript(src){return new Promise(function(res,rej){if(window.Razorpay)return res();var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=function(){rej(new Error('The payment window could not be loaded. Check your connection and try again.'));};document.head.appendChild(s);});}
+function waitPaid(sess){var tries=0;return new Promise(function(res,rej){(function poll(){call('GET','/api/invites/'+sess.id,undefined,sess).then(function(v){
+  if(v.paid)return res();if(++tries>=20)return rej(new Error('Your payment is still being confirmed by the bank. Keep this page open, or reopen it in a few minutes.'));setTimeout(poll,3000);},rej);})();});}
+
+function startPublish(){
+  if(!CFG||!CFG.ready||busy)return;
+  var holders=S.photos.filter(function(p){return p.src.indexOf('data:image/svg')===0;}).length;
+  if(holders&&!confirm('Your invitation still has '+holders+' sample photo'+(holders>1?'s':'')+'. You can change photos after publishing too. Continue to payment?'))return;
+  if(!S.name1.trim()||!S.name2.trim()){say('Please fill in both names before publishing.');return;}
+  busy=true;paintActions();say('Preparing secure checkout…');
+  var pending=stored('pendingPublish');
+  Promise.resolve(pending&&ID_RE.test(pending.id)&&TOKEN_RE.test(pending.token)?pending:null)
+    .then(function(p){return p||call('POST','/api/invites').then(function(j){var s={id:j.id,token:j.token};store('pendingPublish',s);remember(s);return s;});})
+    .then(function(sess){return call('POST','/api/pay/order',{id:sess.id},sess).then(function(o){return checkout(sess,o);},function(e){if(e.status===409)return finish(sess);
+      if(e.status===404){store('pendingPublish',null);forget(sess.id);}throw e;});})
+    .catch(function(e){say(e.message||'Something went wrong. Please try again.');})
+    .then(function(){busy=false;paintActions();});
+}
+function checkout(sess,o){return loadScript(CFG.checkoutScript).then(function(){return new Promise(function(resolve,reject){var paidNow=false;
+  var rz=new window.Razorpay({key:o.keyId,amount:o.amount,currency:o.currency,name:o.name,description:o.description,order_id:o.orderId,theme:{color:'#6e1f2f'},
+    handler:function(r){paidNow=true;say('Payment received. Confirming…');
+      call('POST','/api/pay/confirm',{id:sess.id,orderId:o.orderId,paymentId:r.razorpay_payment_id,signature:r.razorpay_signature},sess)
+        .then(function(c){return c.paid?null:waitPaid(sess);}).then(function(){return finish(sess);}).then(resolve,reject);},
+    modal:{ondismiss:function(){if(!paidNow){say('Payment window closed. Nothing was charged; your design is still here.');resolve();}}}});
+  if(rz.on)rz.on('payment.failed',function(r){say('The payment did not go through'+(r&&r.error&&r.error.description?': '+r.error.description:'')+'. You can try again in the same window.');});
+  rz.open();});});}
+// After payment: upload photos, save, publish, then show the links.
+function finish(sess){
+  SESSION={id:sess.id,token:sess.token,paid:true,status:'unpublished',guestUrl:''};remember(sess);paintActions();say('Publishing your invitation…');
+  return saveToServer(SESSION).then(function(){return call('POST','/api/invites/'+sess.id+'/status',{live:true},SESSION);}).then(function(v){
+    applyView(v);store('pendingPublish',null);remember(SESSION);history.replaceState(null,'','#edit='+sess.id+'.'+sess.token);
+    paintActions();refresh(false);say('Published.');showLinks();});}
+
+function openSession(id,token){
+  var sess={id:id,token:token};say('Opening your invitation…');
+  return call('GET','/api/invites/'+id,undefined,sess).then(function(v){
+    if(!v.paid){var p=stored('pendingPublish');if(!p||p.id!==id)store('pendingPublish',sess);say('This invitation is not paid yet. Press Pay to publish it.');return;}
+    if(!v.data)return loadDraft().then(function(d){if(d&&Array.isArray(d.photos)&&d.photos.length)S=normalise(d);render();return finish(sess);}); // paid, publishing was interrupted
+    SESSION={id:id,token:token,paid:true,status:v.status,guestUrl:v.guestUrl};S=normalise(v.data);dirty=false;edits=0;remember(SESSION);render();paintActions();refresh(true);
+    say(v.status==='live'?'Your invitation is open for editing.':'Your invitation is open. It is not published right now.');
+  },function(e){if(e.status===404){forget(id);say('That edit link is not valid any more. The invitation may have been deleted.');}else say(e.message);});
+}
+function fromHash(){var m=/^#edit=([a-z2-9]{12})\.([A-Za-z0-9_-]{20,100})$/.exec(location.hash);return m?{id:m[1],token:m[2]}:null;}
+addEventListener('hashchange',function(){var x=fromHash();if(x&&(!SESSION||SESSION.id!==x.id)){if(SESSION&&dirty&&!confirm('Leave without saving your changes?'))return;openSession(x.id,x.token);}});
+addEventListener('beforeunload',function(e){if(SESSION&&SESSION.paid&&dirty){e.preventDefault();e.returnValue='';}});
+
+/* ---------- buttons ---------- */
+document.getElementById('publish').addEventListener('click',function(){
+  if(!(SESSION&&SESSION.paid))return startPublish();
+  busy=true;paintActions();saveToServer(SESSION).then(function(){say('Saved. Your guest link shows the changes within a minute.');refresh(false);},function(e){say(e.message);}).then(function(){busy=false;paintActions();});});
+function copy(text,label){(navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(text):Promise.reject()).then(function(){say(label+' copied.');},function(){say('Select the link and copy it.');});}
+function whatsapp(text){window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank','noopener');}
+function guestMessage(){return S.name1+' & '+S.name2+' invite you to their wedding. Open your invitation: '+SESSION.guestUrl;}
+document.getElementById('copyGuest').addEventListener('click',function(){copy(SESSION.guestUrl,'Guest link');});
+document.getElementById('shareGuest').addEventListener('click',function(){whatsapp(guestMessage());});
+document.getElementById('toggleLive').addEventListener('click',function(){var live=SESSION.status!=='live';busy=true;paintActions();
+  call('POST','/api/invites/'+SESSION.id+'/status',{live:live},SESSION).then(function(v){applyView(v);say(live?'Published. Guests can open the link again.':'Unpublished. Guests now see "not available".');},function(e){say(e.message);}).then(function(){busy=false;paintActions();});});
+document.getElementById('del').addEventListener('click',function(){
+  if(!confirm('Delete this invitation for good? The guest link stops working and your photos are removed. This cannot be undone.'))return;
+  busy=true;paintActions();var id=SESSION.id;
+  call('DELETE','/api/invites/'+id,undefined,SESSION).then(function(){forget(id);SESSION=null;dirty=false;history.replaceState(null,'',location.pathname);S=defaults();render();refresh(true);saveDraft();say('Invitation deleted.');},function(e){say(e.message);}).then(function(){busy=false;paintActions();});});
+var dlg=document.getElementById('done');
+function showLinks(){if(!SESSION)return;document.getElementById('dGuest').value=SESSION.guestUrl;document.getElementById('dEdit').value=editLink(SESSION);document.getElementById('dOpen').href=SESSION.guestUrl;
+  if(typeof dlg.showModal==='function')dlg.showModal();else say('Guest link: '+SESSION.guestUrl);}
+document.getElementById('showLinks').addEventListener('click',showLinks);
+document.getElementById('dClose').addEventListener('click',function(){dlg.close();});
+[].forEach.call(dlg.querySelectorAll('[data-copy]'),function(b){b.addEventListener('click',function(){var i=document.getElementById(b.dataset.copy);copy(i.value,b.dataset.copy==='dGuest'?'Guest link':'Edit link');});});
+document.getElementById('dShare').addEventListener('click',function(){whatsapp(guestMessage());});
+document.getElementById('dSelf').addEventListener('click',function(){whatsapp('My private edit link for our wedding invitation. Do not share it: '+editLink(SESSION));});
+document.getElementById('fresh').addEventListener('click',function(){
+  if(SESSION){if(dirty&&!confirm('Leave without saving your changes?'))return;SESSION=null;dirty=false;history.replaceState(null,'',location.pathname);}
+  else if(!confirm('Start a new invite? The current draft in this browser is cleared.'))return;
+  S=defaults();render();refresh(true);saveDraft();paintActions();say('New invite started.');});
 
 /* ---------- start-up ---------- */
-paintPay();
-api('config').then(function(c){CFG=c;},function(){CFG={ready:false};}).then(paintPay);
+paintActions();
+call('GET','/.netlify/functions/config').then(function(c){CFG=c;},function(){CFG={ready:false};}).then(paintActions);
 loadDraft().then(function(d){
-  if(d&&Array.isArray(d.photos)&&d.photos.length&&Array.isArray(d.events)){S=Object.assign(defaults(),d);if(!THEMES[S.theme])S.theme='wine';if(!TRAD[S.tradition])S.tradition='hindu';if(!(S.cover>=0&&S.cover<S.photos.length))S.cover=0;}
-  render();return rekey();
-}).then(function(){
-  var q=new URLSearchParams(location.search),sid=q.get('paid');
-  if(q.has('paid')||q.has('cancelled'))history.replaceState(null,'',location.pathname);
-  if(q.has('cancelled'))say('Payment cancelled. Nothing was charged and your draft is still here.');
-  if(sid&&/^cs_[A-Za-z0-9_]+$/.test(sid)){say('Confirming your payment…');
-    return api('verify?session_id='+encodeURIComponent(sid)).then(function(j){
-      if(j.ok&&j.key&&j.token){LIC[j.key]=j.token;keepLic();paintPay();say(j.key===curKey?'Payment received. Your invite is unlocked: press Download invite.':'Payment received for a different couple or date than the one on screen. Change the names and date back to download.');}
-      else say('That payment is not complete yet. If you were charged, reload this page in a minute.');
-    },function(){say('Could not confirm the payment. Reload this page to try again.');});}
-}).then(function(){refresh(false);});
+  if(d&&Array.isArray(d.photos)&&d.photos.length&&Array.isArray(d.events))S=normalise(d);
+  render();
+  var x=fromHash();if(x)return openSession(x.id,x.token);
+  var p=stored('pendingPublish');
+  if(p&&ID_RE.test(p.id)&&TOKEN_RE.test(p.token))return call('GET','/api/invites/'+p.id,undefined,p).then(function(v){if(v.paid)return finish(p);},function(e){if(e.status===404)store('pendingPublish',null);});
+}).catch(function(e){say(e&&e.message||'Something went wrong.');}).then(function(){refresh(false);paintActions();});
 })();
 </script>
 </body>

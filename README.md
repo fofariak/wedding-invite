@@ -9,25 +9,28 @@ Created using Anthropic Claude. Keep this note on internal versions until a pers
 | `public/` | The live site. Most pages here are generated from `src/`; fonts, icon and `page.css` live here directly |
 | `src/` | The editable source: editor, homepage and policy pages, invitation designs (`templates/`), wording per language (`i18n/`), shared invite engine (`engine/`), brand name (`site.json`) |
 | `scripts/` | `build.js` rebuilds the pages (Netlify runs it on every deploy), `make-demos.js` refreshes the homepage samples, `check.js` checks everything |
-| `netlify/functions/` | Three small server functions that talk to Stripe |
+| `netlify/functions/`, `netlify/lib/` | Server functions: hosted invitations, guest pages, Razorpay payments |
+| `tests/` | Automatic checks for the server functions (`npm test`) |
 | `netlify.toml` | Tells Netlify how to build and where the pages and functions are |
 | `CLAUDE.md` | Instructions Claude Code reads so it can change the site safely |
 
-## How payment works
+## How it works for customers
 
-1. The customer designs and previews for free.
-2. "Pay and download" sends them to Stripe's own checkout page. Card details never touch this site.
-3. Stripe sends them back, the site confirms the payment with Stripe, and the download unlocks.
-4. One payment covers one couple and wedding date. Photos, wording, venue and design can be edited and downloaded again. Changing the names or date needs a new payment.
+1. The customer designs and previews for free (with a PREVIEW mark).
+2. "Pay and publish" opens Razorpay's payment window (UPI, cards and more). Payment details never touch this site.
+3. The site checks the payment with Razorpay, saves the invitation, and gives the customer:
+   - a **guest link** to share on WhatsApp, and
+   - a **private edit link** to change anything later, unpublish or delete.
+4. Invitations go offline automatically 12 months after the wedding date.
 
 ## Put it on Netlify
 
-Menu names on GitHub, Netlify and Stripe change from time to time; the steps stay the same.
+Menu names on GitHub, Netlify and Razorpay change from time to time; the steps stay the same.
 
-### 1. Stripe account (your finance or tech team)
-1. Open a Stripe account in the company's name.
-2. Stay in test mode for now and copy the **secret key** that starts with `sk_test_`.
-3. Treat that key like a password: paste it only into Netlify in step 4, never into chat, email or these files.
+### 1. Razorpay account
+1. Open a Razorpay account for the business (an Indian business with KYC is needed).
+2. In the Razorpay Dashboard, switch to **Test Mode**, open **Account & Settings → API Keys** and generate a test key. You get a **Key ID** (`rzp_test_...`) and a **Key Secret**.
+3. Treat the secret like a password: paste it only into Netlify in step 4, never into chat, email or these files.
 
 ### 2. Put the folder on GitHub
 1. Create a GitHub account and a new **private** repository.
@@ -44,29 +47,33 @@ In the Netlify project, open the environment variables page and add:
 
 | Name | Value |
 |---|---|
-| `STRIPE_SECRET_KEY` | The Stripe secret key |
-| `LICENSE_SECRET` | Any long random text (40 or more characters). Never change it later, or past purchases stop unlocking |
-| `PRICE_AMOUNT` | Price in the smallest unit, for example `1900` for $19.00 |
-| `PRICE_CURRENCY` | For example `usd`, `eur`, `gbp`, `inr`, `aed` |
-| `PRODUCT_NAME` | Optional. The name shown on Stripe's page |
+| `RAZORPAY_KEY_ID` | The Razorpay Key ID |
+| `RAZORPAY_KEY_SECRET` | The Razorpay Key Secret |
+| `RAZORPAY_WEBHOOK_SECRET` | Any long random text; use the same text in the webhook below |
+| `PRICE_AMOUNT` | Price in the smallest unit, for example `49900` for ₹499.00 |
+| `PRICE_CURRENCY` | For example `inr` |
 
-Then trigger a new deploy so the settings take effect.
+Then in the Razorpay Dashboard open **Webhooks → Add new webhook**:
+- **URL:** `https://<your-site>/api/razorpay-webhook`
+- **Secret:** the same text as `RAZORPAY_WEBHOOK_SECRET`
+- **Events:** `payment.captured`, `order.paid`, `payment.failed`, `refund.processed`
+
+Trigger a new deploy so the settings take effect.
 
 ### 5. Test it
-1. Open the site, design an invite, press "Pay and download".
-2. On Stripe's page use the test card `4242 4242 4242 4242`, any future expiry, any security code.
-3. You should return to the editor with the download unlocked. No real money moves in test mode.
+1. Open the site, design an invite, press "Pay and publish".
+2. In Razorpay's test window, use the test card or UPI details shown in the Razorpay docs or dashboard.
+3. You should see your guest link and edit link. Open both. No real money moves in test mode.
 
 ### 6. Go live
-Replace `STRIPE_SECRET_KEY` with the live key (`sk_live_...`) and deploy again.
+Complete Razorpay's activation, generate live keys (`rzp_live_...`), replace the two key settings in Netlify, create the webhook again in live mode, and redeploy.
 
 ## Useful to know
 
-- **Payment methods and countries** are switched on in the Stripe dashboard, not in this code.
-- **Free or discounted use for your own teams:** create promotion codes in Stripe (for example 100% off, limited to a number of uses per person). The checkout page has a box for them.
+- **Payment methods and international payments** are switched on in the Razorpay Dashboard, not in this code.
 - **Changing the name "Mandap & Co."**: change it in `src/site.json` and rebuild.
 - **Changing the homepage samples:** edit the samples in `src/engine/samples.js` and run `node scripts/make-demos.js`.
-- **Limits:** the paywall stops ordinary customers. A developer who studies the page code could get around it, because the invite is assembled in the browser.
+- **Trying it locally:** `npm install`, then `npm run dev` runs the whole site at http://localhost:8888 with pretend payments.
 
 ## Making changes later with Claude Code
 

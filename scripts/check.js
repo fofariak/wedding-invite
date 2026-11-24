@@ -49,6 +49,14 @@ for (const [trad, theme] of [['hindu', 'rani'], ['muslim', 'emerald'], ['western
   }
 }
 
+// The server functions' copy of the designs and phrases must match src/.
+{
+  const site = JSON.parse(fs.readFileSync(path.join(root, 'src/site.json'), 'utf8'));
+  const want = 'export default ' + JSON.stringify(Object.assign(loadResources(), { brand: site.brand })) + ';';
+  const file = path.join(root, 'netlify/lib/generated/resources.mjs');
+  if (!fs.existsSync(file) || !fs.readFileSync(file, 'utf8').includes(want)) problems.push('netlify/lib/generated/resources.mjs is out of date: run node scripts/build.js');
+}
+
 if (problems.length) {
   console.error(problems.length + ' problem(s):\n  ' + problems.slice(0, 40).join('\n  '));
   process.exit(1);

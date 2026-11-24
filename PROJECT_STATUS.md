@@ -2,7 +2,7 @@
 
 Created using Anthropic Claude. Keep this on internal versions until a person has reviewed it.
 
-Last updated: 23 November 2026. The plan and its reasons are in `PROJECT_AUDIT.md`.
+Last updated: 24 November 2026. The plan and its reasons are in `PROJECT_AUDIT.md`.
 
 ## Done
 - **Phase 1, audit:** `PROJECT_AUDIT.md` written. Portuguese added, so the MVP now has 10 languages.
@@ -21,7 +21,7 @@ Last updated: 23 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
   - **New tools:** `node scripts/make-demos.js` regenerates the homepage samples (no more paid downloads). `node scripts/check.js` checks every combination after a change.
   - **Verified:** output identical to before the change, apart from the deliberate language/direction tag. Tested in Chrome with no errors.
 
-- **Step 2, homepage** (on your Mac; not committed yet):
+- **Step 2, homepage** (pushed 23 November 2026):
   - New premium homepage in the ivory and wine style, built for phones first:
     - the hero, with the live phone sample and reassurance points;
     - design cards with real cover images and pop-up live previews;
@@ -31,17 +31,30 @@ Last updated: 23 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
   - New tool: `node scripts/make-previews.js` makes the card images from the samples (needs Chrome).
   - Tested in Chrome at laptop and phone sizes: no errors, no sideways scrolling, and the pop-up preview and tabs work.
 
-## Decisions (23 November 2026)
+- **Step 3, hosted invitations with Razorpay** (on your Mac; not committed yet):
+  - **Publishing:** customers press "Pay ₹499 and publish", pay in Razorpay's window, and get a guest link (`/i/<id>`) and a private edit link. Photos and song are uploaded after payment.
+  - **Edit link:** opens the invitation on any device to change anything, unpublish, publish again or delete. This browser remembers it too.
+  - **Guest pages:** built on the server with WhatsApp preview tags (names, date, venue, cover photo), not listed by search engines, and offline 12 months after the wedding.
+  - **Payments:** checked on the server with Razorpay (signature and order status), plus a webhook so payment completes even if the tab closes. Double payments are recorded for refund, and a full refund takes the invitation offline.
+  - **Storage:** Netlify Blobs (approved), via `package.json` with one package, `@netlify/blobs`.
+  - **Removed:** Stripe, the licence system, Download, and Save/Open project.
+  - **Wording updated:** homepage, privacy, terms, refunds and contact pages, `CLAUDE.md`, `README.md` and the reviewer notes.
+  - **Tests:** 13 automatic server tests (`npm test`), and the full journey tested in Chrome with the local test server (`npm run dev`). The functions were also bundled the way Netlify does and run successfully.
+
+## Decisions (23 to 24 November 2026)
 - **Order:** keep the original order: Step 1 foundations, then the homepage, then hosted links.
-- **Old buttons:** "Save project / Open project" stays until the hosted edit link replaces it.
+- **Old buttons:** "Save project / Open project" was replaced by the edit link in Step 3.
 - **Homepage (Step 2):** ivory and wine editorial style. The wording describes today's product and gets updated when hosted links launch. Only existing designs are shown, plus one "more coming" line. The price is ₹499.
-- **Payments:** hosted-link checkout is built on Razorpay (test mode first). Stripe isn't set up on the live site, which is why it shows "Download unavailable", and won't be.
-- **Editing after publishing:** everything can be changed. Invitations go offline automatically some months after the wedding (6 suggested; to confirm).
+- **Payments:** hosted-link checkout is built on Razorpay (test mode first). Stripe has been removed.
+- **Editing after publishing:** everything can be changed. Invitations go offline automatically **12 months** after the wedding.
+- **Storage:** Netlify Blobs. **Edit link:** copy it or send it to your own WhatsApp; no email is collected. **Delivery:** link only, no download.
 
 ## Next
 1. You check Step 0 on the live site and on a phone (WhatsApp reply button, fonts, policy pages).
-2. You review the new homepage, then approve committing and pushing Step 2.
-3. **Step 3:** hosted invitation links with Razorpay test mode (needs approval for Netlify Blobs and a `package.json`).
+2. You check the new homepage on the live site, on a phone and a laptop.
+3. Approve committing and pushing Step 3.
+4. Add the Razorpay test keys and webhook in Netlify and Razorpay (see `README.md` step 4), then do a test payment on the live site.
+5. **Step 4:** more templates.
 
 ## Waiting on you
 - Set `PRICE_AMOUNT` = `49900` and `PRICE_CURRENCY` = `inr` in Netlify, so ₹499 shows on the homepage.
@@ -50,11 +63,14 @@ Last updated: 23 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
 - Make the GitHub repository private.
 - Song choices from the shortlist.
 - Native-speaker review of `docs/translations-phase1-draft.md`.
-- Razorpay account and KYC (Indian business details).
+- Razorpay account and KYC (Indian business details). Then add `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET` and `RAZORPAY_WEBHOOK_SECRET` in Netlify, and create the webhook in Razorpay.
 
 ## Known issues
-- The paywall can be bypassed by someone technical. This gets fixed by hosted invitations (Step 3).
-- Purchases are remembered only in the buyer's browser, and there are no payment webhooks yet (Step 3).
+- **Preview copying:** the editor preview is still built in the browser, so someone technical could copy an unpaid, watermarked design. Only paid invitations get a guest link, though, so this matters much less now.
+- **Expired invitations:** they go offline but aren't yet erased from storage. A scheduled clean-up is still to do.
+- **Unpaid drafts:** these tiny records (no photos) are created when someone opens checkout without paying, and aren't cleaned up yet.
+- **Lost edit links:** recovering one needs manual help (find the invitation via its Razorpay payment). There's no self-service yet.
+- **Deleted photos:** after deleting, photos can stay in the delivery network's cache for up to a day.
 - Only 14 time zones are offered in the editor.
 - The homepage has no link-preview image yet. It needs the permanent web address (Phase 8).
 - The Hindu sample's wedding date (31 Dec 2026) will soon be in the past. Refresh the sample after that.

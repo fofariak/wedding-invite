@@ -1,21 +1,22 @@
 
 ## What this is
 
-A small website that sells animated wedding invitations. Visitors design an invite for free in the editor, see a watermarked live preview, pay once through Stripe Checkout, and download the finished invite as one self-contained HTML file. Hosted on Netlify, deployed from this GitHub repository. No framework, no npm dependencies. Node.js is needed locally only to run the scripts.
+A small website that sells animated wedding invitations. Visitors design an invite for free in the editor, see a watermarked live preview, pay once through Razorpay, and get a **hosted invitation link** (`/i/<id>`) to share plus a **private edit link** (`studio.html#edit=<id>.<token>`). Hosted on Netlify (pages, functions, Netlify Blobs storage), deployed from this GitHub repository. No framework. The pages have no dependencies; the server functions use one package, `@netlify/blobs` (see `package.json`).
 
 ## Layout
 
 | Path | Role | Edit it? |
 |---|---|---|
-| `src/studio.src.html` | The editor page: form, preview, paywall, autosave. Slots: `__RESOURCES__`, `__ENGINE__`, `__SAMPLES__`; `{{BRAND}}` for the brand | Yes |
-| `src/engine/engine.js` | **Invite engine**: `InviteEngine.build(S, opts, R)` turns invitation details into the finished HTML. Shared by the editor, `scripts/make-demos.js` and (later) server functions. Also `STYLES`, `TRAD`, `esc`, `js`, `waNumber` | Yes |
+| `src/studio.src.html` | The editor page: form, preview, publish/pay flow, owner (edit-link) mode, draft autosave. Slots: `__RESOURCES__`, `__ENGINE__`, `__SAMPLES__`; `{{BRAND}}` for the brand | Yes |
+| `src/engine/engine.js` | **Invite engine**: `InviteEngine.build(S, opts, R)` turns invitation details into the finished HTML. Shared by the editor, `scripts/make-demos.js` and the guest-page function. Also `STYLES`, `TRAD`, `esc`, `js`, `waNumber` | Yes |
 | `src/engine/samples.js` | Starting content: `defaults()` (full shape of S, Hindu sample) and `sample(tradition)` | Yes |
 | `src/templates/<id>/` | One folder per invitation design: `template.html` (with `%%TOKEN%%` placeholders), `themes.json` (colour themes; must include `wine`), `meta.json` (name). `classic` is the default | Yes |
 | `src/i18n/<lang>.json` | Phrase file per invite language: `text` (fixed words, used as `%%T_KEY%%` / `%%J_T_KEY%%` in templates), `format` (dates, times, "Weds", rite names), `lang`, `dir` (`ltr`/`rtl`). Every file must have exactly the keys of `en.json` | Yes |
 | `src/emblems.json` | SVG emblem per tradition (`ganesha`, `star`, `monogram`), shared by all templates | Yes |
 | `src/site.json` | Brand name (`brand`), filled in wherever `{{BRAND}}` appears | Yes |
 | `src/pages/*.html` | Homepage and policy pages (Contact, Privacy, Terms, Refunds; drafts with `[bracketed]` placeholders, see `docs/legal-review-notes.md`) | Yes |
-| `scripts/build.js` | Builds `public/studio.html` and `public/<page>.html` from `src/` | Rarely |
+| `scripts/build.js` | Builds `public/studio.html`, `public/<page>.html` and `netlify/lib/generated/resources.mjs` from `src/` | Rarely |
+| `scripts/dev-server.mjs` | `npm run dev`: the whole site locally at http://localhost:8888 with local Blobs storage and a pretend Razorpay window. Never deployed | Rarely |
 | `scripts/make-demos.js` | Regenerates `public/demo-*.html` from the samples | Rarely |
 | `scripts/make-previews.js` | Captures each sample's cover as `public/img/preview-<tradition>.webp` for the homepage cards. Needs local Chrome; run after `make-demos.js` | Rarely |
 | `scripts/check.js` | Self-check: builds every template × theme × tradition × language and checks the output | Rarely |
@@ -25,41 +26,51 @@ A small website that sells animated wedding invitations. Visitors design an invi
 | `public/page.css` | Shared look of the policy pages | Yes |
 | `public/fonts/` | Self-hosted Playfair Display + Montserrat (Latin only) with `fonts.css` and OFL licences. Pages and invites must not load Google Fonts | Add files only |
 | `public/favicon.svg`, `public/robots.txt` | Site icon and crawler rules | Yes |
-| `netlify/functions/config.js` | Returns price, currency, and whether payments are configured | Yes |
-| `netlify/functions/create-checkout.js` | Creates a Stripe Checkout Session | Yes |
-| `netlify/functions/verify.js` | Confirms a paid session and issues or checks a licence token | Yes |
+| `netlify/functions/config.mjs` | `/.netlify/functions/config`: price, currency, whether payments are ready, test mode, checkout script URL. No secrets | Yes |
+| `netlify/functions/invites.mjs` | Owner API `/api/invites[/:id[/assets\|status]]`: create draft, read, save, upload photo/song, publish/unpublish, delete. All but create need `Authorization: Bearer <edit token>` | Yes |
+| `netlify/functions/pay.mjs` | `/api/pay/order` (Razorpay order) and `/api/pay/confirm` (signature + order check, marks paid) | Yes |
+| `netlify/functions/razorpay-webhook.mjs` | `/api/razorpay-webhook`: payment.captured / order.paid / refund events, verified and double-checked with Razorpay's API | Yes |
+| `netlify/functions/invite-page.mjs` | Guest page `/i/:id` (noindex, WhatsApp preview tags) and files `/i/:id/a/:asset` | Yes |
+| `netlify/lib/*.mjs` | Shared server code: `http` (responses, IDs, tokens), `store` (Blobs), `invite` (validation, limits, expiry), `razorpay`, `payments` (idempotent "mark paid") | Yes |
+| `netlify/lib/generated/resources.mjs` | Build output (designs, phrases, brand for the functions) | Never by hand |
+| `tests/` | `npm test`: server tests with a local Blobs server and a fake Razorpay (`fake-razorpay.mjs`) | Yes |
+| `package.json` | One dependency (`@netlify/blobs`, pinned) and the npm scripts | Rarely |
 | `netlify.toml` | Netlify build settings | Rarely |
 
 ## Working rules
 
 1. After any change in `src/`, run `node scripts/build.js`, `node scripts/make-demos.js` and `node scripts/check.js`, and commit the rebuilt files in `public/` along with the source.
-2. Never put a Stripe key, the licence secret, or any other credential in a file, a commit, or the chat. Secrets live only in Netlify environment variables. If the user offers a key, ask them to add it in the Netlify dashboard instead.
+2. Never put a Razorpay key or secret, a webhook secret, or any other credential in a file, a commit, or the chat. Secrets live only in Netlify environment variables. If the user offers a key, ask them to add it in the Netlify dashboard instead.
 3. The charged price must stay server-side (`PRICE_AMOUNT`, `PRICE_CURRENCY`). The browser only displays what `config` returns.
-4. Never change how the licence token is computed or rename `LICENSE_SECRET` without telling the user that existing purchases will stop unlocking.
+4. Edit tokens are secrets: only their SHA-256 hash is stored, they are never logged, never put in a guest page, and only travel in the `Authorization` header or the `#edit=` fragment. A payment counts only after the server has checked it with Razorpay (signature and order status); never trust the browser. Changing the record format in `netlify/lib/store.mjs` needs a migration plan for existing invitations.
 5. Everything typed by a visitor goes through `esc()` (HTML) or `js()` (inside scripts) in the engine's `build()`. Keep it that way for any new field.
-8. Fixed wording on invites lives in `src/i18n/`, never written directly into a template. Machine-drafted translations must be reviewed by a native speaker before going live.
-6. Keep the functions dependency-free (Node built-ins and `fetch` only) unless the user agrees to add a `package.json`.
+6. Do not add npm packages beyond `@netlify/blobs` without the user's agreement. The pages stay dependency-free.
 7. Deploying is `git push` to the main branch; Netlify builds and publishes on its own. Describe the change and ask before pushing.
+8. Fixed wording on invites lives in `src/i18n/`, never written directly into a template. Machine-drafted translations must be reviewed by a native speaker before going live.
+9. Every value the browser sends is re-checked on the server (`validateData()` in `netlify/lib/invite.mjs`): new fields need a rule there too.
 
-## How payment works
+## How publishing and payment work
 
-1. The editor hashes `name1|name2|date` (lower-cased, trimmed) with SHA-256. That hash is the invite key.
-2. `create-checkout` creates a Stripe Checkout Session with `metadata.invite_key` set to the key and returns Stripe's URL. The draft is saved to IndexedDB before redirecting.
-3. Stripe returns the buyer to `/studio.html?paid=<session id>`. `verify` (GET) fetches the session from Stripe and, if it is complete and paid (or free through a promotion code), returns `HMAC-SHA256(LICENSE_SECRET, key)` as the licence token.
-4. The token is stored in `localStorage` (`inviteLicences`) and inside saved project files. Before each download, `verify` (POST) re-checks it.
-5. A licence removes the preview watermark and enables download for that key only. Changing names or date produces a new key and needs a new payment.
+1. **Design (free):** everything stays in the browser (IndexedDB draft). The preview carries a PREVIEW watermark.
+2. **Pay:** the editor creates an unpaid draft (`POST /api/invites` gives `{id, token}`, which is remembered in `localStorage` as `pendingPublish` and `myInvites`). It then asks `/api/pay/order` for a Razorpay order (the amount comes from the server settings) and opens Razorpay Checkout (`checkout.js`, URL from `config`).
+3. **Confirm:** checkout returns `razorpay_payment_id`, `order_id` and `signature`. `/api/pay/confirm` checks `HMAC_SHA256(order_id|payment_id, key secret)`, then fetches the order from Razorpay and requires `status: paid` and `notes.invite_id` matching the invitation. The webhook does the same independently, so the payment completes even if the tab closes. Marking an invitation paid is idempotent, and a second paid order is recorded in `duplicates` for refund.
+4. **Publish:** photos and song (data URLs in the draft) are uploaded one at a time to `/api/invites/:id/assets` (paid only; type checked by magic bytes; 1.5 MB per photo, 3 MB per song, 20 files maximum) and replaced by `/i/:id/a/<hash>` paths. The details are saved (`PUT`, validated) and the status is set live. The editor switches to owner mode and shows the guest link and edit link.
+5. **Edit:** `studio.html#edit=<id>.<token>` loads the invitation from the server. "Save changes" uploads new files and saves. Files the invitation no longer uses are deleted. Owners can unpublish, publish again and delete.
+6. **Guests:** `/i/:id` is built on the server with the same engine. It shows only while the invitation is paid, live and not expired (12 months after the wedding date), and carries `noindex`. A full refund of the main payment (webhook) sets the status to `refunded`, which takes it offline.
 
-Known limit: the invite is assembled in the browser, so the paywall deters ordinary customers but not someone who reads the page code. Closing that gap means rendering or hosting invites on the server.
+Records are stored in Netlify Blobs, store `invites`: `invite/<id>` (JSON, see `newRecord()`) and `asset/<id>/<assetId>`.
 
 ## Environment variables (set in Netlify)
 
 | Name | Meaning |
 |---|---|
-| `STRIPE_SECRET_KEY` | `sk_test_...` for test mode, `sk_live_...` for real payments |
-| `LICENSE_SECRET` | Long random string used to sign licences |
-| `PRICE_AMOUNT` | Price in the currency's smallest unit (default `1900`) |
-| `PRICE_CURRENCY` | ISO code, lower case (default `usd`) |
-| `PRODUCT_NAME` | Optional name shown on Stripe's page |
+| `RAZORPAY_KEY_ID` | `rzp_test_...` for test mode, `rzp_live_...` for real payments (public, shown to checkout) |
+| `RAZORPAY_KEY_SECRET` | Secret paired with the key ID |
+| `RAZORPAY_WEBHOOK_SECRET` | Secret chosen when creating the webhook in the Razorpay Dashboard |
+| `PRICE_AMOUNT` | Price in the currency's smallest unit (default `49900` = ₹499) |
+| `PRICE_CURRENCY` | ISO code (default `inr`) |
+
+Razorpay webhook: URL `https://<site>/api/razorpay-webhook`, events `payment.captured`, `order.paid`, `payment.failed`, `refund.processed`. Keep automatic capture switched on (Razorpay's default).
 
 ## Common requests
 
@@ -72,15 +83,17 @@ Known limit: the invite is assembled in the browser, so the paywall deters ordin
 - **Add a colour theme:** add an entry to the template's `themes.json` shaped like the existing ones.
 - **Add a tradition:** add to `TRAD` (engine) and `sample()` (samples.js), its `join`/`rite` words in every phrase file, and an emblem in `src/emblems.json`.
 - **Guest replies:** the invite's reply section only shows when `rsvpPhone` is a valid number starting with `+` or `00` (`waNumber()` in the engine); the buttons open WhatsApp with a prepared message. Nothing is sent to our servers.
-- **Fonts in invites:** `%%FONTS_HREF%%` becomes `<site>/fonts/fonts.css` (or a relative path for the homepage samples). `netlify.toml` allows other pages to load `/fonts/*` so downloaded invites still get the fonts.
+- **Fonts in invites:** `%%FONTS_HREF%%` becomes `<site>/fonts/fonts.css` in the editor preview, `/fonts/fonts.css` on guest pages, and a relative path for the homepage samples.
 - **Add function artwork:** add an icon `<symbol>` and an `SC.<name>` scene in the template, then a line in `STYLES` (engine).
 - **Refresh the homepage samples:** edit `src/engine/samples.js`, then `node scripts/make-demos.js` (themes per sample are set in that script) and `node scripts/make-previews.js` for the card images.
-- **Homepage wording:** `src/pages/index.html`. It describes the product as it works today (download); update the hero, "How it works" step 3, the pricing list and the FAQ answers about what you get when hosted links launch. The price shown comes from the `config` function, never from the page.
+- **Homepage wording:** `src/pages/index.html`. The price shown comes from the `config` function, never from the page.
+- **Change limits (photos, file sizes, months online):** `LIMITS` and `MONTHS_ONLINE_AFTER_WEDDING` in `netlify/lib/invite.mjs`; keep the editor's messages in step.
+- **Lost edit link:** the owner can't be identified without the token. Support finds the invitation through the Razorpay payment (order notes carry `invite_id`); issuing a new token means writing a new `editHash` to the record.
 
 ## Checking a change
 
-1. `node scripts/build.js` and `node scripts/make-demos.js` finish without error.
-2. `node scripts/check.js` prints "All good".
-3. `node --check` passes for each file in `netlify/functions/`.
-4. For payment changes, use `netlify dev` if the Netlify CLI is available, with a Stripe test key supplied by the user through their own environment, and pay with card `4242 4242 4242 4242`.
-5. In the browser: the preview shows the PREVIEW mark before paying, the button reads "Pay ... and download", and after a test payment the mark is gone and the download works.
+1. `npm run build`, then `node scripts/make-demos.js`, finish without error.
+2. `npm run check` prints "All good" (every template, theme, tradition and language).
+3. `npm test` passes (owner API, guest pages, payments, webhooks, refunds).
+4. `npm run dev`, then in the browser at http://localhost:8888: the preview shows PREVIEW, the button reads "Pay ₹499 and publish", the pretend checkout publishes it, the guest link works, and the edit link saves changes, unpublishes and deletes.
+5. Real Razorpay test mode: the user adds the test keys and webhook secret in Netlify, then pays on the deployed site with Razorpay's test card or UPI details from their dashboard.
