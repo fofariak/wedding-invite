@@ -82,12 +82,16 @@ function renderOpening(S,R,P){
     page:isLine?'':'<section class="opening-page" id="opening" aria-label="'+esc(P.text.opening_aria)+'"><div class="op-wrap">'+html+'</div></section>'};}
 
 /* ---------- templates ---------- */
+// The chosen colour theme, or the template's 'wine' theme, or its first theme.
+function themeOf(themes,k){return themes[k]||themes.wine||themes[Object.keys(themes)[0]];}
+// Fills a template's own snippet ({{KEY}} placeholders) for a function card or photo. Values are already escaped.
+function part(tpl,map){return String(tpl||'').replace(/\{\{([A-Z_]+)\}\}/g,function(m,k){return Object.prototype.hasOwnProperty.call(map,k)?map[k]:'';});}
 function templateId(S,R){return R.templates[S.template]?S.template:DEFAULT_TEMPLATE;}
 // The template's HTML with the chosen colour theme applied (cached per template + theme).
 function themedTemplate(R,id,k){
   var cache=R._themed||(R._themed={}),ck=id+'/'+k;
   if(cache[ck])return cache[ck];
-  var T=R.templates[id],t=T.html,map=(T.themes[k]||T.themes.wine).map||{};
+  var T=R.templates[id],t=T.html,map=themeOf(T.themes,k).map||{};
   var keys=Object.keys(map);
   if(keys.length){
     var re=new RegExp(keys.map(function(x){return x.replace(/[()]/g,'\\$&')+(x.charAt(0)==='#'?'\\b':'');}).join('|'),'gi');
@@ -99,9 +103,9 @@ function themedTemplate(R,id,k){
 /* ---------- build the invite ---------- */
 function build(S,opts,R){
   opts=opts||{};
-  var id=templateId(S,R),THEMES=R.templates[id].themes,EMBLEMS=R.emblems;
+  var id=templateId(S,R),TP=R.templates[id],THEMES=TP.themes,EMBLEMS=R.emblems,PT=TP.partials,FEAT=TP.features||{};
   var P=phrasesFor(S,R),F=P.format,trad=TRAD[S.tradition]?S.tradition:'hindu';
-  var th=THEMES[S.theme]||THEMES.wine,p=parts(S.date)||parts('2027-01-01'),tm=/^\d{2}:\d{2}$/.test(S.time)?S.time:'19:00';
+  var th=themeOf(THEMES,S.theme),p=parts(S.date)||parts('2027-01-01'),tm=/^\d{2}:\d{2}$/.test(S.time)?S.time:'19:00';
   var TR=TRAD[S.tradition]||TRAD.hindu,tz=/^[+-]\d{2}:\d{2}$/.test(S.tz)?S.tz:'+05:30';
   var iso=S.date+'T'+tm+':00'+tz,start=new Date(iso).getTime();
   if(isNaN(start))start=Date.now();
@@ -113,17 +117,22 @@ function build(S,opts,R){
   var q=encodeURIComponent(place);
   var events=S.events.map(function(e){
     var st=STYLES[e.style]?e.style:'ceremony',bg=e.c2?'linear-gradient(135deg,'+e.c1+','+e.c2+')':e.c1;
+    if(PT&&PT.event)return part(PT.event,{WHEN:esc(shortWhen(e.date,e.time,F)),NAME:esc(e.name),PLACE:esc(e.place),ICON:STYLES[st][1],SCENE:STYLES[st][2],STYLE:st,
+      DRESS:e.dress&&e.dressOn!==false?part(PT.dress,{SWATCH:e.swatch!==false?part(PT.swatch,{BG:esc(bg)}):'',LABEL:esc(F.dress_code),TEXT:esc(e.dress)}):''});
     return '      <article class="ev-card"><img class="scene" data-scene="'+STYLES[st][2]+'" alt=""><div class="shade"></div>\n        <div class="ec"><div class="ill"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#'+STYLES[st][1]+'"/></svg></div><div class="ewhen">'+esc(shortWhen(e.date,e.time,F))+'</div><h3>'+esc(e.name)+'</h3><div class="place">'+esc(e.place)+'</div>'
       +(e.dress&&e.dressOn!==false?'\n          <div class="dressrow">'+(e.swatch!==false?'<span class="swatch" style="background:'+esc(bg)+'"></span>':'')+'<span><small>'+esc(F.dress_code)+'</small><b>'+esc(e.dress)+'</b></span></div>':'')+'</div></article>';
   }).join('\n');
   var photos=S.photos.map(function(ph){
+    if(PT&&PT.photo)return part(PT.photo,{SRC:esc(ph.src),ALT:esc(ph.caption),POS:esc(ph.pos||'50%'),CAPTION:ph.caption?part(PT.caption,{TEXT:esc(ph.caption)}):''});
     return '        <figure class="sp-item"><div class="sp-in"><img src="'+esc(ph.src)+'" alt="'+esc(ph.caption)+'" style="object-position:50% '+esc(ph.pos||'50%')+'" decoding="async"></div>'+(ph.caption?'<figcaption class="cap">'+esc(ph.caption)+'</figcaption>':'')+'</figure>';
   }).join('\n');
   var cov=S.photos[S.cover]||S.photos[0];
   var wa=waNumber(S.rsvpPhone);
   var fontsHref=(R.fontsBase||'')+'fonts/fonts.css';
   var OP=renderOpening(S,R,P);
-  var V={OPENING_FONTS:OP.fonts,OPENING_LINE:OP.line,OPENING_PAGE:OP.page,LANG:esc(P.lang),DIR:P.dir==="rtl"?"rtl":"ltr",TITLE:esc(title),FONTS_HREF:esc(fontsHref),RSVP_HIDDEN:wa?'':' hidden',J_RSVP_PHONE:js(wa),J_COUPLE:js(S.name1+' & '+S.name2),SONG:esc(opts.silent||!S.song?SILENT:S.song),
+  var SH=R.shared||{};
+  var themeVars=th.vars?'<style>:root{'+Object.keys(th.vars).map(function(k){return k+':'+String(th.vars[k]).replace(/[<>;{}]/g,'');}).join(';')+'}</style>':'';
+  var V={THEME_VARS:themeVars,SHARED_CSS:SH.css||'',SHARED_RUNTIME:SH.runtime||'',SHARED_ICONS:SH.icons||'',OPENING_FONTS:OP.fonts,OPENING_LINE:OP.line,OPENING_PAGE:OP.page,LANG:esc(P.lang),DIR:P.dir==="rtl"?"rtl":"ltr",TITLE:esc(title),FONTS_HREF:esc(fontsHref),RSVP_HIDDEN:wa?'':' hidden',J_RSVP_PHONE:js(wa),J_COUPLE:js(S.name1+' & '+S.name2),SONG:esc(opts.silent||!S.song?SILENT:S.song),
     COVER_TITLE:esc(S.coverTitle),COVER_SUB:esc(S.coverSub),COVER_PHOTO:esc(cov.src),COVER_POS:'50% '+esc(cov.pos||'50%'),
     FRONT_LABEL:esc(S.frontLabel),NAME1:esc(S.name1),NAME2:esc(S.name2),REL1:esc(S.parents1?S.rel1:''),REL2:esc(S.parents2?S.rel2:''),EMBLEM:emblem,DATE_HEAD:esc(auto?F.date_head_auto:F.date_head_pull),DATE_TIP:auto?'':esc(F.date_tip),REC_ICON:TR.recIcon,PARENTS1:esc(S.parents1),PARENTS2:esc(S.parents2),INVITE_LINE:esc(S.inviteLine),
     W_WEEKDAY:esc(F.days[p.wd]),W_DAY:String(p.d),W_MONTH:esc(F.months[p.mo]),W_YEAR:String(p.y),BANNER_LINE:esc(banner),
@@ -134,10 +143,10 @@ function build(S,opts,R){
     MAP_AREA:esc(S.mapArea),MAP_LANDMARK:esc(S.mapLandmark),MAP_ROAD:esc(S.mapRoad),VENUE:esc(S.venue),ADDRESS:esc(S.address),
     CLOSING:esc(S.closing),KIDS:S.kids?'<div class="kids">'+esc(S.kids)+'</div>':'',
     J_TIP:js(fill(F.see_you_on,{date:longDate(S.date,F)})),J_TARGET:js(iso),J_ADDR:js(place),
-    F_BLUSH:JSON.stringify(th.F_BLUSH),F_IVORY:JSON.stringify(th.F_IVORY),F_PEACH:JSON.stringify(th.F_PEACH),F_WINE:JSON.stringify(th.F_WINE),F_PETALS:JSON.stringify(th.F_PETALS),BUD0:th.BUD[0],BUD1:th.BUD[1]};
+    F_BLUSH:JSON.stringify(th.F_BLUSH),F_IVORY:JSON.stringify(th.F_IVORY),F_PEACH:JSON.stringify(th.F_PEACH),F_WINE:JSON.stringify(th.F_WINE),F_PETALS:JSON.stringify(th.F_PETALS),BUD0:th.BUD?th.BUD[0]:'',BUD1:th.BUD?th.BUD[1]:''};
   Object.keys(P.text).forEach(function(k){var K=k.toUpperCase();V['T_'+K]=esc(P.text[k]);V['J_T_'+K]=js(P.text[k]);});
   var html=themedTemplate(R,id,S.theme).replace(/%%([A-Z0-9_]+)%%/g,function(m,k){return V.hasOwnProperty(k)?V[k]:m;});
-  if(auto){
+  if(auto&&FEAT.tassel){
     var au='<script>(function(){var t=document.getElementById("tassel"),tip=document.getElementById("pulltip"),done=false;document.getElementById("hand").style.display="none";tip.style.visibility="hidden";'
       +'function go(){if(done)return;if(!document.documentElement.classList.contains("opened")){setTimeout(go,300);return;}done=true;setTimeout(function(){tip.style.visibility="";t.dispatchEvent(new KeyboardEvent("keydown",{key:"Enter"}));},500);}'
       +'if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();go();}},{threshold:.5});io.observe(document.getElementById("pullbox"));}else go();})();<\/script>';

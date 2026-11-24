@@ -56,7 +56,7 @@ export function validateData(raw, rec) {
   const S = {
     template,
     lang: pick(raw.lang, Object.keys(R.phrases), engine.DEFAULT_LANG),
-    theme: pick(raw.theme, themes, 'wine'),
+    theme: pick(raw.theme, themes, themes.includes('wine') ? 'wine' : themes[0]),
     tradition: pick(raw.tradition, Object.keys(engine.TRAD), 'hindu'),
     reveal: pick(raw.reveal, ['pull', 'auto'], 'pull'),
     tz: typeof raw.tz === 'string' && /^[+-]\d{2}:\d{2}$/.test(raw.tz) ? raw.tz : '+05:30',

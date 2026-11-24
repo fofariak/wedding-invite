@@ -9,15 +9,17 @@ function loadResources() {
   const templates = {};
   const dir = path.join(root, 'src/templates');
   for (const id of fs.readdirSync(dir).sort()) {
-    if (!fs.statSync(path.join(dir, id)).isDirectory()) continue;
+    if (id.startsWith('_') || !fs.statSync(path.join(dir, id)).isDirectory()) continue; // _shared holds common pieces
     const base = 'src/templates/' + id + '/';
     const meta = JSON.parse(read(base + 'meta.json'));
     const themes = JSON.parse(read(base + 'themes.json'));
-    if (!themes.wine) throw new Error(base + 'themes.json needs a "wine" theme (used as the fallback)');
-    templates[id] = { name: meta.name, html: read(base + 'template.html'), themes };
+    if (!Object.keys(themes).length) throw new Error(base + 'themes.json needs at least one theme');
+    templates[id] = { name: meta.name, description: meta.description || '', features: meta.features || {}, partials: meta.partials || null, html: read(base + 'template.html'), themes };
   }
   if (!templates.classic) throw new Error('src/templates/classic is required (the default template)');
-  return { templates, emblems: JSON.parse(read('src/emblems.json')), phrases: loadPhrases(), openings: loadOpenings() };
+  const shared = { css: read('src/templates/_shared/base.css'), runtime: read('src/templates/_shared/runtime.js'), icons: read('src/templates/_shared/icons.svg') };
+  if (/<\/script/i.test(shared.runtime)) throw new Error('_shared/runtime.js must not contain "</script"');
+  return { templates, shared, emblems: JSON.parse(read('src/emblems.json')), phrases: loadPhrases(), openings: loadOpenings() };
 }
 
 // Opening library: src/openings/meta.json (traditions, designs) + one file of texts per tradition.

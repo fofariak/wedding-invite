@@ -183,7 +183,10 @@ var RES=JSON.parse(document.getElementById('res').textContent);
 RES.fontsBase=/^https?:$/.test(location.protocol)?location.origin+'/':'';
 var E=window.InviteEngine,STYLES=E.STYLES,TRAD=E.TRAD,waNumber=E.waNumber;
 function time12(t){return E.time12(t,RES.phrases[E.DEFAULT_LANG].format);} // editor labels are in English
-var THEMES=RES.templates[E.DEFAULT_TEMPLATE].themes;
+// Each template has its own colour themes.
+function tplOf(x){return RES.templates[(x||S).template]||RES.templates[E.DEFAULT_TEMPLATE];}
+function themesOf(x){return tplOf(x).themes;}
+function firstTheme(th){return th.wine?'wine':Object.keys(th)[0];}
 var ZONES=[['-08:00','Los Angeles (UTC-8)'],['-07:00','Los Angeles summer / Denver (UTC-7)'],['-06:00','Chicago (UTC-6)'],['-05:00','New York (UTC-5)'],['-04:00','New York summer (UTC-4)'],['+00:00','London (UTC)'],['+01:00','London summer / Paris, Rome (UTC+1)'],['+02:00','Paris, Rome summer / Cairo (UTC+2)'],['+03:00','Riyadh, Doha, Istanbul (UTC+3)'],['+04:00','Dubai, Abu Dhabi (UTC+4)'],['+05:00','Karachi (UTC+5)'],['+05:30','India (UTC+5:30)'],['+06:00','Dhaka (UTC+6)'],['+08:00','Singapore (UTC+8)']];
 var defaults=window.InviteSamples.defaults,sample=window.InviteSamples.sample;
 var S=defaults();
@@ -202,7 +205,13 @@ function render(){
   var keep={};[].forEach.call(form.children,function(d,i){keep[i]=d.open;});
   var sc=form.scrollTop;form.textContent='';
   var secs=[];
-  secs.push(section('Design',true,[h('div',{class:'themes',role:'radiogroup','aria-label':'Design'},Object.keys(THEMES).map(function(k){
+  var THEMES=themesOf();
+  var tplIds=Object.keys(RES.templates);
+  secs.push(section('Design',true,[h('div',{class:'themes',role:'radiogroup','aria-label':'Template'},tplIds.map(function(k){
+      var r=h('input',{type:'radio',name:'tpl',value:k,checked:(S.template||E.DEFAULT_TEMPLATE)===k,onchange:function(){S.template=k;if(!themesOf()[S.theme])S.theme=firstTheme(themesOf());changed();render();}});
+      return h('label',{class:'theme'},[r,h('span',{},[RES.templates[k].name,h('br'),h('small',{class:'hint',text:RES.templates[k].description})])]);})),
+    h('p',{class:'hint',text:'Templates change the whole look and opening animation. Your details, photos and functions stay the same.'}),
+    h('div',{class:'themes',role:'radiogroup','aria-label':'Colour story'},Object.keys(THEMES).map(function(k){
     var r=h('input',{type:'radio',name:'theme',value:k,checked:S.theme===k,onchange:function(){S.theme=k;changed();}});
     return h('label',{class:'theme'},[r,THEMES[k].label,h('span',{class:'sw'},THEMES[k].sw.map(function(c){return h('i',{style:'background:'+c});}))]);
   })),h('p',{class:'hint',text:'Same animated layout in three colour stories. Event dress-code colours stay as you set them.'}),
@@ -223,7 +232,7 @@ function render(){
   secs.push(section('Wedding date',false,[
     h('div',{class:'two'},[field('Date',S,'date','date'),field(TRAD[S.tradition].rite+' time',S,'time','time')]),
     (function(){var z=h('select',{},ZONES.map(function(o){return h('option',{value:o[0],selected:S.tz===o[0],text:o[1]});}));z.addEventListener('change',function(){S.tz=z.value;changed();});return h('label',{},['Time zone of the wedding',z]);})(),
-    (function(){var z=h('select',{},[['pull','Guest pulls the tassel to unroll the date'],['auto','Date unrolls by itself when scrolled to']].map(function(o){return h('option',{value:o[0],selected:S.reveal===o[0],text:o[1]});}));z.addEventListener('change',function(){S.reveal=z.value;changed();});return h('label',{},['Date reveal',z]);})(),
+    !tplOf().features.tassel?null:(function(){var z=h('select',{},[['pull','Guest pulls the tassel to unroll the date'],['auto','Date unrolls by itself when scrolled to']].map(function(o){return h('option',{value:o[0],selected:S.reveal===o[0],text:o[1]});}));z.addEventListener('change',function(){S.reveal=z.value;changed();});return h('label',{},['Date reveal',z]);})(),
     field('Line under the date',S,'bannerLine','text',{placeholder:TRAD[S.tradition].rite+' at '+time12(S.time)+' · '+S.venue}),
     h('p',{class:'hint',text:'The pull-down banner, countdown and calendar button all follow this date.'})]));
   secs.push(section('Functions ('+S.events.length+')',false,S.events.map(function(e,i){
@@ -374,7 +383,7 @@ var saveT=null;
 function idb(){return new Promise(function(res,rej){var r=indexedDB.open('inviteStudio',1);r.onupgradeneeded=function(){r.result.createObjectStore('kv');};r.onsuccess=function(){res(r.result);};r.onerror=function(){rej(r.error);};});}
 function saveDraft(){return idb().then(function(db){return new Promise(function(res,rej){var tx=db.transaction('kv','readwrite');tx.objectStore('kv').put(S,'draft');tx.oncomplete=res;tx.onerror=function(){rej(tx.error);};});}).catch(function(){});}
 function loadDraft(){return idb().then(function(db){return new Promise(function(res){var q=db.transaction('kv').objectStore('kv').get('draft');q.onsuccess=function(){res(q.result||null);};q.onerror=function(){res(null);};});}).catch(function(){return null;});}
-function normalise(d){var x=Object.assign(defaults(),d);if(!d||!d.opening)x.opening=E.openingOpts({});else x.opening=E.openingOpts(d.opening);if(!THEMES[x.theme])x.theme='wine';if(!TRAD[x.tradition])x.tradition='hindu';if(!(x.cover>=0&&x.cover<x.photos.length))x.cover=0;return x;}
+function normalise(d){var x=Object.assign(defaults(),d);if(!d||!d.opening)x.opening=E.openingOpts({});else x.opening=E.openingOpts(d.opening);if(!RES.templates[x.template])x.template=E.DEFAULT_TEMPLATE;if(!themesOf(x)[x.theme])x.theme=firstTheme(themesOf(x));if(!TRAD[x.tradition])x.tradition='hindu';if(!(x.cover>=0&&x.cover<x.photos.length))x.cover=0;return x;}
 
 /* ---------- publishing: pay once, get a guest link and a private edit link ----------
    SESSION is the invitation being edited: {id, token, paid, status, guestUrl}. Its edit link is

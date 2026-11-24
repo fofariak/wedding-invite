@@ -49,7 +49,8 @@
     "reply_intro": "This is {name}. ",
     "reply_yes": "Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you!",
     "reply_no": "Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness.",
-    "opening_aria": "Opening blessing"
+    "opening_aria": "Opening blessing",
+    "tap_to_open_invite": "Tap to open your invitation"
   },
   "format": {
     "months": [

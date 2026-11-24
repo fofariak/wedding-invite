@@ -1,0 +1,8 @@
+{
+  "maroon": { "label": "Maroon & Gold", "sw": ["#6e1023", "#f6ead2", "#c49a45"],
+    "vars": { "--paper": "#fbf4e6", "--soft": "#f4e6cc", "--ink": "#3a1d14", "--muted": "#7a5b4a", "--gold": "#b8893a", "--gold-lt": "#e9c98a", "--wine": "#7a1426", "--deep": "#4a0a17", "--deep-2": "#6b1124", "--on-dark": "#f6e7c8" } },
+  "navy": { "label": "Royal Blue & Gold", "sw": ["#14224f", "#f4efe3", "#c49a45"],
+    "vars": { "--paper": "#f8f4ea", "--soft": "#ece5d4", "--ink": "#1b2238", "--muted": "#5c6378", "--gold": "#b8893a", "--gold-lt": "#e9c98a", "--wine": "#1b2a5c", "--deep": "#0e1736", "--deep-2": "#1b2a5c", "--on-dark": "#f1e6cc" } },
+  "peacock": { "label": "Peacock & Gold", "sw": ["#0b4d52", "#f4efe2", "#c49a45"],
+    "vars": { "--paper": "#f7f3e8", "--soft": "#e7eee6", "--ink": "#18302f", "--muted": "#56706c", "--gold": "#b08436", "--gold-lt": "#e6c886", "--wine": "#0d5257", "--deep": "#07363a", "--deep-2": "#0d5257", "--on-dark": "#f0e7cc" } }
+}

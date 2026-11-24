@@ -25,7 +25,8 @@ const inlineJs = (file) => {
 };
 
 const write = (name, html) => {
-  const left = html.match(/\{\{[A-Z_]+\}\}/);
+  // Site placeholders only ({{BRAND}}); template snippets embedded as data use {{KEY}} on purpose.
+  const left = html.match(/\{\{BRAND\}\}/);
   if (left) throw new Error(name + ' still contains ' + left[0]);
   fs.writeFileSync(path.join(root, 'public', name), html);
   console.log('Built public/' + name + ' (' + html.length + ' characters)');

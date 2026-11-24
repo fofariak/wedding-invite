@@ -1,4 +1,7 @@
 {
   "name": "Classic Book",
-  "description": "A book that opens to an animated, scrolling invitation with date reveal, functions carousel, photos, reception and map."
+  "description": "A book that opens to an animated, scrolling invitation with date reveal, functions carousel, photos, reception and map.",
+  "features": {
+    "tassel": true
+  }
 }
