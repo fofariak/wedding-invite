@@ -1,0 +1,62 @@
+{
+  "emerald": {
+    "label": "Emerald & Gold",
+    "sw": [
+      "#0f5a45",
+      "#fbf8f1",
+      "#c49a45"
+    ],
+    "vars": {
+      "--paper": "#fbf8f1",
+      "--soft": "#f0ede2",
+      "--ink": "#1d2a26",
+      "--muted": "#5e6b65",
+      "--gold": "#b38a45",
+      "--gold-lt": "#e5c98f",
+      "--wine": "#0f5a45",
+      "--deep": "#082f25",
+      "--deep-2": "#0f5a45",
+      "--on-dark": "#f3ead2"
+    }
+  },
+  "midnight": {
+    "label": "Midnight & Gold",
+    "sw": [
+      "#14244a",
+      "#f8f6f0",
+      "#c49a45"
+    ],
+    "vars": {
+      "--paper": "#f8f6f0",
+      "--soft": "#ebe8df",
+      "--ink": "#1c2233",
+      "--muted": "#5d6377",
+      "--gold": "#b8924c",
+      "--gold-lt": "#e6cd96",
+      "--wine": "#1d2f5c",
+      "--deep": "#0a1329",
+      "--deep-2": "#1a2a52",
+      "--on-dark": "#efe6cf"
+    }
+  },
+  "sand": {
+    "label": "Sand & Gold",
+    "sw": [
+      "#6b5434",
+      "#fdfaf3",
+      "#c49a45"
+    ],
+    "vars": {
+      "--paper": "#fdfaf3",
+      "--soft": "#f3ecdf",
+      "--ink": "#3a2f24",
+      "--muted": "#7c6d5d",
+      "--gold": "#b0874a",
+      "--gold-lt": "#e3c58e",
+      "--wine": "#7a5a2e",
+      "--deep": "#3b2d1c",
+      "--deep-2": "#6b5434",
+      "--on-dark": "#f6ecd6"
+    }
+  }
+}

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="%%LANG%%" dir="%%DIR%%">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>%%TITLE%%</title>
+<link rel="stylesheet" href="%%FONTS_HREF%%">%%OPENING_FONTS%%
+<script>document.documentElement.classList.add('js')</script>
+<style>%%SHARED_CSS%%</style>
+%%THEME_VARS%%
+<style>
+/* ---------- Noor: Islamic geometric ---------- */
+:root{--f-head:"Playfair Display",Georgia,serif;--f-body:"Montserrat","Helvetica Neue",Arial,sans-serif}
+body{background:var(--deep)}
+.geo{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.night{background:radial-gradient(110% 70% at 50% 35%,var(--deep-2),var(--deep) 72%)}
+.night .geo{color:var(--gold-lt);opacity:.13}
+
+/* lanterns */
+.lantern{position:absolute;top:0;left:var(--x);width:34px;margin-left:-17px;transform-origin:50% 0;animation:sway 4.6s ease-in-out var(--sd) infinite alternate;z-index:2}
+.lantern .chain{display:block;width:1px;height:var(--len);margin:0 auto;background:linear-gradient(var(--gold-lt),var(--gold))}
+.lantern svg{display:block;width:34px;height:auto;margin-top:-1px;color:var(--gold-lt);overflow:visible}
+.lantern .lglow{position:absolute;left:50%;bottom:16px;width:90px;height:90px;margin-left:-45px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,160,.85),rgba(255,200,110,.25) 45%,transparent 70%);opacity:.25;transition:opacity 1.4s,transform 1.4s;pointer-events:none}
+@keyframes sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+html.opening #scene .lglow{opacity:1;transform:scale(1.35)}
+
+/* intro: jaali arch */
+#scene{display:grid;place-items:center}
+.moon{position:absolute;top:calc(118px + env(safe-area-inset-top,0px));left:50%;margin-left:-20px;width:40px;color:var(--gold-lt);opacity:.9}
+.cover-t{position:absolute;left:0;right:0;top:calc(176px + env(safe-area-inset-top,0px));text-align:center;z-index:3}
+.cover-t b{display:block;font:500 28px/1.1 var(--f-head);letter-spacing:.2em;color:var(--gold-lt)}
+.cover-t small{display:block;margin-top:8px;font:500 10px var(--f-body);letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);opacity:.8}
+.window{position:relative;width:min(230px,58vw);aspect-ratio:200/300;margin-top:190px;transition:transform 1.3s cubic-bezier(.5,0,.3,1) 2.1s,opacity 1s 2.3s}
+.window svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.window .frame{color:var(--gold)}
+.window .light{position:absolute;inset:8%;clip-path:url(#archClip);background:radial-gradient(60% 55% at 50% 62%,#fff4d6,var(--gold-lt) 45%,rgba(179,138,69,.25) 80%);opacity:.18;transition:opacity 1.8s .3s}
+.window .jaali{color:var(--gold-lt);transition:opacity 1.6s .6s,transform 2s .6s}
+.window .medal-s{position:absolute;left:50%;top:56%;width:78px;height:78px;margin:-39px 0 0 -39px;border-radius:50%;display:grid;place-items:center;background:var(--deep);border:1.5px solid var(--gold);box-shadow:0 0 0 5px rgba(0,0,0,.25);transition:opacity .7s .2s}
+.window .medal-s svg{position:static;width:48px;height:48px}
+html.opening .window .light{opacity:1}
+html.opening .window .jaali{opacity:0;transform:scale(1.15)}
+html.opening .window .medal-s{opacity:0}
+html.opening .window{transform:scale(2.4) translateY(6%);opacity:0}
+html.opening .cover-t,html.opening .moon{opacity:0;transition:opacity .9s 1.8s}
+#scene .tap{color:var(--gold-lt)}
+
+/* first page */
+.front{position:relative;min-height:var(--vh100,100vh);display:grid;place-items:center;padding:120px 32px 100px;text-align:center;overflow:hidden;background:radial-gradient(90% 55% at 50% 30%,rgba(229,201,143,.22),transparent 70%),var(--paper)}
+.band{position:absolute;left:0;right:0;height:30px;color:var(--gold);opacity:.55}
+.band.top{top:0}.band.bot{bottom:0}
+.arch-frame{position:absolute;left:0;right:0;margin:0 auto;top:88px;bottom:56px;width:min(340px,86%);color:var(--gold);opacity:.75;pointer-events:none}
+.arch-frame>div,.arch-frame svg{width:100%;height:100%}
+.front .lantern{top:30px}
+.front .lantern .chain{background:var(--gold)}
+.front .lantern svg{color:var(--gold)}
+.front .lantern .lglow{opacity:.45}
+.front-in{position:relative;z-index:2;max-width:260px}
+.medal{width:70px;height:70px;margin:0 auto 12px;display:grid;place-items:center;position:relative}
+.medal::before{content:"";position:absolute;inset:0;border:1.5px solid var(--gold);transform:rotate(45deg)}
+.medal::after{content:"";position:absolute;inset:0;border:1.5px solid var(--gold)}
+.medal svg{width:44px;height:44px;position:relative;z-index:1}
+.front .lbl{font:600 10px/1.6 var(--f-body);letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.name{display:block;font:500 46px/1.08 var(--f-head);color:var(--wine);margin-top:8px}
+.parents{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.parents b{display:block;font:600 9.5px var(--f-body);letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-bottom:2px}
+.amp{display:block;font:italic 500 30px/1 var(--f-head);color:var(--gold);margin:12px 0 0}
+.invite{margin:18px auto 0;max-width:230px;font:italic 15.5px/1.6 var(--f-head);color:var(--ink)}
+
+/* dark panels */
+.night .label{color:var(--gold-lt)}
+.night h2,.night .rec h2{color:var(--on-dark)}
+.night{color:var(--on-dark)}
+.star-date{position:relative;width:280px;height:280px;margin:6px auto 0;display:grid;place-items:center}
+.star-date svg{position:absolute;inset:0;width:100%;height:100%;color:var(--gold-lt);opacity:.8}
+.star-date .in{position:relative;display:grid;justify-items:center}
+.star-date .wd{font:600 10.5px var(--f-body);letter-spacing:.26em;text-transform:uppercase;color:var(--gold-lt)}
+.star-date .dd{font:500 76px/1 var(--f-head);color:var(--on-dark)}
+.star-date .my{font:italic 18px var(--f-head);color:var(--gold-lt)}
+.banner{margin:16px auto 0;max-width:300px;font-size:13.5px;color:var(--on-dark);opacity:.9}
+.night .count b{color:var(--gold-lt)}.night .count small{color:rgba(243,234,210,.7)}
+.night .btn{background:var(--gold);border-color:var(--gold);color:var(--deep)}
+.night .btn.ghost{background:transparent;color:var(--gold-lt);border-color:var(--gold-lt)}
+
+/* cards and photos */
+.ev{position:relative;background:var(--paper);border:1px solid var(--gold);border-radius:6px;outline:1px solid rgba(179,138,69,.45);outline-offset:-7px;padding:22px 18px 26px}
+.ev-cap{position:relative;width:64px;height:78px;margin:0 auto 6px}
+.ev-arch{position:absolute;inset:0;width:100%;height:100%;color:var(--gold)}
+.ev-icon{position:absolute;left:12px;top:22px;width:40px;height:40px}
+.ev h3{color:var(--wine)}
+.ph{border-radius:0;aspect-ratio:3/4;clip-path:polygon(18px 0,calc(100% - 18px) 0,100% 18px,100% calc(100% - 18px),calc(100% - 18px) 100%,18px 100%,0 calc(100% - 18px),0 18px)}
+.sec h2{color:var(--wine)}
+.divider{display:block;width:180px;height:22px;margin:18px auto 0;color:var(--gold);opacity:.8}
+
+/* reception, venue, closing */
+.rec{position:relative;max-width:320px;margin:0 auto;padding:110px 24px 40px}
+.rec .rarch{position:absolute;inset:0;width:100%;height:100%;color:var(--gold-lt);opacity:.75}
+.rec h2{font-size:36px}
+.rec .ic svg{width:50px;height:50px;color:var(--gold-lt)}
+.rec-date{margin-top:12px;font:italic 18px var(--f-head);color:var(--gold-lt)}
+.rec-line,.rec-venue{margin-top:6px;font-size:14px}
+.chip{display:inline-block;margin-top:14px;padding:6px 14px;border-radius:999px;border:1px solid rgba(229,201,143,.6);font-size:12px;color:var(--gold-lt)}
+.venue h3{font-size:28px;color:var(--wine);margin-top:8px}
+.venue .city{font:600 10.5px var(--f-body);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:8px}
+.venue p{margin-top:8px;color:var(--muted);font-size:14px}
+.closing .fam{margin-top:30px;font:italic 21px/1.4 var(--f-head);color:var(--wine)}
+.closing .kids{margin-top:12px;font-size:14px;color:var(--muted)}
+.closing .trio{position:relative;height:120px;margin-top:20px}
+.opening-page{background:radial-gradient(90% 55% at 50% 30%,rgba(229,201,143,.25),transparent 70%),var(--paper)}
+@media (prefers-reduced-motion:reduce){.lantern{animation:none}.window,.window *{transition:none}}
+</style>
+</head>
+<body>
+<audio id="bgm" src="%%SONG%%" loop preload="auto"></audio>
+
+<div id="scene" class="night" data-ms="3400" role="dialog" aria-label="%%T_BOOK_ARIA%%">
+  <svg class="geo" aria-hidden="true"><rect width="100%" height="100%" fill="url(#geo)"/></svg>
+  <div class="lantern l1" style="--x:12%;--len:34px;--sd:0s" aria-hidden="true"><i class="chain"></i><svg viewBox="0 0 40 78"><use href="#lamp"/></svg><b class="lglow"></b></div><div class="lantern l2" style="--x:27%;--len:62px;--sd:0.6s" aria-hidden="true"><i class="chain"></i><svg viewBox="0 0 40 78"><use href="#lamp"/></svg><b class="lglow"></b></div><div class="lantern l3" style="--x:73%;--len:48px;--sd:0.3s" aria-hidden="true"><i class="chain"></i><svg viewBox="0 0 40 78"><use href="#lamp"/></svg><b class="lglow"></b></div><div class="lantern l4" style="--x:88%;--len:22px;--sd:0.9s" aria-hidden="true"><i class="chain"></i><svg viewBox="0 0 40 78"><use href="#lamp"/></svg><b class="lglow"></b></div>
+  <svg class="moon" viewBox="0 0 50 50" aria-hidden="true"><use href="#crescent"/></svg>
+  <div class="cover-t"><b>%%COVER_TITLE%%</b><small>%%COVER_SUB%%</small></div>
+  <div class="window" aria-hidden="true">
+    <div class="light"></div>
+    <svg class="jaali" viewBox="0 0 200 300" preserveAspectRatio="none"><g clip-path="url(#archClip)"><rect width="200" height="300" fill="url(#geo)" transform="scale(1)"/></g></svg>
+    <svg class="frame" viewBox="0 0 200 300" preserveAspectRatio="none"><use href="#bigarch"/></svg>
+    <div class="medal-s"><svg viewBox="0 0 100 100"><use href="#ganesha" style="--gs:#e5c98f"/></svg></div>
+  </div>
+  <div class="tap"><span class="dot"></span>%%T_TAP_TO_OPEN_INVITE%%</div>
+  <button id="book" aria-label="%%T_OPEN_BOOK_ARIA%%"></button>
+</div>
+<button id="music" aria-label="%%T_PLAY_MUSIC%%" aria-pressed="false" hidden><span class="bars"><i></i><i></i><i></i></span></button>
+<div class="arrow" id="arrow" aria-hidden="true">%%T_SCROLL%%<i></i></div>
+
+<main class="page">
+  %%OPENING_PAGE%%
+  <header class="front" id="front">
+    <svg class="band top" aria-hidden="true"><rect width="100%" height="100%" fill="url(#geo)"/></svg>
+    <svg class="band bot" aria-hidden="true"><rect width="100%" height="100%" fill="url(#geo)"/></svg>
+    <div class="lantern fl1" style="--x:12%;--len:40px;--sd:0s" aria-hidden="true"><i class="chain"></i><svg viewBox="0 0 40 78"><use href="#lamp"/></svg><b class="lglow"></b></div><div class="lantern fl2" style="--x:88%;--len:64px;--sd:0.5s" aria-hidden="true"><i class="chain"></i><svg viewBox="0 0 40 78"><use href="#lamp"/></svg><b class="lglow"></b></div>
+    <div class="arch-frame" aria-hidden="true"><div data-depth="0.05"><svg viewBox="0 0 200 300" preserveAspectRatio="none"><use href="#bigarch"/></svg></div></div>
+    <div class="front-in">
+      <div class="medal" data-t="0.2"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ganesha" style="--gs:var(--gold)"/></svg></div>
+      <div data-t="0.5">%%OPENING_LINE%%</div>
+      <div class="lbl" data-t="0.8">%%FRONT_LABEL%%</div>
+      <h1 style="margin:0">
+        <span class="name" data-t="1.2">%%NAME1%%</span>
+        <span class="parents" data-t="1.6"><b>%%REL1%%</b>%%PARENTS1%%</span>
+        <span class="amp" data-t="2">&amp;</span>
+        <span class="name" data-t="2.3">%%NAME2%%</span>
+        <span class="parents" data-t="2.7"><b>%%REL2%%</b>%%PARENTS2%%</span>
+      </h1>
+      <p class="invite" data-t="3.1">%%INVITE_LINE%%</p>
+    </div>
+  </header>
+
+  <section class="sec night" id="date">
+    <svg class="geo" aria-hidden="true"><rect width="100%" height="100%" fill="url(#geo)"/></svg>
+    <span class="label rv" style="position:relative">%%T_SAVE_THE_DATE%%</span>
+    <div class="star-date rv"><svg viewBox="0 0 250 250" aria-hidden="true"><use href="#star8"/></svg><div class="in"><div class="wd">%%W_WEEKDAY%%</div><div class="dd">%%W_DAY%%</div><div class="my">%%W_MONTH%% %%W_YEAR%%</div></div></div>
+    <p class="banner rv" style="position:relative">%%BANNER_LINE%%</p>
+    <div class="count rv" style="position:relative" aria-label="%%T_COUNTDOWN_ARIA%%"><span><b data-cd="d">--</b><small>%%T_DAYS%%</small></span><span><b data-cd="h">--</b><small>%%T_HRS%%</small></span><span><b data-cd="m">--</b><small>%%T_MIN%%</small></span><span><b data-cd="s">--</b><small>%%T_SEC%%</small></span></div>
+    <div class="btns rv" style="position:relative"><a class="btn" target="_blank" rel="noopener" href="%%CAL_HREF%%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>%%T_ADD_TO_CALENDAR%%</a></div>
+  </section>
+
+  <section class="sec">
+    <span class="label rv">%%T_SWIPE_CELEBRATIONS%%</span><h2 class="rv">%%T_FESTIVITIES%%</h2>
+    <svg class="divider rv" viewBox="0 0 180 22" aria-hidden="true"><use href="#geoline"/></svg>
+    <div class="carousel rv" aria-roledescription="carousel" aria-label="%%T_FUNCTIONS_ARIA%%"><div class="track">
+%%EVENTS%%
+    </div><div class="dots"></div></div>
+    <p class="hint rv">%%T_SWIPE_FUNCTIONS%%</p>
+  </section>
+
+  <section class="sec alt">
+    <span class="label rv">%%T_MOMENTS%%</span><h2 class="rv">%%T_OUR_STORY%%</h2>
+    <svg class="divider rv" viewBox="0 0 180 22" aria-hidden="true"><use href="#geoline"/></svg>
+    <div class="carousel rv" aria-roledescription="carousel" aria-label="%%T_PHOTOS_ARIA%%"><div class="track">
+%%PHOTOS%%
+    </div><div class="dots"></div></div>
+    <p class="hint rv">%%T_SWIPE_MORE%%</p>
+  </section>
+
+  <section class="sec night"%%REC_HIDDEN%%>
+    <svg class="geo" aria-hidden="true"><rect width="100%" height="100%" fill="url(#geo)"/></svg>
+    <div class="rec rv"><svg class="rarch" viewBox="0 0 200 300" preserveAspectRatio="none" aria-hidden="true"><use href="#bigarch"/></svg>
+      <div style="position:relative"><div class="ic"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#%%REC_ICON%%"/></svg></div>
+      <span class="label">%%REC_LABEL%%</span><h2>%%REC_TITLE%%</h2>
+      <div class="rec-date">%%REC_DATE%%</div><div class="rec-line">%%REC_LINE%%</div><div class="rec-venue">%%REC_VENUE%%</div>%%REC_CHIP%%</div>
+    </div>
+  </section>
+
+  <section class="sec venue">
+    <span class="label rv">%%T_LOCATION%%</span><h2 class="rv">%%T_HOW_TO_REACH%%</h2>
+    <svg class="divider rv" viewBox="0 0 180 22" aria-hidden="true"><use href="#geoline"/></svg>
+    <h3 class="rv">%%VENUE%%</h3>
+    <div class="city rv">%%CITY%%</div>
+    <p class="rv">%%ADDRESS%%</p>
+    <div class="btns rv">
+      <a class="btn" href="%%DIR_HREF%%" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l18-8-8 18-2-8z"/></svg>%%T_GET_DIRECTIONS%%</a>
+      <a class="btn ghost" href="%%MAP_HREF%%" target="_blank" rel="noopener" aria-label="%%T_MAP_ARIA%%">%%T_TAP_FOR_MAPS%%</a>
+      <button class="btn ghost" type="button" id="copy">%%T_COPY_ADDRESS%%</button>
+    </div>
+    <div class="copied" id="copied" aria-live="polite"></div>
+  </section>
+
+  <section class="sec alt closing">
+    <div%%RSVP_HIDDEN%%>
+      <span class="label rv">%%T_KINDLY_RESPOND%%</span><h2 class="rv">%%T_WILL_YOU_JOIN%%</h2>
+      <form class="rsvp rv" id="rsvp">
+        <label for="r-name" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">%%T_YOUR_NAME%%</label>
+        <input type="text" id="r-name" placeholder="%%T_YOUR_NAME%%" required>
+        <div class="two"><button class="btn" type="submit" data-a="yes">%%T_ATTENDING%%</button><button class="btn ghost" type="submit" data-a="no">%%T_CANT_MAKE_IT%%</button></div>
+      </form>
+      <div class="thanks" id="thanks" hidden></div>
+    </div>
+    <div class="fam rv">%%CLOSING%%</div>
+    %%KIDS%%
+    <p class="rv" id="tip" style="margin-top:18px;font-size:13px;color:var(--muted)"></p>
+    <div class="trio rv" aria-hidden="true"><div class="lantern c1" style="--x:34%;--len:20px;--sd:0s" aria-hidden="true"><i class="chain"></i><svg viewBox="0 0 40 78"><use href="#lamp"/></svg><b class="lglow"></b></div><div class="lantern c2" style="--x:50%;--len:44px;--sd:0.4s" aria-hidden="true"><i class="chain"></i><svg viewBox="0 0 40 78"><use href="#lamp"/></svg><b class="lglow"></b></div><div class="lantern c3" style="--x:66%;--len:20px;--sd:0.8s" aria-hidden="true"><i class="chain"></i><svg viewBox="0 0 40 78"><use href="#lamp"/></svg><b class="lglow"></b></div></div>
+  </section>
+</main>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+%%SHARED_ICONS%%
+    <symbol id="ganesha" viewBox="0 0 100 100">%%EMBLEM%%</symbol>
+    <pattern id="geo" width="44" height="44" patternUnits="userSpaceOnUse"><g fill="none" stroke="currentColor" stroke-width=".9"><rect x="12" y="12" width="20" height="20"/><rect x="12" y="12" width="20" height="20" transform="rotate(45 22 22)"/><path d="M22 0v7.9M22 36.1V44M0 22h7.9M36.1 22H44"/><circle cx="22" cy="22" r="3.2"/></g></pattern>
+    <clipPath id="archClip" clipPathUnits="objectBoundingBox"><path d="M0 1V.42C0 .22.25.1.5 0c.25.1.5.22.5.42V1z"/></clipPath>
+    <symbol id="parch" viewBox="0 0 80 96"><g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 96V42C4 22 22 12 40 2c18 10 36 20 36 40v54"/><path d="M11 96V44c0-17 14-26 29-34 15 8 29 17 29 34v52"/></g></symbol>
+    <symbol id="bigarch" viewBox="0 0 200 300" preserveAspectRatio="none"><g fill="none" stroke="currentColor" stroke-width="1.3" vector-effect="non-scaling-stroke"><path d="M4 300V122C4 66 50 36 100 4c50 32 96 62 96 118v178"/><path d="M14 300V126c0-50 42-78 86-108 44 30 86 58 86 108v174"/></g></symbol>
+    <symbol id="lamp" viewBox="0 0 40 78"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M20 0v6M14 10h12l-2-4h-8z"/><path d="M12 10c-4 6-6 12-6 18h28c0-6-2-12-6-18z"/><path d="M6 28l3 30h22l3-30"/><path d="M13 28v30M20 28v30M27 28v30"/><path d="M9 58l4 8h14l4-8"/><path d="M20 66v8"/><circle cx="20" cy="76" r="2"/></g><path d="M12 32h16l-1.6 22H13.6z" fill="currentColor" opacity=".16"/></symbol>
+    <symbol id="crescent" viewBox="0 0 50 50"><path d="M33 6a20 20 0 1 0 11 33A17 17 0 1 1 33 6z" fill="currentColor"/><path d="M40 12l1.6 3.4 3.7.4-2.8 2.5.8 3.7-3.3-1.9-3.3 1.9.8-3.7-2.8-2.5 3.7-.4z" fill="currentColor"/></symbol>
+    <symbol id="star8" viewBox="0 0 250 250"><g fill="none" stroke="currentColor" stroke-width="1.2"><rect x="52" y="52" width="146" height="146"/><rect x="52" y="52" width="146" height="146" transform="rotate(45 125 125)"/><rect x="66" y="66" width="118" height="118" opacity=".5"/><rect x="66" y="66" width="118" height="118" transform="rotate(45 125 125)" opacity=".5"/></g></symbol>
+    <symbol id="geoline" viewBox="0 0 180 22"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M0 11h66M114 11h66"/><rect x="80" y="1" width="20" height="20" transform="rotate(45 90 11)"/><rect x="83" y="4" width="14" height="14"/><circle cx="90" cy="11" r="2.5"/></g></symbol>
+  </defs>
+</svg>
+<script>window.INVITE={target:%%J_TARGET%%,addr:%%J_ADDR%%,tip:%%J_TIP%%,wa:%%J_RSVP_PHONE%%,couple:%%J_COUPLE%%,t:{play:%%J_T_PLAY_MUSIC%%,pause:%%J_T_PAUSE_MUSIC%%,copied:%%J_T_ADDRESS_COPIED%%,dear_guest:%%J_T_DEAR_GUEST%%,thanks_yes:%%J_T_THANKS_YES%%,thanks_no:%%J_T_THANKS_NO%%,reply_intro:%%J_T_REPLY_INTRO%%,reply_yes:%%J_T_REPLY_YES%%,reply_no:%%J_T_REPLY_NO%%}};</script>
+<script>%%SHARED_RUNTIME%%</script>
+</body>
+</html>

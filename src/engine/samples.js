@@ -39,7 +39,7 @@ function sample(k){
     recLabel:'You are invited to the',recTitle:'Walima',recDate:'2027-03-20',recLine:'8:00 pm onwards · Dinner',recVenue:'The Grand Hall, Al Noor Gardens',recChip:'',
     venue:'Al Noor Gardens',address:'Beach Road, Jumeirah, Dubai',city:'Dubai',mapArea:'JUMEIRAH',mapLandmark:'THE LAGOON',mapRoad:'BEACH ROAD',
     closing:'With love and duas, the Qureshi & Siddiqui families',kids:'',
-    opening:Object.assign({},d.opening,{id:'mu-bismillah'})});
+    opening:Object.assign({},d.opening,{id:'mu-bismillah',meaning:false})});
   return Object.assign(d,{name1:'James',name2:'Charlotte',rel1:'',rel2:'',parents1:'',parents2:'',
     frontLabel:'Together with their families',inviteLine:'invite you to celebrate their wedding',coverTitle:'THE WEDDING',coverSub:'An invitation',
     date:'2027-06-19',time:'16:00',tz:'+02:00',
