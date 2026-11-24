@@ -11,6 +11,7 @@
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--sans:"Avenir Next","Segoe UI",system-ui,sans-serif}
 @media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#1b1715;--panel:#25201d;--ink:#f1e9df;--muted:#a89c91;--line:#40372f;--accent:#d9a3ad;--accent-ink:#2a1016;--field:#1b1715;--ok:#8fd0b0}}
 *{box-sizing:border-box}
+[hidden]{display:none!important} /* "hidden" always wins over layout rules */
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans)}
 .app{display:grid;grid-template-columns:minmax(360px,460px) 1fr;height:100vh}
