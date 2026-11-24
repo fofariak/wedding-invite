@@ -113,6 +113,21 @@ dialog.done .warn{margin:14px 0 0;font-size:12.5px;color:#8a2c2c;background:#fbe
 .phone{width:min(400px,100%);height:min(820px,calc(100vh - 110px));border-radius:34px;border:10px solid #1d1a18;background:#000;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.25)}
 .phone iframe{width:100%;height:100%;border:0;display:block;background:#fff}
 @media (max-width:860px){.app{grid-template-columns:1fr;height:auto}.side{border-right:0}.form{overflow:visible}.phone{height:760px}.stage{border-top:1px solid var(--line)}}
+/* phones: switch between the form and a full-screen preview */
+.mbar{display:none}
+@media (max-width:860px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--panel);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 20px rgba(0,0,0,.08)}
+  .mbar button{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:11px;font:600 14px var(--sans);cursor:pointer}
+  .mbar button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  body{padding-bottom:68px}
+  body.pv-mode .side{display:none}
+  body:not(.pv-mode) .stage{display:none}
+  body.pv-mode .stage{border-top:0}
+  body.pv-mode .stagebar{padding:8px 12px;gap:10px}
+  body.pv-mode .stagebar b{display:none}
+  body.pv-mode .phonewrap{padding:0}
+  body.pv-mode .phone{width:100%;height:calc(100vh - 68px - 50px);height:calc(100dvh - 68px - 50px);border:0;border-radius:0;box-shadow:none}
+}
 </style>
 </head>
 <body>
@@ -171,6 +186,8 @@ dialog.done .warn{margin:14px 0 0;font-size:12.5px;color:#8a2c2c;background:#fbe
   <p class="warn">Anyone with the edit link can change or delete your invitation, so keep it safe and do not share it. This browser also remembers it for you.</p>
   <div class="row end"><button class="btn" type="button" id="dClose">Done</button></div>
 </dialog>
+
+<nav class="mbar" aria-label="Editor view"><button type="button" id="mbEdit" aria-pressed="true">Edit</button><button type="button" id="mbPrev" aria-pressed="false">Preview</button></nav>
 
 <script id="res" type="application/json">__RESOURCES__</script>
 <script>__ENGINE__</script>
@@ -522,6 +539,11 @@ document.getElementById('fresh').addEventListener('click',function(){
   if(SESSION){if(dirty&&!confirm('Leave without saving your changes?'))return;SESSION=null;dirty=false;history.replaceState(null,'',location.pathname);}
   else if(!confirm('Start a new invite? The current draft in this browser is cleared.'))return;
   S=defaults();render();refresh(true);saveDraft();paintActions();say('New invite started.');});
+
+/* ---------- phones: Edit / Preview switch ---------- */
+function viewMode(pv){document.body.classList.toggle('pv-mode',pv);document.getElementById('mbEdit').setAttribute('aria-pressed',String(!pv));document.getElementById('mbPrev').setAttribute('aria-pressed',String(pv));window.scrollTo(0,0);}
+document.getElementById('mbEdit').addEventListener('click',function(){viewMode(false);});
+document.getElementById('mbPrev').addEventListener('click',function(){viewMode(true);});
 
 /* ---------- start-up ---------- */
 paintActions();

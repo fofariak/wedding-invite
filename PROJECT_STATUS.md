@@ -73,7 +73,8 @@ Last updated: 24 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
 2. You check the new homepage on the live site, on a phone and a laptop.
 3. Check the Netlify deploy of Step 3 (first deploy with server storage and packages).
 4. Add the Razorpay test keys and webhook in Netlify and Razorpay (see `README.md` step 4), then do a test payment on the live site.
-5. **Step 4, second batch:** Mangal, Monogram, Deco, Kolam.
+5. **Step 4, second batch (later, by your choice):** Mangal, Monogram, Deco, Kolam.
+6. **Step 5 (lean):** phone Edit / Preview bar done; visual template choice and before-you-pay checklist left for later.
 
 ## Waiting on you
 - Expert review of the opening library, one reviewer per tradition (`docs/opening-library-review.md`).
