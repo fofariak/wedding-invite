@@ -1,0 +1,17 @@
+/* guru script font (SIL Open Font License). Loaded only by invitations that use this script. */
+@font-face {
+  font-family: 'Noto Serif Gurmukhi';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(noto-serif-gurmukhi-0.woff2) format('woff2');
+  unicode-range: U+0951-0952, U+0964-0965, U+0A01-0A76, U+200C-200D, U+20B9, U+25CC, U+262C, U+A830-A839;
+}
+@font-face {
+  font-family: 'Noto Serif Gurmukhi';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(noto-serif-gurmukhi-0.woff2) format('woff2');
+  unicode-range: U+0951-0952, U+0964-0965, U+0A01-0A76, U+200C-200D, U+20B9, U+25CC, U+262C, U+A830-A839;
+}

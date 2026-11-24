@@ -129,3 +129,39 @@ test('unknown and malformed guest links show the not-available page', async () =
     assert.match(r.text, /not available/);
   }
 });
+
+test('openings: saved with the invitation, checked by the server, shown on the guest page', async () => {
+  const { id, token } = await create();
+  await markPaid(id);
+  const save = (opening) => { const d = samples.defaults(); d.opening = opening; return call(invites, 'PUT', '/api/invites/' + id, { params: { id }, token, body: { data: d } }); };
+  const publish = () => call(invites, 'POST', '/api/invites/' + id + '/status', { params: { id, action: 'status' }, token, body: { live: true } });
+
+  // A Quranic verse: its own page, right-to-left, Arabic font, reference and meaning.
+  let r = await save({ id: 'mu-q-30-21', design: 'framed', size: 'l', color: 'accent', meaning: true, ref: true });
+  assert.equal(r.status, 200);
+  assert.equal(r.data.data.opening.id, 'mu-q-30-21');
+  await publish();
+  let g = await call(page, 'GET', '/i/' + id, { params: { id } });
+  assert.match(g.text, /<section class="opening-page" id="opening"/);
+  assert.match(g.text, /class="op-text op-s-arab" lang="ar" dir="rtl"/);
+  assert.ok(g.text.includes('href="/fonts/arab.css"'), 'Arabic font loaded on the guest page');
+  assert.ok(g.text.includes('Surah Ar-Rum 30:21'));
+  assert.ok(g.text.includes('Sahih International'));
+
+  // Gujarati script option for a Hindu phrase: one line under the emblem.
+  await save({ id: 'hi-gen-shri-ganeshay', gujarati: true });
+  g = await call(page, 'GET', '/i/' + id, { params: { id } });
+  assert.ok(g.text.includes('॥ શ્રી ગણેશાય નમઃ ॥'));
+  assert.ok(g.text.includes('href="/fonts/gujr.css"'));
+  assert.ok(!g.text.includes('id="opening"'), 'a one-line opening has no separate page');
+
+  // Unknown IDs and bad options are corrected, never stored as-is.
+  r = await save({ id: 'not-a-real-opening', design: '<script>', size: 'huge', color: 'red', version: 'niv' });
+  assert.deepEqual([r.data.data.opening.id, r.data.data.opening.design, r.data.data.opening.size, r.data.data.opening.color, r.data.data.opening.version], ['', 'classic', 'm', 'gold', 'kjv']);
+
+  // Custom words: line breaks kept, length capped, HTML escaped.
+  r = await save({ id: 'custom', custom: 'Line one\nLine two <b>x</b>' + 'a'.repeat(900) });
+  assert.equal(r.data.data.opening.custom.length, 600);
+  g = await call(page, 'GET', '/i/' + id, { params: { id } });
+  assert.ok(g.text.includes('Line one<br>Line two &lt;b&gt;x&lt;/b&gt;'));
+});

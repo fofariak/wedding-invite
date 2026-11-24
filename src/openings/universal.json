@@ -1,0 +1,14 @@
+{
+  "_about": "Universal / minimal openings for families who prefer no religious text. 'No opening' is not an item: it is the empty choice in the editor.",
+  "items": [
+    { "id": "un-shubh-vivah", "sub": "universal", "title": "Shubh Vivah", "type": "phrase", "script": "deva", "lang": "hi", "text": "शुभ विवाह", "gujarati": true },
+    { "id": "un-shubharambh", "sub": "universal", "title": "Shubharambh", "type": "phrase", "script": "deva", "lang": "hi", "text": "शुभारम्भ", "gujarati": true },
+    { "id": "un-shubh-mangalam", "sub": "universal", "title": "Shubh Mangalam", "type": "phrase", "script": "deva", "lang": "hi", "text": "शुभ मंगलम्", "gujarati": true },
+    { "id": "un-mangalmay", "sub": "universal", "title": "Mangalmay Shubharambh", "type": "phrase", "script": "deva", "lang": "hi", "text": "मंगलमय शुभारम्भ", "gujarati": true },
+    { "id": "un-love-blessings", "sub": "universal", "title": "With Love and Blessings", "type": "phrase", "script": "latn", "lang": "en", "text": "With Love and Blessings" },
+    { "id": "un-our-families", "sub": "universal", "title": "Together with Our Families", "type": "phrase", "script": "latn", "lang": "en", "text": "Together with Our Families" },
+    { "id": "un-celebration", "sub": "universal", "title": "A Celebration of Love", "type": "phrase", "script": "latn", "lang": "en", "text": "A Celebration of Love" },
+    { "id": "un-two-hearts", "sub": "universal", "title": "Two Hearts, One Journey", "type": "phrase", "script": "latn", "lang": "en", "text": "Two Hearts, One Journey" },
+    { "id": "un-forever", "sub": "universal", "title": "Our Forever Begins", "type": "phrase", "script": "latn", "lang": "en", "text": "Our Forever Begins" }
+  ]
+}

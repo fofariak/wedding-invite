@@ -68,6 +68,37 @@ input[type=color]{width:40px;height:34px;padding:2px;border:1px solid var(--line
 .linkrow{display:flex;gap:6px;align-items:center}
 .linkrow input{flex:1;min-width:0;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--field);color:var(--ink);font:12.5px var(--sans)}
 .mini.danger{color:#a32a2a;border-color:#d9b3b3}
+/* opening section and picker */
+.scr-deva{font-family:"Noto Serif Devanagari",serif}.scr-gujr{font-family:"Noto Serif Gujarati",serif}.scr-guru{font-family:"Noto Serif Gurmukhi",serif}
+.scr-arab{font-family:"Amiri",serif;font-size:1.12em}.scr-urdu{font-family:"Noto Nastaliq Urdu",serif;line-height:2.2}.scr-latn{font-family:var(--serif);font-style:italic}
+.opsum{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--bg);text-align:center;display:grid;gap:4px}
+.opsum .optext{white-space:pre-line;color:#9a7638;font-size:17px;line-height:1.8}
+.opsum .optitle{font-size:12px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:5px 12px;font:13px var(--sans);cursor:pointer}
+.chip[aria-pressed=true]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.optrow{display:grid;grid-template-columns:70px 1fr;gap:8px;align-items:center;font-size:12.5px;color:var(--muted)}
+dialog.picker{border:0;border-radius:18px;padding:0;width:min(1040px,96vw);height:min(90vh,920px);background:var(--panel);color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog.picker[open]{display:grid;grid-template-rows:auto auto auto 1fr auto}
+dialog.picker::backdrop{background:rgba(30,20,20,.55)}
+.pk-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 6px}
+.pk-head h2{margin:0;font:500 26px var(--serif)}
+.pk-step{padding:0 22px;font:600 11.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:12px 0 8px}
+.pk-trads{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:0 22px}
+.pk-trad{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:12px 8px;cursor:pointer;color:var(--ink);display:grid;justify-items:center;gap:4px;font:500 14px var(--serif);text-align:center}
+.pk-trad small{font:11px/1.35 var(--sans);color:var(--muted)}
+.pk-trad svg{width:28px;height:28px;fill:none;stroke:#9a7638;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pk-trad[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.pk-subs{padding:0 22px}
+.pk-grid{overflow:auto;padding:4px 22px 18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;align-content:start}
+.pk-card{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:16px 14px;cursor:pointer;color:var(--ink);display:grid;gap:8px;text-align:center;align-content:start}
+.pk-card:hover{border-color:#c9a86a}
+.pk-card[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.pk-card .optext{white-space:pre-line;color:#9a7638;font-size:16px;line-height:1.75;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.pk-card .optitle{font:600 12.5px var(--sans)}
+.pk-card .opmeta{font-size:11.5px;color:var(--muted)}
+.pk-foot{display:flex;gap:10px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:12px 22px;font-size:12px;color:var(--muted)}
+@media (max-width:760px){.pk-trads{grid-template-columns:repeat(3,1fr)}dialog.picker{height:94vh}}
 dialog.done{border:0;border-radius:16px;padding:24px;width:min(520px,92vw);background:var(--panel);color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.35)}
 dialog.done::backdrop{background:rgba(30,20,20,.55)}
 dialog.done h2{margin:0;font:500 26px var(--serif)}
@@ -118,6 +149,15 @@ dialog.done .warn{margin:14px 0 0;font-size:12.5px;color:#8a2c2c;background:#fbe
     <div class="phonewrap"><div class="phone"><iframe id="pv" title="Invite preview"></iframe></div></div>
   </div>
 </div>
+
+<dialog class="picker" id="oppick" aria-labelledby="pkTitle">
+  <div class="pk-head"><h2 id="pkTitle">Choose your opening</h2><button class="mini" type="button" id="pkClose">Close</button></div>
+  <div><div class="pk-step">1 · Tradition</div><div class="pk-trads" id="pkTrads"></div></div>
+  <div><div class="pk-step">2 · Theme</div><div class="pk-subs chips" id="pkSubs"></div></div>
+  <div class="pk-grid" id="pkGrid" aria-label="Openings"></div>
+  <div class="pk-foot"><span>Texts are shown in their original script. You can change the design, size and colour after choosing.</span>
+    <span class="row"><button class="btn ghost" type="button" id="pkNone">No opening</button><button class="btn ghost" type="button" id="pkCustom">Write my own</button></span></div>
+</dialog>
 
 <dialog class="done" id="done" aria-labelledby="doneTitle">
   <h2 id="doneTitle">Your invitation is live</h2>
@@ -173,6 +213,7 @@ function render(){
       if(!confirm('Replace the names, wording, functions and venue with sample '+TRAD[S.tradition].label+' content? Your photos, song and colours stay.'))return;
       var keepK={photos:S.photos,cover:S.cover,song:S.song,songName:S.songName,theme:S.theme,reveal:S.reveal,tradition:S.tradition};S=Object.assign(sample(S.tradition),keepK);render();changed();say('Sample wording loaded. Edit anything you like.');}}),
     h('p',{class:'hint',text:'The tradition sets the emblem and a few fixed words. The button swaps in sample wording and functions to start from.'})]));
+  secs.push(section('Opening blessing',false,openingControls()));
   secs.push(section('Couple & families',true,[
     h('div',{class:'two'},[field('First name (shown first)',S,'name1'),field('Second name',S,'name2')]),
     h('div',{class:'two'},[field('Relation line',S,'rel1'),field('Relation line',S,'rel2')]),
@@ -258,6 +299,63 @@ function addPhotos(files){var list=[].slice.call(files);if(!list.length)return;
     changed();render();say(n.length+' photo'+(n.length>1?'s':'')+' added.');},fail);}
 function fail(){say('That file could not be read. Try a JPG or PNG photo, or an MP3 song.');}
 
+/* ---------- opening (mantra, shloka, verse, blessing) ---------- */
+var OP=RES.openings,OPM=OP.meta,pkTrad='',pkSub='';
+function curOpening(){return S.opening||(S.opening=E.openingOpts({}));}
+function opText(it,o){var t=it.versions?(it.versions[o.version]||it.versions.kjv):it.text;return (o.gujarati&&it.gujarati&&it.script==='deva')?E.toGujarati(t):t;}
+function opScript(it,o){return (o.gujarati&&it.gujarati&&it.script==='deva')?'gujr':it.script;}
+function textEl(t,script){var dir=(OPM.scripts[script]||{}).dir||'ltr';return h('div',{class:'optext scr-'+script,dir:dir,text:t});}
+function labelOf(list,id){for(var i=0;i<list.length;i++)if(list[i].id===id)return list[i].label;return id;}
+var fontsLoaded=false;
+function loadOpeningFonts(){if(fontsLoaded)return;fontsLoaded=true;['deva','gujr','guru','arab','urdu'].forEach(function(c){document.head.appendChild(h('link',{rel:'stylesheet',href:'fonts/'+c+'.css'}));});}
+function setOpening(patch,structural){Object.assign(curOpening(),patch);changed();if(structural)render();}
+function chipRow(label,list,cur,key){return h('div',{class:'optrow'},[label,h('div',{class:'chips'},list.map(function(x){
+  return h('button',{type:'button',class:'chip','aria-pressed':String(cur===x.id),text:x.label,onclick:function(){var p={};p[key]=x.id;setOpening(p,true);}});}))]);}
+function toggle(label,key,on){var c=h('input',{type:'checkbox',checked:!!on,onchange:function(){var p={};p[key]=c.checked;setOpening(p,true);}});return h('label',{class:'check'},[c,label]);}
+function openingControls(){
+  var o=curOpening(),it=o.id&&o.id!=='custom'?E.findOpening(RES,o.id):null,kids=[];
+  kids.push(h('p',{class:'hint',text:'An optional mantra, shloka, verse or blessing at the start of the invitation. Long texts get their own first page.'}));
+  if(o.id&&o.id!=='custom'&&!it){o.id='';}
+  if(it){loadOpeningFonts();kids.push(h('div',{class:'opsum'},[textEl(opText(it,o),opScript(it,o)),h('div',{class:'optitle',text:it.title+' · '+labelOf(OPM.traditions,it.tradition)+(it.ref?' · '+it.ref:'')})]));}
+  else if(o.id==='custom'){var ta=h('textarea',{rows:3,maxlength:600,placeholder:'Type your own opening, in any language or script'});ta.value=o.custom||'';
+    ta.addEventListener('input',function(){o.custom=ta.value;changed();});kids.push(h('label',{},['Your own opening',ta]),h('p',{class:'hint',text:'Your words are shown exactly as typed. The right font is chosen for Hindi, Gujarati, Punjabi, Arabic and Urdu.'}));}
+  else kids.push(h('div',{class:'opsum'},[h('div',{class:'optitle',text:'No opening selected.'})]));
+  kids.push(h('div',{class:'row'},[h('button',{class:'btn ghost add',type:'button',text:it?'Change opening':'Choose an opening',onclick:openPicker}),
+    o.id!=='custom'?h('button',{class:'mini',type:'button',text:'Write my own',onclick:function(){setOpening({id:'custom'},true);}}):null,
+    o.id?h('button',{class:'mini',type:'button',text:'Remove',onclick:function(){setOpening({id:''},true);}}):null]));
+  if(o.id){
+    kids.push(chipRow('Design',OPM.designs,o.design,'design'),chipRow('Size',OPM.sizes,o.size,'size'),chipRow('Colour',OPM.colors,o.color,'color'));
+    if(it&&it.versions)kids.push(chipRow('Bible',OPM.bibleVersions,o.version,'version'));
+    var t=[];
+    if(it&&it.gujarati)t.push(toggle('Show in Gujarati script','gujarati',o.gujarati));
+    if(it&&it.meaning)t.push(toggle('Show the meaning','meaning',o.meaning));
+    if(it&&it.translit)t.push(toggle('Show transliteration','translit',o.translit));
+    if(it&&it.ref)t.push(toggle('Show the reference','ref',o.ref));
+    if(t.length)kids.push(h('div',{style:'display:grid;gap:6px'},t));
+    if(it&&it.versions)kids.push(h('p',{class:'hint',text:'Bible text from the King James Version or the World English Bible, both public domain. For another translation, use Write my own.'}));
+  }
+  return kids;}
+
+var pk=document.getElementById('oppick');
+function defaultTrad(){var it=E.findOpening(RES,curOpening().id);if(it)return it.tradition;return {hindu:'hindu',muslim:'muslim',western:'christian'}[S.tradition]||'hindu';}
+function openPicker(){loadOpeningFonts();var it=E.findOpening(RES,curOpening().id);pkTrad=defaultTrad();pkSub=it?it.sub:'';paintPicker();
+  if(typeof pk.showModal==='function')pk.showModal();}
+function paintPicker(){
+  var tr=OPM.traditions.filter(function(t){return t.id===pkTrad;})[0]||OPM.traditions[0];if(!tr.subs.some(function(x){return x.id===pkSub;}))pkSub=tr.subs[0].id;
+  var o=curOpening(),T=document.getElementById('pkTrads'),U=document.getElementById('pkSubs'),G=document.getElementById('pkGrid');
+  T.textContent='';OPM.traditions.forEach(function(t){var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 64 64');svg.setAttribute('aria-hidden','true');svg.innerHTML=OPM.motifs[t.id]||OPM.motifs.universal;
+    var b=h('button',{type:'button',class:'pk-trad','aria-pressed':String(t.id===pkTrad),onclick:function(){pkTrad=t.id;pkSub='';paintPicker();}},[t.label,h('small',{text:t.note})]);b.insertBefore(svg,b.firstChild);T.appendChild(b);});
+  U.textContent='';tr.subs.forEach(function(x){U.appendChild(h('button',{type:'button',class:'chip','aria-pressed':String(x.id===pkSub),text:x.label,onclick:function(){pkSub=x.id;paintPicker();}}));});
+  G.textContent='';OP.items.filter(function(it){return it.tradition===pkTrad&&it.sub===pkSub;}).forEach(function(it){
+    var meta=[it.type.charAt(0).toUpperCase()+it.type.slice(1)];if(it.ref)meta.push(it.ref);
+    G.appendChild(h('button',{type:'button',class:'pk-card','aria-pressed':String(o.id===it.id),onclick:function(){
+      var p={id:it.id};if(it.tradition!=='hindu'&&it.tradition!=='jain')p.gujarati=false;setOpening(p,true);pk.close();refresh(false);say('Opening chosen: '+it.title+'. See it on the phone preview.');}},
+      [textEl(opText(it,o),opScript(it,o)),h('div',{class:'optitle',text:it.title}),h('div',{class:'opmeta',text:meta.join(' · ')})]));});
+  G.scrollTop=0;}
+document.getElementById('pkClose').addEventListener('click',function(){pk.close();});
+document.getElementById('pkNone').addEventListener('click',function(){setOpening({id:''},true);pk.close();say('No opening.');});
+document.getElementById('pkCustom').addEventListener('click',function(){setOpening({id:'custom'},true);pk.close();say('Type your own opening in the Opening blessing section.');});
+
 /* ---------- preview ---------- */
 var pv=document.getElementById('pv'),timer=null,lastScroll=0,dirty=false,edits=0,statusEl=document.getElementById('status');
 function say(t){statusEl.textContent=t;}
@@ -276,7 +374,7 @@ var saveT=null;
 function idb(){return new Promise(function(res,rej){var r=indexedDB.open('inviteStudio',1);r.onupgradeneeded=function(){r.result.createObjectStore('kv');};r.onsuccess=function(){res(r.result);};r.onerror=function(){rej(r.error);};});}
 function saveDraft(){return idb().then(function(db){return new Promise(function(res,rej){var tx=db.transaction('kv','readwrite');tx.objectStore('kv').put(S,'draft');tx.oncomplete=res;tx.onerror=function(){rej(tx.error);};});}).catch(function(){});}
 function loadDraft(){return idb().then(function(db){return new Promise(function(res){var q=db.transaction('kv').objectStore('kv').get('draft');q.onsuccess=function(){res(q.result||null);};q.onerror=function(){res(null);};});}).catch(function(){return null;});}
-function normalise(d){var x=Object.assign(defaults(),d);if(!THEMES[x.theme])x.theme='wine';if(!TRAD[x.tradition])x.tradition='hindu';if(!(x.cover>=0&&x.cover<x.photos.length))x.cover=0;return x;}
+function normalise(d){var x=Object.assign(defaults(),d);if(!d||!d.opening)x.opening=E.openingOpts({});else x.opening=E.openingOpts(d.opening);if(!THEMES[x.theme])x.theme='wine';if(!TRAD[x.tradition])x.tradition='hindu';if(!(x.cover>=0&&x.cover<x.photos.length))x.cover=0;return x;}
 
 /* ---------- publishing: pay once, get a guest link and a private edit link ----------
    SESSION is the invitation being edited: {id, token, paid, status, guestUrl}. Its edit link is

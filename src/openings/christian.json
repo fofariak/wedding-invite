@@ -1,0 +1,431 @@
+{
+  "_about": "Christian openings. Bible verses carry 'versions' (kjv, web), both public domain; the customer chooses one and the reference shows which. verified=false until checked.",
+  "items": [
+    {
+      "id": "ch-tr-trinity",
+      "sub": "traditional",
+      "title": "In the Name of the Father",
+      "type": "prayer",
+      "script": "latn",
+      "lang": "en",
+      "text": "In the Name of the Father,\nand of the Son,\nand of the Holy Spirit. Amen."
+    },
+    {
+      "id": "ch-tr-grace",
+      "sub": "traditional",
+      "title": "By the Grace of God",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "By the Grace of God"
+    },
+    {
+      "id": "ch-tr-almighty",
+      "sub": "traditional",
+      "title": "With the Blessings of Almighty God",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "With the Blessings of Almighty God"
+    },
+    {
+      "id": "ch-tr-presence",
+      "sub": "traditional",
+      "title": "In the Presence of God",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "In the Presence of God and our loved ones"
+    },
+    {
+      "id": "ch-tr-together",
+      "sub": "traditional",
+      "title": "Together with God's Blessings",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "Together with God's Blessings"
+    },
+    {
+      "id": "ch-tr-grateful",
+      "sub": "traditional",
+      "title": "With Grateful Hearts",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "With grateful hearts to God"
+    },
+    {
+      "id": "ch-tr-glory",
+      "sub": "traditional",
+      "title": "To God be the Glory",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "To God be the Glory"
+    },
+    {
+      "id": "ch-tr-blessed-united",
+      "sub": "traditional",
+      "title": "Blessed by God, United in Love",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "Blessed by God, United in Love"
+    },
+    {
+      "id": "ch-tr-grace-blessings",
+      "sub": "traditional",
+      "title": "With God's Grace and Blessings",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "With God's Grace and Blessings"
+    },
+    {
+      "id": "ch-tr-gift",
+      "sub": "traditional",
+      "title": "Celebrating God's Gift of Love",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "Celebrating God's Gift of Love"
+    },
+    {
+      "id": "ch-ca-trinity",
+      "sub": "catholic",
+      "title": "In the Name of the Father",
+      "type": "prayer",
+      "script": "latn",
+      "lang": "en",
+      "text": "In the Name of the Father,\nand of the Son,\nand of the Holy Spirit."
+    },
+    {
+      "id": "ch-ca-almighty",
+      "sub": "catholic",
+      "title": "With the Blessings of the Almighty God",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "With the Blessings of the Almighty God"
+    },
+    {
+      "id": "ch-ca-grace-jesus",
+      "sub": "catholic",
+      "title": "Through the Grace of Our Lord",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "Through the Grace of Our Lord Jesus Christ"
+    },
+    {
+      "id": "ch-ca-deo-gratias",
+      "sub": "catholic",
+      "title": "Deo Gratias",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "la",
+      "text": "Deo Gratias",
+      "meaning": "Thanks be to God"
+    },
+    {
+      "id": "ch-ca-soli-deo",
+      "sub": "catholic",
+      "title": "Soli Deo Gloria",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "la",
+      "text": "Soli Deo Gloria",
+      "meaning": "Glory to God alone"
+    },
+    {
+      "id": "ch-ca-united",
+      "sub": "catholic",
+      "title": "United in Christ",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "United in Christ"
+    },
+    {
+      "id": "ch-ca-families",
+      "sub": "catholic",
+      "title": "God's Blessings and Our Families",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "With God's Blessings and the Love of Our Families"
+    },
+    {
+      "id": "ch-pr-praise",
+      "sub": "protestant",
+      "title": "Praise the Lord",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "Praise the Lord"
+    },
+    {
+      "id": "ch-pr-glory",
+      "sub": "protestant",
+      "title": "To God Be the Glory",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "To God Be the Glory"
+    },
+    {
+      "id": "ch-pr-journey",
+      "sub": "protestant",
+      "title": "By His Grace",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "By His Grace, We Begin Our New Journey"
+    },
+    {
+      "id": "ch-pr-love-jesus",
+      "sub": "protestant",
+      "title": "With the Love of Jesus Christ",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "With the Love and Blessings of Jesus Christ"
+    },
+    {
+      "id": "ch-pr-blessed-grace",
+      "sub": "protestant",
+      "title": "Blessed by His Grace",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "Blessed by His Grace, United in His Love"
+    },
+    {
+      "id": "ch-pr-thanks",
+      "sub": "protestant",
+      "title": "Give Thanks to the Lord",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "Give Thanks to the Lord"
+    },
+    {
+      "id": "ch-pr-one",
+      "sub": "protestant",
+      "title": "In Christ, We Are One",
+      "type": "phrase",
+      "script": "latn",
+      "lang": "en",
+      "text": "In Christ, We Are One"
+    },
+    {
+      "id": "ch-bi-1cor-13-4",
+      "sub": "bible",
+      "title": "Love is patient",
+      "type": "scripture",
+      "script": "latn",
+      "lang": "en",
+      "ref": "1 Corinthians 13:4 (portion)",
+      "versions": {
+        "kjv": "Charity suffereth long, and is kind",
+        "web": "Love is patient and is kind."
+      }
+    },
+    {
+      "id": "ch-bi-1cor-13-13",
+      "sub": "bible",
+      "title": "Faith, hope and love",
+      "type": "scripture",
+      "script": "latn",
+      "lang": "en",
+      "ref": "1 Corinthians 13:13",
+      "versions": {
+        "kjv": "And now abideth faith, hope, charity, these three; but the greatest of these is charity.",
+        "web": "But now faith, hope, and love remain—these three. The greatest of these is love."
+      }
+    },
+    {
+      "id": "ch-bi-eccl-4-9",
+      "sub": "bible",
+      "title": "Two are better than one",
+      "type": "scripture",
+      "script": "latn",
+      "lang": "en",
+      "ref": "Ecclesiastes 4:9",
+      "versions": {
+        "kjv": "Two are better than one; because they have a good reward for their labour.",
+        "web": "Two are better than one, because they have a good reward for their labor."
+      }
+    },
+    {
+      "id": "ch-bi-eccl-4-12",
+      "sub": "bible",
+      "title": "A threefold cord",
+      "type": "scripture",
+      "script": "latn",
+      "lang": "en",
+      "ref": "Ecclesiastes 4:12 (portion)",
+      "versions": {
+        "kjv": "…a threefold cord is not quickly broken.",
+        "web": "…a threefold cord is not quickly broken."
+      }
+    },
+    {
+      "id": "ch-bi-mark-10-9",
+      "sub": "bible",
+      "title": "What God has joined together",
+      "type": "scripture",
+      "script": "latn",
+      "lang": "en",
+      "ref": "Mark 10:9",
+      "versions": {
+        "kjv": "What therefore God hath joined together, let not man put asunder.",
+        "web": "What therefore God has joined together, let no man separate."
+      }
+    },
+    {
+      "id": "ch-bi-gen-2-24",
+      "sub": "bible",
+      "title": "One flesh",
+      "type": "scripture",
+      "script": "latn",
+      "lang": "en",
+      "ref": "Genesis 2:24",
+      "versions": {
+        "kjv": "Therefore shall a man leave his father and his mother, and shall cleave unto his wife: and they shall be one flesh.",
+        "web": "Therefore a man will leave his father and his mother, and will join with his wife, and they will be one flesh."
+      }
+    },
+    {
+      "id": "ch-bi-song-3-4",
+      "sub": "bible",
+      "title": "Whom my soul loves",
+      "type": "scripture",
+      "script": "latn",
+      "lang": "en",
+      "ref": "Song of Solomon 3:4 (portion)",
+      "versions": {
+        "kjv": "I found him whom my soul loveth",
+        "web": "I found him whom my soul loves."
+      }
+    },
+    {
+      "id": "ch-bi-song-8-7",
+      "sub": "bible",
+      "title": "Many waters cannot quench love",
+      "type": "scripture",
+      "script": "latn",
+      "lang": "en",
+      "ref": "Song of Solomon 8:7 (portion)",
+      "versions": {
+        "kjv": "Many waters cannot quench love, neither can the floods drown it",
+        "web": "Many waters can’t quench love, neither can floods drown it."
+      }
+    },
+    {
+      "id": "ch-bi-ruth-1-16",
+      "sub": "bible",
+      "title": "Where you go, I will go",
+      "type": "scripture",
+      "script": "latn",
+      "lang": "en",
+      "ref": "Ruth 1:16 (portion)",
+      "versions": {
+        "kjv": "…whither thou goest, I will go; and where thou lodgest, I will lodge: thy people shall be my people, and thy God my God",
+        "web": "…where you go, I will go; and where you stay, I will stay. Your people will be my people, and your God my God."
+      }
+    },
+    {
+      "id": "ch-bi-col-3-14",
+      "sub": "bible",
+      "title": "The bond of perfection",
+      "type": "scripture",
+      "script": "latn",
+      "lang": "en",
+      "ref": "Colossians 3:14",
+      "versions": {
+        "kjv": "And above all these things put on charity, which is the bond of perfectness.",
+        "web": "Above all these things, walk in love, which is the bond of perfection."
+      }
+    },
+    {
+      "id": "ch-bi-1john-4-19",
+      "sub": "bible",
+      "title": "He first loved us",
+      "type": "scripture",
+      "script": "latn",
+      "lang": "en",
+      "ref": "1 John 4:19",
+      "versions": {
+        "kjv": "We love him, because he first loved us.",
+        "web": "We love him, because he first loved us."
+      }
+    },
+    {
+      "id": "ch-bi-ps-118-24",
+      "sub": "bible",
+      "title": "This is the day",
+      "type": "scripture",
+      "script": "latn",
+      "lang": "en",
+      "ref": "Psalm 118:24",
+      "versions": {
+        "kjv": "This is the day which the LORD hath made; we will rejoice and be glad in it.",
+        "web": "This is the day that Yahweh has made. We will rejoice and be glad in it!"
+      }
+    },
+    {
+      "id": "ch-bl-num-6-24",
+      "sub": "blessings",
+      "title": "The Lord bless you and keep you",
+      "type": "prayer",
+      "script": "latn",
+      "lang": "en",
+      "ref": "Numbers 6:24–26",
+      "versions": {
+        "kjv": "The LORD bless thee, and keep thee:\nThe LORD make his face shine upon thee, and be gracious unto thee:\nThe LORD lift up his countenance upon thee, and give thee peace.",
+        "web": "Yahweh bless you, and keep you.\nYahweh make his face to shine on you, and be gracious to you.\nYahweh lift up his face toward you, and give you peace."
+      }
+    },
+    {
+      "id": "ch-bl-1john-4-7",
+      "sub": "blessings",
+      "title": "Love is of God",
+      "type": "prayer",
+      "script": "latn",
+      "lang": "en",
+      "ref": "1 John 4:7 (portion)",
+      "versions": {
+        "kjv": "Beloved, let us love one another: for love is of God",
+        "web": "Beloved, let’s love one another, for love is of God"
+      }
+    },
+    {
+      "id": "ch-bl-phil-1-9",
+      "sub": "blessings",
+      "title": "That your love may abound",
+      "type": "prayer",
+      "script": "latn",
+      "lang": "en",
+      "ref": "Philippians 1:9 (portion)",
+      "versions": {
+        "kjv": "And this I pray, that your love may abound yet more and more in knowledge and in all judgment",
+        "web": "This I pray, that your love may abound yet more and more in knowledge and all discernment"
+      }
+    },
+    {
+      "id": "ch-bl-ps-127-1",
+      "sub": "blessings",
+      "title": "Unless the Lord builds the house",
+      "type": "prayer",
+      "script": "latn",
+      "lang": "en",
+      "ref": "Psalm 127:1 (portion)",
+      "versions": {
+        "kjv": "Except the LORD build the house, they labour in vain that build it",
+        "web": "Unless Yahweh builds the house, they who build it labor in vain."
+      }
+    }
+  ]
+}

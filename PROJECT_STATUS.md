@@ -41,6 +41,16 @@ Last updated: 24 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
   - **Wording updated:** homepage, privacy, terms, refunds and contact pages, `CLAUDE.md`, `README.md` and the reviewer notes.
   - **Tests:** 13 automatic server tests (`npm test`), and the full journey tested in Chrome with the local test server (`npm run dev`). The functions were also bundled the way Netlify does and run successfully.
 
+- **Opening library** (on your Mac; not committed yet):
+  - **155 openings** from your `WEDDING_OPENING_LIBRARY_PROMPT.md`: Hindu 68, Christian 40, Muslim 23, Jain 9, Universal 9, Sikh 6.
+  - **Picker:** a visual picker in the editor (tradition → theme → opening cards in the real script), plus "Write my own" and "No opening".
+  - **Designs:** 4 (classic ornament, framed, motif above, minimal), 3 sizes and 3 colours. Optional meaning, transliteration and reference. KJV/WEB Bible choice. Gujarati-script option for Hindu and Jain texts.
+  - **Placement:** one-line openings sit under the emblem. Long ones get their own first page; the book opens onto it and the names animate when guests scroll down.
+  - **Scripts:** self-hosted fonts for Devanagari, Gujarati, Gurmukhi, Arabic (Amiri) and Urdu (Nastaliq), loaded only when needed. Arabic and Urdu are right-to-left.
+  - **Accuracy:** Quranic and Bible texts were checked against quran.com, Bible Gateway and ebible.org. Sikh texts are now in Gurmukhi, and typos are fixed. Everything is listed for expert review in `docs/opening-library-review.md`.
+  - **Samples:** the Hindu sample now starts with ॥ श्री गणेशाय नमः ॥ and the Nikah sample with Bismillah.
+  - **Tests:** `npm run check` builds 360 invitations including every opening; `npm test` has 14 server tests. The picker was tested end to end in Chrome, including publishing and reopening.
+
 ## Decisions (23 to 24 November 2026)
 - **Order:** keep the original order: Step 1 foundations, then the homepage, then hosted links.
 - **Old buttons:** "Save project / Open project" was replaced by the edit link in Step 3.
@@ -57,6 +67,7 @@ Last updated: 24 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
 5. **Step 4:** more templates.
 
 ## Waiting on you
+- Expert review of the opening library, one reviewer per tradition (`docs/opening-library-review.md`).
 - Set `PRICE_AMOUNT` = `49900` and `PRICE_CURRENCY` = `inr` in Netlify, so ₹499 shows on the homepage.
 - Fill in the `[bracketed]` details on the policy pages, and have them reviewed (`docs/legal-review-notes.md`).
 - A contact email.

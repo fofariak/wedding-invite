@@ -1,0 +1,237 @@
+{
+  "_about": "Opening library structure. Texts live in <tradition>.json; visual styles here under 'designs'. Templates style the designs with CSS classes op-<design>.",
+  "traditions": [
+    {
+      "id": "hindu",
+      "label": "Hindu",
+      "note": "Ganesh, Shiva, Vishnu, Devi, Swaminarayan, Vedic",
+      "subs": [
+        {
+          "id": "general",
+          "label": "General Traditional"
+        },
+        {
+          "id": "ganesh",
+          "label": "Ganesh"
+        },
+        {
+          "id": "shiva",
+          "label": "Shiva–Parvati"
+        },
+        {
+          "id": "vishnu",
+          "label": "Vishnu–Krishna–Ram"
+        },
+        {
+          "id": "devi",
+          "label": "Lakshmi–Devi"
+        },
+        {
+          "id": "saraswati",
+          "label": "Saraswati"
+        },
+        {
+          "id": "swaminarayan",
+          "label": "Swaminarayan"
+        },
+        {
+          "id": "vedic",
+          "label": "Arya Samaj / Vedic"
+        },
+        {
+          "id": "blessings",
+          "label": "Blessing Shlokas"
+        }
+      ]
+    },
+    {
+      "id": "muslim",
+      "label": "Muslim",
+      "note": "Bismillah, Quranic verses, Nikah duas, Urdu",
+      "subs": [
+        {
+          "id": "arabic",
+          "label": "Bismillah & Arabic"
+        },
+        {
+          "id": "quran",
+          "label": "Quranic Verses"
+        },
+        {
+          "id": "duas",
+          "label": "Nikah Duas"
+        },
+        {
+          "id": "urdu",
+          "label": "Urdu Openings"
+        },
+        {
+          "id": "plain",
+          "label": "Without Scripture"
+        }
+      ]
+    },
+    {
+      "id": "christian",
+      "label": "Christian",
+      "note": "Bible verses, blessings, Catholic, Protestant",
+      "subs": [
+        {
+          "id": "traditional",
+          "label": "Traditional"
+        },
+        {
+          "id": "catholic",
+          "label": "Catholic"
+        },
+        {
+          "id": "protestant",
+          "label": "Protestant / CSI / Pentecostal"
+        },
+        {
+          "id": "bible",
+          "label": "Bible Verses"
+        },
+        {
+          "id": "blessings",
+          "label": "Wedding Blessings"
+        }
+      ]
+    },
+    {
+      "id": "jain",
+      "label": "Jain",
+      "note": "Navkar Mantra, Jai Jinendra",
+      "subs": [
+        {
+          "id": "jain",
+          "label": "Jain Openings"
+        }
+      ]
+    },
+    {
+      "id": "sikh",
+      "label": "Sikh",
+      "note": "Ik Onkar, Mool Mantar (Gurmukhi)",
+      "subs": [
+        {
+          "id": "sikh",
+          "label": "Sikh Openings"
+        }
+      ]
+    },
+    {
+      "id": "universal",
+      "label": "Universal / Minimal",
+      "note": "Simple, non-religious openings",
+      "subs": [
+        {
+          "id": "universal",
+          "label": "Universal"
+        }
+      ]
+    }
+  ],
+  "scripts": {
+    "deva": {
+      "label": "Devanagari",
+      "font": "deva",
+      "dir": "ltr"
+    },
+    "gujr": {
+      "label": "Gujarati",
+      "font": "gujr",
+      "dir": "ltr"
+    },
+    "guru": {
+      "label": "Gurmukhi",
+      "font": "guru",
+      "dir": "ltr"
+    },
+    "arab": {
+      "label": "Arabic",
+      "font": "arab",
+      "dir": "rtl"
+    },
+    "urdu": {
+      "label": "Urdu",
+      "font": "urdu",
+      "dir": "rtl"
+    },
+    "latn": {
+      "label": "English",
+      "font": "",
+      "dir": "ltr"
+    }
+  },
+  "designs": [
+    {
+      "id": "classic",
+      "label": "Classic ornament",
+      "note": "Centred text between fine gold flourishes"
+    },
+    {
+      "id": "framed",
+      "label": "Framed panel",
+      "note": "Text inside a delicate double frame"
+    },
+    {
+      "id": "medallion",
+      "label": "Motif above",
+      "note": "A small traditional motif above the text"
+    },
+    {
+      "id": "minimal",
+      "label": "Minimal",
+      "note": "Just the words, with generous space"
+    }
+  ],
+  "colors": [
+    {
+      "id": "gold",
+      "label": "Gold"
+    },
+    {
+      "id": "accent",
+      "label": "Theme colour"
+    },
+    {
+      "id": "ink",
+      "label": "Deep ink"
+    }
+  ],
+  "sizes": [
+    {
+      "id": "s",
+      "label": "Small"
+    },
+    {
+      "id": "m",
+      "label": "Medium"
+    },
+    {
+      "id": "l",
+      "label": "Large"
+    }
+  ],
+  "bibleVersions": [
+    {
+      "id": "kjv",
+      "label": "King James Version",
+      "short": "KJV"
+    },
+    {
+      "id": "web",
+      "label": "World English Bible",
+      "short": "WEB"
+    }
+  ],
+  "motifs": {
+    "hindu": "<path d=\"M14 38c4 8 11 12 18 12s14-4 18-12z\"/><path d=\"M10 38h44\"/><path d=\"M32 33c-5-5-4-11 0-18 4 7 5 13 0 18z\"/><path d=\"M25 55h14\"/>",
+    "muslim": "<rect x=\"19\" y=\"19\" width=\"26\" height=\"26\"/><rect x=\"19\" y=\"19\" width=\"26\" height=\"26\" transform=\"rotate(45 32 32)\"/><circle cx=\"32\" cy=\"32\" r=\"6\"/>",
+    "christian": "<path d=\"M32 10v44M21 24h22\"/>",
+    "jain": "<path d=\"M32 46c-6-6-6-16 0-24 6 8 6 18 0 24z\"/><path d=\"M32 46c-10-2-16-9-17-18 9 1 15 8 17 18z\"/><path d=\"M32 46c10-2 16-9 17-18-9 1-15 8-17 18z\"/><path d=\"M19 51h26\"/>",
+    "sikh": "<path d=\"M32 52V26\"/><path d=\"M32 36c-6 0-10-4-11-10 6 0 10 4 11 10z\"/><path d=\"M32 44c6 0 10-4 11-10-6 0-10 4-11 10z\"/><circle cx=\"32\" cy=\"19\" r=\"5\"/>",
+    "universal": "<path d=\"M32 52V26\"/><path d=\"M32 36c-6 0-10-4-11-10 6 0 10 4 11 10z\"/><path d=\"M32 44c6 0 10-4 11-10-6 0-10 4-11 10z\"/><circle cx=\"32\" cy=\"19\" r=\"5\"/>"
+  }
+}

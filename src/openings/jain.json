@@ -1,0 +1,14 @@
+{
+  "_about": "Jain openings in the original Prakrit wording as supplied. verified=false until checked by a knowledgeable person (some traditions write नमो rather than णमो).",
+  "items": [
+    { "id": "ja-arihantanam", "sub": "jain", "title": "Namo Arihantanam", "type": "mantra", "script": "deva", "lang": "pra", "text": "॥ णमो अरिहंताणं ॥", "gujarati": true },
+    { "id": "ja-siddhanam", "sub": "jain", "title": "Namo Siddhanam", "type": "mantra", "script": "deva", "lang": "pra", "text": "॥ णमो सिद्धाणं ॥", "gujarati": true },
+    { "id": "ja-ayariyanam", "sub": "jain", "title": "Namo Ayariyanam", "type": "mantra", "script": "deva", "lang": "pra", "text": "॥ णमो आयरियाणं ॥", "gujarati": true },
+    { "id": "ja-uvajjhayanam", "sub": "jain", "title": "Namo Uvajjhayanam", "type": "mantra", "script": "deva", "lang": "pra", "text": "॥ णमो उवज्झायाणं ॥", "gujarati": true },
+    { "id": "ja-loe-savvasahunam", "sub": "jain", "title": "Namo Loe Savvasahunam", "type": "mantra", "script": "deva", "lang": "pra", "text": "॥ णमो लोए सव्वसाहूणं ॥", "gujarati": true },
+    { "id": "ja-jai-jinendra", "sub": "jain", "title": "Jai Jinendra", "type": "phrase", "script": "deva", "lang": "hi", "text": "॥ जय जिनेन्द्र ॥", "gujarati": true },
+    { "id": "ja-mahaviraya", "sub": "jain", "title": "Shri Mahaviraya Namah", "type": "phrase", "script": "deva", "lang": "sa", "text": "॥ श्री महावीराय नमः ॥", "gujarati": true },
+    { "id": "ja-ahimsa", "sub": "jain", "title": "Ahimsa Paramo Dharmah", "type": "phrase", "script": "deva", "lang": "sa", "text": "॥ अहिंसा परमो धर्मः ॥", "gujarati": true },
+    { "id": "ja-navkar", "sub": "jain", "title": "Navkar Mantra", "type": "mantra", "script": "deva", "lang": "pra", "text": "णमो अरिहंताणं।\nणमो सिद्धाणं।\nणमो आयरियाणं।\nणमो उवज्झायाणं।\nणमो लोए सव्वसाहूणं॥", "gujarati": true }
+  ]
+}

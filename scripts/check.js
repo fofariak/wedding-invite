@@ -40,6 +40,35 @@ for (const tpl of Object.keys(R.templates)) {
   }
 }
 
+// Every opening in the library, in every design, size and colour, with all display options.
+{
+  const M = R.openings.meta;
+  const customs = ['॥ श्री गणेशाय नमः ॥', 'ੴ ਸਤਿ ਨਾਮੁ', 'بِسْمِ اللَّهِ', 'خوشی کے اس پُرمسرت موقع پر', '॥ શ્રી ગણેશાય નમઃ ॥', 'Two hearts,\none journey', '<b>bold</b> & "quotes"'];
+  const cases = R.openings.items.map((it) => it.id).concat(customs.map(() => 'custom'));
+  cases.forEach((id, i) => {
+    const S = samples.defaults();
+    S.opening = {
+      id, custom: id === 'custom' ? customs[i - R.openings.items.length] : '',
+      design: M.designs[i % M.designs.length].id, size: M.sizes[i % M.sizes.length].id, color: M.colors[i % M.colors.length].id,
+      gujarati: i % 2 === 0, translit: true, meaning: true, ref: true, version: M.bibleVersions[i % M.bibleVersions.length].id,
+    };
+    for (const opts of [{}, { preview: true, skip: true, mark: true }]) {
+      const html = engine.build(S, opts, R);
+      count++;
+      const label = 'opening ' + id + (id === 'custom' ? ' "' + S.opening.custom + '"' : '');
+      const left = html.match(/%%[A-Z0-9_]+%%/g);
+      if (left) problems.push(label + ': unfilled ' + [...new Set(left)].join(', '));
+      if (!/class="opening-line|id="opening"/.test(html)) problems.push(label + ': opening missing from the invitation');
+      if (/<script>alert|<b>bold/.test(html)) problems.push(label + ': text not escaped');
+      for (const m of html.matchAll(/<script>([\s\S]*?)<\/script>/g)) {
+        try { new vm.Script(m[1]); } catch (e) { problems.push(label + ': script error: ' + e.message); }
+      }
+      const rtl = /class="op-text op-s-(arab|urdu)"[^>]*dir="rtl"/.test(html);
+      if (/op-s-(arab|urdu)"/.test(html.match(/<p class="op-text[^>]*>/)[0]) && !rtl) problems.push(label + ': Arabic/Urdu not right-to-left');
+    }
+  });
+}
+
 // Homepage samples must match what scripts/make-demos.js would write.
 for (const [trad, theme] of [['hindu', 'rani'], ['muslim', 'emerald'], ['western', 'wine']]) {
   const S = Object.assign(samples.sample(trad), { tradition: trad, theme });
@@ -61,4 +90,4 @@ if (problems.length) {
   console.error(problems.length + ' problem(s):\n  ' + problems.slice(0, 40).join('\n  '));
   process.exit(1);
 }
-console.log('All good: ' + count + ' invites built and checked, homepage samples up to date.');
+console.log('All good: ' + count + ' invites built and checked (including every opening), homepage samples up to date.');

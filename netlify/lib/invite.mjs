@@ -88,11 +88,28 @@ export function validateData(raw, rec) {
     closing: text(raw.closing, 200), kids: text(raw.kids, 240),
     song: assetRef(raw.song, rec, 'audio'), songName: text(raw.songName, 120),
     rsvpPhone: text(raw.rsvpPhone, 30),
+    opening: validateOpening(raw.opening),
   };
   if (S.photos.some((p) => !p.src)) throw new HttpError(400, 'Every photo needs a picture.');
   const c = Number(raw.cover);
   S.cover = Number.isInteger(c) && c >= 0 && c < S.photos.length ? c : 0;
   return S;
+}
+
+// The opening (mantra, verse, phrase): a real library ID, 'custom' with the customer's own words, or none.
+function validateOpening(o) {
+  o = o && typeof o === 'object' ? o : {};
+  const M = R.openings.meta;
+  const ids = (list) => list.map((x) => x.id);
+  let id = typeof o.id === 'string' ? o.id : '';
+  if (id && id !== 'custom' && !engine.findOpening(R, id)) id = '';
+  const custom = typeof o.custom === 'string' ? o.custom.replace(/\r/g, '').split('\n').slice(0, 12).join('\n') : '';
+  return {
+    id, custom: text(custom, 600), // text() keeps line breaks and removes other control characters
+    design: pick(o.design, ids(M.designs), 'classic'), size: pick(o.size, ids(M.sizes), 'm'),
+    color: pick(o.color, ids(M.colors), 'gold'), version: pick(o.version, ids(M.bibleVersions), 'kjv'),
+    gujarati: o.gujarati === true, translit: o.translit === true, meaning: o.meaning !== false, ref: o.ref !== false,
+  };
 }
 
 // Asset IDs used by the invitation (so unused uploads can be removed).

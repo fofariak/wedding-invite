@@ -1,0 +1,11 @@
+{
+  "_about": "Sikh openings in Gurmukhi (the original script). 'translit' holds the Devanagari versions supplied by the owner, shown only if the customer turns transliteration on. verified=false until checked by a knowledgeable person.",
+  "items": [
+    { "id": "si-satgur-prasad", "sub": "sikh", "title": "Ik Onkar Satgur Prasad", "type": "phrase", "script": "guru", "lang": "pa", "text": "ੴ ਸਤਿ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥", "translit": "ੴ सतिगुर प्रसादि ॥", "corrected": "Supplied in Devanagari; stored in Gurmukhi as requested, Devanagari kept as transliteration." },
+    { "id": "si-satnam", "sub": "sikh", "title": "Ik Onkar Sat Naam", "type": "phrase", "script": "guru", "lang": "pa", "text": "ੴ ਸਤਿ ਨਾਮੁ", "translit": "ੴ सति नामु", "corrected": "Supplied as 'ੴ एक ओंकार सतनाम', which is not a standard formulation; replaced with the opening words of the Mool Mantar. Please confirm." },
+    { "id": "si-waheguru-ji", "sub": "sikh", "title": "Waheguru Ji", "type": "phrase", "script": "guru", "lang": "pa", "text": "॥ ਵਾਹਿਗੁਰੂ ਜੀ ॥", "translit": "॥ वाहेगुरु जी ॥", "corrected": "Supplied in Devanagari; stored in Gurmukhi." },
+    { "id": "si-satnam-waheguru", "sub": "sikh", "title": "Satnam Waheguru", "type": "phrase", "script": "guru", "lang": "pa", "text": "॥ ਸਤਿਨਾਮ ਵਾਹਿਗੁਰੂ ॥", "translit": "॥ सतनाम वाहेगुरु ॥", "corrected": "Supplied in Devanagari; stored in Gurmukhi." },
+    { "id": "si-fateh", "sub": "sikh", "title": "Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh", "type": "phrase", "script": "guru", "lang": "pa", "text": "ਵਾਹਿਗੁਰੂ ਜੀ ਕਾ ਖਾਲਸਾ ॥\nਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹਿ ॥", "translit": "॥ वाहेगुरु जी का खालसा, वाहेगुरु जी की फतेह ॥", "corrected": "Supplied in Devanagari; stored in Gurmukhi." },
+    { "id": "si-mool-mantar", "sub": "sikh", "title": "Mool Mantar", "type": "scripture", "script": "guru", "lang": "pa", "text": "ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ\nਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥", "translit": "ੴ सतनाम करता पुरख निरभउ निरवैर अकाल मूरति अजूनी सैभं गुर प्रसादि॥", "ref": "Sri Guru Granth Sahib, Ang 1", "corrected": "Supplied in Devanagari; stored in Gurmukhi as written in Sri Guru Granth Sahib." }
+  ]
+}

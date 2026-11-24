@@ -36,6 +36,51 @@ function waNumber(s){var t=String(s||'').trim();if(!/^(\+|00)/.test(t))return ''
 function pad(n){return (n<10?'0':'')+n;}
 function calStamp(ms){var d=new Date(ms);return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+'00Z';}
 
+/* ---------- opening library (src/openings/) ---------- */
+// S.opening: which opening to show and how. id is a library ID, 'custom' (own words) or '' (none).
+var OPENING_DEFAULT={id:'',custom:'',design:'classic',size:'m',color:'gold',gujarati:false,translit:false,meaning:true,ref:true,version:'kjv'};
+var SCRIPT_LANG={deva:'hi',gujr:'gu',guru:'pa',arab:'ar',urdu:'ur',latn:''};
+function openingOpts(o){var x={};for(var k in OPENING_DEFAULT)x[k]=(o&&o[k]!=null)?o[k]:OPENING_DEFAULT[k];return x;}
+function oneOf(v,list,fallback){for(var i=0;i<list.length;i++)if(list[i].id===v)return v;return fallback;}
+// Same words in Gujarati letters: the two alphabets sit at parallel positions in Unicode. Dandas (। ॥) are shared.
+var GUJ=/^[\u0A81-\u0A83\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABC-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AD0\u0AE0-\u0AE3\u0AE6-\u0AEF]$/;
+function toGujarati(t){return String(t).replace(/[\u0900-\u097F]/g,function(c){var n=c.charCodeAt(0);if(n===0x0964||n===0x0965)return c;var g=String.fromCharCode(n+0x180);return GUJ.test(g)?g:c;});}
+// Which scripts appear in a text, and which one most of it is written in (so the right font and direction are used).
+var SCRIPT_RE={gujr:/[\u0A80-\u0AFF]/g,guru:/[\u0A00-\u0A7F]/g,deva:/[\u0900-\u097F]/g,arab:/[\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]/g};
+var URDU_ONLY=/[\u0679\u0688\u0691\u06A9\u06AF\u06BA\u06BE\u06C1\u06D2\u06D3]/;
+function scriptsIn(t){var out={};for(var k in SCRIPT_RE){var m=String(t).match(SCRIPT_RE[k]);if(m)out[k==='arab'&&URDU_ONLY.test(t)?'urdu':k]=m.length;}
+  // The danda signs (। ॥) are shared by Indian scripts; they alone don't make a text Devanagari.
+  if(out.deva){var d=(String(t).match(/[\u0964\u0965]/g)||[]).length;out.deva-=d;if(out.deva<=0&&Object.keys(out).length>1)delete out.deva;}
+  return out;}
+function detectScript(t){var c=scriptsIn(t),best='latn',n=0;for(var k in c)if(c[k]>n){n=c[k];best=k;}return best;}
+var ISO={deva:'Deva',gujr:'Gujr',guru:'Guru',arab:'Arab',urdu:'Arab',latn:'Latn'};
+function findOpening(R,id){var O=R.openings;if(!O||!id)return null;var m=O._byId;if(!m){m=O._byId={};O.items.forEach(function(it){m[it.id]=it;});}return m[id]||null;}
+// Returns {line, page, fonts}: a one-line opening goes under the emblem on the first page,
+// a longer one gets its own page that the book opens onto.
+function renderOpening(S,R,P){
+  var none={line:'',page:'',fonts:''},O=R.openings;if(!O)return none;
+  var o=openingOpts(S.opening),M=O.meta,it=null,text,script,lang,trad='universal',ref='',meaning='',msrc='',translit='',isLine;
+  if(o.id==='custom'){text=String(o.custom||'').replace(/\r/g,'').trim();if(!text)return none;script=detectScript(text);lang=SCRIPT_LANG[script];isLine=text.indexOf('\n')<0&&text.length<=48;}
+  else{it=findOpening(R,o.id);if(!it)return none;
+    trad=it.tradition;script=it.script;lang=it.lang||'';ref=it.ref||'';meaning=it.meaning||'';msrc=it.meaningSource||'';translit=it.translit||'';
+    if(it.versions){var ver=oneOf(o.version,M.bibleVersions,'kjv');text=it.versions[ver];M.bibleVersions.forEach(function(b){if(b.id===ver&&ref)ref+=' · '+b.short;});}else text=it.text;
+    if(o.gujarati&&it.gujarati&&script==='deva'){text=toGujarati(text);script='gujr';lang=(lang||'sa')+'-Gujr';}
+    isLine=it.type==='phrase'&&text.indexOf('\n')<0;}
+  var design=oneOf(o.design,M.designs,'classic'),size=oneOf(o.size,M.sizes,'m'),color=oneOf(o.color,M.colors,'gold');
+  var fonts={},br=function(t){return esc(t).replace(/\n/g,'<br>');};
+  function para(cls,t,sc,lg){var inT=scriptsIn(t);inT[sc]=1;for(var k in inT)if(M.scripts[k]&&M.scripts[k].font)fonts[M.scripts[k].font]=1;
+    return '<p class="'+cls+' op-s-'+sc+'"'+(lg?' lang="'+esc(lg)+'"':'')+' dir="'+((M.scripts[sc]||{}).dir||'ltr')+'">'+br(t)+'</p>';}
+  var html=(design==='medallion'?'<span class="op-motif" aria-hidden="true"><svg viewBox="0 0 64 64">'+(M.motifs[trad]||M.motifs.universal)+'</svg></span>':'')
+    +para('op-text',text,script,lang);
+  if(o.translit&&translit){var ts=detectScript(translit);html+=para('op-tr',translit,ts,(lang||'und').split('-')[0]+'-'+ISO[ts]);}
+  if(o.meaning&&meaning)html+='<p class="op-mean" lang="en">'+br(meaning)+(msrc?'<small> · '+esc(msrc)+'</small>':'')+'</p>';
+  if(o.ref&&ref)html+='<p class="op-ref">'+esc(ref)+'</p>';
+  html='<div class="op op-'+design+' op-'+size+' op-c-'+color+' op-t-'+trad+' op-'+(isLine?'line':'page')+'">'+html+'</div>';
+  var links=Object.keys(fonts).map(function(c){return '<link rel="stylesheet" href="'+esc((R.fontsBase||'')+'fonts/'+c+'.css')+'">';}).join('');
+  return {fonts:links,
+    line:isLine?'<div class="opening-line fade" data-t="0.55">'+html+'</div>':'',
+    page:isLine?'':'<section class="opening-page" id="opening" aria-label="'+esc(P.text.opening_aria)+'"><div class="op-wrap">'+html+'</div></section>'};}
+
 /* ---------- templates ---------- */
 function templateId(S,R){return R.templates[S.template]?S.template:DEFAULT_TEMPLATE;}
 // The template's HTML with the chosen colour theme applied (cached per template + theme).
@@ -77,7 +122,8 @@ function build(S,opts,R){
   var cov=S.photos[S.cover]||S.photos[0];
   var wa=waNumber(S.rsvpPhone);
   var fontsHref=(R.fontsBase||'')+'fonts/fonts.css';
-  var V={LANG:esc(P.lang),DIR:P.dir==="rtl"?"rtl":"ltr",TITLE:esc(title),FONTS_HREF:esc(fontsHref),RSVP_HIDDEN:wa?'':' hidden',J_RSVP_PHONE:js(wa),J_COUPLE:js(S.name1+' & '+S.name2),SONG:esc(opts.silent||!S.song?SILENT:S.song),
+  var OP=renderOpening(S,R,P);
+  var V={OPENING_FONTS:OP.fonts,OPENING_LINE:OP.line,OPENING_PAGE:OP.page,LANG:esc(P.lang),DIR:P.dir==="rtl"?"rtl":"ltr",TITLE:esc(title),FONTS_HREF:esc(fontsHref),RSVP_HIDDEN:wa?'':' hidden',J_RSVP_PHONE:js(wa),J_COUPLE:js(S.name1+' & '+S.name2),SONG:esc(opts.silent||!S.song?SILENT:S.song),
     COVER_TITLE:esc(S.coverTitle),COVER_SUB:esc(S.coverSub),COVER_PHOTO:esc(cov.src),COVER_POS:'50% '+esc(cov.pos||'50%'),
     FRONT_LABEL:esc(S.frontLabel),NAME1:esc(S.name1),NAME2:esc(S.name2),REL1:esc(S.parents1?S.rel1:''),REL2:esc(S.parents2?S.rel2:''),EMBLEM:emblem,DATE_HEAD:esc(auto?F.date_head_auto:F.date_head_pull),DATE_TIP:auto?'':esc(F.date_tip),REC_ICON:TR.recIcon,PARENTS1:esc(S.parents1),PARENTS2:esc(S.parents2),INVITE_LINE:esc(S.inviteLine),
     W_WEEKDAY:esc(F.days[p.wd]),W_DAY:String(p.d),W_MONTH:esc(F.months[p.mo]),W_YEAR:String(p.y),BANNER_LINE:esc(banner),
@@ -112,6 +158,6 @@ function build(S,opts,R){
   return html;
 }
 
-var InviteEngine={build:build,STYLES:STYLES,TRAD:TRAD,esc:esc,js:js,fill:fill,time12:time12,waNumber:waNumber,DEFAULT_TEMPLATE:DEFAULT_TEMPLATE,DEFAULT_LANG:DEFAULT_LANG};
+var InviteEngine={build:build,scriptsIn:scriptsIn,renderOpening:renderOpening,findOpening:findOpening,toGujarati:toGujarati,detectScript:detectScript,openingOpts:openingOpts,OPENING_DEFAULT:OPENING_DEFAULT,STYLES:STYLES,TRAD:TRAD,esc:esc,js:js,fill:fill,time12:time12,waNumber:waNumber,DEFAULT_TEMPLATE:DEFAULT_TEMPLATE,DEFAULT_LANG:DEFAULT_LANG};
 if(typeof module!=='undefined'&&module.exports)module.exports=InviteEngine;else root.InviteEngine=InviteEngine;
 })(this);

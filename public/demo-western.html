@@ -1,4 +1,45 @@
-<!doctype html><html lang="en" dir="ltr"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en" dir="ltr"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* ---------- opening library (mantras, shlokas, verses, duas) ---------- */
+.op{--opc:var(--gold);--os:1;text-align:center;color:var(--opc);max-width:100%}
+.op-c-accent{--opc:var(--wine)}.op-c-ink{--opc:var(--ink)}
+.op-s{--os:.86}.op-l{--os:1.18}
+.op p{margin:0}
+.op{--op-fallback:"Noto Serif Devanagari","Noto Serif Gujarati","Noto Serif Gurmukhi","Amiri","Noto Nastaliq Urdu"}
+.op-text{font-family:var(--f-head),var(--op-fallback);font-weight:500;line-height:1.55;color:var(--opc);overflow-wrap:anywhere}
+.op-s-latn{font-style:italic}
+.op-s-deva{font-family:"Noto Serif Devanagari",var(--op-fallback),serif;line-height:1.95}
+.op-s-gujr{font-family:"Noto Serif Gujarati",var(--op-fallback),serif;line-height:1.95}
+.op-s-guru{font-family:"Noto Serif Gurmukhi",var(--op-fallback),serif;line-height:1.95}
+.op-s-arab{font-family:"Amiri",var(--op-fallback),serif;line-height:2.15}
+.op-s-urdu{font-family:"Noto Nastaliq Urdu",var(--op-fallback),serif;line-height:2.5}
+.op-line .op-text{font-size:calc(15.5px*var(--os));letter-spacing:.01em}
+.op-page .op-text{font-size:calc(21px*var(--os))}
+.op-page .op-s-arab,.op-page .op-s-urdu{font-size:calc(25px*var(--os))}
+.op-tr{margin-top:10px!important;font-size:calc(13px*var(--os));color:var(--muted);opacity:.95}
+.op-tr.op-s-latn{font:italic calc(13px*var(--os))/1.6 var(--f-body)}
+.op-mean{margin:14px auto 0!important;max-width:30em;font:italic calc(14px*var(--os))/1.65 var(--f-body);color:var(--ink);opacity:.82}
+.op-mean small{font-style:normal;font-size:.82em;opacity:.8}
+.op-ref{margin-top:12px!important;font:600 10.5px/1.4 var(--f-body);letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.op-ref::before{content:"— "}
+/* designs */
+.op-classic::before,.op-classic::after{content:"";display:block;width:78px;height:8px;margin:8px auto;opacity:.85;
+  background:linear-gradient(var(--opc),var(--opc)) left 50%/32px 1px no-repeat,linear-gradient(var(--opc),var(--opc)) right 50%/32px 1px no-repeat,radial-gradient(circle,var(--opc) 2.2px,transparent 2.7px) center/8px 8px no-repeat}
+.op-page.op-classic::before,.op-page.op-classic::after{width:120px;margin:16px auto;background-size:50px 1px,50px 1px,8px 8px}
+.op-framed{border:1px solid var(--opc);outline:1px solid var(--opc);outline-offset:4px;border-radius:3px;padding:8px 16px;display:inline-block}
+.op-page.op-framed{padding:26px 24px;margin:6px}
+.op-motif{display:block;margin:0 auto 10px}
+.op-motif svg{width:34px;height:34px;display:block;margin:0 auto;fill:none;stroke:var(--opc);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.op-page .op-motif svg{width:48px;height:48px}
+.op-minimal .op-text{letter-spacing:.02em}
+/* placement: one line under the emblem, or a page of its own */
+.opening-line{margin:2px 0 12px}
+.opening-page{position:relative;box-sizing:border-box;min-height:var(--vh100,100vh);display:grid;place-items:center;padding:76px 30px;text-align:center;
+  background:radial-gradient(120% 70% at 50% 0%,rgba(179,138,78,.10),transparent 70%)}
+.opening-page::before{content:"";position:absolute;inset:18px;border:1px solid rgba(179,138,78,.45);border-radius:20px;pointer-events:none}
+.opening-page .op-wrap{position:relative;z-index:2;max-width:420px}
+html.js .opening-page .op-wrap{opacity:0;transform:translateY(14px);filter:blur(6px);transition:opacity 1.6s,transform 1.6s,filter 1.6s}
+html.js .opening-page.on .op-wrap{opacity:1;transform:none;filter:none}
+</style></head><body>
 <title>James &amp; Charlotte</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -424,12 +465,14 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
   <div class="hang" id="ffTop" data-n="6"></div>
 </div>
 <main class="page">
+  
   <!-- FRONT PAGE -->
   <header class="front in" id="front">
     <div class="fphoto" aria-hidden="true"><img class="fbg" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20960%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ead9d3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23cfb1a8%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22960%22%20fill%3D%22url(%23g)%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2210%22%20opacity%3D%22.7%22%3E%3Crect%20x%3D%22230%22%20y%3D%22400%22%20width%3D%22180%22%20height%3D%22140%22%20rx%3D%2216%22%2F%3E%3Ccircle%20cx%3D%22320%22%20cy%3D%22470%22%20r%3D%2238%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22320%22%20y%3D%22610%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2240%22%20fill%3D%22%23fff%22%20opacity%3D%22.85%22%3EPhoto%203%3C%2Ftext%3E%3C%2Fsvg%3E" alt="" style="object-position:50% 50%"><div class="fveil"></div></div>
     <div class="frame"></div>
     <div class="front-in">
       <div class="medal fade" data-t="0.3"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ganesha" style="--gs:#b38a4e"/></svg></div>
+      
       <div class="label fade" data-t="0.8">Together with their families</div>
       <h1 style="margin:0">
         <span class="name" id="n1" data-text="James" aria-label="James"></span>
@@ -813,6 +856,12 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
         later(function(){document.getElementById('p2').classList.add('on');},900);
         later(function(){document.getElementById('inv').classList.add('on');},1600);
         later(function(){document.getElementById('arrow').classList.add('on');body.classList.remove('locked');mb.hidden=false;ambient=!reduce;if(ambient&&!running){running=true;requestAnimationFrame(tick);}},2300);});});}
+  // With an opening page, the book opens onto it; the names start writing when the first page scrolls into view.
+  function afterOpen(){var op=document.getElementById('opening');if(!op){frontSequence();return;}
+    root.classList.add('opened');op.classList.add('on');
+    later(function(){document.getElementById('arrow').classList.add('on');body.classList.remove('locked');mb.hidden=false;},1400);
+    var started=false;function go(){if(started)return;started=true;frontSequence();}
+    if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();go();}},{threshold:.35});io.observe(document.getElementById('front'));}else go();}
   addEventListener('scroll',function(){if(scrollY>60)document.getElementById('arrow').classList.remove('on');},{passive:true});
 
   /* ---------- fit the first page to any screen: centred, never cut ---------- */
@@ -824,10 +873,10 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
   /* ---------- open the book ---------- */
   var opened=false;
   function openBook(){if(opened||!scene.classList.contains('ready'))return;opened=true;startMusic();
-    if(reduce){scene.hidden=true;frontSequence();return;}
+    if(reduce){scene.hidden=true;afterOpen();return;}
     scene.classList.add('open');
     setTimeout(function(){var r=bw.getBoundingClientRect(),z=Math.max(innerWidth/r.width,innerHeight/r.height)*1.08;bw.style.setProperty('--z',z.toFixed(2));scene.classList.add('swoosh');},1000);
-    setTimeout(function(){scene.classList.add('gone');frontSequence();burst(24);},2200);
+    setTimeout(function(){scene.classList.add('gone');afterOpen();burst(24);},2200);
     setTimeout(function(){scene.hidden=true;},3100);}
   document.getElementById('book').addEventListener('click',openBook);
   if('IntersectionObserver' in window){var iop=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('offscreen',!e.isIntersecting);});},{rootMargin:'250px 0px'});

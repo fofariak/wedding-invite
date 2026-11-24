@@ -17,7 +17,34 @@ function loadResources() {
     templates[id] = { name: meta.name, html: read(base + 'template.html'), themes };
   }
   if (!templates.classic) throw new Error('src/templates/classic is required (the default template)');
-  return { templates, emblems: JSON.parse(read('src/emblems.json')), phrases: loadPhrases() };
+  return { templates, emblems: JSON.parse(read('src/emblems.json')), phrases: loadPhrases(), openings: loadOpenings() };
+}
+
+// Opening library: src/openings/meta.json (traditions, designs) + one file of texts per tradition.
+// Checks every entry so a typo in the library can't reach an invitation.
+const OPENING_TYPES = ['phrase', 'mantra', 'shloka', 'prayer', 'scripture'];
+function loadOpenings() {
+  const meta = JSON.parse(read('src/openings/meta.json'));
+  delete meta._about;
+  const items = [];
+  const ids = new Set();
+  for (const t of meta.traditions) {
+    const file = 'src/openings/' + t.id + '.json';
+    const subs = new Set(t.subs.map((s) => s.id));
+    for (const it of JSON.parse(read(file)).items) {
+      const where = file + ' ' + (it.id || '(no id)');
+      if (!/^[a-z0-9-]{3,60}$/.test(it.id || '') || ids.has(it.id)) throw new Error(where + ': missing or duplicate id');
+      if (!subs.has(it.sub)) throw new Error(where + ': unknown sub "' + it.sub + '"');
+      if (!meta.scripts[it.script]) throw new Error(where + ': unknown script "' + it.script + '"');
+      if (!OPENING_TYPES.includes(it.type)) throw new Error(where + ': unknown type "' + it.type + '"');
+      if (it.versions) {
+        for (const v of meta.bibleVersions) if (!it.versions[v.id]) throw new Error(where + ': missing Bible version ' + v.id);
+      } else if (!it.text) throw new Error(where + ': missing text');
+      ids.add(it.id);
+      items.push(Object.assign({ tradition: t.id }, it));
+    }
+  }
+  return { meta, items };
 }
 
 // One phrase file per language (src/i18n/<code>.json). English is the reference: every other

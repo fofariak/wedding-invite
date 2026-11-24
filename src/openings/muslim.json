@@ -1,0 +1,32 @@
+{
+  "_about": "Muslim openings. Quranic portions match quran.com's simple (imlaei) text exactly (checked 24 Nov 2026). Meanings marked 'Sahih International' are that translation; others as supplied by the owner. verified=false until checked by a knowledgeable person.",
+  "items": [
+    { "id": "mu-bismillah", "sub": "arabic", "title": "Bismillah", "type": "phrase", "script": "arab", "lang": "ar", "text": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", "translit": "Bismillāhir-Raḥmānir-Raḥīm", "meaning": "In the name of Allah, the Entirely Merciful, the Especially Merciful", "meaningSource": "Sahih International" },
+    { "id": "mu-bismillah-short", "sub": "arabic", "title": "Bismillah (short)", "type": "phrase", "script": "arab", "lang": "ar", "text": "بِسْمِ اللَّهِ", "translit": "Bismillāh", "meaning": "In the name of Allah" },
+    { "id": "mu-alhamdulillah", "sub": "arabic", "title": "Alhamdulillah", "type": "phrase", "script": "arab", "lang": "ar", "text": "اَلْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمِينَ", "translit": "Alḥamdu lillāhi Rabbil-ʿĀlamīn", "meaning": "All praise is due to Allah, Lord of the worlds" },
+    { "id": "mu-mashallah", "sub": "arabic", "title": "Mashallah", "type": "phrase", "script": "arab", "lang": "ar", "text": "مَا شَاءَ اللّٰهُ", "translit": "Mā shāʾ Allāh", "meaning": "What Allah has willed" },
+    { "id": "mu-inshallah", "sub": "arabic", "title": "Inshallah", "type": "phrase", "script": "arab", "lang": "ar", "text": "إِنْ شَاءَ اللّٰهُ", "translit": "In shāʾ Allāh", "meaning": "If Allah wills" },
+    { "id": "mu-salam", "sub": "arabic", "title": "Islamic Greeting", "type": "phrase", "script": "arab", "lang": "ar", "text": "اَلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللّٰهِ وَبَرَكَاتُهُ", "translit": "As-salāmu ʿalaykum wa raḥmatullāhi wa barakātuh", "meaning": "Peace be upon you, and the mercy of Allah and His blessings" },
+
+    { "id": "mu-q-30-21", "sub": "quran", "title": "Surah Ar-Rum (30:21)", "type": "scripture", "script": "arab", "lang": "ar", "text": "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً", "meaning": "And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy.", "meaningSource": "Sahih International", "ref": "Surah Ar-Rum 30:21 (portion)" },
+    { "id": "mu-q-25-74", "sub": "quran", "title": "Surah Al-Furqan (25:74)", "type": "scripture", "script": "arab", "lang": "ar", "text": "رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا", "meaning": "Our Lord, grant us from among our wives and offspring comfort to our eyes and make us a leader [i.e., example] for the righteous.", "meaningSource": "Sahih International", "ref": "Surah Al-Furqan 25:74 (portion)" },
+    { "id": "mu-q-4-1", "sub": "quran", "title": "Surah An-Nisa (4:1)", "type": "scripture", "script": "arab", "lang": "ar", "text": "يَا أَيُّهَا النَّاسُ اتَّقُوا رَبَّكُمُ الَّذِي خَلَقَكُم مِّن نَّفْسٍ وَاحِدَةٍ", "ref": "Surah An-Nisa 4:1 (opening portion)" },
+    { "id": "mu-q-33-70", "sub": "quran", "title": "Surah Al-Ahzab (33:70)", "type": "scripture", "script": "arab", "lang": "ar", "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَقُولُوا قَوْلًا سَدِيدًا", "ref": "Surah Al-Ahzab 33:70" },
+    { "id": "mu-q-78-8", "sub": "quran", "title": "Surah An-Naba (78:8)", "type": "scripture", "script": "arab", "lang": "ar", "text": "وَخَلَقْنَاكُمْ أَزْوَاجًا", "meaning": "And We created you in pairs.", "meaningSource": "Sahih International", "ref": "Surah An-Naba 78:8" },
+    { "id": "mu-q-2-187", "sub": "quran", "title": "Surah Al-Baqarah (2:187)", "type": "scripture", "script": "arab", "lang": "ar", "text": "هُنَّ لِبَاسٌ لَّكُمْ وَأَنتُمْ لِبَاسٌ لَّهُنَّ", "meaning": "They are a clothing for you and you are a clothing for them.", "meaningSource": "Sahih International", "ref": "Surah Al-Baqarah 2:187 (portion)" },
+
+    { "id": "mu-dua-barakallah", "sub": "duas", "title": "Wedding Blessing", "type": "prayer", "script": "arab", "lang": "ar", "text": "بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ", "translit": "Barakallahu laka wa baraka alaika wa jama'a bainakuma fi khair.", "meaning": "May Allah bless you, shower His blessings upon you and bring you together in goodness.", "ref": "Sunan Abi Dawud 2130; Jami' at-Tirmidhi 1091" },
+    { "id": "mu-dua-allahumma", "sub": "duas", "title": "Wedding Dua", "type": "prayer", "script": "arab", "lang": "ar", "text": "اللَّهُمَّ بَارِكْ لَهُمَا وَبَارِكْ عَلَيْهِمَا وَاجْمَعْ بَيْنَهُمَا فِي خَيْرٍ", "meaning": "O Allah, bless them both and unite them in goodness." },
+
+    { "id": "mu-ur-alhamdulillah", "sub": "urdu", "title": "Alhamdulillah Rabbil Alamin", "type": "phrase", "script": "urdu", "lang": "ur", "text": "الحمد للہ رب العالمین" },
+    { "id": "mu-ur-bismillah", "sub": "urdu", "title": "Bismillah (Urdu style)", "type": "phrase", "script": "urdu", "lang": "ur", "text": "بسم اللہ الرحمن الرحیم" },
+    { "id": "mu-ur-fazl-o-karam", "sub": "urdu", "title": "Allah ke Fazl o Karam se", "type": "phrase", "script": "urdu", "lang": "ur", "text": "اللہ کے فضل و کرم سے", "meaning": "By the grace and kindness of Allah" },
+    { "id": "mu-ur-dawat-e-nikah", "sub": "urdu", "title": "Invitation to the Nikah", "type": "phrase", "script": "urdu", "lang": "ur", "text": "الحمدللہ، ہم آپ کو دعوتِ نکاح دیتے ہیں", "meaning": "Praise be to Allah, we invite you to the Nikah" },
+    { "id": "mu-ur-pur-musarrat", "sub": "urdu", "title": "On This Joyous Occasion", "type": "phrase", "script": "urdu", "lang": "ur", "text": "خوشی کے اس پُرمسرت موقع پر", "meaning": "On this joyous and happy occasion" },
+    { "id": "mu-ur-dawat-e-walima", "sub": "urdu", "title": "Dawat-e-Walima", "type": "phrase", "script": "urdu", "lang": "ur", "text": "دعوتِ ولیمہ", "meaning": "Walima invitation" },
+    { "id": "mu-ur-taqreeb-e-nikah", "sub": "urdu", "title": "Taqreeb-e-Nikah", "type": "phrase", "script": "urdu", "lang": "ur", "text": "تقریبِ نکاح", "meaning": "Nikah ceremony" },
+
+    { "id": "mu-pl-grace", "sub": "plain", "title": "By the Grace of Allah", "type": "phrase", "script": "latn", "lang": "en", "text": "By the Grace of Allah" },
+    { "id": "mu-pl-blessings", "sub": "plain", "title": "With the Blessings of Allah", "type": "phrase", "script": "latn", "lang": "en", "text": "With the Blessings of Allah" }
+  ]
+}

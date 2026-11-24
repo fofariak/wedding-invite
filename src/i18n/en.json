@@ -48,13 +48,56 @@
     "thanks_no": "Thank you, {name}. You will be missed.",
     "reply_intro": "This is {name}. ",
     "reply_yes": "Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you!",
-    "reply_no": "Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness."
+    "reply_no": "Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness.",
+    "opening_aria": "Opening blessing"
   },
   "format": {
-    "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-    "months_short": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    "days_short": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "months_short": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "days": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "days_short": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "am": "am",
     "pm": "pm",
     "time": "{h12}:{mm} {ampm}",
@@ -67,7 +110,15 @@
     "banner_line": "{rite} at {time} · {venue}",
     "see_you_on": "See you on {date}",
     "calendar_title": "{name1} & {name2} Wedding",
-    "join": { "hindu": " Weds ", "muslim": " & ", "western": " & " },
-    "rite": { "hindu": "Pheras", "muslim": "Nikah", "western": "Ceremony" }
+    "join": {
+      "hindu": " Weds ",
+      "muslim": " & ",
+      "western": " & "
+    },
+    "rite": {
+      "hindu": "Pheras",
+      "muslim": "Nikah",
+      "western": "Ceremony"
+    }
   }
 }
