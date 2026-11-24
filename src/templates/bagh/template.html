@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="%%LANG%%" dir="%%DIR%%">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>%%TITLE%%</title>
+<link rel="stylesheet" href="%%FONTS_HREF%%"><link rel="stylesheet" href="%%FONTS_BASE%%fonts/pinyon.css">%%OPENING_FONTS%%
+<script>document.documentElement.classList.add('js')</script>
+<style>%%SHARED_CSS%%</style>
+%%THEME_VARS%%
+<style>
+/* ---------- Bagh: watercolour garden ---------- */
+:root{--f-head:"Playfair Display",Georgia,serif;--f-body:"Montserrat","Helvetica Neue",Arial,sans-serif;--f-script:"Pinyon Script","Playfair Display",Georgia,serif}
+body{background:var(--soft)}
+.washed{background:radial-gradient(60% 40% at 12% 8%,var(--wash1),transparent 70%),radial-gradient(55% 38% at 92% 30%,var(--wash2),transparent 70%),radial-gradient(70% 45% at 30% 98%,var(--wash2),transparent 70%),radial-gradient(50% 35% at 95% 92%,var(--wash1),transparent 70%),var(--paper)}
+.script{font-family:var(--f-script);font-weight:400}
+svg.paint,.wreath svg,.bq svg{overflow:visible}
+
+/* intro: a wreath that blooms open */
+#scene{display:grid;place-items:center}
+.wreath{position:relative;width:calc(var(--r)*2 + 70px);height:calc(var(--r)*2 + 70px)}
+.wreath .w{position:absolute;left:50%;top:50%;width:var(--s);height:var(--s);margin:calc(var(--s)/-2) 0 0 calc(var(--s)/-2);
+  transform:rotate(var(--a)) translateY(calc(var(--r)*-1)) rotate(var(--t));transition:transform 2.2s cubic-bezier(.3,.6,.2,1) var(--d),opacity 1.6s var(--d)}
+html.opening #scene .wreath .w{transform:rotate(var(--a)) translateY(calc(var(--r)*-2.4)) rotate(calc(var(--t) + 70deg)) scale(1.6);opacity:0}
+.card{position:absolute;width:190px;height:190px;border-radius:50%;background:var(--paper);display:grid;place-items:center;align-content:center;gap:2px;text-align:center;
+  box-shadow:0 18px 40px rgba(90,60,60,.16),inset 0 0 0 1px rgba(180,138,106,.35);transition:transform 1.4s cubic-bezier(.4,0,.2,1) .5s,opacity 1.1s .7s}
+.card svg{width:44px;height:44px;margin-bottom:2px}
+.card b{font:500 21px/1.2 var(--f-head);letter-spacing:.16em;color:var(--wine);padding:0 22px}
+.card small{font:600 9px var(--f-body);letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-top:6px}
+html.opening .card{transform:scale(1.25);opacity:0}
+.petal{position:absolute;top:-30px;left:var(--x);width:var(--z);height:var(--z);border-radius:70% 0 70% 0;background:var(--b2);opacity:0;pointer-events:none}
+html.opening .petal{animation:fall 3.2s cubic-bezier(.3,.2,.6,1) var(--d) forwards}
+@keyframes fall{0%{opacity:0;transform:translate(0,0) rotate(0)}10%{opacity:.85}100%{opacity:0;transform:translate(40px,108vh) rotate(560deg)}}
+#scene .tap{color:var(--wine)}
+
+/* first page */
+.front{position:relative;min-height:var(--vh100,100vh);display:grid;place-items:center;padding:110px 30px 130px;text-align:center;overflow:hidden}
+.bq{position:absolute;width:230px;pointer-events:none}
+.bq svg{width:100%;height:auto;display:block}
+.bq.tl{top:-36px;left:-52px}.bq.br{bottom:-78px;right:-64px;width:200px;transform:rotate(180deg)}
+.bq.br>div{transform:rotate(180deg)}
+.front-in{position:relative;z-index:2;max-width:300px}
+.medal{width:64px;height:64px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:var(--paper);box-shadow:inset 0 0 0 1px rgba(180,138,106,.5)}
+.medal svg{width:40px;height:40px}
+.front .lbl{font:600 10px/1.6 var(--f-body);letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.name{display:block;font:400 66px/1.05 var(--f-script);color:var(--wine);margin-top:6px}
+.parents{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.parents b{display:block;font:600 9.5px var(--f-body);letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-bottom:2px}
+.amp{display:block;font:italic 500 34px/1 var(--f-head);color:var(--gold);margin:12px 0 0}
+.invite{margin:20px auto 0;max-width:260px;font:italic 16px/1.6 var(--f-head);color:var(--ink)}
+
+/* blooming as sections appear */
+html.js .wreath.rv .w{transform:rotate(var(--a)) translateY(calc(var(--r)*-1)) rotate(var(--t)) scale(.15);opacity:0}
+html.js .wreath.rv.on .w{transform:rotate(var(--a)) translateY(calc(var(--r)*-1)) rotate(var(--t)) scale(1);opacity:1}
+html.js .rv .bloom{transform:scale(.3) rotate(-25deg);opacity:0;transition:transform 1.5s cubic-bezier(.3,.7,.2,1) .35s,opacity 1.2s .35s}
+html.js .rv.on .bloom{transform:none;opacity:1}
+
+/* date inside a wreath */
+.date-wrap{position:relative;display:grid;place-items:center;margin:4px auto 0}
+.date-wrap .wreath{--r:124px}
+.date-in{position:absolute;inset:0;display:grid;place-items:center;align-content:center}
+.date-in .wd{font:600 10.5px var(--f-body);letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.date-in .dd{font:500 64px/1 var(--f-head);color:var(--wine)}
+.date-in .my{font:400 24px/1 var(--f-script);color:var(--ink);margin-top:4px;max-width:150px}
+.banner{margin:6px auto 0;max-width:290px;font:italic 15px var(--f-head);color:var(--ink)}
+
+/* cards and photos */
+.ev{position:relative;background:#fff;border:0;border-radius:18px;box-shadow:0 14px 34px rgba(90,60,60,.10);padding:40px 18px 24px;overflow:visible}
+.ev-spr{position:absolute;top:-16px;right:-8px;width:104px;height:auto}
+.ev h3{font:400 34px/1.1 var(--f-script);color:var(--wine)}
+.ph{border-radius:16px;border:7px solid #fff;box-shadow:0 14px 30px rgba(90,60,60,.14);overflow:visible;aspect-ratio:3/4}
+.ph img{border-radius:9px}
+.ph figcaption{border-radius:0 0 9px 9px}
+.ph-spr{position:absolute;left:-20px;bottom:-22px;width:110px;height:auto;transform:rotate(-8deg)}
+.track{padding-top:22px;padding-bottom:30px}
+
+/* reception, venue, closing */
+.rec-card{position:relative;max-width:330px;margin:56px auto 0;background:#fff;border-radius:22px;padding:98px 22px 30px;box-shadow:0 14px 34px rgba(90,60,60,.10)}
+.rec-card .bq-mini{position:absolute;left:50%;top:-74px;width:160px;margin-left:-80px}
+.rec-card h2{font:400 46px/1.05 var(--f-script);color:var(--wine)}
+.rec-date{margin-top:10px;font:italic 17px var(--f-head);color:var(--ink)}
+.rec-line,.rec-venue{margin-top:6px;font-size:14px;color:var(--muted)}
+.chip{display:inline-block;margin-top:14px;padding:6px 14px;border-radius:999px;background:var(--soft);font-size:12px;color:var(--wine)}
+.venue h3{font:400 42px/1.1 var(--f-script);color:var(--wine);margin-top:10px}
+.venue .city{font:600 10.5px var(--f-body);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:10px}
+.venue p{margin-top:8px;color:var(--muted);font-size:14px}
+.sprig-div{display:block;width:150px;margin:18px auto 0}
+.sec h2{font:400 46px/1.1 var(--f-script);color:var(--wine)}
+.closing .fam{margin-top:30px;font:400 34px/1.2 var(--f-script);color:var(--wine)}
+.closing .kids{margin-top:12px;font-size:14px;color:var(--muted)}
+.closing .bq-end{width:200px;margin:26px auto 0}
+.btn{background:var(--wine);border-color:var(--wine)}
+.btn.ghost{background:transparent}
+.count b{color:var(--wine)}
+@media (prefers-reduced-motion:reduce){.wreath .w,.card{transition:none}.petal{display:none}}
+</style>
+</head>
+<body>
+<audio id="bgm" src="%%SONG%%" loop preload="auto"></audio>
+
+<div id="scene" class="washed" data-ms="3000" role="dialog" aria-label="%%T_BOOK_ARIA%%">
+  <div class="wreath intro" style="--r:118px" aria-hidden="true"><svg class="w" style="--a:0deg;--s:62px;--t:0deg;--d:0.00s" viewBox="0 0 100 100"><use href="#rose"/></svg><svg class="w" style="--a:30deg;--s:46px;--t:100deg;--d:0.06s" viewBox="0 0 60 100"><use href="#leaf"/></svg><svg class="w" style="--a:60deg;--s:38px;--t:0deg;--d:0.12s" viewBox="0 0 60 60"><use href="#blossom"/></svg><svg class="w" style="--a:90deg;--s:46px;--t:80deg;--d:0.18s" viewBox="0 0 60 100"><use href="#leaf"/></svg><svg class="w" style="--a:120deg;--s:62px;--t:0deg;--d:0.24s" viewBox="0 0 100 100"><use href="#rose"/></svg><svg class="w" style="--a:150deg;--s:46px;--t:100deg;--d:0.30s" viewBox="0 0 60 100"><use href="#leaf"/></svg><svg class="w" style="--a:180deg;--s:38px;--t:0deg;--d:0.36s" viewBox="0 0 60 60"><use href="#blossom"/></svg><svg class="w" style="--a:210deg;--s:46px;--t:80deg;--d:0.42s" viewBox="0 0 60 100"><use href="#leaf"/></svg><svg class="w" style="--a:240deg;--s:62px;--t:0deg;--d:0.48s" viewBox="0 0 100 100"><use href="#rose"/></svg><svg class="w" style="--a:270deg;--s:46px;--t:100deg;--d:0.54s" viewBox="0 0 60 100"><use href="#leaf"/></svg><svg class="w" style="--a:300deg;--s:38px;--t:0deg;--d:0.60s" viewBox="0 0 60 60"><use href="#blossom"/></svg><svg class="w" style="--a:330deg;--s:46px;--t:80deg;--d:0.66s" viewBox="0 0 60 100"><use href="#leaf"/></svg></div>
+  <div class="card"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ganesha" style="--gs:var(--gold)"/></svg><b>%%COVER_TITLE%%</b><small>%%COVER_SUB%%</small></div>
+  <i class="petal" style="--x:3%;--d:0.00s;--z:8px"></i><i class="petal" style="--x:9.3%;--d:0.11s;--z:13px"></i><i class="petal" style="--x:15.6%;--d:0.22s;--z:8px"></i><i class="petal" style="--x:21.9%;--d:0.33s;--z:13px"></i><i class="petal" style="--x:28.2%;--d:0.44s;--z:8px"></i><i class="petal" style="--x:34.5%;--d:0.55s;--z:13px"></i><i class="petal" style="--x:40.8%;--d:0.66s;--z:8px"></i><i class="petal" style="--x:47.1%;--d:0.77s;--z:13px"></i><i class="petal" style="--x:53.4%;--d:0.88s;--z:8px"></i><i class="petal" style="--x:59.699999999999996%;--d:0.99s;--z:13px"></i><i class="petal" style="--x:66%;--d:1.10s;--z:8px"></i><i class="petal" style="--x:72.3%;--d:1.21s;--z:13px"></i><i class="petal" style="--x:78.6%;--d:1.32s;--z:8px"></i><i class="petal" style="--x:84.89999999999999%;--d:1.43s;--z:13px"></i><i class="petal" style="--x:91.2%;--d:1.54s;--z:8px"></i><i class="petal" style="--x:97.5%;--d:1.65s;--z:13px"></i>
+  <div class="tap"><span class="dot"></span>%%T_TAP_TO_OPEN_INVITE%%</div>
+  <button id="book" aria-label="%%T_OPEN_BOOK_ARIA%%"></button>
+</div>
+<button id="music" aria-label="%%T_PLAY_MUSIC%%" aria-pressed="false" hidden><span class="bars"><i></i><i></i><i></i></span></button>
+<div class="arrow" id="arrow" aria-hidden="true">%%T_SCROLL%%<i></i></div>
+
+<main class="page">
+  %%OPENING_PAGE%%
+  <header class="front washed" id="front">
+    <div class="bq tl" aria-hidden="true"><div data-depth="0.08"><svg viewBox="0 0 220 220"><use href="#bouquet"/></svg></div></div>
+    <div class="bq br" aria-hidden="true"><div data-depth="-0.06"><svg viewBox="0 0 220 220"><use href="#bouquet"/></svg></div></div>
+    <div class="front-in">
+      <div class="medal" data-t="0.2"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ganesha" style="--gs:var(--gold)"/></svg></div>
+      <div data-t="0.5">%%OPENING_LINE%%</div>
+      <div class="lbl" data-t="0.8">%%FRONT_LABEL%%</div>
+      <h1 style="margin:0">
+        <span class="name" data-t="1.2">%%NAME1%%</span>
+        <span class="parents" data-t="1.6"><b>%%REL1%%</b>%%PARENTS1%%</span>
+        <span class="amp" data-t="2">&amp;</span>
+        <span class="name" data-t="2.3">%%NAME2%%</span>
+        <span class="parents" data-t="2.7"><b>%%REL2%%</b>%%PARENTS2%%</span>
+      </h1>
+      <p class="invite" data-t="3.1">%%INVITE_LINE%%</p>
+    </div>
+  </header>
+
+  <section class="sec alt" id="date">
+    <span class="label rv">%%T_SAVE_THE_DATE%%</span>
+    <div class="date-wrap"><div class="wreath rv" style="--r:124px" aria-hidden="true"><svg class="w" style="--a:0deg;--s:62px;--t:0deg;--d:0.00s" viewBox="0 0 100 100"><use href="#rose"/></svg><svg class="w" style="--a:30deg;--s:46px;--t:100deg;--d:0.06s" viewBox="0 0 60 100"><use href="#leaf"/></svg><svg class="w" style="--a:60deg;--s:38px;--t:0deg;--d:0.12s" viewBox="0 0 60 60"><use href="#blossom"/></svg><svg class="w" style="--a:90deg;--s:46px;--t:80deg;--d:0.18s" viewBox="0 0 60 100"><use href="#leaf"/></svg><svg class="w" style="--a:120deg;--s:62px;--t:0deg;--d:0.24s" viewBox="0 0 100 100"><use href="#rose"/></svg><svg class="w" style="--a:150deg;--s:46px;--t:100deg;--d:0.30s" viewBox="0 0 60 100"><use href="#leaf"/></svg><svg class="w" style="--a:180deg;--s:38px;--t:0deg;--d:0.36s" viewBox="0 0 60 60"><use href="#blossom"/></svg><svg class="w" style="--a:210deg;--s:46px;--t:80deg;--d:0.42s" viewBox="0 0 60 100"><use href="#leaf"/></svg><svg class="w" style="--a:240deg;--s:62px;--t:0deg;--d:0.48s" viewBox="0 0 100 100"><use href="#rose"/></svg><svg class="w" style="--a:270deg;--s:46px;--t:100deg;--d:0.54s" viewBox="0 0 60 100"><use href="#leaf"/></svg><svg class="w" style="--a:300deg;--s:38px;--t:0deg;--d:0.60s" viewBox="0 0 60 60"><use href="#blossom"/></svg><svg class="w" style="--a:330deg;--s:46px;--t:80deg;--d:0.66s" viewBox="0 0 60 100"><use href="#leaf"/></svg></div><div class="date-in"><div class="wd">%%W_WEEKDAY%%</div><div class="dd">%%W_DAY%%</div><div class="my">%%W_MONTH%% %%W_YEAR%%</div></div></div>
+    <p class="banner rv">%%BANNER_LINE%%</p>
+    <div class="count rv" aria-label="%%T_COUNTDOWN_ARIA%%"><span><b data-cd="d">--</b><small>%%T_DAYS%%</small></span><span><b data-cd="h">--</b><small>%%T_HRS%%</small></span><span><b data-cd="m">--</b><small>%%T_MIN%%</small></span><span><b data-cd="s">--</b><small>%%T_SEC%%</small></span></div>
+    <div class="btns rv"><a class="btn" target="_blank" rel="noopener" href="%%CAL_HREF%%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>%%T_ADD_TO_CALENDAR%%</a></div>
+  </section>
+
+  <section class="sec washed">
+    <span class="label rv">%%T_SWIPE_CELEBRATIONS%%</span><h2 class="rv">%%T_FESTIVITIES%%</h2>
+    <div class="carousel rv" aria-roledescription="carousel" aria-label="%%T_FUNCTIONS_ARIA%%"><div class="track">
+%%EVENTS%%
+    </div><div class="dots"></div></div>
+    <p class="hint rv">%%T_SWIPE_FUNCTIONS%%</p>
+  </section>
+
+  <section class="sec alt">
+    <span class="label rv">%%T_MOMENTS%%</span><h2 class="rv">%%T_OUR_STORY%%</h2>
+    <div class="carousel rv" aria-roledescription="carousel" aria-label="%%T_PHOTOS_ARIA%%"><div class="track">
+%%PHOTOS%%
+    </div><div class="dots"></div></div>
+    <p class="hint rv">%%T_SWIPE_MORE%%</p>
+  </section>
+
+  <section class="sec washed"%%REC_HIDDEN%%>
+    <div class="rec-card rv">
+      <svg class="bq-mini bloom" viewBox="0 0 220 220" aria-hidden="true"><use href="#bouquet"/></svg>
+      <span class="label">%%REC_LABEL%%</span><h2>%%REC_TITLE%%</h2>
+      <div class="rec-date">%%REC_DATE%%</div><div class="rec-line">%%REC_LINE%%</div><div class="rec-venue">%%REC_VENUE%%</div>%%REC_CHIP%%
+    </div>
+  </section>
+
+  <section class="sec venue">
+    <span class="label rv">%%T_LOCATION%%</span><h2 class="rv">%%T_HOW_TO_REACH%%</h2>
+    <div class="rv"><svg class="sprig-div bloom" viewBox="0 0 120 60" aria-hidden="true"><use href="#sprig"/></svg></div>
+    <h3 class="rv">%%VENUE%%</h3>
+    <div class="city rv">%%CITY%%</div>
+    <p class="rv">%%ADDRESS%%</p>
+    <div class="btns rv">
+      <a class="btn" href="%%DIR_HREF%%" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l18-8-8 18-2-8z"/></svg>%%T_GET_DIRECTIONS%%</a>
+      <a class="btn ghost" href="%%MAP_HREF%%" target="_blank" rel="noopener" aria-label="%%T_MAP_ARIA%%">%%T_TAP_FOR_MAPS%%</a>
+      <button class="btn ghost" type="button" id="copy">%%T_COPY_ADDRESS%%</button>
+    </div>
+    <div class="copied" id="copied" aria-live="polite"></div>
+  </section>
+
+  <section class="sec alt closing">
+    <div%%RSVP_HIDDEN%%>
+      <span class="label rv">%%T_KINDLY_RESPOND%%</span><h2 class="rv">%%T_WILL_YOU_JOIN%%</h2>
+      <form class="rsvp rv" id="rsvp">
+        <label for="r-name" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">%%T_YOUR_NAME%%</label>
+        <input type="text" id="r-name" placeholder="%%T_YOUR_NAME%%" required>
+        <div class="two"><button class="btn" type="submit" data-a="yes">%%T_ATTENDING%%</button><button class="btn ghost" type="submit" data-a="no">%%T_CANT_MAKE_IT%%</button></div>
+      </form>
+      <div class="thanks" id="thanks" hidden></div>
+    </div>
+    <div class="fam rv">%%CLOSING%%</div>
+    %%KIDS%%
+    <p class="rv" id="tip" style="margin-top:18px;font-size:13px;color:var(--muted)"></p>
+    <div class="rv"><svg class="bq-end bloom" viewBox="0 0 220 220" aria-hidden="true"><use href="#bouquet"/></svg></div>
+  </section>
+</main>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+%%SHARED_ICONS%%
+    <symbol id="ganesha" viewBox="0 0 100 100">%%EMBLEM%%</symbol>
+    <filter id="wc" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5"/><feGaussianBlur stdDeviation=".3"/></filter>
+    <symbol id="rose" viewBox="0 0 100 100"><g filter="url(#wc)"><ellipse cx="50" cy="25" rx="21" ry="24" style="fill:var(--b1)" opacity=".92" transform="rotate(0 50 50)"/><ellipse cx="50" cy="25" rx="21" ry="24" style="fill:var(--b1)" opacity=".92" transform="rotate(72 50 50)"/><ellipse cx="50" cy="25" rx="21" ry="24" style="fill:var(--b1)" opacity=".92" transform="rotate(144 50 50)"/><ellipse cx="50" cy="25" rx="21" ry="24" style="fill:var(--b1)" opacity=".92" transform="rotate(216 50 50)"/><ellipse cx="50" cy="25" rx="21" ry="24" style="fill:var(--b1)" opacity=".92" transform="rotate(288 50 50)"/><ellipse cx="50" cy="34" rx="15" ry="17" style="fill:var(--b2)" opacity=".85" transform="rotate(36 50 50)"/><ellipse cx="50" cy="34" rx="15" ry="17" style="fill:var(--b2)" opacity=".85" transform="rotate(108 50 50)"/><ellipse cx="50" cy="34" rx="15" ry="17" style="fill:var(--b2)" opacity=".85" transform="rotate(180 50 50)"/><ellipse cx="50" cy="34" rx="15" ry="17" style="fill:var(--b2)" opacity=".85" transform="rotate(252 50 50)"/><ellipse cx="50" cy="34" rx="15" ry="17" style="fill:var(--b2)" opacity=".85" transform="rotate(324 50 50)"/><circle cx="50" cy="50" r="13" style="fill:var(--b3)" opacity=".8"/><path d="M43 51c1-7 12-9 15-3 3 5-2 10-7 9-4-1-5-5-2-7" fill="none" style="stroke:var(--b1)" stroke-width="2.2" opacity=".85"/></g></symbol>
+    <symbol id="blossom" viewBox="0 0 60 60"><g filter="url(#wc)"><circle cx="30" cy="17" r="11" style="fill:var(--b4)" opacity=".95" transform="rotate(0 30 30)"/><circle cx="30" cy="17" r="11" style="fill:var(--b4)" opacity=".95" transform="rotate(72 30 30)"/><circle cx="30" cy="17" r="11" style="fill:var(--b4)" opacity=".95" transform="rotate(144 30 30)"/><circle cx="30" cy="17" r="11" style="fill:var(--b4)" opacity=".95" transform="rotate(216 30 30)"/><circle cx="30" cy="17" r="11" style="fill:var(--b4)" opacity=".95" transform="rotate(288 30 30)"/><circle cx="30" cy="20" r="6" style="fill:var(--b2)" opacity=".55" transform="rotate(0 30 30)"/><circle cx="30" cy="20" r="6" style="fill:var(--b2)" opacity=".55" transform="rotate(72 30 30)"/><circle cx="30" cy="20" r="6" style="fill:var(--b2)" opacity=".55" transform="rotate(144 30 30)"/><circle cx="30" cy="20" r="6" style="fill:var(--b2)" opacity=".55" transform="rotate(216 30 30)"/><circle cx="30" cy="20" r="6" style="fill:var(--b2)" opacity=".55" transform="rotate(288 30 30)"/><circle cx="30" cy="30" r="5" style="fill:var(--gold)" opacity=".75"/></g></symbol>
+    <symbol id="leaf" viewBox="0 0 60 100"><g filter="url(#wc)"><path d="M30 98C8 70 6 30 30 2c24 28 22 68 0 96z" style="fill:var(--lf1)" opacity=".9"/><path d="M30 92V12" fill="none" style="stroke:var(--lf2)" stroke-width="1.6" opacity=".7"/></g></symbol>
+    <symbol id="sprig" viewBox="0 0 120 60"><path d="M6 54C40 42 78 30 112 8" fill="none" style="stroke:var(--lf2)" stroke-width="1.6" opacity=".8"/><g transform="translate(28 30) rotate(-70)"><use href="#leaf" width="16" height="26"/></g><g transform="translate(40 52) rotate(150)"><use href="#leaf" width="16" height="26"/></g><g transform="translate(60 24) rotate(-60)"><use href="#leaf" width="16" height="26"/></g><g transform="translate(74 42) rotate(140)"><use href="#leaf" width="16" height="26"/></g><use href="#blossom" x="92" y="-6" width="30" height="30"/><use href="#blossom" x="78" y="10" width="20" height="20"/></symbol>
+    <symbol id="bouquet" viewBox="0 0 220 220">
+      <g transform="translate(118 2) rotate(25)"><use href="#leaf" width="40" height="66"/></g><g transform="translate(196 56) rotate(70)"><use href="#leaf" width="40" height="66"/></g><g transform="translate(30 190) rotate(200)"><use href="#leaf" width="40" height="66"/></g>
+      <g transform="translate(6 70) rotate(-40)"><use href="#leaf" width="36" height="60"/></g><g transform="translate(178 168) rotate(130)"><use href="#leaf" width="36" height="60"/></g><g transform="translate(94 206) rotate(175)"><use href="#leaf" width="34" height="56"/></g>
+      <use href="#rose" x="40" y="34" width="92" height="92"/><use href="#rose" x="110" y="86" width="76" height="76"/><use href="#rose" x="30" y="112" width="64" height="64"/>
+      <use href="#blossom" x="148" y="26" width="38" height="38"/><use href="#blossom" x="8" y="100" width="32" height="32"/><use href="#blossom" x="104" y="160" width="32" height="32"/><use href="#blossom" x="102" y="20" width="28" height="28"/>
+    </symbol>
+  </defs>
+</svg>
+<script>window.INVITE={target:%%J_TARGET%%,addr:%%J_ADDR%%,tip:%%J_TIP%%,wa:%%J_RSVP_PHONE%%,couple:%%J_COUPLE%%,t:{play:%%J_T_PLAY_MUSIC%%,pause:%%J_T_PAUSE_MUSIC%%,copied:%%J_T_ADDRESS_COPIED%%,dear_guest:%%J_T_DEAR_GUEST%%,thanks_yes:%%J_T_THANKS_YES%%,thanks_no:%%J_T_THANKS_NO%%,reply_intro:%%J_T_REPLY_INTRO%%,reply_yes:%%J_T_REPLY_YES%%,reply_no:%%J_T_REPLY_NO%%}};</script>
+<script>%%SHARED_RUNTIME%%</script>
+</body>
+</html>

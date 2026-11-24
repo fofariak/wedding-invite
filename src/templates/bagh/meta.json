@@ -1,0 +1,12 @@
+{
+  "name": "Bagh",
+  "description": "Watercolour garden: a floral wreath blooms open, flowers bloom as you scroll",
+  "features": {},
+  "partials": {
+    "event": "<article class=\"ev\"><svg class=\"ev-spr bloom\" viewBox=\"0 0 120 60\" aria-hidden=\"true\"><use href=\"#sprig\"/></svg><div class=\"ev-ic\"><svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><use href=\"#{{ICON}}\"/></svg></div><div class=\"ev-when\">{{WHEN}}</div><h3>{{NAME}}</h3><div class=\"ev-place\">{{PLACE}}</div>{{DRESS}}</article>",
+    "dress": "<div class=\"ev-dress\">{{SWATCH}}<span><small>{{LABEL}}</small><b>{{TEXT}}</b></span></div>",
+    "swatch": "<span class=\"sw\" style=\"background:{{BG}}\"></span>",
+    "photo": "<figure class=\"ph\"><img src=\"{{SRC}}\" alt=\"{{ALT}}\" style=\"object-position:50% {{POS}}\" loading=\"lazy\" decoding=\"async\">{{CAPTION}}<svg class=\"ph-spr\" viewBox=\"0 0 120 60\" aria-hidden=\"true\"><use href=\"#sprig\"/></svg></figure>",
+    "caption": "<figcaption>{{TEXT}}</figcaption>"
+  }
+}

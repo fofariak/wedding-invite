@@ -132,7 +132,7 @@ function build(S,opts,R){
   var OP=renderOpening(S,R,P);
   var SH=R.shared||{};
   var themeVars=th.vars?'<style>:root{'+Object.keys(th.vars).map(function(k){return k+':'+String(th.vars[k]).replace(/[<>;{}]/g,'');}).join(';')+'}</style>':'';
-  var V={THEME_VARS:themeVars,SHARED_CSS:SH.css||'',SHARED_RUNTIME:SH.runtime||'',SHARED_ICONS:SH.icons||'',OPENING_FONTS:OP.fonts,OPENING_LINE:OP.line,OPENING_PAGE:OP.page,LANG:esc(P.lang),DIR:P.dir==="rtl"?"rtl":"ltr",TITLE:esc(title),FONTS_HREF:esc(fontsHref),RSVP_HIDDEN:wa?'':' hidden',J_RSVP_PHONE:js(wa),J_COUPLE:js(S.name1+' & '+S.name2),SONG:esc(opts.silent||!S.song?SILENT:S.song),
+  var V={FONTS_BASE:esc(R.fontsBase||''),THEME_VARS:themeVars,SHARED_CSS:SH.css||'',SHARED_RUNTIME:SH.runtime||'',SHARED_ICONS:SH.icons||'',OPENING_FONTS:OP.fonts,OPENING_LINE:OP.line,OPENING_PAGE:OP.page,LANG:esc(P.lang),DIR:P.dir==="rtl"?"rtl":"ltr",TITLE:esc(title),FONTS_HREF:esc(fontsHref),RSVP_HIDDEN:wa?'':' hidden',J_RSVP_PHONE:js(wa),J_COUPLE:js(S.name1+' & '+S.name2),SONG:esc(opts.silent||!S.song?SILENT:S.song),
     COVER_TITLE:esc(S.coverTitle),COVER_SUB:esc(S.coverSub),COVER_PHOTO:esc(cov.src),COVER_POS:'50% '+esc(cov.pos||'50%'),
     FRONT_LABEL:esc(S.frontLabel),NAME1:esc(S.name1),NAME2:esc(S.name2),REL1:esc(S.parents1?S.rel1:''),REL2:esc(S.parents2?S.rel2:''),EMBLEM:emblem,DATE_HEAD:esc(auto?F.date_head_auto:F.date_head_pull),DATE_TIP:auto?'':esc(F.date_tip),REC_ICON:TR.recIcon,PARENTS1:esc(S.parents1),PARENTS2:esc(S.parents2),INVITE_LINE:esc(S.inviteLine),
     W_WEEKDAY:esc(F.days[p.wd]),W_DAY:String(p.d),W_MONTH:esc(F.months[p.mo]),W_YEAR:String(p.y),BANNER_LINE:esc(banner),

@@ -1,0 +1,77 @@
+{
+  "blush": {
+    "label": "Blush & Sage",
+    "sw": [
+      "#e59aa3",
+      "#fdf8f5",
+      "#8fa985"
+    ],
+    "vars": {
+      "--paper": "#fdf8f5",
+      "--soft": "#f8ede8",
+      "--ink": "#4a3a3a",
+      "--muted": "#8a7570",
+      "--gold": "#b48a6a",
+      "--wine": "#9c4f5c",
+      "--on-dark": "#ffffff",
+      "--b1": "#f6d3d1",
+      "--b2": "#e9a3a9",
+      "--b3": "#c76f7d",
+      "--b4": "#fbe7d6",
+      "--lf1": "#b7c9a8",
+      "--lf2": "#7c9873",
+      "--wash1": "rgba(233,163,169,.28)",
+      "--wash2": "rgba(183,201,168,.30)"
+    }
+  },
+  "lilac": {
+    "label": "Lilac & Sage",
+    "sw": [
+      "#b9a3dc",
+      "#fbf9fc",
+      "#8fa985"
+    ],
+    "vars": {
+      "--paper": "#fbf9fc",
+      "--soft": "#f1edf6",
+      "--ink": "#3f3a4a",
+      "--muted": "#7d7590",
+      "--gold": "#a08a6a",
+      "--wine": "#6e5a8e",
+      "--on-dark": "#ffffff",
+      "--b1": "#e6dcf4",
+      "--b2": "#c4b0e2",
+      "--b3": "#9a80c6",
+      "--b4": "#f7eef6",
+      "--lf1": "#b7c9a8",
+      "--lf2": "#7c9873",
+      "--wash1": "rgba(196,176,226,.30)",
+      "--wash2": "rgba(183,201,168,.28)"
+    }
+  },
+  "peach": {
+    "label": "Peach & Sage",
+    "sw": [
+      "#f2a985",
+      "#fffaf5",
+      "#8fa985"
+    ],
+    "vars": {
+      "--paper": "#fffaf5",
+      "--soft": "#fbefe6",
+      "--ink": "#4a3c33",
+      "--muted": "#8a776a",
+      "--gold": "#b88a5a",
+      "--wine": "#b25f44",
+      "--on-dark": "#ffffff",
+      "--b1": "#fde3d2",
+      "--b2": "#f6b996",
+      "--b3": "#e28a68",
+      "--b4": "#fff1df",
+      "--lf1": "#b5c4a1",
+      "--lf2": "#7f9670",
+      "--wash1": "rgba(246,185,150,.30)",
+      "--wash2": "rgba(181,196,161,.30)"
+    }
+  }
+}
