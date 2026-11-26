@@ -1,0 +1,775 @@
+# Invitation translations: review document
+
+Polished translation-review copy with the language-specific edits noted in the review. This is still a draft: have native speakers verify each language before enabling it in production.
+
+## How to review
+
+1. Read every row for your language. `{name}`, `{couple}`, `{intro}`, `{date}`, `{rite}`, `{time}` and `{venue}` are filled in automatically: keep them, but move them if the grammar needs it.
+2. Keep rows marked **(short)** short; they sit on small buttons or under numbers.
+3. Send corrections by row name (the `code` column). Once a language is approved, its file is marked `"reviewed": true` and it becomes available to customers.
+
+## Status
+
+| Language | Code | Direction | Status |
+|---|---|---|---|
+| العربية | `ar` | right to left | Draft, not reviewed |
+| Deutsch | `de` | left to right | Draft, not reviewed |
+| English | `en` | left to right | Live |
+| Español | `es` | left to right | Draft, not reviewed |
+| Français | `fr` | left to right | Draft, not reviewed |
+| ગુજરાતી | `gu` | left to right | Draft, not reviewed |
+| हिन्दी | `hi` | left to right | Draft, not reviewed |
+| मराठी | `mr` | left to right | Draft, not reviewed |
+| ਪੰਜਾਬੀ | `pa` | left to right | Draft, not reviewed |
+| Português | `pt` | left to right | Draft, not reviewed |
+| اردو | `ur` | right to left | Draft, not reviewed |
+
+---
+
+## العربية (`ar`): draft, not reviewed
+
+### Dates, times and names
+
+| What | English | العربية |
+|---|---|---|
+| Full date | Thursday, 31 December 2026 | الخميس، 31 ديسمبر 2026 |
+| Function card | Thu · 31 Dec · 7:00 pm | الخميس · 31 ديسمبر · 7:00 م |
+| Times (10:00, 15:00, 19:00, 23:30) | 10:00 am · 3:00 pm · 7:00 pm · 11:30 pm | 10:00 ص · 3:00 م · 7:00 م · 11:30 م |
+| Line under the date | Pheras at 7:00 pm · The Oberoi | مراسم الزفاف: 7:00 م · The Oberoi |
+| Pop-up near the end | See you on Thursday, 31 December 2026 | نلقاكم يوم الخميس، 31 ديسمبر 2026 |
+| Calendar entry | Aastha & Aakash Wedding | زفاف Aastha وAakash |
+| Couple (Hindu / Muslim / Western) | Aastha Weds Aakash  /  Aastha & Aakash  /  Aastha & Aakash | Aastha و Aakash  /  Aastha و Aakash  /  Aastha و Aakash |
+| Main rite (Hindu / Muslim / Western) | Pheras / Nikah / Ceremony | مراسم الزفاف / عقد القران / مراسم الزفاف |
+| Date heading (pull / automatic) | Pull to Reveal / The Wedding Day | اسحب لتكشف / يوم الزفاف |
+| Tassel hint | Drag the tassel down | اسحب للأسفل للكشف عن تاريخ الزفاف |
+| Dress code label | Dress code | قواعد اللباس |
+| Months | January, February, March, April, May, June, July, August, September, October, November, December | يناير, فبراير, مارس, أبريل, مايو, يونيو, يوليو, أغسطس, سبتمبر, أكتوبر, نوفمبر, ديسمبر |
+| Weekdays | Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday | الأحد, الاثنين, الثلاثاء, الأربعاء, الخميس, الجمعة, السبت |
+
+### Words on the invitation
+
+| code | Where it appears | English | العربية |
+|---|---|---|---|
+| `book_aria` | Screen-reader name of the opening scene | Wedding invitation book | كتيّب دعوة الزفاف |
+| `open_book_aria` | Screen-reader label of the tap-to-open button | Open the invitation book | افتح كتيّب الدعوة |
+| `tap_to_open` | Hint on the closed book (Classic) | Tap the book to open | اضغط على الكتاب لفتحه |
+| `preparing` | Loading message | Preparing your invitation | جارٍ تجهيز دعوتك |
+| `play_music` | Music button (screen reader) | Play music | تشغيل الموسيقى |
+| `pause_music` | Music button (screen reader) | Pause music | إيقاف الموسيقى |
+| `scroll` | Arrow hint (short) | Scroll | مرّر للأسفل |
+| `save_the_date_bg` | Large faded background word | Save the Date | احفظ التاريخ |
+| `save_the_date` | Small label above the date | Save the date | احفظ التاريخ |
+| `pull_aria` | Tassel (screen reader) | Pull down to reveal the wedding date | اسحب للأسفل لمعرفة تاريخ الزفاف |
+| `countdown_aria` | Countdown (screen reader) | Countdown to the wedding | العدّ التنازلي للزفاف |
+| `days` | Countdown unit (short) | days | يوم |
+| `hrs` | Countdown unit (short) | hrs | ساعة |
+| `min` | Countdown unit (short) | min | دقيقة |
+| `sec` | Countdown unit (short) | sec | ثانية |
+| `add_to_calendar` | Button | Add to calendar | أضف إلى التقويم |
+| `celebrate_bg` | Large faded background word | Celebrate | احتفال |
+| `swipe_celebrations` | Small label | Swipe through the celebrations | مرّر لمشاهدة جميع المناسبات |
+| `festivities` | Heading | Wedding Festivities | احتفالات الزفاف |
+| `functions_aria` | Functions carousel (screen reader) | Wedding functions, swipe to browse | مناسبات الزفاف، مرّر للتصفح |
+| `swipe_functions` | Hint | Swipe to see every function | مرّر لمشاهدة كل مناسبة |
+| `memories_bg` | Large faded background word | Memories | ذكريات |
+| `moments` | Small label | Moments | لحظات |
+| `our_story` | Heading | Our Story | قصتنا |
+| `photos_aria` | Photo carousel (screen reader) | Photos, swipe to browse | الصور، مرّر للتصفح |
+| `swipe_more` | Hint | Swipe to see more | مرّر للمزيد |
+| `reception_bg` | Large faded background word | Reception | حفل الاستقبال |
+| `location` | Small label | Location | المكان |
+| `how_to_reach` | Heading | How to Reach | كيفية الوصول إلى المكان |
+| `map_aria` | Map link (screen reader) | Open the venue in Google Maps | افتح المكان في خرائط Google |
+| `tap_for_maps` | Button / under the map | Tap to open in Maps | اضغط للفتح في الخرائط |
+| `get_directions` | Button (short) | Get directions | الاتجاهات |
+| `copy_address` | Button (short) | Copy address | نسخ العنوان |
+| `address_copied` | Message after copying | Address copied | تم نسخ العنوان |
+| `forever_bg` | Large faded background word | Forever | إلى الأبد |
+| `kindly_respond` | Small label | Kindly respond | يُرجى الرد |
+| `will_you_join` | Heading | Will You Join Us? | هل ستشاركوننا فرحتنا؟ |
+| `your_name` | Box for the guest's name | Your name | اسمك |
+| `attending` | Button (short) | Attending | سنحضر بكل سرور |
+| `cant_make_it` | Button (short) | Can't make it | نعتذر عن الحضور |
+| `dear_guest` | Used if the guest leaves the name empty | Dear guest | ضيفنا العزيز |
+| `thanks_yes` | After "Attending" | Thank you, {name}! We can’t wait to see you. | شكرًا، {name}! نتطلع لرؤيتكم. |
+| `thanks_no` | After "Can't make it" | Thank you, {name}. You will be missed. | شكرًا، {name}. سنفتقدكم. |
+| `reply_intro` | Start of the WhatsApp reply when the guest gave a name | This is {name}.  | معكم {name}.  |
+| `reply_yes` | WhatsApp reply: attending | Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you! | السلام عليكم! {intro}يسعدنا تأكيد حضورنا زفاف {couple}. نتطلع لرؤيتكم! |
+| `reply_no` | WhatsApp reply: not attending | Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness. | السلام عليكم! {intro}نعتذر عن عدم تمكننا من حضور زفاف {couple}. نتمنى لكما حياة سعيدة. |
+| `opening_aria` | Opening-blessing page (screen reader) | Opening blessing | افتتاحية مباركة |
+| `tap_to_open_invite` | Hint on the opening screen (newer templates) | Tap to open your invitation | المس لفتح دعوتك |
+
+---
+
+## Deutsch (`de`): draft, not reviewed
+
+### Dates, times and names
+
+| What | English | Deutsch |
+|---|---|---|
+| Full date | Thursday, 31 December 2026 | Donnerstag, 31. Dezember 2026 |
+| Function card | Thu · 31 Dec · 7:00 pm | Do · 31. Dez. · 19:00 Uhr |
+| Times (10:00, 15:00, 19:00, 23:30) | 10:00 am · 3:00 pm · 7:00 pm · 11:30 pm | 10:00 Uhr · 15:00 Uhr · 19:00 Uhr · 23:30 Uhr |
+| Line under the date | Pheras at 7:00 pm · The Oberoi | Pheras um 19:00 Uhr · The Oberoi |
+| Pop-up near the end | See you on Thursday, 31 December 2026 | Wir sehen uns am Donnerstag, 31. Dezember 2026 |
+| Calendar entry | Aastha & Aakash Wedding | Hochzeit von Aastha und Aakash |
+| Couple (Hindu / Muslim / Western) | Aastha Weds Aakash  /  Aastha & Aakash  /  Aastha & Aakash | Aastha & Aakash  /  Aastha & Aakash  /  Aastha & Aakash |
+| Main rite (Hindu / Muslim / Western) | Pheras / Nikah / Ceremony | Pheras / Nikah / Trauung |
+| Date heading (pull / automatic) | Pull to Reveal / The Wedding Day | Zum Enthüllen ziehen / Der Hochzeitstag |
+| Tassel hint | Drag the tassel down | Ziehen Sie die Quaste nach unten |
+| Dress code label | Dress code | Dresscode |
+| Months | January, February, March, April, May, June, July, August, September, October, November, December | Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember |
+| Weekdays | Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday | Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag |
+
+### Words on the invitation
+
+| code | Where it appears | English | Deutsch |
+|---|---|---|---|
+| `book_aria` | Screen-reader name of the opening scene | Wedding invitation book | Einladungsbuch zur Hochzeit |
+| `open_book_aria` | Screen-reader label of the tap-to-open button | Open the invitation book | Einladungsbuch öffnen |
+| `tap_to_open` | Hint on the closed book (Classic) | Tap the book to open | Tippen Sie auf das Buch, um es zu öffnen |
+| `preparing` | Loading message | Preparing your invitation | Ihre Einladung wird vorbereitet |
+| `play_music` | Music button (screen reader) | Play music | Musik abspielen |
+| `pause_music` | Music button (screen reader) | Pause music | Musik pausieren |
+| `scroll` | Arrow hint (short) | Scroll | Scrollen |
+| `save_the_date_bg` | Large faded background word | Save the Date | Save the Date |
+| `save_the_date` | Small label above the date | Save the date | Save the Date |
+| `pull_aria` | Tassel (screen reader) | Pull down to reveal the wedding date | Nach unten ziehen, um das Hochzeitsdatum zu enthüllen |
+| `countdown_aria` | Countdown (screen reader) | Countdown to the wedding | Countdown bis zur Hochzeit |
+| `days` | Countdown unit (short) | days | Tage |
+| `hrs` | Countdown unit (short) | hrs | Std. |
+| `min` | Countdown unit (short) | min | Min. |
+| `sec` | Countdown unit (short) | sec | Sek. |
+| `add_to_calendar` | Button | Add to calendar | Zum Kalender hinzufügen |
+| `celebrate_bg` | Large faded background word | Celebrate | Feiern |
+| `swipe_celebrations` | Small label | Swipe through the celebrations | Wischen Sie, um die Feierlichkeiten zu entdecken |
+| `festivities` | Heading | Wedding Festivities | Hochzeitsfeierlichkeiten |
+| `functions_aria` | Functions carousel (screen reader) | Wedding functions, swipe to browse | Hochzeitstermine, zum Blättern wischen |
+| `swipe_functions` | Hint | Swipe to see every function | Wischen Sie, um alle Programmpunkte zu sehen |
+| `memories_bg` | Large faded background word | Memories | Erinnerungen |
+| `moments` | Small label | Moments | Momente |
+| `our_story` | Heading | Our Story | Unsere Geschichte |
+| `photos_aria` | Photo carousel (screen reader) | Photos, swipe to browse | Fotos, zum Blättern wischen |
+| `swipe_more` | Hint | Swipe to see more | Wischen für mehr |
+| `reception_bg` | Large faded background word | Reception | Empfang |
+| `location` | Small label | Location | Ort |
+| `how_to_reach` | Heading | How to Reach | Anfahrt |
+| `map_aria` | Map link (screen reader) | Open the venue in Google Maps | Veranstaltungsort in Google Maps öffnen |
+| `tap_for_maps` | Button / under the map | Tap to open in Maps | Tippen, um die Karte zu öffnen |
+| `get_directions` | Button (short) | Get directions | Route planen |
+| `copy_address` | Button (short) | Copy address | Adresse kopieren |
+| `address_copied` | Message after copying | Address copied | Adresse kopiert |
+| `forever_bg` | Large faded background word | Forever | Für immer |
+| `kindly_respond` | Small label | Kindly respond | Bitte um Rückmeldung |
+| `will_you_join` | Heading | Will You Join Us? | Feiern Sie mit uns? |
+| `your_name` | Box for the guest's name | Your name | Ihr Name |
+| `attending` | Button (short) | Attending | Gerne dabei |
+| `cant_make_it` | Button (short) | Can't make it | Leider nicht dabei |
+| `dear_guest` | Used if the guest leaves the name empty | Dear guest | Liebe Gäste |
+| `thanks_yes` | After "Attending" | Thank you, {name}! We can’t wait to see you. | Danke, {name}! Wir freuen uns auf Sie. |
+| `thanks_no` | After "Can't make it" | Thank you, {name}. You will be missed. | Danke, {name}. Sie werden uns fehlen. |
+| `reply_intro` | Start of the WhatsApp reply when the guest gave a name | This is {name}.  | Hier ist {name}.  |
+| `reply_yes` | WhatsApp reply: attending | Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you! | Hallo! {intro}Ich sage sehr gerne zu für die Hochzeit von {couple}. Ich freue mich darauf, mit euch zu feiern! |
+| `reply_no` | WhatsApp reply: not attending | Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness. | Hallo! {intro}Leider kann ich nicht zur Hochzeit von {couple} kommen. Ich wünsche euch beiden alles Glück der Welt. |
+| `opening_aria` | Opening-blessing page (screen reader) | Opening blessing | Segensspruch |
+| `tap_to_open_invite` | Hint on the opening screen (newer templates) | Tap to open your invitation | Tippen Sie, um Ihre Einladung zu öffnen |
+
+---
+
+## Español (`es`): draft, not reviewed
+
+### Dates, times and names
+
+| What | English | Español |
+|---|---|---|
+| Full date | Thursday, 31 December 2026 | jueves, 31 de diciembre de 2026 |
+| Function card | Thu · 31 Dec · 7:00 pm | jue · 31 dic · 19:00 |
+| Times (10:00, 15:00, 19:00, 23:30) | 10:00 am · 3:00 pm · 7:00 pm · 11:30 pm | 10:00 · 15:00 · 19:00 · 23:30 |
+| Line under the date | Pheras at 7:00 pm · The Oberoi | Pheras a las 19:00 · The Oberoi |
+| Pop-up near the end | See you on Thursday, 31 December 2026 | Nos vemos el jueves, 31 de diciembre de 2026 |
+| Calendar entry | Aastha & Aakash Wedding | Boda de Aastha y Aakash |
+| Couple (Hindu / Muslim / Western) | Aastha Weds Aakash  /  Aastha & Aakash  /  Aastha & Aakash | Aastha & Aakash  /  Aastha & Aakash  /  Aastha & Aakash |
+| Main rite (Hindu / Muslim / Western) | Pheras / Nikah / Ceremony | Pheras / Nikah / Ceremonia |
+| Date heading (pull / automatic) | Pull to Reveal / The Wedding Day | Tire para descubrir / El día de la boda |
+| Tassel hint | Drag the tassel down | Tire de la borla hacia abajo |
+| Dress code label | Dress code | Código de vestimenta |
+| Months | January, February, March, April, May, June, July, August, September, October, November, December | enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre |
+| Weekdays | Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday | domingo, lunes, martes, miércoles, jueves, viernes, sábado |
+
+### Words on the invitation
+
+| code | Where it appears | English | Español |
+|---|---|---|---|
+| `book_aria` | Screen-reader name of the opening scene | Wedding invitation book | Libro de invitación de boda |
+| `open_book_aria` | Screen-reader label of the tap-to-open button | Open the invitation book | Abrir el libro de invitación |
+| `tap_to_open` | Hint on the closed book (Classic) | Tap the book to open | Toque el libro para abrirlo |
+| `preparing` | Loading message | Preparing your invitation | Preparando su invitación |
+| `play_music` | Music button (screen reader) | Play music | Reproducir música |
+| `pause_music` | Music button (screen reader) | Pause music | Pausar música |
+| `scroll` | Arrow hint (short) | Scroll | Deslice hacia abajo |
+| `save_the_date_bg` | Large faded background word | Save the Date | Reserve la fecha |
+| `save_the_date` | Small label above the date | Save the date | Reserve la fecha |
+| `pull_aria` | Tassel (screen reader) | Pull down to reveal the wedding date | Tire hacia abajo para revelar la fecha de la boda |
+| `countdown_aria` | Countdown (screen reader) | Countdown to the wedding | Cuenta atrás para la boda |
+| `days` | Countdown unit (short) | days | días |
+| `hrs` | Countdown unit (short) | hrs | horas |
+| `min` | Countdown unit (short) | min | min |
+| `sec` | Countdown unit (short) | sec | seg |
+| `add_to_calendar` | Button | Add to calendar | Añadir al calendario |
+| `celebrate_bg` | Large faded background word | Celebrate | Celebración |
+| `swipe_celebrations` | Small label | Swipe through the celebrations | Deslice para ver las celebraciones |
+| `festivities` | Heading | Wedding Festivities | Celebraciones de la boda |
+| `functions_aria` | Functions carousel (screen reader) | Wedding functions, swipe to browse | Eventos de la boda, deslice para verlos |
+| `swipe_functions` | Hint | Swipe to see every function | Deslice para ver cada evento |
+| `memories_bg` | Large faded background word | Memories | Recuerdos |
+| `moments` | Small label | Moments | Momentos |
+| `our_story` | Heading | Our Story | Nuestra historia |
+| `photos_aria` | Photo carousel (screen reader) | Photos, swipe to browse | Fotos, deslice para verlas |
+| `swipe_more` | Hint | Swipe to see more | Deslice para ver más |
+| `reception_bg` | Large faded background word | Reception | Recepción |
+| `location` | Small label | Location | Ubicación |
+| `how_to_reach` | Heading | How to Reach | Cómo llegar |
+| `map_aria` | Map link (screen reader) | Open the venue in Google Maps | Abrir el lugar en Google Maps |
+| `tap_for_maps` | Button / under the map | Tap to open in Maps | Toque para abrir el mapa |
+| `get_directions` | Button (short) | Get directions | Indicaciones |
+| `copy_address` | Button (short) | Copy address | Copiar dirección |
+| `address_copied` | Message after copying | Address copied | Dirección copiada |
+| `forever_bg` | Large faded background word | Forever | Para siempre |
+| `kindly_respond` | Small label | Kindly respond | Por favor, confirme |
+| `will_you_join` | Heading | Will You Join Us? | ¿Nos acompañará? |
+| `your_name` | Box for the guest's name | Your name | Su nombre |
+| `attending` | Button (short) | Attending | Asistiré |
+| `cant_make_it` | Button (short) | Can't make it | No podré asistir |
+| `dear_guest` | Used if the guest leaves the name empty | Dear guest | Estimado/a invitado/a |
+| `thanks_yes` | After "Attending" | Thank you, {name}! We can’t wait to see you. | ¡Gracias, {name}! Le esperamos con ilusión. |
+| `thanks_no` | After "Can't make it" | Thank you, {name}. You will be missed. | Gracias, {name}. Le echaremos de menos. |
+| `reply_intro` | Start of the WhatsApp reply when the guest gave a name | This is {name}.  | Soy {name}.  |
+| `reply_yes` | WhatsApp reply: attending | Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you! | ¡Hola! {intro}Confirmo con alegría mi asistencia a la boda de {couple}. ¡Con muchas ganas de celebrarlo con ustedes! |
+| `reply_no` | WhatsApp reply: not attending | Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness. | ¡Hola! {intro}Lamentablemente no podré asistir a la boda de {couple}. Les deseo toda la felicidad del mundo. |
+| `opening_aria` | Opening-blessing page (screen reader) | Opening blessing | Bendición de apertura |
+| `tap_to_open_invite` | Hint on the opening screen (newer templates) | Tap to open your invitation | Toque para abrir su invitación |
+
+---
+
+## Français (`fr`): draft, not reviewed
+
+### Dates, times and names
+
+| What | English | Français |
+|---|---|---|
+| Full date | Thursday, 31 December 2026 | jeudi 31 décembre 2026 |
+| Function card | Thu · 31 Dec · 7:00 pm | jeu. · 31 déc. · 19h00 |
+| Times (10:00, 15:00, 19:00, 23:30) | 10:00 am · 3:00 pm · 7:00 pm · 11:30 pm | 10h00 · 15h00 · 19h00 · 23h30 |
+| Line under the date | Pheras at 7:00 pm · The Oberoi | Pheras à 19h00 · The Oberoi |
+| Pop-up near the end | See you on Thursday, 31 December 2026 | Rendez-vous le jeudi 31 décembre 2026 |
+| Calendar entry | Aastha & Aakash Wedding | Mariage de Aastha et Aakash |
+| Couple (Hindu / Muslim / Western) | Aastha Weds Aakash  /  Aastha & Aakash  /  Aastha & Aakash | Aastha & Aakash  /  Aastha & Aakash  /  Aastha & Aakash |
+| Main rite (Hindu / Muslim / Western) | Pheras / Nikah / Ceremony | Pheras / Nikah / Cérémonie |
+| Date heading (pull / automatic) | Pull to Reveal / The Wedding Day | Tirez pour découvrir / Le jour du mariage |
+| Tassel hint | Drag the tassel down | Tirez le cordon vers le bas |
+| Dress code label | Dress code | Tenue |
+| Months | January, February, March, April, May, June, July, August, September, October, November, December | janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre |
+| Weekdays | Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday | dimanche, lundi, mardi, mercredi, jeudi, vendredi, samedi |
+
+### Words on the invitation
+
+| code | Where it appears | English | Français |
+|---|---|---|---|
+| `book_aria` | Screen-reader name of the opening scene | Wedding invitation book | Livret d'invitation de mariage |
+| `open_book_aria` | Screen-reader label of the tap-to-open button | Open the invitation book | Ouvrir le livret d'invitation |
+| `tap_to_open` | Hint on the closed book (Classic) | Tap the book to open | Touchez le livre pour l'ouvrir |
+| `preparing` | Loading message | Preparing your invitation | Préparation de votre invitation |
+| `play_music` | Music button (screen reader) | Play music | Lancer la musique |
+| `pause_music` | Music button (screen reader) | Pause music | Mettre la musique en pause |
+| `scroll` | Arrow hint (short) | Scroll | Défiler |
+| `save_the_date_bg` | Large faded background word | Save the Date | Réservez la date |
+| `save_the_date` | Small label above the date | Save the date | Réservez la date |
+| `pull_aria` | Tassel (screen reader) | Pull down to reveal the wedding date | Tirez vers le bas pour découvrir la date du mariage |
+| `countdown_aria` | Countdown (screen reader) | Countdown to the wedding | Compte à rebours jusqu'au mariage |
+| `days` | Countdown unit (short) | days | jours |
+| `hrs` | Countdown unit (short) | hrs | h |
+| `min` | Countdown unit (short) | min | min |
+| `sec` | Countdown unit (short) | sec | s |
+| `add_to_calendar` | Button | Add to calendar | Ajouter au calendrier |
+| `celebrate_bg` | Large faded background word | Celebrate | Célébration |
+| `swipe_celebrations` | Small label | Swipe through the celebrations | Faites glisser pour voir les festivités |
+| `festivities` | Heading | Wedding Festivities | Les festivités du mariage |
+| `functions_aria` | Functions carousel (screen reader) | Wedding functions, swipe to browse | Événements du mariage, faites glisser pour parcourir |
+| `swipe_functions` | Hint | Swipe to see every function | Faites glisser pour voir chaque événement |
+| `memories_bg` | Large faded background word | Memories | Souvenirs |
+| `moments` | Small label | Moments | Moments |
+| `our_story` | Heading | Our Story | Notre histoire |
+| `photos_aria` | Photo carousel (screen reader) | Photos, swipe to browse | Photos, faites glisser pour parcourir |
+| `swipe_more` | Hint | Swipe to see more | Faites glisser pour en voir plus |
+| `reception_bg` | Large faded background word | Reception | Réception |
+| `location` | Small label | Location | Lieu |
+| `how_to_reach` | Heading | How to Reach | Comment s'y rendre |
+| `map_aria` | Map link (screen reader) | Open the venue in Google Maps | Ouvrir le lieu dans Google Maps |
+| `tap_for_maps` | Button / under the map | Tap to open in Maps | Touchez pour ouvrir la carte |
+| `get_directions` | Button (short) | Get directions | Itinéraire |
+| `copy_address` | Button (short) | Copy address | Copier l'adresse |
+| `address_copied` | Message after copying | Address copied | Adresse copiée |
+| `forever_bg` | Large faded background word | Forever | Pour toujours |
+| `kindly_respond` | Small label | Kindly respond | Merci de répondre |
+| `will_you_join` | Heading | Will You Join Us? | Serez-vous des nôtres ? |
+| `your_name` | Box for the guest's name | Your name | Votre nom |
+| `attending` | Button (short) | Attending | Avec plaisir |
+| `cant_make_it` | Button (short) | Can't make it | Malheureusement non |
+| `dear_guest` | Used if the guest leaves the name empty | Dear guest | Bonjour |
+| `thanks_yes` | After "Attending" | Thank you, {name}! We can’t wait to see you. | Merci, {name} ! Nous avons hâte de vous voir. |
+| `thanks_no` | After "Can't make it" | Thank you, {name}. You will be missed. | Merci, {name}. Vous nous manquerez. |
+| `reply_intro` | Start of the WhatsApp reply when the guest gave a name | This is {name}.  | C'est {name}.  |
+| `reply_yes` | WhatsApp reply: attending | Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you! | Bonjour ! {intro}Je confirme avec joie ma présence au mariage de {couple}. J'ai hâte de célébrer avec vous ! |
+| `reply_no` | WhatsApp reply: not attending | Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness. | Bonjour ! {intro}Malheureusement, je ne pourrai pas assister au mariage de {couple}. Je vous souhaite tout le bonheur du monde. |
+| `opening_aria` | Opening-blessing page (screen reader) | Opening blessing | Bénédiction d'ouverture |
+| `tap_to_open_invite` | Hint on the opening screen (newer templates) | Tap to open your invitation | Touchez pour ouvrir votre invitation |
+
+---
+
+## ગુજરાતી (`gu`): draft, not reviewed
+
+### Dates, times and names
+
+| What | English | ગુજરાતી |
+|---|---|---|
+| Full date | Thursday, 31 December 2026 | ગુરુવાર, 31 ડિસેમ્બર 2026 |
+| Function card | Thu · 31 Dec · 7:00 pm | ગુરુવાર · 31 ડિસેમ્બર · સાંજે 7:00 વાગ્યે |
+| Times (10:00, 15:00, 19:00, 23:30) | 10:00 am · 3:00 pm · 7:00 pm · 11:30 pm | સવારે 10:00 વાગ્યે · બપોરે 3:00 વાગ્યે · સાંજે 7:00 વાગ્યે · રાત્રે 11:30 વાગ્યે |
+| Line under the date | Pheras at 7:00 pm · The Oberoi | ફેરા: સાંજે 7:00 વાગ્યે · The Oberoi |
+| Pop-up near the end | See you on Thursday, 31 December 2026 | ગુરુવાર, 31 ડિસેમ્બર 2026ના રોજ મળીએ |
+| Calendar entry | Aastha & Aakash Wedding | Aastha અને Aakashના લગ્ન |
+| Couple (Hindu / Muslim / Western) | Aastha Weds Aakash  /  Aastha & Aakash  /  Aastha & Aakash | Aastha અને Aakash  /  Aastha & Aakash  /  Aastha & Aakash |
+| Main rite (Hindu / Muslim / Western) | Pheras / Nikah / Ceremony | ફેરા / નિકાહ / લગ્ન સમારંભ |
+| Date heading (pull / automatic) | Pull to Reveal / The Wedding Day | ખેંચીને જુઓ / લગ્નનો શુભ દિવસ |
+| Tassel hint | Drag the tassel down | ફૂમતું નીચે ખેંચો |
+| Dress code label | Dress code | ડ્રેસ કોડ |
+| Months | January, February, March, April, May, June, July, August, September, October, November, December | જાન્યુઆરી, ફેબ્રુઆરી, માર્ચ, એપ્રિલ, મે, જૂન, જુલાઈ, ઑગસ્ટ, સપ્ટેમ્બર, ઑક્ટોબર, નવેમ્બર, ડિસેમ્બર |
+| Weekdays | Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday | રવિવાર, સોમવાર, મંગળવાર, બુધવાર, ગુરુવાર, શુક્રવાર, શનિવાર |
+
+### Words on the invitation
+
+| code | Where it appears | English | ગુજરાતી |
+|---|---|---|---|
+| `book_aria` | Screen-reader name of the opening scene | Wedding invitation book | લગ્ન આમંત્રણ પુસ્તિકા |
+| `open_book_aria` | Screen-reader label of the tap-to-open button | Open the invitation book | આમંત્રણ પુસ્તિકા ખોલો |
+| `tap_to_open` | Hint on the closed book (Classic) | Tap the book to open | ખોલવા માટે પુસ્તક પર ટેપ કરો |
+| `preparing` | Loading message | Preparing your invitation | તમારું આમંત્રણ તૈયાર થઈ રહ્યું છે |
+| `play_music` | Music button (screen reader) | Play music | સંગીત વગાડો |
+| `pause_music` | Music button (screen reader) | Pause music | સંગીત રોકો |
+| `scroll` | Arrow hint (short) | Scroll | નીચે જુઓ |
+| `save_the_date_bg` | Large faded background word | Save the Date | શુભ તિથિ |
+| `save_the_date` | Small label above the date | Save the date | શુભ તિથિ |
+| `pull_aria` | Tassel (screen reader) | Pull down to reveal the wedding date | લગ્નની તારીખ જોવા નીચે ખેંચો |
+| `countdown_aria` | Countdown (screen reader) | Countdown to the wedding | લગ્નની ઉલટી ગણતરી |
+| `days` | Countdown unit (short) | days | દિવસ |
+| `hrs` | Countdown unit (short) | hrs | કલાક |
+| `min` | Countdown unit (short) | min | મિનિટ |
+| `sec` | Countdown unit (short) | sec | સેકન્ડ |
+| `add_to_calendar` | Button | Add to calendar | કૅલેન્ડરમાં ઉમેરો |
+| `celebrate_bg` | Large faded background word | Celebrate | ઉત્સવ |
+| `swipe_celebrations` | Small label | Swipe through the celebrations | સ્વાઇપ કરીને બધા પ્રસંગો જુઓ |
+| `festivities` | Heading | Wedding Festivities | લગ્ન પ્રસંગો |
+| `functions_aria` | Functions carousel (screen reader) | Wedding functions, swipe to browse | લગ્ન પ્રસંગો, જોવા માટે સ્વાઇપ કરો |
+| `swipe_functions` | Hint | Swipe to see every function | દરેક પ્રસંગ જોવા માટે સ્વાઇપ કરો |
+| `memories_bg` | Large faded background word | Memories | યાદો |
+| `moments` | Small label | Moments | પળો |
+| `our_story` | Heading | Our Story | અમારી વાર્તા |
+| `photos_aria` | Photo carousel (screen reader) | Photos, swipe to browse | ફોટા, જોવા માટે સ્વાઇપ કરો |
+| `swipe_more` | Hint | Swipe to see more | વધુ જોવા માટે સ્વાઇપ કરો |
+| `reception_bg` | Large faded background word | Reception | રિસેપ્શન |
+| `location` | Small label | Location | સ્થળ |
+| `how_to_reach` | Heading | How to Reach | કેવી રીતે પહોંચવું |
+| `map_aria` | Map link (screen reader) | Open the venue in Google Maps | સ્થળને Google Maps માં ખોલો |
+| `tap_for_maps` | Button / under the map | Tap to open in Maps | મેપમાં ખોલવા માટે ટેપ કરો |
+| `get_directions` | Button (short) | Get directions | રસ્તો જુઓ |
+| `copy_address` | Button (short) | Copy address | સરનામું કૉપિ કરો |
+| `address_copied` | Message after copying | Address copied | સરનામું કૉપિ થઈ ગયું |
+| `forever_bg` | Large faded background word | Forever | સદા સાથ |
+| `kindly_respond` | Small label | Kindly respond | કૃપા કરી જવાબ આપો |
+| `will_you_join` | Heading | Will You Join Us? | શું આપ પધારશો? |
+| `your_name` | Box for the guest's name | Your name | આપનું નામ |
+| `attending` | Button (short) | Attending | જરૂર આવીશું |
+| `cant_make_it` | Button (short) | Can't make it | આવી શકીશું નહીં |
+| `dear_guest` | Used if the guest leaves the name empty | Dear guest | પ્રિય મહેમાન |
+| `thanks_yes` | After "Attending" | Thank you, {name}! We can’t wait to see you. | આભાર, {name}! આપને મળવાની આતુરતા છે. |
+| `thanks_no` | After "Can't make it" | Thank you, {name}. You will be missed. | આભાર, {name}. આપની ખોટ સાલશે. |
+| `reply_intro` | Start of the WhatsApp reply when the guest gave a name | This is {name}.  | હું {name} છું.  |
+| `reply_yes` | WhatsApp reply: attending | Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you! | નમસ્તે! {intro}{couple}ના લગ્નમાં હું જરૂર હાજર રહીશ. આપને મળવાની આતુરતા છે! |
+| `reply_no` | WhatsApp reply: not attending | Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness. | નમસ્તે! {intro}માફ કરશો, હું {couple}ના લગ્નમાં હાજર રહી શકીશ નહીં. આપ બંનેને ખૂબ શુભેચ્છાઓ. |
+| `opening_aria` | Opening-blessing page (screen reader) | Opening blessing | મંગલ વચન |
+| `tap_to_open_invite` | Hint on the opening screen (newer templates) | Tap to open your invitation | આમંત્રણ ખોલવા માટે ટેપ કરો |
+
+---
+
+## हिन्दी (`hi`): draft, not reviewed
+
+### Dates, times and names
+
+| What | English | हिन्दी |
+|---|---|---|
+| Full date | Thursday, 31 December 2026 | गुरुवार, 31 दिसंबर 2026 |
+| Function card | Thu · 31 Dec · 7:00 pm | गुरुवार · 31 दिसंबर · शाम 7:00 बजे |
+| Times (10:00, 15:00, 19:00, 23:30) | 10:00 am · 3:00 pm · 7:00 pm · 11:30 pm | सुबह 10:00 बजे · दोपहर 3:00 बजे · शाम 7:00 बजे · रात 11:30 बजे |
+| Line under the date | Pheras at 7:00 pm · The Oberoi | फेरे: शाम 7:00 बजे · The Oberoi |
+| Pop-up near the end | See you on Thursday, 31 December 2026 | गुरुवार, 31 दिसंबर 2026 को मिलते हैं |
+| Calendar entry | Aastha & Aakash Wedding | Aastha व Aakash का विवाह |
+| Couple (Hindu / Muslim / Western) | Aastha Weds Aakash  /  Aastha & Aakash  /  Aastha & Aakash | Aastha संग Aakash  /  Aastha & Aakash  /  Aastha & Aakash |
+| Main rite (Hindu / Muslim / Western) | Pheras / Nikah / Ceremony | फेरे / निकाह / विवाह समारोह |
+| Date heading (pull / automatic) | Pull to Reveal / The Wedding Day | खींचें और देखें / विवाह का शुभ दिन |
+| Tassel hint | Drag the tassel down | लटकन को नीचे खींचें |
+| Dress code label | Dress code | ड्रेस कोड |
+| Months | January, February, March, April, May, June, July, August, September, October, November, December | जनवरी, फ़रवरी, मार्च, अप्रैल, मई, जून, जुलाई, अगस्त, सितंबर, अक्टूबर, नवंबर, दिसंबर |
+| Weekdays | Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday | रविवार, सोमवार, मंगलवार, बुधवार, गुरुवार, शुक्रवार, शनिवार |
+
+### Words on the invitation
+
+| code | Where it appears | English | हिन्दी |
+|---|---|---|---|
+| `book_aria` | Screen-reader name of the opening scene | Wedding invitation book | विवाह निमंत्रण पुस्तिका |
+| `open_book_aria` | Screen-reader label of the tap-to-open button | Open the invitation book | निमंत्रण पुस्तिका खोलें |
+| `tap_to_open` | Hint on the closed book (Classic) | Tap the book to open | खोलने के लिए पुस्तक को छुएँ |
+| `preparing` | Loading message | Preparing your invitation | आपका निमंत्रण तैयार हो रहा है |
+| `play_music` | Music button (screen reader) | Play music | संगीत चलाएँ |
+| `pause_music` | Music button (screen reader) | Pause music | संगीत रोकें |
+| `scroll` | Arrow hint (short) | Scroll | नीचे देखें |
+| `save_the_date_bg` | Large faded background word | Save the Date | शुभ तिथि |
+| `save_the_date` | Small label above the date | Save the date | शुभ तिथि |
+| `pull_aria` | Tassel (screen reader) | Pull down to reveal the wedding date | विवाह की तिथि देखने के लिए नीचे खींचें |
+| `countdown_aria` | Countdown (screen reader) | Countdown to the wedding | विवाह तक की उलटी गिनती |
+| `days` | Countdown unit (short) | days | दिन |
+| `hrs` | Countdown unit (short) | hrs | घंटे |
+| `min` | Countdown unit (short) | min | मिनट |
+| `sec` | Countdown unit (short) | sec | सेकंड |
+| `add_to_calendar` | Button | Add to calendar | कैलेंडर में जोड़ें |
+| `celebrate_bg` | Large faded background word | Celebrate | उत्सव |
+| `swipe_celebrations` | Small label | Swipe through the celebrations | स्वाइप करके सभी समारोह देखें |
+| `festivities` | Heading | Wedding Festivities | विवाह समारोह |
+| `functions_aria` | Functions carousel (screen reader) | Wedding functions, swipe to browse | विवाह समारोह, देखने के लिए स्वाइप करें |
+| `swipe_functions` | Hint | Swipe to see every function | हर समारोह देखने के लिए स्वाइप करें |
+| `memories_bg` | Large faded background word | Memories | यादें |
+| `moments` | Small label | Moments | पल |
+| `our_story` | Heading | Our Story | हमारी कहानी |
+| `photos_aria` | Photo carousel (screen reader) | Photos, swipe to browse | तस्वीरें, देखने के लिए स्वाइप करें |
+| `swipe_more` | Hint | Swipe to see more | और देखने के लिए स्वाइप करें |
+| `reception_bg` | Large faded background word | Reception | रिसेप्शन |
+| `location` | Small label | Location | स्थान |
+| `how_to_reach` | Heading | How to Reach | कैसे पहुँचें |
+| `map_aria` | Map link (screen reader) | Open the venue in Google Maps | स्थान को Google Maps में खोलें |
+| `tap_for_maps` | Button / under the map | Tap to open in Maps | मैप में खोलने के लिए टैप करें |
+| `get_directions` | Button (short) | Get directions | रास्ता देखें |
+| `copy_address` | Button (short) | Copy address | पता कॉपी करें |
+| `address_copied` | Message after copying | Address copied | पता कॉपी हो गया |
+| `forever_bg` | Large faded background word | Forever | सदा साथ |
+| `kindly_respond` | Small label | Kindly respond | कृपया उत्तर दें |
+| `will_you_join` | Heading | Will You Join Us? | क्या आप पधारेंगे? |
+| `your_name` | Box for the guest's name | Your name | आपका नाम |
+| `attending` | Button (short) | Attending | ज़रूर आएँगे |
+| `cant_make_it` | Button (short) | Can't make it | नहीं आ पाएँगे |
+| `dear_guest` | Used if the guest leaves the name empty | Dear guest | प्रिय अतिथि |
+| `thanks_yes` | After "Attending" | Thank you, {name}! We can’t wait to see you. | धन्यवाद, {name}! आपसे मिलने की प्रतीक्षा रहेगी। |
+| `thanks_no` | After "Can't make it" | Thank you, {name}. You will be missed. | धन्यवाद, {name}। आपकी कमी खलेगी। |
+| `reply_intro` | Start of the WhatsApp reply when the guest gave a name | This is {name}.  | मैं {name} हूँ।  |
+| `reply_yes` | WhatsApp reply: attending | Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you! | नमस्ते! {intro}{couple} के विवाह में मैं अवश्य आऊँगा/आऊँगी। आपसे मिलने की प्रतीक्षा है! |
+| `reply_no` | WhatsApp reply: not attending | Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness. | नमस्ते! {intro}खेद है, मैं {couple} के विवाह में उपस्थित नहीं हो पाऊँगा/पाऊँगी। आप दोनों को ढेरों शुभकामनाएँ। |
+| `opening_aria` | Opening-blessing page (screen reader) | Opening blessing | मंगल वचन |
+| `tap_to_open_invite` | Hint on the opening screen (newer templates) | Tap to open your invitation | निमंत्रण खोलने के लिए छुएँ |
+
+---
+
+## मराठी (`mr`): draft, not reviewed
+
+### Dates, times and names
+
+| What | English | मराठी |
+|---|---|---|
+| Full date | Thursday, 31 December 2026 | गुरुवार, 31 डिसेंबर 2026 |
+| Function card | Thu · 31 Dec · 7:00 pm | गुरुवार · 31 डिसेंबर · सायंकाळी 7:00 वाजता |
+| Times (10:00, 15:00, 19:00, 23:30) | 10:00 am · 3:00 pm · 7:00 pm · 11:30 pm | सकाळी 10:00 वाजता · दुपारी 3:00 वाजता · सायंकाळी 7:00 वाजता · रात्री 11:30 वाजता |
+| Line under the date | Pheras at 7:00 pm · The Oberoi | सप्तपदी: संध्याकाळी 7:00 वाजता · The Oberoi |
+| Pop-up near the end | See you on Thursday, 31 December 2026 | गुरुवार, 31 डिसेंबर 2026 रोजी भेटूया |
+| Calendar entry | Aastha & Aakash Wedding | Aastha व Aakash यांचा विवाह |
+| Couple (Hindu / Muslim / Western) | Aastha Weds Aakash  /  Aastha & Aakash  /  Aastha & Aakash | Aastha आणि Aakash  /  Aastha & Aakash  /  Aastha & Aakash |
+| Main rite (Hindu / Muslim / Western) | Pheras / Nikah / Ceremony | सप्तपदी / निकाह / विवाह सोहळा |
+| Date heading (pull / automatic) | Pull to Reveal / The Wedding Day | ओढा आणि पाहा / विवाहाचा शुभ दिवस |
+| Tassel hint | Drag the tassel down | लटकन खाली ओढा |
+| Dress code label | Dress code | ड्रेस कोड |
+| Months | January, February, March, April, May, June, July, August, September, October, November, December | जानेवारी, फेब्रुवारी, मार्च, एप्रिल, मे, जून, जुलै, ऑगस्ट, सप्टेंबर, ऑक्टोबर, नोव्हेंबर, डिसेंबर |
+| Weekdays | Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday | रविवार, सोमवार, मंगळवार, बुधवार, गुरुवार, शुक्रवार, शनिवार |
+
+### Words on the invitation
+
+| code | Where it appears | English | मराठी |
+|---|---|---|---|
+| `book_aria` | Screen-reader name of the opening scene | Wedding invitation book | विवाह निमंत्रण पुस्तिका |
+| `open_book_aria` | Screen-reader label of the tap-to-open button | Open the invitation book | निमंत्रण पुस्तिका उघडा |
+| `tap_to_open` | Hint on the closed book (Classic) | Tap the book to open | उघडण्यासाठी पुस्तकावर टॅप करा |
+| `preparing` | Loading message | Preparing your invitation | तुमचे निमंत्रण तयार होत आहे |
+| `play_music` | Music button (screen reader) | Play music | संगीत सुरू करा |
+| `pause_music` | Music button (screen reader) | Pause music | संगीत थांबवा |
+| `scroll` | Arrow hint (short) | Scroll | खाली पाहा |
+| `save_the_date_bg` | Large faded background word | Save the Date | शुभ तिथी |
+| `save_the_date` | Small label above the date | Save the date | शुभ तिथी |
+| `pull_aria` | Tassel (screen reader) | Pull down to reveal the wedding date | विवाहाची तारीख पाहण्यासाठी खाली ओढा |
+| `countdown_aria` | Countdown (screen reader) | Countdown to the wedding | विवाहापर्यंतची उलटी गणती |
+| `days` | Countdown unit (short) | days | दिवस |
+| `hrs` | Countdown unit (short) | hrs | तास |
+| `min` | Countdown unit (short) | min | मिनिटे |
+| `sec` | Countdown unit (short) | sec | सेकंद |
+| `add_to_calendar` | Button | Add to calendar | कॅलेंडरमध्ये जोडा |
+| `celebrate_bg` | Large faded background word | Celebrate | उत्सव |
+| `swipe_celebrations` | Small label | Swipe through the celebrations | स्वाइप करून सर्व सोहळे पाहा |
+| `festivities` | Heading | Wedding Festivities | विवाह सोहळे |
+| `functions_aria` | Functions carousel (screen reader) | Wedding functions, swipe to browse | विवाह सोहळे, पाहण्यासाठी स्वाइप करा |
+| `swipe_functions` | Hint | Swipe to see every function | प्रत्येक सोहळा पाहण्यासाठी स्वाइप करा |
+| `memories_bg` | Large faded background word | Memories | आठवणी |
+| `moments` | Small label | Moments | क्षण |
+| `our_story` | Heading | Our Story | आमची कहाणी |
+| `photos_aria` | Photo carousel (screen reader) | Photos, swipe to browse | फोटो, पाहण्यासाठी स्वाइप करा |
+| `swipe_more` | Hint | Swipe to see more | अधिक पाहण्यासाठी स्वाइप करा |
+| `reception_bg` | Large faded background word | Reception | रिसेप्शन |
+| `location` | Small label | Location | स्थळ |
+| `how_to_reach` | Heading | How to Reach | कसे पोहोचाल |
+| `map_aria` | Map link (screen reader) | Open the venue in Google Maps | स्थळ Google Maps मध्ये उघडा |
+| `tap_for_maps` | Button / under the map | Tap to open in Maps | मॅपमध्ये उघडण्यासाठी टॅप करा |
+| `get_directions` | Button (short) | Get directions | मार्ग पाहा |
+| `copy_address` | Button (short) | Copy address | पत्ता कॉपी करा |
+| `address_copied` | Message after copying | Address copied | पत्ता कॉपी झाला |
+| `forever_bg` | Large faded background word | Forever | सदैव |
+| `kindly_respond` | Small label | Kindly respond | कृपया कळवा |
+| `will_you_join` | Heading | Will You Join Us? | आपण याल ना? |
+| `your_name` | Box for the guest's name | Your name | आपले नाव |
+| `attending` | Button (short) | Attending | नक्की येऊ |
+| `cant_make_it` | Button (short) | Can't make it | येऊ शकणार नाही |
+| `dear_guest` | Used if the guest leaves the name empty | Dear guest | प्रिय पाहुणे |
+| `thanks_yes` | After "Attending" | Thank you, {name}! We can’t wait to see you. | धन्यवाद, {name}! आपल्या भेटीची आतुरतेने वाट पाहत आहोत. |
+| `thanks_no` | After "Can't make it" | Thank you, {name}. You will be missed. | धन्यवाद, {name}. आपली उणीव भासेल. |
+| `reply_intro` | Start of the WhatsApp reply when the guest gave a name | This is {name}.  | मी {name}.  |
+| `reply_yes` | WhatsApp reply: attending | Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you! | नमस्कार! {intro}{couple} यांच्या विवाहाला आम्ही नक्की येऊ. भेटीची आतुरता आहे! |
+| `reply_no` | WhatsApp reply: not attending | Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness. | नमस्कार! {intro}क्षमस्व, {couple} यांच्या विवाहाला मी येऊ शकणार नाही. आपणा दोघांना खूप शुभेच्छा. |
+| `opening_aria` | Opening-blessing page (screen reader) | Opening blessing | मंगल वचन |
+| `tap_to_open_invite` | Hint on the opening screen (newer templates) | Tap to open your invitation | निमंत्रण उघडण्यासाठी टॅप करा |
+
+---
+
+## ਪੰਜਾਬੀ (`pa`): draft, not reviewed
+
+### Dates, times and names
+
+| What | English | ਪੰਜਾਬੀ |
+|---|---|---|
+| Full date | Thursday, 31 December 2026 | ਵੀਰਵਾਰ, 31 ਦਸੰਬਰ 2026 |
+| Function card | Thu · 31 Dec · 7:00 pm | ਵੀਰਵਾਰ · 31 ਦਸੰਬਰ · ਸ਼ਾਮ 7:00 ਵਜੇ |
+| Times (10:00, 15:00, 19:00, 23:30) | 10:00 am · 3:00 pm · 7:00 pm · 11:30 pm | ਸਵੇਰੇ 10:00 ਵਜੇ · ਦੁਪਹਿਰ 3:00 ਵਜੇ · ਸ਼ਾਮ 7:00 ਵਜੇ · ਰਾਤ 11:30 ਵਜੇ |
+| Line under the date | Pheras at 7:00 pm · The Oberoi | ਫੇਰੇ: ਸ਼ਾਮ 7:00 ਵਜੇ · The Oberoi |
+| Pop-up near the end | See you on Thursday, 31 December 2026 | ਵੀਰਵਾਰ, 31 ਦਸੰਬਰ 2026 ਨੂੰ ਮਿਲਦੇ ਹਾਂ |
+| Calendar entry | Aastha & Aakash Wedding | Aastha ਅਤੇ Aakash ਦਾ ਵਿਆਹ |
+| Couple (Hindu / Muslim / Western) | Aastha Weds Aakash  /  Aastha & Aakash  /  Aastha & Aakash | Aastha ਸੰਗ Aakash  /  Aastha & Aakash  /  Aastha & Aakash |
+| Main rite (Hindu / Muslim / Western) | Pheras / Nikah / Ceremony | ਫੇਰੇ / ਨਿਕਾਹ / ਵਿਆਹ ਸਮਾਗਮ |
+| Date heading (pull / automatic) | Pull to Reveal / The Wedding Day | ਖਿੱਚੋ ਤੇ ਵੇਖੋ / ਵਿਆਹ ਦਾ ਸ਼ੁਭ ਦਿਨ |
+| Tassel hint | Drag the tassel down | ਲਟਕਣ ਹੇਠਾਂ ਖਿੱਚੋ |
+| Dress code label | Dress code | ਡਰੈੱਸ ਕੋਡ |
+| Months | January, February, March, April, May, June, July, August, September, October, November, December | ਜਨਵਰੀ, ਫ਼ਰਵਰੀ, ਮਾਰਚ, ਅਪ੍ਰੈਲ, ਮਈ, ਜੂਨ, ਜੁਲਾਈ, ਅਗਸਤ, ਸਤੰਬਰ, ਅਕਤੂਬਰ, ਨਵੰਬਰ, ਦਸੰਬਰ |
+| Weekdays | Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday | ਐਤਵਾਰ, ਸੋਮਵਾਰ, ਮੰਗਲਵਾਰ, ਬੁੱਧਵਾਰ, ਵੀਰਵਾਰ, ਸ਼ੁੱਕਰਵਾਰ, ਸ਼ਨਿੱਚਰਵਾਰ |
+
+### Words on the invitation
+
+| code | Where it appears | English | ਪੰਜਾਬੀ |
+|---|---|---|---|
+| `book_aria` | Screen-reader name of the opening scene | Wedding invitation book | ਵਿਆਹ ਸੱਦਾ ਪੁਸਤਿਕਾ |
+| `open_book_aria` | Screen-reader label of the tap-to-open button | Open the invitation book | ਸੱਦਾ ਪੁਸਤਿਕਾ ਖੋਲ੍ਹੋ |
+| `tap_to_open` | Hint on the closed book (Classic) | Tap the book to open | ਖੋਲ੍ਹਣ ਲਈ ਕਿਤਾਬ ਨੂੰ ਛੂਹੋ |
+| `preparing` | Loading message | Preparing your invitation | ਤੁਹਾਡਾ ਸੱਦਾ ਤਿਆਰ ਹੋ ਰਿਹਾ ਹੈ |
+| `play_music` | Music button (screen reader) | Play music | ਸੰਗੀਤ ਚਲਾਓ |
+| `pause_music` | Music button (screen reader) | Pause music | ਸੰਗੀਤ ਰੋਕੋ |
+| `scroll` | Arrow hint (short) | Scroll | ਹੇਠਾਂ ਦੇਖੋ |
+| `save_the_date_bg` | Large faded background word | Save the Date | ਸ਼ੁਭ ਤਾਰੀਖ਼ |
+| `save_the_date` | Small label above the date | Save the date | ਸ਼ੁਭ ਤਾਰੀਖ਼ |
+| `pull_aria` | Tassel (screen reader) | Pull down to reveal the wedding date | ਵਿਆਹ ਦੀ ਤਾਰੀਖ਼ ਦੇਖਣ ਲਈ ਹੇਠਾਂ ਖਿੱਚੋ |
+| `countdown_aria` | Countdown (screen reader) | Countdown to the wedding | ਵਿਆਹ ਤੱਕ ਦੀ ਉਲਟੀ ਗਿਣਤੀ |
+| `days` | Countdown unit (short) | days | ਦਿਨ |
+| `hrs` | Countdown unit (short) | hrs | ਘੰਟੇ |
+| `min` | Countdown unit (short) | min | ਮਿੰਟ |
+| `sec` | Countdown unit (short) | sec | ਸਕਿੰਟ |
+| `add_to_calendar` | Button | Add to calendar | ਕੈਲੰਡਰ ਵਿੱਚ ਜੋੜੋ |
+| `celebrate_bg` | Large faded background word | Celebrate | ਜਸ਼ਨ |
+| `swipe_celebrations` | Small label | Swipe through the celebrations | ਸਵਾਈਪ ਕਰਕੇ ਸਾਰੇ ਸਮਾਗਮ ਦੇਖੋ |
+| `festivities` | Heading | Wedding Festivities | ਵਿਆਹ ਸਮਾਗਮ |
+| `functions_aria` | Functions carousel (screen reader) | Wedding functions, swipe to browse | ਵਿਆਹ ਸਮਾਗਮ, ਦੇਖਣ ਲਈ ਸਵਾਈਪ ਕਰੋ |
+| `swipe_functions` | Hint | Swipe to see every function | ਹਰ ਸਮਾਗਮ ਦੇਖਣ ਲਈ ਸਵਾਈਪ ਕਰੋ |
+| `memories_bg` | Large faded background word | Memories | ਯਾਦਾਂ |
+| `moments` | Small label | Moments | ਪਲ |
+| `our_story` | Heading | Our Story | ਸਾਡੀ ਕਹਾਣੀ |
+| `photos_aria` | Photo carousel (screen reader) | Photos, swipe to browse | ਤਸਵੀਰਾਂ, ਦੇਖਣ ਲਈ ਸਵਾਈਪ ਕਰੋ |
+| `swipe_more` | Hint | Swipe to see more | ਹੋਰ ਦੇਖਣ ਲਈ ਸਵਾਈਪ ਕਰੋ |
+| `reception_bg` | Large faded background word | Reception | ਰਿਸੈਪਸ਼ਨ |
+| `location` | Small label | Location | ਸਥਾਨ |
+| `how_to_reach` | Heading | How to Reach | ਕਿਵੇਂ ਪਹੁੰਚੀਏ |
+| `map_aria` | Map link (screen reader) | Open the venue in Google Maps | ਸਥਾਨ Google Maps ਵਿੱਚ ਖੋਲ੍ਹੋ |
+| `tap_for_maps` | Button / under the map | Tap to open in Maps | ਨਕਸ਼ੇ ਵਿੱਚ ਖੋਲ੍ਹਣ ਲਈ ਟੈਪ ਕਰੋ |
+| `get_directions` | Button (short) | Get directions | ਰਸਤਾ ਦੇਖੋ |
+| `copy_address` | Button (short) | Copy address | ਪਤਾ ਕਾਪੀ ਕਰੋ |
+| `address_copied` | Message after copying | Address copied | ਪਤਾ ਕਾਪੀ ਹੋ ਗਿਆ |
+| `forever_bg` | Large faded background word | Forever | ਸਦਾ ਲਈ |
+| `kindly_respond` | Small label | Kindly respond | ਕਿਰਪਾ ਕਰਕੇ ਜਵਾਬ ਦਿਓ |
+| `will_you_join` | Heading | Will You Join Us? | ਕੀ ਤੁਸੀਂ ਪਧਾਰੋਗੇ? |
+| `your_name` | Box for the guest's name | Your name | ਤੁਹਾਡਾ ਨਾਮ |
+| `attending` | Button (short) | Attending | ਜ਼ਰੂਰ ਆਵਾਂਗੇ |
+| `cant_make_it` | Button (short) | Can't make it | ਨਹੀਂ ਆ ਸਕਾਂਗੇ |
+| `dear_guest` | Used if the guest leaves the name empty | Dear guest | ਪਿਆਰੇ ਮਹਿਮਾਨ |
+| `thanks_yes` | After "Attending" | Thank you, {name}! We can’t wait to see you. | ਧੰਨਵਾਦ, {name}! ਤੁਹਾਨੂੰ ਮਿਲਣ ਦੀ ਉਡੀਕ ਰਹੇਗੀ। |
+| `thanks_no` | After "Can't make it" | Thank you, {name}. You will be missed. | ਧੰਨਵਾਦ, {name}। ਤੁਹਾਡੀ ਕਮੀ ਮਹਿਸੂਸ ਹੋਵੇਗੀ। |
+| `reply_intro` | Start of the WhatsApp reply when the guest gave a name | This is {name}.  | ਮੈਂ {name} ਹਾਂ।  |
+| `reply_yes` | WhatsApp reply: attending | Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you! | ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ! {intro}{couple} ਦੇ ਵਿਆਹ ਵਿੱਚ ਮੈਂ ਜ਼ਰੂਰ ਆਵਾਂਗਾ/ਆਵਾਂਗੀ। ਮਿਲਣ ਦੀ ਉਡੀਕ ਹੈ! |
+| `reply_no` | WhatsApp reply: not attending | Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness. | ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ! {intro}ਮਾਫ਼ ਕਰਨਾ, ਮੈਂ {couple} ਦੇ ਵਿਆਹ ਵਿੱਚ ਨਹੀਂ ਆ ਸਕਾਂਗਾ/ਸਕਾਂਗੀ। ਤੁਹਾਨੂੰ ਦੋਹਾਂ ਨੂੰ ਬਹੁਤ ਸ਼ੁਭਕਾਮਨਾਵਾਂ। |
+| `opening_aria` | Opening-blessing page (screen reader) | Opening blessing | ਸ਼ੁਭ ਵਚਨ |
+| `tap_to_open_invite` | Hint on the opening screen (newer templates) | Tap to open your invitation | ਸੱਦਾ ਖੋਲ੍ਹਣ ਲਈ ਛੂਹੋ |
+
+---
+
+## Português (`pt`): draft, not reviewed
+
+### Dates, times and names
+
+| What | English | Português |
+|---|---|---|
+| Full date | Thursday, 31 December 2026 | quinta-feira, 31 de dezembro de 2026 |
+| Function card | Thu · 31 Dec · 7:00 pm | qui · 31 dez · 19h00 |
+| Times (10:00, 15:00, 19:00, 23:30) | 10:00 am · 3:00 pm · 7:00 pm · 11:30 pm | 10h00 · 15h00 · 19h00 · 23h30 |
+| Line under the date | Pheras at 7:00 pm · The Oberoi | Pheras às 19h00 · The Oberoi |
+| Pop-up near the end | See you on Thursday, 31 December 2026 | Nos vemos na quinta-feira, 31 de dezembro de 2026 |
+| Calendar entry | Aastha & Aakash Wedding | Casamento de Aastha e Aakash |
+| Couple (Hindu / Muslim / Western) | Aastha Weds Aakash  /  Aastha & Aakash  /  Aastha & Aakash | Aastha & Aakash  /  Aastha & Aakash  /  Aastha & Aakash |
+| Main rite (Hindu / Muslim / Western) | Pheras / Nikah / Ceremony | Pheras / Nikah / Cerimônia |
+| Date heading (pull / automatic) | Pull to Reveal / The Wedding Day | Puxe para revelar / O dia do casamento |
+| Tassel hint | Drag the tassel down | Puxe a borla para baixo |
+| Dress code label | Dress code | Traje |
+| Months | January, February, March, April, May, June, July, August, September, October, November, December | janeiro, fevereiro, março, abril, maio, junho, julho, agosto, setembro, outubro, novembro, dezembro |
+| Weekdays | Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday | domingo, segunda-feira, terça-feira, quarta-feira, quinta-feira, sexta-feira, sábado |
+
+### Words on the invitation
+
+| code | Where it appears | English | Português |
+|---|---|---|---|
+| `book_aria` | Screen-reader name of the opening scene | Wedding invitation book | Livro do convite de casamento |
+| `open_book_aria` | Screen-reader label of the tap-to-open button | Open the invitation book | Abrir o livro do convite |
+| `tap_to_open` | Hint on the closed book (Classic) | Tap the book to open | Toque no livro para abrir |
+| `preparing` | Loading message | Preparing your invitation | Preparando seu convite |
+| `play_music` | Music button (screen reader) | Play music | Tocar música |
+| `pause_music` | Music button (screen reader) | Pause music | Pausar música |
+| `scroll` | Arrow hint (short) | Scroll | Deslize |
+| `save_the_date_bg` | Large faded background word | Save the Date | Reserve a data |
+| `save_the_date` | Small label above the date | Save the date | Reserve a data |
+| `pull_aria` | Tassel (screen reader) | Pull down to reveal the wedding date | Puxe para baixo para ver a data do casamento |
+| `countdown_aria` | Countdown (screen reader) | Countdown to the wedding | Contagem regressiva para o casamento |
+| `days` | Countdown unit (short) | days | dias |
+| `hrs` | Countdown unit (short) | hrs | horas |
+| `min` | Countdown unit (short) | min | min |
+| `sec` | Countdown unit (short) | sec | seg |
+| `add_to_calendar` | Button | Add to calendar | Adicionar à agenda |
+| `celebrate_bg` | Large faded background word | Celebrate | Celebração |
+| `swipe_celebrations` | Small label | Swipe through the celebrations | Deslize para ver as celebrações |
+| `festivities` | Heading | Wedding Festivities | Celebrações do casamento |
+| `functions_aria` | Functions carousel (screen reader) | Wedding functions, swipe to browse | Eventos do casamento, deslize para ver |
+| `swipe_functions` | Hint | Swipe to see every function | Deslize para ver cada evento |
+| `memories_bg` | Large faded background word | Memories | Memórias |
+| `moments` | Small label | Moments | Momentos |
+| `our_story` | Heading | Our Story | Nossa história |
+| `photos_aria` | Photo carousel (screen reader) | Photos, swipe to browse | Fotos, deslize para ver |
+| `swipe_more` | Hint | Swipe to see more | Deslize para ver mais |
+| `reception_bg` | Large faded background word | Reception | Recepção |
+| `location` | Small label | Location | Local |
+| `how_to_reach` | Heading | How to Reach | Como chegar |
+| `map_aria` | Map link (screen reader) | Open the venue in Google Maps | Abrir o local no Google Maps |
+| `tap_for_maps` | Button / under the map | Tap to open in Maps | Toque para abrir o mapa |
+| `get_directions` | Button (short) | Get directions | Ver rota |
+| `copy_address` | Button (short) | Copy address | Copiar endereço |
+| `address_copied` | Message after copying | Address copied | Endereço copiado |
+| `forever_bg` | Large faded background word | Forever | Para sempre |
+| `kindly_respond` | Small label | Kindly respond | Por favor, confirme |
+| `will_you_join` | Heading | Will You Join Us? | Contamos com a sua presença? |
+| `your_name` | Box for the guest's name | Your name | Seu nome |
+| `attending` | Button (short) | Attending | Estarei presente |
+| `cant_make_it` | Button (short) | Can't make it | Não poderei ir |
+| `dear_guest` | Used if the guest leaves the name empty | Dear guest | Prezado(a) convidado(a) |
+| `thanks_yes` | After "Attending" | Thank you, {name}! We can’t wait to see you. | Agradecemos, {name}! Estamos ansiosos para receber você. |
+| `thanks_no` | After "Can't make it" | Thank you, {name}. You will be missed. | Agradecemos, {name}. Sentiremos sua falta. |
+| `reply_intro` | Start of the WhatsApp reply when the guest gave a name | This is {name}.  | Aqui é {name}.  |
+| `reply_yes` | WhatsApp reply: attending | Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you! | Olá! {intro}Confirmo com alegria minha presença no casamento de {couple}. Mal posso esperar para celebrar com vocês! |
+| `reply_no` | WhatsApp reply: not attending | Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness. | Olá! {intro}Infelizmente não poderei ir ao casamento de {couple}. Desejo a vocês muita felicidade. |
+| `opening_aria` | Opening-blessing page (screen reader) | Opening blessing | Bênção de abertura |
+| `tap_to_open_invite` | Hint on the opening screen (newer templates) | Tap to open your invitation | Toque para abrir seu convite |
+
+---
+
+## اردو (`ur`): draft, not reviewed
+
+### Dates, times and names
+
+| What | English | اردو |
+|---|---|---|
+| Full date | Thursday, 31 December 2026 | جمعرات، 31 دسمبر 2026 |
+| Function card | Thu · 31 Dec · 7:00 pm | جمعرات · 31 دسمبر · شام 7:00 بجے |
+| Times (10:00, 15:00, 19:00, 23:30) | 10:00 am · 3:00 pm · 7:00 pm · 11:30 pm | صبح 10:00 بجے · دوپہر 3:00 بجے · شام 7:00 بجے · رات 11:30 بجے |
+| Line under the date | Pheras at 7:00 pm · The Oberoi | پھیرے: شام 7:00 بجے · The Oberoi |
+| Pop-up near the end | See you on Thursday, 31 December 2026 | جمعرات، 31 دسمبر 2026 کو ملتے ہیں |
+| Calendar entry | Aastha & Aakash Wedding | Aastha اور Aakash کی شادی |
+| Couple (Hindu / Muslim / Western) | Aastha Weds Aakash  /  Aastha & Aakash  /  Aastha & Aakash | Aastha و Aakash  /  Aastha و Aakash  /  Aastha و Aakash |
+| Main rite (Hindu / Muslim / Western) | Pheras / Nikah / Ceremony | پھیرے / نکاح / تقریبِ شادی |
+| Date heading (pull / automatic) | Pull to Reveal / The Wedding Day | کھینچ کر دیکھیں / شادی کا مبارک دن |
+| Tassel hint | Drag the tassel down | پھندنا نیچے کھینچیں |
+| Dress code label | Dress code | لباس |
+| Months | January, February, March, April, May, June, July, August, September, October, November, December | جنوری, فروری, مارچ, اپریل, مئی, جون, جولائی, اگست, ستمبر, اکتوبر, نومبر, دسمبر |
+| Weekdays | Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday | اتوار, پیر, منگل, بدھ, جمعرات, جمعہ, ہفتہ |
+
+### Words on the invitation
+
+| code | Where it appears | English | اردو |
+|---|---|---|---|
+| `book_aria` | Screen-reader name of the opening scene | Wedding invitation book | شادی کا دعوت نامہ |
+| `open_book_aria` | Screen-reader label of the tap-to-open button | Open the invitation book | دعوت نامہ کھولیں |
+| `tap_to_open` | Hint on the closed book (Classic) | Tap the book to open | کھولنے کے لیے کتاب کو چھوئیں |
+| `preparing` | Loading message | Preparing your invitation | آپ کا دعوت نامہ تیار ہو رہا ہے |
+| `play_music` | Music button (screen reader) | Play music | موسیقی چلائیں |
+| `pause_music` | Music button (screen reader) | Pause music | موسیقی روکیں |
+| `scroll` | Arrow hint (short) | Scroll | نیچے دیکھیں |
+| `save_the_date_bg` | Large faded background word | Save the Date | تاریخ یاد رکھیں |
+| `save_the_date` | Small label above the date | Save the date | تاریخ یاد رکھیں |
+| `pull_aria` | Tassel (screen reader) | Pull down to reveal the wedding date | شادی کی تاریخ دیکھنے کے لیے نیچے کھینچیں |
+| `countdown_aria` | Countdown (screen reader) | Countdown to the wedding | شادی کی الٹی گنتی |
+| `days` | Countdown unit (short) | days | دن |
+| `hrs` | Countdown unit (short) | hrs | گھنٹے |
+| `min` | Countdown unit (short) | min | منٹ |
+| `sec` | Countdown unit (short) | sec | سیکنڈ |
+| `add_to_calendar` | Button | Add to calendar | کیلنڈر میں شامل کریں |
+| `celebrate_bg` | Large faded background word | Celebrate | جشن |
+| `swipe_celebrations` | Small label | Swipe through the celebrations | تمام تقریبات دیکھنے کے لیے سوائپ کریں |
+| `festivities` | Heading | Wedding Festivities | شادی کی تقریبات |
+| `functions_aria` | Functions carousel (screen reader) | Wedding functions, swipe to browse | شادی کی تقریبات، دیکھنے کے لیے سوائپ کریں |
+| `swipe_functions` | Hint | Swipe to see every function | ہر تقریب دیکھنے کے لیے سوائپ کریں |
+| `memories_bg` | Large faded background word | Memories | یادیں |
+| `moments` | Small label | Moments | لمحات |
+| `our_story` | Heading | Our Story | ہماری کہانی |
+| `photos_aria` | Photo carousel (screen reader) | Photos, swipe to browse | تصاویر، دیکھنے کے لیے سوائپ کریں |
+| `swipe_more` | Hint | Swipe to see more | مزید دیکھنے کے لیے سوائپ کریں |
+| `reception_bg` | Large faded background word | Reception | استقبالیہ |
+| `location` | Small label | Location | مقام |
+| `how_to_reach` | Heading | How to Reach | کیسے پہنچیں |
+| `map_aria` | Map link (screen reader) | Open the venue in Google Maps | مقام کو Google Maps میں کھولیں |
+| `tap_for_maps` | Button / under the map | Tap to open in Maps | نقشے میں کھولنے کے لیے ٹیپ کریں |
+| `get_directions` | Button (short) | Get directions | راستہ دیکھیں |
+| `copy_address` | Button (short) | Copy address | پتہ کاپی کریں |
+| `address_copied` | Message after copying | Address copied | پتہ کاپی ہو گیا |
+| `forever_bg` | Large faded background word | Forever | ہمیشہ ساتھ |
+| `kindly_respond` | Small label | Kindly respond | براہِ کرم جواب دیں |
+| `will_you_join` | Heading | Will You Join Us? | کیا آپ تشریف لائیں گے؟ |
+| `your_name` | Box for the guest's name | Your name | آپ کا نام |
+| `attending` | Button (short) | Attending | ضرور آئیں گے |
+| `cant_make_it` | Button (short) | Can't make it | نہیں آ سکیں گے |
+| `dear_guest` | Used if the guest leaves the name empty | Dear guest | معزز مہمان |
+| `thanks_yes` | After "Attending" | Thank you, {name}! We can’t wait to see you. | شکریہ، {name}! آپ سے ملنے کا انتظار رہے گا۔ |
+| `thanks_no` | After "Can't make it" | Thank you, {name}. You will be missed. | شکریہ، {name}۔ آپ کی کمی محسوس ہوگی۔ |
+| `reply_intro` | Start of the WhatsApp reply when the guest gave a name | This is {name}.  | میں {name} ہوں۔  |
+| `reply_yes` | WhatsApp reply: attending | Hello! {intro}Happy to confirm I will attend the wedding of {couple}. Looking forward to celebrating with you! | السلام علیکم! {intro}میں {couple} کی شادی میں ضرور شرکت کروں گا/گی۔ آپ سے ملنے کا انتظار ہے! |
+| `reply_no` | WhatsApp reply: not attending | Hello! {intro}Sadly I will not be able to attend the wedding of {couple}. Wishing you both a lifetime of happiness. | السلام علیکم! {intro}معذرت، میں {couple} کی شادی میں شرکت نہیں کر سکوں گا/گی۔ آپ دونوں کے لیے ڈھیروں دعائیں۔ |
+| `opening_aria` | Opening-blessing page (screen reader) | Opening blessing | ابتدائی کلمات |
+| `tap_to_open_invite` | Hint on the opening screen (newer templates) | Tap to open your invitation | دعوت نامہ کھولنے کے لیے چھوئیں |
