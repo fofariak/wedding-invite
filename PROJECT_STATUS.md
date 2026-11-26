@@ -77,7 +77,13 @@ Last updated: 24 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
   - A gentle check before paying flags names in English letters on a non-English invitation.
   - Homepage: "Your invitation in 9 languages" chips, each opening the editor in that language.
   - Arabic and Urdu are reviewed but hidden until the right-to-left layout is built.
-  - Not yet done: "Fill in sample wording" per language, and the multi-language toggle (+₹200).
+  - **Sample wording per language:**
+    - Hindi and Gujarati: Hindu and Nikah samples.
+    - Marathi and Punjabi: Hindu sample.
+    - Spanish, Portuguese, German and French: Nikah and Western samples.
+    - Picking a language (homepage chip or editor) switches the sample wording automatically if it is untouched, and asks first if the couple has typed their own.
+    - Other combinations use the English sample with the fixed words translated.
+  - Not yet done: the multi-language toggle (+₹200).
 
 ## Decisions (23 to 24 November 2026)
 - **Order:** keep the original order: Step 1 foundations, then the homepage, then hosted links.

@@ -205,7 +205,7 @@ function tplOf(x){return RES.templates[(x||S).template]||RES.templates[E.DEFAULT
 function themesOf(x){return tplOf(x).themes;}
 function firstTheme(th){return th.wine?'wine':Object.keys(th)[0];}
 var ZONES=[['-08:00','Los Angeles (UTC-8)'],['-07:00','Los Angeles summer / Denver (UTC-7)'],['-06:00','Chicago (UTC-6)'],['-05:00','New York (UTC-5)'],['-04:00','New York summer (UTC-4)'],['+00:00','London (UTC)'],['+01:00','London summer / Paris, Rome (UTC+1)'],['+02:00','Paris, Rome summer / Cairo (UTC+2)'],['+03:00','Riyadh, Doha, Istanbul (UTC+3)'],['+04:00','Dubai, Abu Dhabi (UTC+4)'],['+05:00','Karachi (UTC+5)'],['+05:30','India (UTC+5:30)'],['+06:00','Dhaka (UTC+6)'],['+08:00','Singapore (UTC+8)']];
-var defaults=window.InviteSamples.defaults,sample=window.InviteSamples.sample;
+var defaults=window.InviteSamples.defaults,sample=window.InviteSamples.sample,hasSample=window.InviteSamples.hasSample;
 var S=defaults();
 function build(opts){return E.build(S,opts,RES);}
 
@@ -236,9 +236,9 @@ function render(){
     h('div',{class:'themes',role:'radiogroup','aria-label':'Wedding tradition'},Object.keys(TRAD).map(function(k){
       var r=h('input',{type:'radio',name:'trad',value:k,checked:S.tradition===k,onchange:function(){S.tradition=k;changed();render();}});
       return h('label',{class:'theme'},[r,h('span',{},[TRAD[k].label,h('br'),h('small',{class:'hint',text:TRAD[k].note})])]);})),
-    h('button',{class:'btn ghost add',type:'button',text:'Fill in sample '+TRAD[S.tradition].label+' wording',onclick:function(){
+    h('button',{class:'btn ghost add',type:'button',text:'Fill in sample '+TRAD[S.tradition].label+' wording'+(S.lang!==E.DEFAULT_LANG&&hasSample(S.tradition,S.lang)?' in '+RES.phrases[S.lang].label:''),onclick:function(){
       if(!confirm('Replace the names, wording, functions and venue with sample '+TRAD[S.tradition].label+' content? Your photos, song and colours stay.'))return;
-      var keepK={photos:S.photos,cover:S.cover,song:S.song,songName:S.songName,theme:S.theme,reveal:S.reveal,tradition:S.tradition};S=Object.assign(sample(S.tradition),keepK);render();changed();say('Sample wording loaded. Edit anything you like.');}}),
+      fillSample(S.lang);say('Sample wording loaded. Edit anything you like.');}}),
     h('p',{class:'hint',text:'The tradition sets the emblem and a few fixed words. The button swaps in sample wording and functions to start from.'})]));
   secs.push(section('Opening blessing',false,openingControls()));
   secs.push(section('Couple & families',true,[
@@ -337,9 +337,23 @@ function langPicker(){
   var live=liveLangs(),first=(LIKELY[S.tradition]||[]).filter(function(k){return live.indexOf(k)>=0;}),rest=live.filter(function(k){return first.indexOf(k)<0;});
   if(live.indexOf(S.lang)<0)S.lang=E.DEFAULT_LANG;
   var sel=h('select',{},first.concat(rest).map(function(k){return h('option',{value:k,selected:S.lang===k,text:RES.phrases[k].label+(k===E.DEFAULT_LANG?'':' ('+k.toUpperCase()+')')});}));
-  sel.addEventListener('change',function(){S.lang=sel.value;changed();render();});
+  sel.addEventListener('change',function(){switchLanguage(sel.value);});
   var P=RES.phrases[S.lang],note=S.lang===E.DEFAULT_LANG?null:h('p',{class:'hint',text:'Dates, times and the invitation\u2019s own words will be in '+P.label+' automatically. Names, places and your own wording appear exactly as you type them, so type them in '+P.label+' if you want them in '+P.label+'.'});
   return h('div',{style:'display:grid;gap:6px'},[h('label',{},['Invitation language',sel]),note]);}
+// Sample wording in the chosen language. Photos, song, design, colours, opening and replies stay.
+var WORDING=['name1','name2','rel1','rel2','parents1','parents2','frontLabel','inviteLine','coverTitle','coverSub','recLabel','recTitle','recLine','recChip','closing','kids'];
+function wordingOf(x){return JSON.stringify(WORDING.map(function(k){return x[k];}).concat(x.events.map(function(e){return [e.name,e.dress,e.place];})));}
+function fillSample(lang){var keep={photos:S.photos,cover:S.cover,song:S.song,songName:S.songName,theme:S.theme,reveal:S.reveal,tradition:S.tradition,template:S.template,hashtag:S.hashtag,rsvpPhone:S.rsvpPhone,opening:S.opening,lang:lang};
+  S=Object.assign(sample(S.tradition,lang),keep);render();changed();}
+// Is the wording still one of our samples (in any language)? Then switching language can replace it safely.
+function wordingUntouched(){var w=wordingOf(S);return Object.keys(RES.phrases).concat([E.DEFAULT_LANG]).some(function(l){return wordingOf(sample(S.tradition,l))===w;});}
+function switchLanguage(lang){
+  if(lang===S.lang)return;
+  var label=RES.phrases[lang].label;
+  if(wordingUntouched())fillSample(lang);
+  else if(confirm('Replace your wording with the sample in '+label+'? Your photos, colours and design stay. Choose Cancel to keep your own wording.'))fillSample(lang);
+  else{S.lang=lang;changed();render();}
+  say('Invitation language: '+label+'.');}
 // Before paying: names in English letters on an invitation in another script?
 function namesMismatch(){var sc=LANG_SCRIPT[S.lang];if(!sc)return false;return E.detectScript(S.name1+' '+S.name2)==='latn';}
 
@@ -572,7 +586,7 @@ loadDraft().then(function(d){
   render();
   var x=fromHash();if(x)return openSession(x.id,x.token);
   var qs=new URLSearchParams(location.search),wantLang=qs.get('lang');
-  if(wantLang&&liveLangs().indexOf(wantLang)>=0&&wantLang!==S.lang){S.lang=wantLang;history.replaceState(null,'',location.pathname+location.hash);render();saveDraft();say('Invitation language: '+RES.phrases[wantLang].label+'.');}
+  if(wantLang&&liveLangs().indexOf(wantLang)>=0&&wantLang!==S.lang){history.replaceState(null,'',location.pathname+location.hash);switchLanguage(wantLang);saveDraft();}
   var want=qs.get('template');
   if(want&&RES.templates[want]){S.template=want;if(!themesOf()[S.theme])S.theme=firstTheme(themesOf());history.replaceState(null,'',location.pathname+location.hash);render();saveDraft();say(RES.templates[want].name+' design selected. Make it yours below.');}
   var p=stored('pendingPublish');
