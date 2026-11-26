@@ -74,6 +74,12 @@ Last updated: 24 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
 - **Payments:** hosted-link checkout is built on Razorpay (test mode first). Stripe has been removed.
 - **Editing after publishing:** everything can be changed. Invitations go offline automatically **12 months** after the wedding.
 - **Storage:** Netlify Blobs. **Edit link:** copy it or send it to your own WhatsApp; no email is collected. **Delivery:** link only, no download.
+- **Multi-language invitations (26 November 2026):**
+  - **Price:** ₹499 includes 1 language; each extra language is +₹200 (₹699 for 2, ₹899 for 3). Prices stay in Netlify settings.
+  - **Editor:** language tabs. Extra languages only need the text that differs (names, parents, invitation line), and empty fields reuse the main language. Dates and fixed words translate automatically; photos, design, music and opening are shared.
+  - **Guests:** one link with an EN | हिं style switch at the top.
+  - **Upgrades:** adding a language after publishing costs just the difference.
+  - **When:** built together with the language picker and right-to-left layout, once at least one translation is reviewed.
 
 ## Next
 1. You check Step 0 on the live site and on a phone (WhatsApp reply button, fonts, policy pages).
