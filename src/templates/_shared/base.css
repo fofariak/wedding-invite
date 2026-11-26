@@ -119,3 +119,8 @@ html.js .opening-page .op-wrap{opacity:0;transform:translateY(14px);filter:blur(
 html.js .opening-page.on .op-wrap{opacity:1;transform:none;filter:none}
 
 @media (prefers-reduced-motion:reduce){html.js .rv,html.js [data-t],html.js .opening-page .op-wrap{opacity:1;transform:none;filter:none;transition:none}.tap .dot,.arrow i,#music.on .bars i{animation:none}}
+
+/* wedding hashtag (tap to copy) */
+.hashtag{margin:18px auto 0;display:grid;justify-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
+.hashtag .ht{border:1px dashed var(--gold);background:transparent;color:var(--wine);border-radius:999px;padding:8px 18px;font:600 16px var(--f-head);cursor:pointer;position:relative}
+.hashtag .ht.done::after{content:attr(data-msg);position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:6px;white-space:nowrap;font:500 11px var(--f-body);color:var(--muted)}

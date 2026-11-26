@@ -26,7 +26,7 @@ function defaults(){
     recOn:true,recLabel:'You are invited to the',recTitle:'Grand Reception',recDate:'2026-12-31',recLine:'10:00 pm onwards · Dinner, dance & the New Year countdown',recVenue:'The Terrace, The Oberoi',recChip:'Dress code: black tie & sarees',
     venue:'The Oberoi',address:'Nariman Point, Mumbai 400021',city:'Mumbai',mapArea:'NARIMAN POINT',mapLandmark:'MARINE DRIVE',mapRoad:'NETAJI SUBHASH ROAD',
     closing:'With love from the Oberoi & Shah families',kids:'Come shower us with blessings, not gifts! Your love and presence are all we need. 💕',
-    song:'',songName:'',rsvpPhone:'',
+    song:'',songName:'',rsvpPhone:'',hashtag:'#AasthaWedsAakash',
     opening:{id:'hi-gen-shri-ganeshay',custom:'',design:'classic',size:'m',color:'gold',gujarati:false,translit:false,meaning:true,ref:true,version:'kjv'}};
 }
 function sample(k){
@@ -39,7 +39,7 @@ function sample(k){
     recLabel:'You are invited to the',recTitle:'Walima',recDate:'2027-03-20',recLine:'8:00 pm onwards · Dinner',recVenue:'The Grand Hall, Al Noor Gardens',recChip:'',
     venue:'Al Noor Gardens',address:'Beach Road, Jumeirah, Dubai',city:'Dubai',mapArea:'JUMEIRAH',mapLandmark:'THE LAGOON',mapRoad:'BEACH ROAD',
     closing:'With love and duas, the Qureshi & Siddiqui families',kids:'',
-    opening:Object.assign({},d.opening,{id:'mu-bismillah',meaning:false})});
+    hashtag:'#ZayanAndAleena',opening:Object.assign({},d.opening,{id:'mu-bismillah',meaning:false})});
   return Object.assign(d,{name1:'James',name2:'Charlotte',rel1:'',rel2:'',parents1:'',parents2:'',
     frontLabel:'Together with their families',inviteLine:'invite you to celebrate their wedding',coverTitle:'THE WEDDING',coverSub:'An invitation',
     date:'2027-06-19',time:'16:00',tz:'+02:00',
@@ -47,7 +47,7 @@ function sample(k){
     recLabel:'Followed by',recTitle:'Dinner & Dancing',recDate:'2027-06-19',recLine:'6:30 pm onwards · Dinner, toasts & dancing',recVenue:'The Ballroom, Villa Montalba',recChip:'',
     venue:'Villa Montalba',address:'Via dei Cipressi 8, Tuscany, Italy',city:'Tuscany',mapArea:'CHIANTI HILLS',mapLandmark:'OLIVE GROVE',mapRoad:'VIA DEI CIPRESSI',
     closing:'With love, James & Charlotte',kids:'',
-    opening:Object.assign({},d.opening,{id:''})});
+    hashtag:'#JamesAndCharlotte',opening:Object.assign({},d.opening,{id:''})});
 }
 var InviteSamples={defaults:defaults,sample:sample,placeholder:placeholder};
 if(typeof module!=='undefined'&&module.exports)module.exports=InviteSamples;else root.InviteSamples=InviteSamples;

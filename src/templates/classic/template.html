@@ -1,4 +1,8 @@
 <!doctype html><html lang="%%LANG%%" dir="%%DIR%%"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* wedding hashtag (tap to copy) */
+.hashtag{position:relative;z-index:3;margin:16px auto 0;display:grid;justify-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
+.hashtag .ht{border:1px dashed var(--gold);background:rgba(255,253,249,.8);color:var(--wine);border-radius:999px;padding:8px 18px;font:600 16px var(--f-head);cursor:pointer;position:relative}
+.hashtag .ht.done::after{content:attr(data-msg);position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:6px;white-space:nowrap;font:500 11px var(--f-body);color:var(--muted)}
 /* ---------- opening library (mantras, shlokas, verses, duas) ---------- */
 .op{--opc:var(--gold);--os:1;text-align:center;color:var(--opc);max-width:100%}
 .op-c-accent{--opc:var(--wine)}.op-c-ink{--opc:var(--ink)}
@@ -526,7 +530,7 @@ section.offscreen *,header.offscreen *{animation-play-state:paused!important}
 %%PHOTOS%%
     </div>
     <div class="pdots" id="pdots"></div>
-    <div class="swipe-hint rv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 7l-4 5 4 5M16 7l4 5-4 5"/></svg>%%T_SWIPE_MORE%%</div>
+    <div class="swipe-hint rv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 7l-4 5 4 5M16 7l4 5-4 5"/></svg>%%T_SWIPE_MORE%%</div>%%HASHTAG%%
   </section>
   <!-- GRAND RECEPTION -->
   <section class="reception in"%%REC_HIDDEN%%>

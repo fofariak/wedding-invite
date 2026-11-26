@@ -6,7 +6,7 @@
   "text": {
     "book_aria": "كتيّب دعوة الزفاف",
     "open_book_aria": "افتح كتيّب الدعوة",
-    "tap_to_open": "المس الكتاب لفتحه",
+    "tap_to_open": "اضغط على الكتاب لفتحه",
     "preparing": "جارٍ تجهيز دعوتك",
     "play_music": "تشغيل الموسيقى",
     "pause_music": "إيقاف الموسيقى",
@@ -22,7 +22,7 @@
     "add_to_calendar": "أضف إلى التقويم",
     "celebrate_bg": "احتفال",
     "swipe_celebrations": "مرّر لمشاهدة جميع المناسبات",
-    "festivities": "مناسبات الزفاف",
+    "festivities": "احتفالات الزفاف",
     "functions_aria": "مناسبات الزفاف، مرّر للتصفح",
     "swipe_functions": "مرّر لمشاهدة كل مناسبة",
     "memories_bg": "ذكريات",
@@ -32,7 +32,7 @@
     "swipe_more": "مرّر للمزيد",
     "reception_bg": "حفل الاستقبال",
     "location": "المكان",
-    "how_to_reach": "كيفية الوصول",
+    "how_to_reach": "كيفية الوصول إلى المكان",
     "map_aria": "افتح المكان في خرائط Google",
     "tap_for_maps": "اضغط للفتح في الخرائط",
     "get_directions": "الاتجاهات",
@@ -51,7 +51,9 @@
     "reply_yes": "السلام عليكم! {intro}يسعدنا تأكيد حضورنا زفاف {couple}. نتطلع لرؤيتكم!",
     "reply_no": "السلام عليكم! {intro}نعتذر عن عدم تمكننا من حضور زفاف {couple}. نتمنى لكما حياة سعيدة.",
     "opening_aria": "افتتاحية مباركة",
-    "tap_to_open_invite": "المس لفتح دعوتك"
+    "tap_to_open_invite": "المس لفتح دعوتك",
+    "share_hashtag": "شاركونا صوركم باستخدام الوسم",
+    "hashtag_copied": "تم نسخ الوسم"
   },
   "format": {
     "months": [
@@ -107,7 +109,7 @@
     "date_short": "{day} {month}",
     "date_head_pull": "اسحب لتكشف",
     "date_head_auto": "يوم الزفاف",
-    "date_tip": "اسحب الشرّابة للأسفل",
+    "date_tip": "اسحب للأسفل للكشف عن تاريخ الزفاف",
     "dress_code": "قواعد اللباس",
     "banner_line": "{rite}: {time} · {venue}",
     "see_you_on": "نلقاكم يوم {date}",

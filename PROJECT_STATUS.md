@@ -67,6 +67,9 @@ Last updated: 24 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
   - The server accepts only reviewed languages.
   - Still to do: the language picker, right-to-left layout for Arabic and Urdu, and homepage language chips.
 
+- **Translations reviewed by the owner (26 November 2026):** 52 corrections applied to the phrase files across all 10 languages. Two new phrases for the hashtag ("Share your photos with", "Hashtag copied") still need a review.
+- **Wedding hashtag:** optional field in the editor; shown under the photos in all 4 templates, and guests tap to copy.
+
 ## Decisions (23 to 24 November 2026)
 - **Order:** keep the original order: Step 1 foundations, then the homepage, then hosted links.
 - **Old buttons:** "Save project / Open project" was replaced by the edit link in Step 3.

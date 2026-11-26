@@ -10,10 +10,10 @@
     "preparing": "Preparando su invitación",
     "play_music": "Reproducir música",
     "pause_music": "Pausar música",
-    "scroll": "Deslice",
+    "scroll": "Deslice hacia abajo",
     "save_the_date_bg": "Reserve la fecha",
     "save_the_date": "Reserve la fecha",
-    "pull_aria": "Tire hacia abajo para ver la fecha de la boda",
+    "pull_aria": "Tire hacia abajo para revelar la fecha de la boda",
     "countdown_aria": "Cuenta atrás para la boda",
     "days": "días",
     "hrs": "horas",
@@ -44,14 +44,16 @@
     "your_name": "Su nombre",
     "attending": "Asistiré",
     "cant_make_it": "No podré asistir",
-    "dear_guest": "estimado invitado",
+    "dear_guest": "Estimado/a invitado/a",
     "thanks_yes": "¡Gracias, {name}! Le esperamos con ilusión.",
     "thanks_no": "Gracias, {name}. Le echaremos de menos.",
     "reply_intro": "Soy {name}. ",
     "reply_yes": "¡Hola! {intro}Confirmo con alegría mi asistencia a la boda de {couple}. ¡Con muchas ganas de celebrarlo con ustedes!",
     "reply_no": "¡Hola! {intro}Lamentablemente no podré asistir a la boda de {couple}. Les deseo toda la felicidad del mundo.",
     "opening_aria": "Bendición de apertura",
-    "tap_to_open_invite": "Toque para abrir su invitación"
+    "tap_to_open_invite": "Toque para abrir su invitación",
+    "share_hashtag": "Comparta sus fotos con",
+    "hashtag_copied": "Hashtag copiado"
   },
   "format": {
     "months": [

@@ -14,7 +14,7 @@
     "save_the_date_bg": "ਸ਼ੁਭ ਤਾਰੀਖ਼",
     "save_the_date": "ਸ਼ੁਭ ਤਾਰੀਖ਼",
     "pull_aria": "ਵਿਆਹ ਦੀ ਤਾਰੀਖ਼ ਦੇਖਣ ਲਈ ਹੇਠਾਂ ਖਿੱਚੋ",
-    "countdown_aria": "ਵਿਆਹ ਦੀ ਉਲਟੀ ਗਿਣਤੀ",
+    "countdown_aria": "ਵਿਆਹ ਤੱਕ ਦੀ ਉਲਟੀ ਗਿਣਤੀ",
     "days": "ਦਿਨ",
     "hrs": "ਘੰਟੇ",
     "min": "ਮਿੰਟ",
@@ -48,10 +48,12 @@
     "thanks_yes": "ਧੰਨਵਾਦ, {name}! ਤੁਹਾਨੂੰ ਮਿਲਣ ਦੀ ਉਡੀਕ ਰਹੇਗੀ।",
     "thanks_no": "ਧੰਨਵਾਦ, {name}। ਤੁਹਾਡੀ ਕਮੀ ਮਹਿਸੂਸ ਹੋਵੇਗੀ।",
     "reply_intro": "ਮੈਂ {name} ਹਾਂ। ",
-    "reply_yes": "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ! {intro}{couple} ਦੇ ਵਿਆਹ ਵਿੱਚ ਅਸੀਂ ਜ਼ਰੂਰ ਆਵਾਂਗੇ। ਮਿਲਣ ਦੀ ਉਡੀਕ ਹੈ!",
-    "reply_no": "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ! {intro}ਮਾਫ਼ ਕਰਨਾ, ਅਸੀਂ {couple} ਦੇ ਵਿਆਹ ਵਿੱਚ ਨਹੀਂ ਆ ਸਕਾਂਗੇ। ਤੁਹਾਨੂੰ ਦੋਹਾਂ ਨੂੰ ਬਹੁਤ ਸ਼ੁਭਕਾਮਨਾਵਾਂ।",
+    "reply_yes": "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ! {intro}{couple} ਦੇ ਵਿਆਹ ਵਿੱਚ ਮੈਂ ਜ਼ਰੂਰ ਆਵਾਂਗਾ/ਆਵਾਂਗੀ। ਮਿਲਣ ਦੀ ਉਡੀਕ ਹੈ!",
+    "reply_no": "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ! {intro}ਮਾਫ਼ ਕਰਨਾ, ਮੈਂ {couple} ਦੇ ਵਿਆਹ ਵਿੱਚ ਨਹੀਂ ਆ ਸਕਾਂਗਾ/ਸਕਾਂਗੀ। ਤੁਹਾਨੂੰ ਦੋਹਾਂ ਨੂੰ ਬਹੁਤ ਸ਼ੁਭਕਾਮਨਾਵਾਂ।",
     "opening_aria": "ਸ਼ੁਭ ਵਚਨ",
-    "tap_to_open_invite": "ਸੱਦਾ ਖੋਲ੍ਹਣ ਲਈ ਛੂਹੋ"
+    "tap_to_open_invite": "ਸੱਦਾ ਖੋਲ੍ਹਣ ਲਈ ਛੂਹੋ",
+    "share_hashtag": "ਇਸ ਹੈਸ਼ਟੈਗ ਨਾਲ ਆਪਣੀਆਂ ਤਸਵੀਰਾਂ ਸਾਂਝੀਆਂ ਕਰੋ",
+    "hashtag_copied": "ਹੈਸ਼ਟੈਗ ਕਾਪੀ ਹੋ ਗਿਆ"
   },
   "format": {
     "months": [
@@ -105,9 +107,9 @@
     "time": "{daypart} {h12}:{mm} ਵਜੇ",
     "date_long": "{weekday}, {day} {month} {year}",
     "date_short": "{day} {month}",
-    "date_head_pull": "ਖਿੱਚ ਕੇ ਦੇਖੋ",
+    "date_head_pull": "ਖਿੱਚੋ ਤੇ ਵੇਖੋ",
     "date_head_auto": "ਵਿਆਹ ਦਾ ਸ਼ੁਭ ਦਿਨ",
-    "date_tip": "ਫੁੰਦਣਾ ਹੇਠਾਂ ਖਿੱਚੋ",
+    "date_tip": "ਲਟਕਣ ਹੇਠਾਂ ਖਿੱਚੋ",
     "dress_code": "ਡਰੈੱਸ ਕੋਡ",
     "banner_line": "{rite}: {time} · {venue}",
     "see_you_on": "{date} ਨੂੰ ਮਿਲਦੇ ਹਾਂ",

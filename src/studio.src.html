@@ -245,7 +245,9 @@ function render(){
     h('div',{class:'two'},[field('Relation line',S,'rel1'),field('Relation line',S,'rel2')]),
     field('Parents of '+(S.name1||'first')+' (leave empty to hide)',S,'parents1'),field('Parents of '+(S.name2||'second')+' (leave empty to hide)',S,'parents2'),
     field('Line above the names',S,'frontLabel'),field('Invitation line',S,'inviteLine'),
-    h('div',{class:'two'},[field('Book cover title',S,'coverTitle'),field('Book cover subtitle',S,'coverSub')])]));
+    h('div',{class:'two'},[field('Book cover title',S,'coverTitle'),field('Book cover subtitle',S,'coverSub')]),
+    field('Wedding hashtag (optional)',S,'hashtag','text',{placeholder:'#AasthaWedsAakash',autocapitalize:'off'}),
+    h('p',{class:'hint',text:'Shown with your photos; guests tap it to copy. Spaces and symbols are removed.'})]));
   secs.push(section('Wedding date',false,[
     h('div',{class:'two'},[field('Date',S,'date','date'),field(TRAD[S.tradition].rite+' time',S,'time','time')]),
     (function(){var z=h('select',{},ZONES.map(function(o){return h('option',{value:o[0],selected:S.tz===o[0],text:o[1]});}));z.addEventListener('change',function(){S.tz=z.value;changed();});return h('label',{},['Time zone of the wedding',z]);})(),

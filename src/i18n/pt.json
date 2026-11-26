@@ -10,7 +10,7 @@
     "preparing": "Preparando seu convite",
     "play_music": "Tocar música",
     "pause_music": "Pausar música",
-    "scroll": "Role",
+    "scroll": "Deslize",
     "save_the_date_bg": "Reserve a data",
     "save_the_date": "Reserve a data",
     "pull_aria": "Puxe para baixo para ver a data do casamento",
@@ -44,14 +44,16 @@
     "your_name": "Seu nome",
     "attending": "Estarei presente",
     "cant_make_it": "Não poderei ir",
-    "dear_guest": "querido convidado",
-    "thanks_yes": "Obrigado, {name}! Esperamos por você com alegria.",
-    "thanks_no": "Obrigado, {name}. Sentiremos sua falta.",
+    "dear_guest": "Prezado(a) convidado(a)",
+    "thanks_yes": "Agradecemos, {name}! Estamos ansiosos para receber você.",
+    "thanks_no": "Agradecemos, {name}. Sentiremos sua falta.",
     "reply_intro": "Aqui é {name}. ",
     "reply_yes": "Olá! {intro}Confirmo com alegria minha presença no casamento de {couple}. Mal posso esperar para celebrar com vocês!",
     "reply_no": "Olá! {intro}Infelizmente não poderei ir ao casamento de {couple}. Desejo a vocês muita felicidade.",
     "opening_aria": "Bênção de abertura",
-    "tap_to_open_invite": "Toque para abrir seu convite"
+    "tap_to_open_invite": "Toque para abrir seu convite",
+    "share_hashtag": "Compartilhe suas fotos com",
+    "hashtag_copied": "Hashtag copiada"
   },
   "format": {
     "months": [
@@ -110,7 +112,7 @@
     "date_tip": "Puxe a borla para baixo",
     "dress_code": "Traje",
     "banner_line": "{rite} às {time} · {venue}",
-    "see_you_on": "Nos vemos em {date}",
+    "see_you_on": "Nos vemos na {date}",
     "calendar_title": "Casamento de {name1} e {name2}",
     "join": {
       "hindu": " & ",

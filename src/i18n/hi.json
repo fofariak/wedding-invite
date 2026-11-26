@@ -14,7 +14,7 @@
     "save_the_date_bg": "शुभ तिथि",
     "save_the_date": "शुभ तिथि",
     "pull_aria": "विवाह की तिथि देखने के लिए नीचे खींचें",
-    "countdown_aria": "विवाह की उलटी गिनती",
+    "countdown_aria": "विवाह तक की उलटी गिनती",
     "days": "दिन",
     "hrs": "घंटे",
     "min": "मिनट",
@@ -48,10 +48,12 @@
     "thanks_yes": "धन्यवाद, {name}! आपसे मिलने की प्रतीक्षा रहेगी।",
     "thanks_no": "धन्यवाद, {name}। आपकी कमी खलेगी।",
     "reply_intro": "मैं {name} हूँ। ",
-    "reply_yes": "नमस्ते! {intro}{couple} के विवाह में आने की पुष्टि करते हैं। आपसे मिलने की प्रतीक्षा है!",
-    "reply_no": "नमस्ते! {intro}खेद है, हम {couple} के विवाह में नहीं आ पाएँगे। आप दोनों को ढेरों शुभकामनाएँ।",
+    "reply_yes": "नमस्ते! {intro}{couple} के विवाह में मैं अवश्य आऊँगा/आऊँगी। आपसे मिलने की प्रतीक्षा है!",
+    "reply_no": "नमस्ते! {intro}खेद है, मैं {couple} के विवाह में उपस्थित नहीं हो पाऊँगा/पाऊँगी। आप दोनों को ढेरों शुभकामनाएँ।",
     "opening_aria": "मंगल वचन",
-    "tap_to_open_invite": "निमंत्रण खोलने के लिए छुएँ"
+    "tap_to_open_invite": "निमंत्रण खोलने के लिए छुएँ",
+    "share_hashtag": "अपनी तस्वीरें इस हैशटैग के साथ साझा करें",
+    "hashtag_copied": "हैशटैग कॉपी हो गया"
   },
   "format": {
     "months": [
@@ -105,9 +107,9 @@
     "time": "{daypart} {h12}:{mm} बजे",
     "date_long": "{weekday}, {day} {month} {year}",
     "date_short": "{day} {month}",
-    "date_head_pull": "खींचकर देखें",
+    "date_head_pull": "खींचें और देखें",
     "date_head_auto": "विवाह का शुभ दिन",
-    "date_tip": "फुंदने को नीचे खींचें",
+    "date_tip": "लटकन को नीचे खींचें",
     "dress_code": "ड्रेस कोड",
     "banner_line": "{rite}: {time} · {venue}",
     "see_you_on": "{date} को मिलते हैं",

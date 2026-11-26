@@ -34,6 +34,8 @@ function phrasesFor(S,R){return R.phrases[S.lang]||R.phrases[DEFAULT_LANG];}
 // WhatsApp number for guest replies. Must start with + or 00 (country code) so it can't reach the wrong person.
 // Returns digits only (8 to 15, no leading zero), or '' if not usable.
 function waNumber(s){var t=String(s||'').trim();if(!/^(\+|00)/.test(t))return '';var d=t.replace(/\D/g,'').replace(/^00/,'');return /^[1-9]\d{7,14}$/.test(d)?d:'';}
+// Wedding hashtag: letters/numbers/underscores in any script, one leading #; '' if nothing usable.
+function hashtagOf(s){var core=String(s||'').replace(/[^\p{L}\p{N}\p{M}_]/gu,'').slice(0,40);return core?'#'+core:'';}
 function pad(n){return (n<10?'0':'')+n;}
 function calStamp(ms){var d=new Date(ms);return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+'00Z';}
 
@@ -133,7 +135,9 @@ function build(S,opts,R){
   var OP=renderOpening(S,R,P);
   var SH=R.shared||{};
   var themeVars=th.vars?'<style>:root{'+Object.keys(th.vars).map(function(k){return k+':'+String(th.vars[k]).replace(/[<>;{}]/g,'');}).join(';')+'}</style>':'';
-  var V={FONTS_BASE:esc(R.fontsBase||''),THEME_VARS:themeVars,SHARED_CSS:SH.css||'',SHARED_RUNTIME:SH.runtime||'',SHARED_ICONS:SH.icons||'',OPENING_FONTS:OP.fonts,OPENING_LINE:OP.line,OPENING_PAGE:OP.page,LANG:esc(P.lang),DIR:P.dir==="rtl"?"rtl":"ltr",TITLE:esc(title),FONTS_HREF:esc(fontsHref),RSVP_HIDDEN:wa?'':' hidden',J_RSVP_PHONE:js(wa),J_COUPLE:js(S.name1+' & '+S.name2),SONG:esc(opts.silent||!S.song?SILENT:S.song),
+  var tag=hashtagOf(S.hashtag);
+  var HASHTAG=tag?'<div class="hashtag"><span>'+esc(P.text.share_hashtag)+'</span><button type="button" class="ht" data-msg="'+esc(P.text.hashtag_copied)+'" onclick="var b=this,t=b.textContent;function ok(){b.classList.add(\'done\')}function old(){var r=document.createRange(),x=getSelection();r.selectNodeContents(b);x.removeAllRanges();x.addRange(r);try{if(document.execCommand(\'copy\'))ok()}catch(e){}}try{navigator.clipboard.writeText(t).then(ok,old)}catch(e){old()}">'+esc(tag)+'</button></div>':'';
+  var V={HASHTAG:HASHTAG,FONTS_BASE:esc(R.fontsBase||''),THEME_VARS:themeVars,SHARED_CSS:SH.css||'',SHARED_RUNTIME:SH.runtime||'',SHARED_ICONS:SH.icons||'',OPENING_FONTS:OP.fonts,OPENING_LINE:OP.line,OPENING_PAGE:OP.page,LANG:esc(P.lang),DIR:P.dir==="rtl"?"rtl":"ltr",TITLE:esc(title),FONTS_HREF:esc(fontsHref),RSVP_HIDDEN:wa?'':' hidden',J_RSVP_PHONE:js(wa),J_COUPLE:js(S.name1+' & '+S.name2),SONG:esc(opts.silent||!S.song?SILENT:S.song),
     COVER_TITLE:esc(S.coverTitle),COVER_SUB:esc(S.coverSub),COVER_PHOTO:esc(cov.src),COVER_POS:'50% '+esc(cov.pos||'50%'),
     FRONT_LABEL:esc(S.frontLabel),NAME1:esc(S.name1),NAME2:esc(S.name2),REL1:esc(S.parents1?S.rel1:''),REL2:esc(S.parents2?S.rel2:''),EMBLEM:emblem,DATE_HEAD:esc(auto?F.date_head_auto:F.date_head_pull),DATE_TIP:auto?'':esc(F.date_tip),REC_ICON:TR.recIcon,PARENTS1:esc(S.parents1),PARENTS2:esc(S.parents2),INVITE_LINE:esc(S.inviteLine),
     W_WEEKDAY:esc(F.days[p.wd]),W_DAY:String(p.d),W_MONTH:esc(F.months[p.mo]),W_YEAR:String(p.y),BANNER_LINE:esc(banner),
@@ -168,6 +172,6 @@ function build(S,opts,R){
   return html;
 }
 
-var InviteEngine={build:build,scriptsIn:scriptsIn,renderOpening:renderOpening,findOpening:findOpening,toGujarati:toGujarati,detectScript:detectScript,openingOpts:openingOpts,OPENING_DEFAULT:OPENING_DEFAULT,STYLES:STYLES,TRAD:TRAD,esc:esc,js:js,fill:fill,time12:time12,waNumber:waNumber,DEFAULT_TEMPLATE:DEFAULT_TEMPLATE,DEFAULT_LANG:DEFAULT_LANG};
+var InviteEngine={build:build,hashtagOf:hashtagOf,scriptsIn:scriptsIn,renderOpening:renderOpening,findOpening:findOpening,toGujarati:toGujarati,detectScript:detectScript,openingOpts:openingOpts,OPENING_DEFAULT:OPENING_DEFAULT,STYLES:STYLES,TRAD:TRAD,esc:esc,js:js,fill:fill,time12:time12,waNumber:waNumber,DEFAULT_TEMPLATE:DEFAULT_TEMPLATE,DEFAULT_LANG:DEFAULT_LANG};
 if(typeof module!=='undefined'&&module.exports)module.exports=InviteEngine;else root.InviteEngine=InviteEngine;
 })(this);

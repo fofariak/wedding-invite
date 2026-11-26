@@ -44,14 +44,16 @@
     "your_name": "Votre nom",
     "attending": "Avec plaisir",
     "cant_make_it": "Malheureusement non",
-    "dear_guest": "cher invité",
+    "dear_guest": "Bonjour",
     "thanks_yes": "Merci, {name} ! Nous avons hâte de vous voir.",
     "thanks_no": "Merci, {name}. Vous nous manquerez.",
     "reply_intro": "C'est {name}. ",
     "reply_yes": "Bonjour ! {intro}Je confirme avec joie ma présence au mariage de {couple}. J'ai hâte de célébrer avec vous !",
     "reply_no": "Bonjour ! {intro}Malheureusement, je ne pourrai pas assister au mariage de {couple}. Je vous souhaite tout le bonheur du monde.",
     "opening_aria": "Bénédiction d'ouverture",
-    "tap_to_open_invite": "Touchez pour ouvrir votre invitation"
+    "tap_to_open_invite": "Touchez pour ouvrir votre invitation",
+    "share_hashtag": "Partagez vos photos avec",
+    "hashtag_copied": "Hashtag copié"
   },
   "format": {
     "months": [
@@ -107,7 +109,7 @@
     "date_short": "{day} {month}",
     "date_head_pull": "Tirez pour découvrir",
     "date_head_auto": "Le jour du mariage",
-    "date_tip": "Tirez le pompon vers le bas",
+    "date_tip": "Tirez le cordon vers le bas",
     "dress_code": "Tenue",
     "banner_line": "{rite} à {time} · {venue}",
     "see_you_on": "Rendez-vous le {date}",

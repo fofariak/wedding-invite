@@ -89,6 +89,7 @@ export function validateData(raw, rec) {
     closing: text(raw.closing, 200), kids: text(raw.kids, 240),
     song: assetRef(raw.song, rec, 'audio'), songName: text(raw.songName, 120),
     rsvpPhone: text(raw.rsvpPhone, 30),
+    hashtag: engine.hashtagOf(text(raw.hashtag, 80)),
     opening: validateOpening(raw.opening),
   };
   if (S.photos.some((p) => !p.src)) throw new HttpError(400, 'Every photo needs a picture.');
