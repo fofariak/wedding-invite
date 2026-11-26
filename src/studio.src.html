@@ -252,9 +252,8 @@ function render(){
   secs.push(section('Wedding date',false,[
     h('div',{class:'two'},[field('Date',S,'date','date'),field(TRAD[S.tradition].rite+' time',S,'time','time')]),
     (function(){var z=h('select',{},ZONES.map(function(o){return h('option',{value:o[0],selected:S.tz===o[0],text:o[1]});}));z.addEventListener('change',function(){S.tz=z.value;changed();});return h('label',{},['Time zone of the wedding',z]);})(),
-    !tplOf().features.tassel?null:(function(){var z=h('select',{},[['pull','Guest pulls the tassel to unroll the date'],['auto','Date unrolls by itself when scrolled to']].map(function(o){return h('option',{value:o[0],selected:S.reveal===o[0],text:o[1]});}));z.addEventListener('change',function(){S.reveal=z.value;changed();});return h('label',{},['Date reveal',z]);})(),
     field('Line under the date',S,'bannerLine','text',{placeholder:TRAD[S.tradition].rite+' at '+time12(S.time)+' · '+S.venue}),
-    h('p',{class:'hint',text:'The pull-down banner, countdown and calendar button all follow this date.'})]));
+    h('p',{class:'hint',text:'The date section, countdown and calendar button all follow this date.'})]));
   secs.push(section('Functions ('+S.events.length+')',false,S.events.map(function(e,i){
     var sel=h('select',{},Object.keys(STYLES).map(function(k){return h('option',{value:k,selected:e.style===k,text:STYLES[k][0]});}));
     sel.addEventListener('change',function(){e.style=sel.value;changed();});
@@ -343,7 +342,7 @@ function langPicker(){
 // Sample wording in the chosen language. Photos, song, design, colours, opening and replies stay.
 var WORDING=['name1','name2','rel1','rel2','parents1','parents2','frontLabel','inviteLine','coverTitle','coverSub','recLabel','recTitle','recLine','recChip','closing','kids'];
 function wordingOf(x){return JSON.stringify(WORDING.map(function(k){return x[k];}).concat(x.events.map(function(e){return [e.name,e.dress,e.place];})));}
-function fillSample(lang){var keep={photos:S.photos,cover:S.cover,song:S.song,songName:S.songName,theme:S.theme,reveal:S.reveal,tradition:S.tradition,template:S.template,hashtag:S.hashtag,rsvpPhone:S.rsvpPhone,opening:S.opening,lang:lang};
+function fillSample(lang){var keep={photos:S.photos,cover:S.cover,song:S.song,songName:S.songName,theme:S.theme,tradition:S.tradition,template:S.template,hashtag:S.hashtag,rsvpPhone:S.rsvpPhone,opening:S.opening,lang:lang};
   S=Object.assign(sample(S.tradition,lang),keep);render();changed();}
 // Is the wording still one of our samples (in any language)? Then switching language can replace it safely.
 function wordingUntouched(){var w=wordingOf(S);return Object.keys(RES.phrases).concat([E.DEFAULT_LANG]).some(function(l){return wordingOf(sample(S.tradition,l))===w;});}

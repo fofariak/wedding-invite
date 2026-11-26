@@ -1,9 +1,7 @@
 {
   "name": "Classic Book",
-  "description": "A book opens onto paper flowers, with a pull-down tassel date",
-  "features": {
-    "tassel": true
-  },
+  "description": "A book opens onto paper flowers and an illustrated date scroll",
+  "features": {},
   "demo": {
     "file": "demo-hindu.html",
     "image": "img/preview-hindu.webp"

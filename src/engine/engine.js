@@ -106,7 +106,7 @@ function themedTemplate(R,id,k){
 /* ---------- build the invite ---------- */
 function build(S,opts,R){
   opts=opts||{};
-  var id=templateId(S,R),TP=R.templates[id],THEMES=TP.themes,EMBLEMS=R.emblems,PT=TP.partials,FEAT=TP.features||{};
+  var id=templateId(S,R),TP=R.templates[id],THEMES=TP.themes,EMBLEMS=R.emblems,PT=TP.partials;
   var P=phrasesFor(S,R),F=P.format,trad=TRAD[S.tradition]?S.tradition:'hindu';
   var th=themeOf(THEMES,S.theme),p=parts(S.date)||parts('2027-01-01'),tm=/^\d{2}:\d{2}$/.test(S.time)?S.time:'19:00';
   var TR=TRAD[S.tradition]||TRAD.hindu,tz=/^[+-]\d{2}:\d{2}$/.test(S.tz)?S.tz:'+05:30';
@@ -115,7 +115,6 @@ function build(S,opts,R){
   var title=S.name1+F.join[trad]+S.name2;
   var banner=S.bannerLine||fill(F.banner_line,{rite:F.rite[trad],time:time12(tm,F),venue:S.venue});
   var emblem=EMBLEMS[TR.emblem].replace('%%INIT1%%',esc((S.name1||'').trim().charAt(0).toUpperCase())).replace('%%INIT2%%',esc((S.name2||'').trim().charAt(0).toUpperCase()));
-  var auto=S.reveal==='auto';
   var place=[S.venue,S.address].filter(Boolean).join(', ');
   var q=encodeURIComponent(place);
   var events=S.events.map(function(e){
@@ -145,7 +144,7 @@ function build(S,opts,R){
   var HASHTAG=tag?'<div class="hashtag"><span>'+esc(P.text.share_hashtag)+'</span><button type="button" class="ht" data-msg="'+esc(P.text.hashtag_copied)+'" onclick="var b=this,t=b.textContent;function ok(){b.classList.add(\'done\')}function old(){var r=document.createRange(),x=getSelection();r.selectNodeContents(b);x.removeAllRanges();x.addRange(r);try{if(document.execCommand(\'copy\'))ok()}catch(e){}}try{navigator.clipboard.writeText(t).then(ok,old)}catch(e){old()}">'+esc(tag)+'</button></div>':'';
   var V={HASHTAG:HASHTAG,FONTS_BASE:esc(R.fontsBase||''),THEME_VARS:themeVars,SHARED_CSS:SH.css||'',SHARED_RUNTIME:SH.runtime||'',SHARED_ICONS:SH.icons||'',OPENING_FONTS:OP.fonts,OPENING_LINE:OP.line,OPENING_PAGE:OP.page,LANG:esc(P.lang),DIR:P.dir==="rtl"?"rtl":"ltr",TITLE:esc(title),FONTS_HREF:esc(fontsHref),RSVP_HIDDEN:wa?'':' hidden',J_RSVP_PHONE:js(wa),J_COUPLE:js(S.name1+' & '+S.name2),SONG:esc(opts.silent||!S.song?SILENT:S.song),
     COVER_TITLE:esc(S.coverTitle),COVER_SUB:esc(S.coverSub),COVER_PHOTO:esc(cov.src),COVER_POS:'50% '+esc(cov.pos||'50%'),
-    FRONT_LABEL:esc(S.frontLabel),NAME1:esc(S.name1),NAME2:esc(S.name2),REL1:esc(S.parents1?S.rel1:''),REL2:esc(S.parents2?S.rel2:''),EMBLEM:emblem,DATE_HEAD:esc(auto?F.date_head_auto:F.date_head_pull),DATE_TIP:auto?'':esc(F.date_tip),REC_ICON:TR.recIcon,PARENTS1:esc(S.parents1),PARENTS2:esc(S.parents2),INVITE_LINE:esc(S.inviteLine),
+    FRONT_LABEL:esc(S.frontLabel),NAME1:esc(S.name1),NAME2:esc(S.name2),REL1:esc(S.parents1?S.rel1:''),REL2:esc(S.parents2?S.rel2:''),EMBLEM:emblem,DATE_HEAD:esc(F.date_head),REC_ICON:TR.recIcon,PARENTS1:esc(S.parents1),PARENTS2:esc(S.parents2),INVITE_LINE:esc(S.inviteLine),
     W_WEEKDAY:esc(F.days[p.wd]),W_DAY:String(p.d),W_MONTH:esc(F.months[p.mo]),W_YEAR:String(p.y),BANNER_LINE:esc(banner),
     CAL_HREF:esc('https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(fill(F.calendar_title,{name1:S.name1,name2:S.name2}))+'&dates='+calStamp(start)+'/'+calStamp(start+4*3600e3)+'&location='+q),
     EVENTS:events,PHOTOS:photos,
@@ -158,12 +157,6 @@ function build(S,opts,R){
   Object.keys(P.text).forEach(function(k){var K=k.toUpperCase();V['T_'+K]=esc(P.text[k]);V['J_T_'+K]=js(P.text[k]);});
   var html=themedTemplate(R,id,S.theme).replace(/%%([A-Z0-9_]+)%%/g,function(m,k){return V.hasOwnProperty(k)?V[k]:m;});
   if(langHead)html=html.replace('</head>',function(){return langHead+'</head>';});
-  if(auto&&FEAT.tassel){
-    var au='<script>(function(){var t=document.getElementById("tassel"),tip=document.getElementById("pulltip"),done=false;document.getElementById("hand").style.display="none";tip.style.visibility="hidden";'
-      +'function go(){if(done)return;if(!document.documentElement.classList.contains("opened")){setTimeout(go,300);return;}done=true;setTimeout(function(){tip.style.visibility="";t.dispatchEvent(new KeyboardEvent("keydown",{key:"Enter"}));},500);}'
-      +'if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();go();}},{threshold:.5});io.observe(document.getElementById("pullbox"));}else go();})();<\/script>';
-    html=html.replace(/<\/body>|$/,function(m){return au+m;});
-  }
   if(opts.mark){
     var tile='<svg xmlns="http://www.w3.org/2000/svg" width="230" height="170"><text x="115" y="95" text-anchor="middle" transform="rotate(-28 115 85)" font-family="Georgia,serif" font-size="26" letter-spacing="4" fill="#2d2422" fill-opacity=".2" stroke="#fff" stroke-opacity=".35" stroke-width=".6">PREVIEW</text></svg>';
     var wm='<div aria-hidden="true" style="position:fixed;inset:0;z-index:2147483000;pointer-events:none;background:url(&quot;data:image/svg+xml;charset=utf-8,'+encodeURIComponent(tile)+'&quot;)"></div>';

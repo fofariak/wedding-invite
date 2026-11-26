@@ -59,7 +59,6 @@ export function validateData(raw, rec) {
     lang: pick(raw.lang, Object.keys(R.phrases).filter((k) => R.phrases[k].reviewed !== false), engine.DEFAULT_LANG),
     theme: pick(raw.theme, themes, themes.includes('wine') ? 'wine' : themes[0]),
     tradition: pick(raw.tradition, Object.keys(engine.TRAD), 'hindu'),
-    reveal: pick(raw.reveal, ['pull', 'auto'], 'pull'),
     tz: typeof raw.tz === 'string' && /^[+-]\d{2}:\d{2}$/.test(raw.tz) ? raw.tz : '+05:30',
     name1: text(raw.name1, 60), name2: text(raw.name2, 60),
     rel1: text(raw.rel1, 40), rel2: text(raw.rel2, 40),

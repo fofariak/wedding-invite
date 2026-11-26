@@ -11,7 +11,7 @@ function placeholder(i){
 }
 function defaults(){
   var caps=['By the sea','Racing up together','Reaching for you','Almost touching','Our quiet corner','Two rings, one promise'];
-  return {template:'classic',lang:'en',theme:'wine',tradition:'hindu',reveal:'pull',tz:'+05:30',
+  return {template:'classic',lang:'en',theme:'wine',tradition:'hindu',tz:'+05:30',
     name1:'Aastha',name2:'Aakash',rel1:'Daughter of',parents1:'Mr. Rahul Oberoi & Mrs. Rajvi Oberoi',rel2:'Son of',parents2:'Mr. Anil Shah & Mrs. Anjali Shah',
     frontLabel:'Together with their families',inviteLine:'request the pleasure of your company at their wedding',
     coverTitle:'SHUBH VIVAAH',coverSub:'A wedding invitation',

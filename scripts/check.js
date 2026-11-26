@@ -20,9 +20,9 @@ for (const tpl of Object.keys(R.templates)) {
   for (const theme of Object.keys(R.templates[tpl].themes)) {
     for (const trad of Object.keys(engine.TRAD)) {
       for (const lang of Object.keys(R.phrases)) {
-        for (const variant of [{}, { reveal: 'auto', rsvpPhone: '+91 98765 43210', recOn: false, kids: '' }]) {
+        for (const variant of [{}, { rsvpPhone: '+91 98765 43210', recOn: false, kids: '' }]) {
           const S = Object.assign(samples.sample(trad), { template: tpl, theme, tradition: trad, lang }, variant);
-          const label = [tpl, theme, trad, lang, variant.reveal || 'pull'].join('/');
+          const label = [tpl, theme, trad, lang, variant.rsvpPhone ? 'reply' : 'plain'].join('/');
           for (const opts of [{}, { preview: true, skip: true, mark: true }]) {
             const html = engine.build(S, opts, R);
             count++;
