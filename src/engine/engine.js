@@ -133,6 +133,12 @@ function build(S,opts,R){
   var wa=waNumber(S.rsvpPhone);
   var fontsHref=(R.fontsBase||'')+'fonts/fonts.css';
   var OP=renderOpening(S,R,P);
+  // Fixed words in Hindi, Gujarati, Punjabi... need that script's font (Latin text keeps the template's fonts).
+  var LANG_FONT={hi:['deva','Noto Serif Devanagari'],mr:['deva','Noto Serif Devanagari'],gu:['gujr','Noto Serif Gujarati'],pa:['guru','Noto Serif Gurmukhi'],ur:['urdu','Noto Nastaliq Urdu'],ar:['arab','Amiri']}[P.lang];
+  var langHead='';
+  if(LANG_FONT){var lf='"'+LANG_FONT[1]+'"',fl=esc((R.fontsBase||'')+'fonts/'+LANG_FONT[0]+'.css');
+    if(OP.fonts.indexOf(fl)<0)OP.fonts+='<link rel="stylesheet" href="'+fl+'">';
+    langHead='<style>:root{--f-head:"Playfair Display",'+lf+',Georgia,serif;--f-body:"Montserrat",'+lf+',"Helvetica Neue",Arial,sans-serif;--f-script:"Pinyon Script","Playfair Display",'+lf+',Georgia,serif}</style>';}
   var SH=R.shared||{};
   var themeVars=th.vars?'<style>:root{'+Object.keys(th.vars).map(function(k){return k+':'+String(th.vars[k]).replace(/[<>;{}]/g,'');}).join(';')+'}</style>':'';
   var tag=hashtagOf(S.hashtag);
@@ -151,6 +157,7 @@ function build(S,opts,R){
     F_BLUSH:JSON.stringify(th.F_BLUSH),F_IVORY:JSON.stringify(th.F_IVORY),F_PEACH:JSON.stringify(th.F_PEACH),F_WINE:JSON.stringify(th.F_WINE),F_PETALS:JSON.stringify(th.F_PETALS),BUD0:th.BUD?th.BUD[0]:'',BUD1:th.BUD?th.BUD[1]:''};
   Object.keys(P.text).forEach(function(k){var K=k.toUpperCase();V['T_'+K]=esc(P.text[k]);V['J_T_'+K]=js(P.text[k]);});
   var html=themedTemplate(R,id,S.theme).replace(/%%([A-Z0-9_]+)%%/g,function(m,k){return V.hasOwnProperty(k)?V[k]:m;});
+  if(langHead)html=html.replace('</head>',function(){return langHead+'</head>';});
   if(auto&&FEAT.tassel){
     var au='<script>(function(){var t=document.getElementById("tassel"),tip=document.getElementById("pulltip"),done=false;document.getElementById("hand").style.display="none";tip.style.visibility="hidden";'
       +'function go(){if(done)return;if(!document.documentElement.classList.contains("opened")){setTimeout(go,300);return;}done=true;setTimeout(function(){tip.style.visibility="";t.dispatchEvent(new KeyboardEvent("keydown",{key:"Enter"}));},500);}'

@@ -2,7 +2,7 @@
   "lang": "pt",
   "dir": "ltr",
   "label": "Português",
-  "reviewed": false,
+  "reviewed": true,
   "text": {
     "book_aria": "Livro do convite de casamento",
     "open_book_aria": "Abrir o livro do convite",

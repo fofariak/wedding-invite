@@ -95,6 +95,12 @@ p{margin:0}
 .stories{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 28px;margin-top:clamp(36px,5vw,52px);font-size:14.5px;color:var(--ink)}
 .stories span{display:flex;align-items:center;gap:10px}
 .more{text-align:center;color:var(--muted);font-size:15px;margin-top:22px}
+.langs{text-align:center;margin-top:clamp(40px,6vw,64px)}
+.langs h3{font-size:clamp(24px,3vw,30px)}
+.langs p{color:var(--muted);margin-top:8px}
+.lchips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
+.lchip{padding:10px 18px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--wine-d);text-decoration:none;font:500 16px var(--head),"Noto Serif Devanagari","Noto Serif Gujarati","Noto Serif Gurmukhi",serif;transition:border-color .2s,transform .2s}
+.lchip:hover{border-color:var(--gold);transform:translateY(-2px)}
 
 /* inside */
 .inside{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,88px);align-items:start}
@@ -247,7 +253,8 @@ dialog.pop::backdrop{background:rgba(35,20,22,.62);-webkit-backdrop-filter:blur(
       <div class="cards">
 {{DESIGN_CARDS}}
       </div>
-      <p class="more rv">Every design works with every tradition, and you can write your own wording in any language. More designs are on the way.</p>
+      <div class="langs rv"><h3>Your invitation in {{LANGUAGE_COUNT}} languages</h3><p>Dates, times and every word on the invitation, written properly in your language. Tap one to start.</p><div class="lchips">{{LANGUAGE_CHIPS}}</div></div>
+      <p class="more rv">Every design works with every tradition and language. More designs and languages are on the way.</p>
     </div>
   </section>
 

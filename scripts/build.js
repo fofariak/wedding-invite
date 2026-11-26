@@ -32,10 +32,19 @@ function designCards() {
       '        </article>';
   }).join('\n');
 }
+function languageChips() {
+  const R = loadResources();
+  const live = Object.entries(R.phrases).filter(([, p]) => p.reviewed !== false && p.dir !== 'rtl');
+  const ORDER = ['hi', 'gu', 'mr', 'pa', 'ur', 'ar', 'en', 'es', 'pt', 'de', 'fr'];
+  const rank = (c) => (ORDER.indexOf(c) < 0 ? 99 : ORDER.indexOf(c));
+  live.sort((x, y) => rank(x[0]) - rank(y[0]));
+  return { n: live.length, html: live.map(([code, p]) => '<a class="lchip" lang="' + escHtml(code) + '" href="studio.html?lang=' + encodeURIComponent(code) + '">' + escHtml(p.label) + '</a>').join('') };
+}
 const withDesigns = (html) => {
   if (!html.includes('{{DESIGN_CARDS}}')) return html;
   const cards = designCards(), n = (cards.match(/class="dcard/g) || []).length;
-  return html.replace('{{DESIGN_CARDS}}', () => cards).replace(/\{\{DESIGN_COUNT\}\}/g, () => WORDS[n] || String(n));
+  const langs = languageChips();
+  return html.replace('{{LANGUAGE_CHIPS}}', () => langs.html).replace(/\{\{LANGUAGE_COUNT\}\}/g, () => String(langs.n)).replace('{{DESIGN_CARDS}}', () => cards).replace(/\{\{DESIGN_COUNT\}\}/g, () => WORDS[n] || String(n));
 };
 
 // Safe to place inside a <script type="application/json"> block.
@@ -51,7 +60,7 @@ const inlineJs = (file) => {
 
 const write = (name, html) => {
   // Site placeholders only ({{BRAND}}); template snippets embedded as data use {{KEY}} on purpose.
-  const left = html.match(/\{\{(BRAND|DESIGN_CARDS|DESIGN_COUNT)\}\}/);
+  const left = html.match(/\{\{(BRAND|DESIGN_CARDS|DESIGN_COUNT|LANGUAGE_CHIPS|LANGUAGE_COUNT)\}\}/);
   if (left) throw new Error(name + ' still contains ' + left[0]);
   fs.writeFileSync(path.join(root, 'public', name), html);
   console.log('Built public/' + name + ' (' + html.length + ' characters)');

@@ -2,7 +2,7 @@
   "lang": "de",
   "dir": "ltr",
   "label": "Deutsch",
-  "reviewed": false,
+  "reviewed": true,
   "text": {
     "book_aria": "Einladungsbuch zur Hochzeit",
     "open_book_aria": "Einladungsbuch öffnen",

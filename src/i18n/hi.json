@@ -2,7 +2,7 @@
   "lang": "hi",
   "dir": "ltr",
   "label": "हिन्दी",
-  "reviewed": false,
+  "reviewed": true,
   "text": {
     "book_aria": "विवाह निमंत्रण पुस्तिका",
     "open_book_aria": "निमंत्रण पुस्तिका खोलें",

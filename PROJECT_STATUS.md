@@ -70,6 +70,15 @@ Last updated: 24 November 2026. The plan and its reasons are in `PROJECT_AUDIT.m
 - **Translations reviewed by the owner (26 November 2026):** 52 corrections applied to the phrase files across all 10 languages. Two new phrases for the hashtag ("Share your photos with", "Hashtag copied") still need a review.
 - **Wedding hashtag:** optional field in the editor; shown under the photos in all 4 templates, and guests tap to copy.
 
+- **Language picker (live):**
+  - 9 approved languages: Hindi, Gujarati, Marathi, Punjabi, English, Spanish, Portuguese, German, French.
+  - Each tradition's likely languages are listed first, with a note about typing names in that script.
+  - Script fonts load for the invitation's language.
+  - A gentle check before paying flags names in English letters on a non-English invitation.
+  - Homepage: "Your invitation in 9 languages" chips, each opening the editor in that language.
+  - Arabic and Urdu are reviewed but hidden until the right-to-left layout is built.
+  - Not yet done: "Fill in sample wording" per language, and the multi-language toggle (+₹200).
+
 ## Decisions (23 to 24 November 2026)
 - **Order:** keep the original order: Step 1 foundations, then the homepage, then hosted links.
 - **Old buttons:** "Save project / Open project" was replaced by the edit link in Step 3.

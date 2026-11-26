@@ -2,7 +2,7 @@
   "lang": "es",
   "dir": "ltr",
   "label": "Español",
-  "reviewed": false,
+  "reviewed": true,
   "text": {
     "book_aria": "Libro de invitación de boda",
     "open_book_aria": "Abrir el libro de invitación",

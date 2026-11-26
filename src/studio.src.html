@@ -228,6 +228,7 @@ function render(){
       var r=h('input',{type:'radio',name:'tpl',value:k,checked:(S.template||E.DEFAULT_TEMPLATE)===k,onchange:function(){S.template=k;if(!themesOf()[S.theme])S.theme=firstTheme(themesOf());changed();render();}});
       return h('label',{class:'theme'},[r,h('span',{},[RES.templates[k].name,h('br'),h('small',{class:'hint',text:RES.templates[k].description})])]);})),
     h('p',{class:'hint',text:'Templates change the whole look and opening animation. Your details, photos and functions stay the same.'}),
+    langPicker(),
     h('div',{class:'themes',role:'radiogroup','aria-label':'Colour story'},Object.keys(THEMES).map(function(k){
     var r=h('input',{type:'radio',name:'theme',value:k,checked:S.theme===k,onchange:function(){S.theme=k;changed();}});
     return h('label',{class:'theme'},[r,THEMES[k].label,h('span',{class:'sw'},THEMES[k].sw.map(function(c){return h('i',{style:'background:'+c});}))]);
@@ -326,6 +327,21 @@ function addPhotos(files){var list=[].slice.call(files);if(!list.length)return;
     if(holders&&n.length>=3){S.photos=n;S.cover=0;}else S.photos=S.photos.concat(n);
     changed();render();say(n.length+' photo'+(n.length>1?'s':'')+' added.');},fail);}
 function fail(){say('That file could not be read. Try a JPG or PNG photo, or an MP3 song.');}
+
+/* ---------- invitation language ---------- */
+// Languages a native speaker has approved; each tradition's likely languages first.
+var LIKELY={hindu:['hi','gu','mr','pa','en'],muslim:['ur','ar','en','hi'],western:['en','es','pt','de','fr']};
+var LANG_SCRIPT={hi:'deva',mr:'deva',gu:'gujr',pa:'guru',ur:'urdu',ar:'arab'};
+function liveLangs(){return Object.keys(RES.phrases).filter(function(k){var P=RES.phrases[k];return P.reviewed!==false&&P.dir!=='rtl';});}
+function langPicker(){
+  var live=liveLangs(),first=(LIKELY[S.tradition]||[]).filter(function(k){return live.indexOf(k)>=0;}),rest=live.filter(function(k){return first.indexOf(k)<0;});
+  if(live.indexOf(S.lang)<0)S.lang=E.DEFAULT_LANG;
+  var sel=h('select',{},first.concat(rest).map(function(k){return h('option',{value:k,selected:S.lang===k,text:RES.phrases[k].label+(k===E.DEFAULT_LANG?'':' ('+k.toUpperCase()+')')});}));
+  sel.addEventListener('change',function(){S.lang=sel.value;changed();render();});
+  var P=RES.phrases[S.lang],note=S.lang===E.DEFAULT_LANG?null:h('p',{class:'hint',text:'Dates, times and the invitation\u2019s own words will be in '+P.label+' automatically. Names, places and your own wording appear exactly as you type them, so type them in '+P.label+' if you want them in '+P.label+'.'});
+  return h('div',{style:'display:grid;gap:6px'},[h('label',{},['Invitation language',sel]),note]);}
+// Before paying: names in English letters on an invitation in another script?
+function namesMismatch(){var sc=LANG_SCRIPT[S.lang];if(!sc)return false;return E.detectScript(S.name1+' '+S.name2)==='latn';}
 
 /* ---------- opening (mantra, shloka, verse, blessing) ---------- */
 var OP=RES.openings,OPM=OP.meta,pkTrad='',pkSub='';
@@ -477,6 +493,7 @@ function startPublish(){
   var holders=S.photos.filter(function(p){return p.src.indexOf('data:image/svg')===0;}).length;
   if(holders&&!confirm('Your invitation still has '+holders+' sample photo'+(holders>1?'s':'')+'. You can change photos after publishing too. Continue to payment?'))return;
   if(!S.name1.trim()||!S.name2.trim()){say('Please fill in both names before publishing.');return;}
+  if(namesMismatch()&&!confirm('Your invitation is in '+RES.phrases[S.lang].label+' but the names are in English letters ('+S.name1+', '+S.name2+'). Continue with the names as they are? Choose Cancel to type them in '+RES.phrases[S.lang].label+' first.'))return;
   busy=true;paintActions();say('Preparing secure checkout…');
   var pending=stored('pendingPublish');
   Promise.resolve(pending&&ID_RE.test(pending.id)&&TOKEN_RE.test(pending.token)?pending:null)
@@ -554,7 +571,9 @@ loadDraft().then(function(d){
   if(d&&Array.isArray(d.photos)&&d.photos.length&&Array.isArray(d.events))S=normalise(d);
   render();
   var x=fromHash();if(x)return openSession(x.id,x.token);
-  var want=new URLSearchParams(location.search).get('template');
+  var qs=new URLSearchParams(location.search),wantLang=qs.get('lang');
+  if(wantLang&&liveLangs().indexOf(wantLang)>=0&&wantLang!==S.lang){S.lang=wantLang;history.replaceState(null,'',location.pathname+location.hash);render();saveDraft();say('Invitation language: '+RES.phrases[wantLang].label+'.');}
+  var want=qs.get('template');
   if(want&&RES.templates[want]){S.template=want;if(!themesOf()[S.theme])S.theme=firstTheme(themesOf());history.replaceState(null,'',location.pathname+location.hash);render();saveDraft();say(RES.templates[want].name+' design selected. Make it yours below.');}
   var p=stored('pendingPublish');
   if(p&&ID_RE.test(p.id)&&TOKEN_RE.test(p.token))return call('GET','/api/invites/'+p.id,undefined,p).then(function(v){if(v.paid)return finish(p);},function(e){if(e.status===404)store('pendingPublish',null);});

@@ -2,7 +2,7 @@
   "lang": "fr",
   "dir": "ltr",
   "label": "Français",
-  "reviewed": false,
+  "reviewed": true,
   "text": {
     "book_aria": "Livret d'invitation de mariage",
     "open_book_aria": "Ouvrir le livret d'invitation",
